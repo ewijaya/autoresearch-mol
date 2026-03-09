@@ -612,6 +612,7 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed(42)
 torch.set_float32_matmul_precision("high")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+WARMUP_STEPS = env_int("RECURSIVE_MOL_WARMUP_STEPS", 10 if device.type == "cuda" else 0)
 autocast_ctx = (
     torch.amp.autocast(device_type="cuda", dtype=torch.bfloat16)
     if device.type == "cuda"
@@ -767,7 +768,7 @@ while True:
 
     maybe_sync()
     dt = time.time() - t0
-    if step > 10:
+    if step > WARMUP_STEPS:
         total_training_time += dt
 
     ema_beta = 0.9
@@ -798,7 +799,7 @@ while True:
         gc.collect()
 
     step += 1
-    if step > 10 and total_training_time >= TIME_BUDGET:
+    if step > WARMUP_STEPS and total_training_time >= TIME_BUDGET:
         break
 
 print()
@@ -813,7 +814,7 @@ with autocast_ctx:
 
 t_end = time.time()
 steady_state_mfu = (
-    100 * num_flops_per_token * TOTAL_BATCH_SIZE * (step - 10) / total_training_time / A10G_BF16_PEAK_FLOPS
+    100 * num_flops_per_token * max(step - WARMUP_STEPS, 0) * TOTAL_BATCH_SIZE / total_training_time / A10G_BF16_PEAK_FLOPS
     if total_training_time > 0 and device.type == "cuda"
     else 0.0
 )
