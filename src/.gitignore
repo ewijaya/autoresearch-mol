@@ -16,5 +16,8 @@ queue/
 CLAUDE.md
 AGENTS.md
 
+# W&B local run data
+wandb/
+
 # Experimental code/artifacts
 dev/

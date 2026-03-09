@@ -74,6 +74,9 @@ class GPTConfig:
     window_pattern: str = "SSSL"
     activation: str = "ReluSquared"
     ffn_mult: int = 5
+    use_value_embeds: bool = True
+    value_embed_dim: int = 64
+    tie_embed_weights: bool = True
 
 
 def norm(x):
@@ -123,7 +126,7 @@ class CausalSelfAttention(nn.Module):
         self.ve_gate_channels = min(32, self.n_embd)
         self.ve_gate = (
             nn.Linear(self.ve_gate_channels, self.n_kv_head, bias=False)
-            if has_ve(layer_idx, config.n_layer)
+            if config.use_value_embeds and has_ve(layer_idx, config.n_layer)
             else None
         )
         self._mask_cache = {}
@@ -214,18 +217,23 @@ class GPT(nn.Module):
                 "h": nn.ModuleList([Block(config, i) for i in range(config.n_layer)]),
             }
         )
-        self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
+        self.lm_head = None if config.tie_embed_weights else nn.Linear(config.n_embd, config.vocab_size, bias=False)
         self.resid_lambdas = nn.Parameter(torch.ones(config.n_layer))
         self.x0_lambdas = nn.Parameter(torch.zeros(config.n_layer))
         head_dim = config.n_embd // config.n_head
         kv_dim = config.n_kv_head * head_dim
-        self.value_embeds = nn.ModuleDict(
-            {
-                str(i): nn.Embedding(config.vocab_size, kv_dim)
-                for i in range(config.n_layer)
-                if has_ve(i, config.n_layer)
-            }
-        )
+        if config.use_value_embeds:
+            self.value_embed = nn.Embedding(config.vocab_size, config.value_embed_dim)
+            self.value_projs = nn.ModuleDict(
+                {
+                    str(i): nn.Linear(config.value_embed_dim, kv_dim, bias=False)
+                    for i in range(config.n_layer)
+                    if has_ve(i, config.n_layer)
+                }
+            )
+        else:
+            self.value_embed = None
+            self.value_projs = nn.ModuleDict()
         self.rotary_seq_len = config.sequence_len
         cos, sin = self._precompute_rotary_embeddings(self.rotary_seq_len, head_dim)
         self.register_buffer("cos", cos, persistent=False)
@@ -234,7 +242,8 @@ class GPT(nn.Module):
     @torch.no_grad()
     def init_weights(self):
         torch.nn.init.normal_(self.transformer.wte.weight, mean=0.0, std=1.0)
-        torch.nn.init.normal_(self.lm_head.weight, mean=0.0, std=0.001)
+        if self.lm_head is not None:
+            torch.nn.init.normal_(self.lm_head.weight, mean=0.0, std=0.001)
         n_embd = self.config.n_embd
         s = 3**0.5 * n_embd**-0.5
         for block in self.transformer.h:
@@ -246,8 +255,10 @@ class GPT(nn.Module):
             torch.nn.init.zeros_(block.mlp.c_proj.weight)
         self.resid_lambdas.fill_(1.0)
         self.x0_lambdas.fill_(0.1)
-        for ve in self.value_embeds.values():
-            torch.nn.init.uniform_(ve.weight, -s, s)
+        if self.value_embed is not None:
+            torch.nn.init.uniform_(self.value_embed.weight, -s, s)
+        for proj in self.value_projs.values():
+            torch.nn.init.uniform_(proj.weight, -s, s)
         for block in self.transformer.h:
             if block.attn.ve_gate is not None:
                 torch.nn.init.zeros_(block.attn.ve_gate.weight)
@@ -256,8 +267,8 @@ class GPT(nn.Module):
         self.cos, self.sin = cos, sin
         if self.transformer.wte.weight.device.type == "cuda":
             self.transformer.wte.to(dtype=torch.bfloat16)
-            for ve in self.value_embeds.values():
-                ve.to(dtype=torch.bfloat16)
+            if self.value_embed is not None:
+                self.value_embed.to(dtype=torch.bfloat16)
 
     def _precompute_rotary_embeddings(self, seq_len, head_dim, base=10000, device=None):
         if device is None:
@@ -286,7 +297,8 @@ class GPT(nn.Module):
 
     def estimate_flops(self):
         nparams = sum(p.numel() for p in self.parameters())
-        value_embeds_numel = sum(ve.weight.numel() for ve in self.value_embeds.values())
+        value_embeds_numel = 0 if self.value_embed is None else self.value_embed.weight.numel()
+        value_embeds_numel += sum(proj.weight.numel() for proj in self.value_projs.values())
         nparams_exclude = (
             self.transformer.wte.weight.numel()
             + value_embeds_numel
@@ -304,8 +316,10 @@ class GPT(nn.Module):
 
     def num_scaling_params(self):
         wte = sum(p.numel() for p in self.transformer.wte.parameters())
-        value_embeds = sum(p.numel() for p in self.value_embeds.parameters())
-        lm_head = sum(p.numel() for p in self.lm_head.parameters())
+        value_embeds = sum(p.numel() for p in self.value_projs.parameters())
+        if self.value_embed is not None:
+            value_embeds += sum(p.numel() for p in self.value_embed.parameters())
+        lm_head = 0 if self.lm_head is None else sum(p.numel() for p in self.lm_head.parameters())
         transformer_matrices = sum(p.numel() for p in self.transformer.h.parameters())
         scalars = self.resid_lambdas.numel() + self.x0_lambdas.numel()
         total = wte + value_embeds + lm_head + transformer_matrices + scalars
@@ -329,9 +343,11 @@ class GPT(nn.Module):
     ):
         model_dim = self.config.n_embd
         matrix_params = list(self.transformer.h.parameters())
-        value_embeds_params = list(self.value_embeds.parameters())
+        value_embeds_params = list(self.value_projs.parameters())
+        if self.value_embed is not None:
+            value_embeds_params += list(self.value_embed.parameters())
         embedding_params = list(self.transformer.wte.parameters())
-        lm_head_params = list(self.lm_head.parameters())
+        lm_head_params = [] if self.lm_head is None else list(self.lm_head.parameters())
         resid_params = [self.resid_lambdas]
         x0_params = [self.x0_lambdas]
         dmodel_lr_scale = (model_dim / 768) ** -0.5
@@ -407,12 +423,18 @@ class GPT(nn.Module):
         x0 = x
         for i, block in enumerate(self.transformer.h):
             x = self.resid_lambdas[i] * x + self.x0_lambdas[i] * x0
-            ve = self.value_embeds[str(i)](idx) if str(i) in self.value_embeds else None
+            ve = None
+            if self.value_embed is not None and str(i) in self.value_projs:
+                ve = self.value_projs[str(i)](self.value_embed(idx))
             x = block(x, ve, cos_sin, self.window_sizes[i])
         x = norm(x)
 
         softcap = 15
-        logits = self.lm_head(x).float()
+        logits = (
+            F.linear(x, self.transformer.wte.weight)
+            if self.lm_head is None
+            else self.lm_head(x)
+        ).float()
         logits = softcap * torch.tanh(logits / softcap)
 
         if targets is not None:
@@ -537,7 +559,7 @@ class MuonAdamW(torch.optim.Optimizer):
             )
 
     def _step_muon(self, group):
-        params = group["params"]
+        params = [param for param in group["params"] if param.grad is not None]
         if not params:
             return
         p = params[0]
@@ -607,7 +629,10 @@ DEPTH = env_int("RECURSIVE_MOL_DEPTH", 6)
 MODEL_DIM_OVERRIDE = env_int("RECURSIVE_MOL_MODEL_DIM", 0)
 NUM_HEADS_OVERRIDE = env_int("RECURSIVE_MOL_NUM_HEADS", 0)
 FFN_MULTIPLIER = env_int("RECURSIVE_MOL_FFN_MULTIPLIER", 5)
-DEFAULT_DEVICE_BATCH = {"smiles": 256, "protein": 128, "nlp": 64}[TRACK]
+USE_VALUE_EMBEDS = env_bool("RECURSIVE_MOL_USE_VALUE_EMBEDS", True)
+VALUE_EMBED_DIM = env_int("RECURSIVE_MOL_VALUE_EMBED_DIM", 64)
+TIE_EMBED_WEIGHTS = env_bool("RECURSIVE_MOL_TIE_EMBED_WEIGHTS", True)
+DEFAULT_DEVICE_BATCH = {"smiles": 256, "protein": 128, "nlp": 32}[TRACK]
 DEVICE_BATCH_SIZE = env_int("RECURSIVE_MOL_DEVICE_BATCH_SIZE", DEFAULT_DEVICE_BATCH)
 TIME_BUDGET = env_int("RECURSIVE_MOL_TIME_BUDGET", BASE_TIME_BUDGET)
 ENABLE_TORCH_COMPILE = env_bool("RECURSIVE_MOL_ENABLE_COMPILE", True)
@@ -661,6 +686,9 @@ def build_model_config(depth):
         window_pattern=window_pattern,
         activation=ACTIVATION,
         ffn_mult=FFN_MULTIPLIER,
+        use_value_embeds=USE_VALUE_EMBEDS,
+        value_embed_dim=VALUE_EMBED_DIM,
+        tie_embed_weights=TIE_EMBED_WEIGHTS,
     )
 
 
