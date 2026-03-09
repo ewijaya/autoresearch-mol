@@ -25,9 +25,8 @@ awsg3
 # 2. Start a named tmux session
 tmux new -s phase1
 
-# 3. Set up environment
+# 3. Navigate to the project
 cd recursive-mol
-conda activate recmol
 
 # 4. Start Codex CLI
 codex
@@ -67,7 +66,7 @@ tmux attach -t phase1
 ```bash
 # For Phase 2, 3, etc. — just use a different session name
 tmux new -s phase2
-cd recursive-mol && conda activate recmol
+cd recursive-mol
 codex
 # Paste the Phase 2 prompt from docs/phase-prompts.md
 ```
