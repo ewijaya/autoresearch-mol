@@ -28,8 +28,8 @@ tmux new -s phase1
 # 3. Navigate to the project
 cd recursive-mol
 
-# 4. Start Codex CLI
-codex
+# 4. Start Codex CLI in full-auto mode (no permission prompts)
+codex --full-auto
 
 # 5. Paste the Phase 1 prompt from docs/phase-prompts.md as-is.
 #    It starts with:
@@ -75,7 +75,7 @@ awsg3
 # 3. Start a new tmux session for the next phase
 tmux new -s phase2
 cd recursive-mol
-codex
+codex --full-auto
 # Paste the next phase prompt
 ```
 
@@ -85,7 +85,7 @@ codex
 # For Phase 2, 3, etc. — just use a different session name
 tmux new -s phase2
 cd recursive-mol
-codex
+codex --full-auto
 # Paste the Phase 2 prompt from docs/phase-prompts.md
 ```
 
