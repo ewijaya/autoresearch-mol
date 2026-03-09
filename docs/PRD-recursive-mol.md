@@ -429,7 +429,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | Calibration results | 20 archs × {5min, 2hr} val_bpb | `results/calibration/` | Phase 1 |
 | Agent run results | 13 runs × results.tsv + all train.py versions | `results/{smiles,protein,nlp}/run_*/` | Phase 2 |
 | Baseline results | 21 baseline runs × results.tsv | `results/baselines/` | Phase 3 |
-| Transfer matrix | 3×3 cross-evaluation results | `results/transfer/` | Phase 4 |
+| Transfer matrix | 3×3 cross-evaluation results classifying architectural innovations as molecular-specific vs. universal | `results/transfer/` | Phase 4 |
 | MoleculeNet scores | ROC-AUC for top architectures | `results/moleculenet/` | Phase 4 |
 | Statistical analysis | Posterior distributions, test results, figures | `results/analysis/` | Phase 5 |
 
@@ -554,7 +554,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 
 #### Phase 4: Transfer & Downstream Evaluation (March 30 - April 6)
 
-**Goal:** Run cross-domain transfer experiments (H3). Fine-tune on MoleculeNet (Change 1). Compute generation metrics.
+**Goal:** Run cross-domain transfer experiments (H3). Build the architecture transfer matrix showing which innovations are molecular-specific vs. universal. Fine-tune on MoleculeNet (Change 1). Compute generation metrics.
 
 **Depends on:** Phase 2 (agent runs complete), Phase 3 (best architectures identified)
 **Blocks:** Phase 5
@@ -568,9 +568,10 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | 4.5 | Length-controlled transfer | Match SMILES/protein lengths for H3c ablation |
 | 4.6 | Implement `evaluate_downstream.py` | MoleculeNet fine-tuning script using DeepChem |
 | 4.7 | Implement `transfer_eval.py` | Cross-domain evaluation runner |
+| 4.8 | Classify innovations | Use transfer matrix to label each architectural innovation as molecular-specific vs. universal (H3d) |
 
 **Checkpoint 4 (April 6) — GATE:**
-- [ ] Transfer matrix complete (3×3 with mean + std)
+- [ ] Transfer matrix complete (3×3 with mean + std) with innovations classified as molecular-specific vs. universal
 - [ ] MoleculeNet ROC-AUC computed for all 9 conditions
 - [ ] Generation metrics (validity, uniqueness, novelty, FCD) computed
 - [ ] Layer freezing curves plotted for H3b
@@ -597,7 +598,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | 5.4 | Multiple comparison correction | Apply Holm-Bonferroni across all 12+ tests |
 | 5.5 | Attention analysis | Extract and classify attention patterns from best architectures per track |
 | 5.6 | Paper draft v1 | All sections drafted with placeholder figures |
-| 5.7 | Figure creation | Architecture evolution plots, transfer heatmaps, val_bpb curves, attention visualizations, calibration scatter plot |
+| 5.7 | Figure creation | Architecture evolution plots, transfer heatmaps (annotated with molecular-specific vs. universal labels), val_bpb curves, attention visualizations, calibration scatter plot |
 | 5.8 | Paper draft v2 | Figures complete, statistical analysis integrated, all results tables filled |
 | 5.9 | Implement `analyze.py` | Unified statistical analysis script |
 
