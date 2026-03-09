@@ -290,7 +290,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 **Implementation:** Add `evaluate_downstream.py` script that takes a trained model checkpoint and runs MoleculeNet fine-tuning using DeepChem or PyTorch Geometric.
 
 **Effort:** 1 day implementation + ~$20 compute
-**Deadline:** Week 4 (April 6)
+**Deadline:** Phase 4 (April 6)
 
 ### Change 2: Scale Up Dataset via SMILES Enumeration
 
@@ -307,7 +307,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | C2.5 | Verify overfitting regime: train_bpb vs val_bpb gap < 0.3 after 5 min | Logged in baseline run output |
 
 **Effort:** 4 hours (SMILES) + 2 hours (protein)
-**Deadline:** Week 1 (March 16)
+**Deadline:** Phase 1 (March 16)
 
 ### Change 3: Shrink Model and Fix Flash Attention
 
@@ -325,7 +325,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | C3.6 | Set MAX_SEQ_LEN=256 for SMILES, 512 for protein | Configured per-track in prepare.py |
 
 **Effort:** 2 hours (FA3→SDPA) + 1 hour (model scaling)
-**Deadline:** Week 1 (March 14) — this is the day-one blocker
+**Deadline:** Phase 1 (March 14) — this is the day-one blocker
 
 ### Change 4: Add Essential Baselines
 
@@ -342,7 +342,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | C4.5 | All baselines use identical data, tokenization, and hardware | Same `prepare.py`, same instance type, same TIME_BUDGET |
 
 **Effort:** 1 day implementation + ~$119 compute (Tier 1)
-**Deadline:** Baselines start Week 2, complete by Week 3
+**Deadline:** Baselines start Phase 2, complete by Phase 3
 
 ### Change 5: Increase Statistical Rigor
 
@@ -362,7 +362,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | C5.8 | Report relative improvement from baseline within each track | % reduction from fixed default, with CI |
 
 **Effort:** 1 day statistical analysis implementation + ~$36 additional compute for extra runs
-**Deadline:** Analysis framework ready by Week 4; results by Week 5
+**Deadline:** Analysis framework ready by Phase 4; results by Phase 5
 
 ### Change 6: Reframe as Empirical Study
 
@@ -379,8 +379,8 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | C6.5 | Primary contribution framed as empirical findings about domain-specific architectures | Abstract leads with scientific question, not method |
 | C6.6 | Acknowledge autoresearch-robotics as concurrent domain adaptation | Footnote or related work mention |
 
-**Effort:** Integrated into paper writing (Weeks 5-7)
-**Deadline:** Paper draft reviewed for framing by Week 6
+**Effort:** Integrated into paper writing (Phase 5-6)
+**Deadline:** Paper draft reviewed for framing by Phase 5
 
 ### Change 7: Validate the 5-Minute Training Proxy
 
@@ -398,7 +398,7 @@ These changes are non-negotiable requirements derived from the stress-test panel
 | C7.6 | Report calibration results in paper (Section 5.1 or supplementary) | Figure: scatter plot of 5-min vs 2-hr val_bpb with trend line and rho |
 
 **Effort:** ~$15 compute + 2 hours analysis
-**Deadline:** Week 1 (March 16) — must complete before main experiments
+**Deadline:** Phase 1 (March 16) — must complete before main experiments
 
 ---
 
@@ -406,159 +406,259 @@ These changes are non-negotiable requirements derived from the stress-test panel
 
 ### 8.1 Code Deliverables
 
-| Deliverable | Description | Location | Deadline |
-|-------------|-------------|----------|----------|
-| `prepare_smiles.py` | SMILES data pipeline with enumeration, char-level tokenizer, BPB evaluation | `src/prepare_smiles.py` | Week 1 |
-| `prepare_protein.py` | Protein data pipeline, UniRef50 subsetting, char-level tokenizer | `src/prepare_protein.py` | Week 1 |
-| `train.py` (base) | Modified autoresearch train.py: FA3→SDPA, scaled-down model | `src/train.py` | Week 1 |
-| `program.md` (molecular) | Agent instructions tailored for molecular architecture search | `src/program.md` | Week 1 |
-| `program_hponly.md` | Agent instructions restricting to HP-only changes (for baseline) | `src/program_hponly.md` | Week 2 |
-| `random_nas.py` | Random architecture generation script for baseline | `src/random_nas.py` | Week 2 |
-| `calibration.py` | Proxy validation: train 20 archs × {5min, 2hr} | `src/calibration.py` | Week 1 |
-| `evaluate_downstream.py` | MoleculeNet fine-tuning evaluation | `src/evaluate_downstream.py` | Week 3 |
-| `analyze.py` | Statistical analysis: Bayesian models, permutation tests, bootstrap CIs | `src/analyze.py` | Week 4 |
-| `transfer_eval.py` | Cross-domain transfer experiment runner | `src/transfer_eval.py` | Week 3 |
-| `categorize_diffs.py` | Classify agent code diffs as architectural vs. HP changes | `src/categorize_diffs.py` | Week 3 |
+| Deliverable | Description | Location | Phase |
+|-------------|-------------|----------|-------|
+| `prepare_smiles.py` | SMILES data pipeline with enumeration, char-level tokenizer, BPB evaluation | `src/prepare_smiles.py` | Phase 1 |
+| `prepare_protein.py` | Protein data pipeline, UniRef50 subsetting, char-level tokenizer | `src/prepare_protein.py` | Phase 1 |
+| `train.py` (base) | Modified autoresearch train.py: FA3→SDPA, scaled-down model | `src/train.py` | Phase 1 |
+| `program.md` (molecular) | Agent instructions tailored for molecular architecture search | `src/program.md` | Phase 1 |
+| `program_hponly.md` | Agent instructions restricting to HP-only changes (for baseline) | `src/program_hponly.md` | Phase 2 |
+| `random_nas.py` | Random architecture generation script for baseline | `src/random_nas.py` | Phase 2 |
+| `calibration.py` | Proxy validation: train 20 archs × {5min, 2hr} | `src/calibration.py` | Phase 1 |
+| `evaluate_downstream.py` | MoleculeNet fine-tuning evaluation | `src/evaluate_downstream.py` | Phase 4 |
+| `analyze.py` | Statistical analysis: Bayesian models, permutation tests, bootstrap CIs | `src/analyze.py` | Phase 5 |
+| `transfer_eval.py` | Cross-domain transfer experiment runner | `src/transfer_eval.py` | Phase 4 |
+| `categorize_diffs.py` | Classify agent code diffs as architectural vs. HP changes | `src/categorize_diffs.py` | Phase 3 |
 
 ### 8.2 Data Deliverables
 
-| Deliverable | Description | Location | Deadline |
-|-------------|-------------|----------|----------|
-| ZINC-250K + enumeration | Preprocessed SMILES tokens (train/val .pkl) | `data/smiles/` | Week 1 |
-| UniRef50 subset | 50K filtered protein sequences (train/val .pkl) | `data/protein/` | Week 1 |
-| Calibration results | 20 archs × {5min, 2hr} val_bpb | `results/calibration/` | Week 1 |
-| Agent run results | 13 runs × results.tsv + all train.py versions | `results/{smiles,protein,nlp}/run_*/` | Week 2 |
-| Baseline results | 21 baseline runs × results.tsv | `results/baselines/` | Week 3 |
-| Transfer matrix | 3×3 cross-evaluation results | `results/transfer/` | Week 4 |
-| MoleculeNet scores | ROC-AUC for top architectures | `results/moleculenet/` | Week 4 |
-| Statistical analysis | Posterior distributions, test results, figures | `results/analysis/` | Week 5 |
+| Deliverable | Description | Location | Phase |
+|-------------|-------------|----------|-------|
+| ZINC-250K + enumeration | Preprocessed SMILES tokens (train/val .pkl) | `data/smiles/` | Phase 1 |
+| UniRef50 subset | 50K filtered protein sequences (train/val .pkl) | `data/protein/` | Phase 1 |
+| Calibration results | 20 archs × {5min, 2hr} val_bpb | `results/calibration/` | Phase 1 |
+| Agent run results | 13 runs × results.tsv + all train.py versions | `results/{smiles,protein,nlp}/run_*/` | Phase 2 |
+| Baseline results | 21 baseline runs × results.tsv | `results/baselines/` | Phase 3 |
+| Transfer matrix | 3×3 cross-evaluation results | `results/transfer/` | Phase 4 |
+| MoleculeNet scores | ROC-AUC for top architectures | `results/moleculenet/` | Phase 4 |
+| Statistical analysis | Posterior distributions, test results, figures | `results/analysis/` | Phase 5 |
 
 ### 8.3 Paper Deliverables
 
-| Deliverable | Description | Deadline |
-|-------------|-------------|----------|
-| Paper draft v1 | All sections drafted with placeholder figures | Week 5 |
-| Paper draft v2 | Figures complete, statistical analysis integrated | Week 6 |
-| arXiv preprint | Final version uploaded to arXiv cs.LG + q-bio.QM | April 27 |
-| NeurIPS submission | Camera-ready with supplementary materials | May 15 |
-| Supplementary materials | Full agent logs, code diffs, architecture evolution animations | May 15 |
+| Deliverable | Description | Phase |
+|-------------|-------------|-------|
+| Paper draft v1 | All sections drafted with placeholder figures | Phase 5 |
+| Paper draft v2 | Figures complete, statistical analysis integrated | Phase 5 |
+| arXiv preprint | Final version uploaded to arXiv cs.LG + q-bio.QM | Phase 6 |
+| NeurIPS submission | Camera-ready with supplementary materials | Phase 7 |
+| Supplementary materials | Full agent logs, code diffs, architecture evolution animations | Phase 6 |
 
 ---
 
 ## 9. Timeline and Milestones
 
-### 9.1 Week-by-Week Plan
+### 9.1 Phase Overview
 
-#### Week 1: Infrastructure (March 9-16)
+| Phase | Name | Dates | Duration | Gate |
+|-------|------|-------|----------|------|
+| **Phase 1** | Infrastructure & Validation | Mar 9-16 | 1 week | Checkpoint 1 |
+| **Phase 2** | Main Experiments | Mar 16-23 | 1 week | Checkpoint 2 |
+| **Phase 3** | Baselines & Initial Analysis | Mar 23-30 | 1 week | Checkpoint 3 |
+| **Phase 4** | Transfer & Downstream Evaluation | Mar 30 - Apr 6 | 1 week | Checkpoint 4 |
+| **Phase 5** | Statistical Analysis & Writing | Apr 6-20 | 2 weeks | — |
+| **Phase 6** | Finalize & Preprint | Apr 20-27 | 1 week | arXiv posted |
+| **Phase 7** | NeurIPS Submission | Apr 27 - May 15 | ~3 weeks | Submitted |
 
-| Day | Task | Owner | Blocker? |
-|-----|------|-------|----------|
-| Mon-Tue | Fork autoresearch; fix FA3→SDPA; remove `kernels` dependency | Engineering | **P0 BLOCKER** |
-| Mon-Tue | Scale down model config (DEPTH=6, dim=288-320) | Engineering | |
-| Tue-Wed | Implement `prepare_smiles.py` with SMILES enumeration | Engineering | |
-| Wed-Thu | Implement `prepare_protein.py` with UniRef50 subsetting | Engineering | |
-| Thu | Run baseline on all 3 tracks (verify end-to-end) | Engineering | |
-| Thu-Sat | Run calibration study (20 archs × 5min + 2hr) | Engineering | |
-| Sat | **CHECKPOINT 1:** Pipeline working? Baseline val_bpb < 4.0? Proxy rho > 0.5? | Rex | **GATE** |
+### 9.2 Phase Details
 
-**Checkpoint 1 success criteria:**
+---
+
+#### Phase 1: Infrastructure & Validation (March 9-16)
+
+**Goal:** Build the molecular data pipeline, fix hardware blockers, validate the 5-minute training proxy, and confirm end-to-end feasibility on all 3 tracks.
+
+**Depends on:** Nothing (project start)
+**Blocks:** Phase 2, Phase 3, Phase 4
+
+| Step | Task | Owner | Blocker? |
+|------|------|-------|----------|
+| 1.1 | Fork autoresearch; fix FA3→SDPA; remove `kernels` dependency | Engineering | **P0 BLOCKER** |
+| 1.2 | Scale down model config (DEPTH=6, dim=288-320) | Engineering | |
+| 1.3 | Implement `prepare_smiles.py` with SMILES enumeration | Engineering | |
+| 1.4 | Implement `prepare_protein.py` with UniRef50 subsetting | Engineering | |
+| 1.5 | Run baseline on all 3 tracks (verify end-to-end) | Engineering | |
+| 1.6 | Run calibration study (20 archs × 5min + 2hr) | Engineering | |
+| 1.7 | Write `program.md` for molecular architecture search | Engineering | |
+
+**Checkpoint 1 (March 16) — GATE:**
 - [ ] `python prepare_smiles.py` completes without error
 - [ ] `python train.py` completes 5-minute training on SMILES data
 - [ ] Baseline val_bpb < 4.0 (significantly below random ~5.3)
 - [ ] Proxy calibration Spearman rho > 0.5
-- [ ] Protein prepare.py functional
+- [ ] Protein `prepare_protein.py` functional
+- [ ] All 3 tracks produce valid val_bpb on a single baseline run
 
-**Checkpoint 1 kill condition:** FA3 fix fails and no workaround → switch to p4d.24xlarge or abandon
+**Kill condition:** FA3 fix fails and no workaround → switch to p4d.24xlarge or abandon
 
-#### Week 2: Main Experiments (March 16-23)
+**Agent instructions:** "Execute Phase 1 of the PRD. Fork autoresearch, fix FA3→SDPA, implement prepare_smiles.py and prepare_protein.py, scale down the model, run baseline validation on all 3 tracks, and run the calibration study. Report Checkpoint 1 criteria status when complete."
 
-| Task | Runs | Est. Time | Parallel? |
-|------|------|-----------|-----------|
-| Agent runs: SMILES (n=5) | 5 | ~65 hrs total | Yes (across 3 instances) |
-| Agent runs: Protein (n=3) | 3 | ~39 hrs total | Yes |
-| Agent runs: NLP (n=5) | 5 | ~65 hrs total | Yes |
-| Random NAS baseline (start) | 9 | ~117 hrs total | Yes |
-| HP-only baseline (start) | 9 | ~117 hrs total | Yes |
+---
 
-**Checkpoint 2 (March 23) success criteria:**
+#### Phase 2: Main Experiments (March 16-23)
+
+**Goal:** Run all 13 agent sessions across 3 tracks. Start Tier 1 baselines in parallel.
+
+**Depends on:** Phase 1 (Checkpoint 1 passed)
+**Blocks:** Phase 3, Phase 4
+
+| Step | Task | Runs | Est. Time | Parallel? |
+|------|------|------|-----------|-----------|
+| 2.1 | Agent runs: SMILES (n=5) | 5 | ~65 hrs total | Yes (across 3 instances) |
+| 2.2 | Agent runs: Protein (n=3) | 3 | ~39 hrs total | Yes |
+| 2.3 | Agent runs: NLP (n=5) | 5 | ~65 hrs total | Yes |
+| 2.4 | Random NAS baseline (start) | 9 | ~117 hrs total | Yes |
+| 2.5 | HP-only baseline (start) | 9 | ~117 hrs total | Yes |
+| 2.6 | Write `program_hponly.md` for HP-only baseline | — | 1 hr | — |
+| 2.7 | Implement `random_nas.py` for random baseline | — | 3 hrs | — |
+
+**Checkpoint 2 (March 23) — GATE:**
 - [ ] >= 10 of 13 agent runs complete
 - [ ] >= 1 SMILES run shows >= 3 architectural modifications (not just HP)
 - [ ] No systematic crashes or data pipeline failures
 
-**Checkpoint 2 kill condition:** Agent makes zero architectural changes across all 5 SMILES runs → pivot to workshop paper framed as "HP optimization study"
+**Kill condition:** Agent makes zero architectural changes across all 5 SMILES runs → pivot to workshop paper framed as "HP optimization study"
 
-#### Week 3: Baselines Complete + Analysis Start (March 23-30)
+**Agent instructions:** "Execute Phase 2 of the PRD. Launch all 13 agent sessions (5 SMILES, 3 protein, 5 NLP) and all Tier 1 baselines (random NAS, HP-only). Monitor for completion. Categorize early code diffs to check for architectural vs HP changes. Report Checkpoint 2 criteria status when complete."
 
-| Task | Description |
-|------|-------------|
-| Complete remaining baselines | All 21 Tier 1 baseline runs finished |
-| Categorize agent modifications | Run `categorize_diffs.py` on all agent run code diffs |
-| Build architectural feature vectors | Encode each final architecture as feature vector |
-| Run permutation tests (H1) | Cross-track vs. within-track architectural distances |
-| Begin agent behavior analysis | What strategies does the agent employ? What changes first? |
+---
 
-**Checkpoint 3 (March 30) success criteria:**
+#### Phase 3: Baselines & Initial Analysis (March 23-30)
+
+**Goal:** Complete all baselines. Categorize agent modifications. Run initial hypothesis tests (H1 permutation test).
+
+**Depends on:** Phase 2 (Checkpoint 2 passed)
+**Blocks:** Phase 5
+
+| Step | Task | Description |
+|------|------|-------------|
+| 3.1 | Complete remaining baselines | All 21 Tier 1 baseline runs finished |
+| 3.2 | Fixed default baseline | 3 runs (1 per track), unmodified starting architecture |
+| 3.3 | Categorize agent modifications | Run `categorize_diffs.py` on all agent run code diffs |
+| 3.4 | Build architectural feature vectors | Encode each final architecture as feature vector |
+| 3.5 | Run permutation tests (H1) | Cross-track vs. within-track architectural distances |
+| 3.6 | Begin agent behavior analysis | What strategies does the agent employ? What changes first? |
+| 3.7 | Compute AUC-OC for H4 | Agent vs. random NAS optimization curves |
+
+**Checkpoint 3 (March 30) — GATE:**
 - [ ] All 21 baselines complete
 - [ ] At least one qualitative architectural difference between SMILES and NLP tracks visible
 - [ ] Modification categorization complete: % architectural vs. % HP changes computed
+- [ ] H1 permutation test p-value computed
+- [ ] H4 AUC-OC comparison computed
 
-**Checkpoint 3 kill condition:** No visible architectural difference between any tracks → pivot to "universal transformer" framing
+**Kill condition:** No visible architectural difference between any tracks → pivot to "universal transformer" framing
 
-#### Week 4: Transfer + Downstream (March 30 - April 6)
+**Agent instructions:** "Execute Phase 3 of the PRD. Ensure all baseline runs are complete. Run categorize_diffs.py on all agent runs. Build architectural feature vectors and run the permutation test for H1. Compute AUC-OC for H4. Report Checkpoint 3 criteria status."
 
-| Task | Description |
-|------|-------------|
-| Transfer experiments | Cross-evaluate best architecture from each track on all 3 datasets (36 runs) |
-| Layer freezing experiments | Progressive layer freezing for H3b (18 runs) |
-| MoleculeNet fine-tuning | Top 3 SMILES architectures × 3 tasks (9 runs) |
-| Generation metrics | Generate 10K molecules from best SMILES architecture |
+---
 
-**Checkpoint 4 (April 6) success criteria:**
+#### Phase 4: Transfer & Downstream Evaluation (March 30 - April 6)
+
+**Goal:** Run cross-domain transfer experiments (H3). Fine-tune on MoleculeNet (Change 1). Compute generation metrics.
+
+**Depends on:** Phase 2 (agent runs complete), Phase 3 (best architectures identified)
+**Blocks:** Phase 5
+
+| Step | Task | Description |
+|------|------|-------------|
+| 4.1 | Transfer experiments | Cross-evaluate best architecture from each track on all 3 datasets (36 runs) |
+| 4.2 | Layer freezing experiments | Progressive layer freezing for H3b (18 runs) |
+| 4.3 | MoleculeNet fine-tuning | Top 3 SMILES architectures × 3 tasks × 3 replicates (9 runs) |
+| 4.4 | Generation metrics | Generate 10K molecules from best SMILES architecture; compute validity, uniqueness, novelty, FCD |
+| 4.5 | Length-controlled transfer | Match SMILES/protein lengths for H3c ablation |
+| 4.6 | Implement `evaluate_downstream.py` | MoleculeNet fine-tuning script using DeepChem |
+| 4.7 | Implement `transfer_eval.py` | Cross-domain evaluation runner |
+
+**Checkpoint 4 (April 6) — GATE:**
 - [ ] Transfer matrix complete (3×3 with mean + std)
 - [ ] MoleculeNet ROC-AUC computed for all 9 conditions
 - [ ] Generation metrics (validity, uniqueness, novelty, FCD) computed
+- [ ] Layer freezing curves plotted for H3b
+- [ ] Length-controlled transfer results available for H3c
 
-**Checkpoint 4 kill condition:** MoleculeNet ROC-AUC shows zero correlation with val_bpb → report as limitation, do not anchor claims on downstream performance
+**Kill condition:** MoleculeNet ROC-AUC shows zero correlation with val_bpb → report as limitation, do not anchor claims on downstream performance
 
-#### Weeks 5-6: Analysis + Writing (April 6-20)
+**Agent instructions:** "Execute Phase 4 of the PRD. Run all transfer experiments (cross-evaluation matrix, layer freezing). Implement and run MoleculeNet fine-tuning for top 3 SMILES architectures on BBBP, HIV, BACE. Generate 10K molecules and compute generation metrics. Report Checkpoint 4 criteria status."
 
-| Task | Description |
-|------|-------------|
-| Bayesian hierarchical model | Fit PyMC model for H1; compute posterior distributions and ROPE |
-| Bootstrap CIs | Compute AUC-OC comparison for H4 |
-| Attention analysis | Extract and classify attention patterns from best architectures |
-| Paper writing | Full NeurIPS-format paper; all figures |
-| Figure creation | Architecture evolution plots, transfer heatmaps, val_bpb curves, attention visualizations |
+---
 
-#### Week 7: Finalize + Preprint (April 20-27)
+#### Phase 5: Statistical Analysis & Writing (April 6-20)
 
-| Task | Description |
-|------|-------------|
-| Internal review | Co-author review of full paper draft |
-| Revise | Address review comments |
-| **Post arXiv preprint** | **Upload to arXiv cs.LG + q-bio.QM by April 27** |
-| Prepare supplementary | Agent logs, code diffs, statistical tables |
+**Goal:** Complete all statistical analyses. Write full NeurIPS-format paper with figures.
 
-#### Week 8: NeurIPS Submission (April 27 - May 15)
+**Depends on:** Phase 3 (H1, H4 preliminary results), Phase 4 (transfer + downstream results)
+**Blocks:** Phase 6
 
-| Task | Description |
-|------|-------------|
-| Incorporate preprint feedback | Address any early feedback from community |
-| Final polish | Camera-ready quality |
-| Submit NeurIPS 2026 | Main conference, ML track |
+| Step | Task | Description |
+|------|------|-------------|
+| 5.1 | Bayesian hierarchical model | Fit PyMC model for H1; compute posterior distributions and ROPE |
+| 5.2 | Bootstrap CIs for H4 | 10,000 bootstrap resamples on AUC-OC difference |
+| 5.3 | H3 sub-hypothesis tests | Statistical tests for H3a (asymmetry), H3b (layer), H3c (length), H3d (classification) |
+| 5.4 | Multiple comparison correction | Apply Holm-Bonferroni across all 12+ tests |
+| 5.5 | Attention analysis | Extract and classify attention patterns from best architectures per track |
+| 5.6 | Paper draft v1 | All sections drafted with placeholder figures |
+| 5.7 | Figure creation | Architecture evolution plots, transfer heatmaps, val_bpb curves, attention visualizations, calibration scatter plot |
+| 5.8 | Paper draft v2 | Figures complete, statistical analysis integrated, all results tables filled |
+| 5.9 | Implement `analyze.py` | Unified statistical analysis script |
+
+**No formal gate — continuous progress toward paper completion.**
+
+**Agent instructions:** "Execute Phase 5 of the PRD. Implement analyze.py with Bayesian hierarchical models (PyMC), permutation tests, and bootstrap CIs. Run all statistical tests for H1-H4. Generate all paper figures. Draft the full paper in NeurIPS format."
+
+---
+
+#### Phase 6: Finalize & Preprint (April 20-27)
+
+**Goal:** Finalize paper. Post arXiv preprint to establish priority.
+
+**Depends on:** Phase 5 (paper draft v2 complete)
+**Blocks:** Phase 7
+
+| Step | Task | Description |
+|------|------|-------------|
+| 6.1 | Internal review | Co-author review of full paper draft |
+| 6.2 | Revise | Address review comments; tighten framing per Change 6 |
+| 6.3 | Verify citation completeness | All 15 must-cite papers present (Section 12.3 of PRD) |
+| 6.4 | Prepare supplementary materials | Agent logs, code diffs, architecture evolution animations, statistical tables |
+| 6.5 | **Post arXiv preprint** | **Upload to arXiv cs.LG + q-bio.QM by April 27** |
+| 6.6 | Open-source repo cleanup | Ensure `recursive-mol` repo has clean README, reproducible configs, data download scripts |
+
+**Gate: arXiv preprint live by April 27.**
+
+**Agent instructions:** "Execute Phase 6 of the PRD. Review the paper for framing compliance (Change 6), citation completeness (15 must-cites), and statistical rigor. Prepare supplementary materials. Compile LaTeX for arXiv submission. Clean up the repo for public release."
+
+---
+
+#### Phase 7: NeurIPS Submission (April 27 - May 15)
+
+**Goal:** Incorporate any early feedback. Submit to NeurIPS 2026 main conference.
+
+**Depends on:** Phase 6 (preprint posted)
+
+| Step | Task | Description |
+|------|------|-------------|
+| 7.1 | Monitor preprint feedback | Track arXiv comments, Twitter/X reactions, competing work |
+| 7.2 | Incorporate feedback | Address substantive critiques in paper |
+| 7.3 | Final polish | Camera-ready quality; proofread; verify all numbers |
+| 7.4 | Submit NeurIPS 2026 | Main conference, ML track |
+| 7.5 | Prepare workshop fallback | If main conference confidence is low, also submit to ML4Drug Discovery workshop |
+
+**Gate: NeurIPS submission by May 15.**
+
+**Agent instructions:** "Execute Phase 7 of the PRD. Review any feedback on the arXiv preprint. Make final revisions. Compile camera-ready LaTeX. Submit to NeurIPS 2026."
 
 ---
 
 ## 10. Kill Criteria and Pivots
 
-| Week | Kill Condition | Pivot Strategy | Fallback Target |
-|------|---------------|----------------|-----------------|
-| 1 | FA3 fix fails; model doesn't train on molecular data | Switch to p4d.24xlarge (A100) or abandon project | — |
-| 1 | Proxy calibration rho < 0.4 | Increase TIME_BUDGET to 15-30 min; reduce to 30-50 experiments per run | NeurIPS (delayed 1 week) |
-| 2 | Agent makes zero architectural changes (HP only) across all SMILES runs | Reframe as "LLM-Guided Hyperparameter Optimization for Molecular Transformers" | NeurIPS workshop |
-| 3 | No architectural difference between molecular and NLP tracks | Pivot to "universal transformer" framing: "at this scale, domain doesn't matter" | NeurIPS main (different narrative) |
-| 4 | MoleculeNet ROC-AUC uncorrelated with val_bpb | Report as limitation; val_bpb is an imperfect proxy for molecular utility | NeurIPS (weaker downstream claims) |
-| 7 | Competing preprint appears on arXiv | Accelerate posting; differentiate on analysis depth or additional tracks | NeurIPS (cite concurrent work) |
+| Phase | Kill Condition | Pivot Strategy | Fallback Target |
+|-------|---------------|----------------|-----------------|
+| Phase 1 | FA3 fix fails; model doesn't train on molecular data | Switch to p4d.24xlarge (A100) or abandon project | — |
+| Phase 1 | Proxy calibration rho < 0.4 | Increase TIME_BUDGET to 15-30 min; reduce to 30-50 experiments per run | NeurIPS (delayed 1 phase) |
+| Phase 2 | Agent makes zero architectural changes (HP only) across all SMILES runs | Reframe as "LLM-Guided Hyperparameter Optimization for Molecular Transformers" | NeurIPS workshop |
+| Phase 3 | No architectural difference between molecular and NLP tracks | Pivot to "universal transformer" framing: "at this scale, domain doesn't matter" | NeurIPS main (different narrative) |
+| Phase 4 | MoleculeNet ROC-AUC uncorrelated with val_bpb | Report as limitation; val_bpb is an imperfect proxy for molecular utility | NeurIPS (weaker downstream claims) |
+| Phase 6 | Competing preprint appears on arXiv | Accelerate posting; differentiate on analysis depth or additional tracks | NeurIPS (cite concurrent work) |
 
 ---
 
@@ -615,8 +715,8 @@ These changes are non-negotiable requirements derived from the stress-test panel
 
 | Frequency | Action | Tool |
 |-----------|--------|------|
-| Daily (Week 1-2) | Search GitHub for new autoresearch forks mentioning molecular/bio/chemistry/drug/protein/SMILES | GitHub API search |
-| Weekly (Week 3+) | Search arXiv for "autoresearch" OR "molecular architecture search" OR "LLM NAS molecular" | arXiv API / Semantic Scholar |
+| Daily (Phase 1-2) | Search GitHub for new autoresearch forks mentioning molecular/bio/chemistry/drug/protein/SMILES | GitHub API search |
+| Weekly (Phase 3+) | Search arXiv for "autoresearch" OR "molecular architecture search" OR "LLM NAS molecular" | arXiv API / Semantic Scholar |
 | Weekly | Check autoresearch fork count and scan top-starred new forks | GitHub |
 | On trigger | If competing preprint found: accelerate arXiv posting to within 48 hours | Manual |
 
@@ -626,12 +726,12 @@ These changes are non-negotiable requirements derived from the stress-test panel
 
 | ID | Question | Resolution Deadline | Decision Path |
 |----|----------|-------------------|---------------|
-| OQ-1 | Character-level vs. SMILES-aware tokenizer (treating `Cl`, `Br` as single tokens)? | Week 1 | Start with character-level; implement SMILES-aware as P1 enhancement if time permits |
-| OQ-2 | Should NLP control track use same model size as molecular tracks? | Week 1 | Yes — fair comparison requires identical starting architecture |
-| OQ-3 | Which Claude model version for agent? Pin specific version? | Week 1 | Use Claude Sonnet; log exact model ID; acknowledge non-reproducibility |
-| OQ-4 | Should program.md include any molecular domain hints? | Week 1 | No hints for primary runs (tests H2); run 1 additional "hinted" run as ablation |
-| OQ-5 | Sliding window attention: drop entirely or implement custom mask for SDPA? | Week 1 | Try custom causal mask first; fall back to full attention if complex |
-| OQ-6 | Open-source LLM replication (SQ-6): attempt or defer? | Week 3 | Attempt 1 SMILES run with DeepSeek-V2 if API available; otherwise defer |
+| OQ-1 | Character-level vs. SMILES-aware tokenizer (treating `Cl`, `Br` as single tokens)? | Phase 1 | Start with character-level; implement SMILES-aware as P1 enhancement if time permits |
+| OQ-2 | Should NLP control track use same model size as molecular tracks? | Phase 1 | Yes — fair comparison requires identical starting architecture |
+| OQ-3 | Which Claude model version for agent? Pin specific version? | Phase 1 | Use Claude Sonnet; log exact model ID; acknowledge non-reproducibility |
+| OQ-4 | Should program.md include any molecular domain hints? | Phase 1 | No hints for primary runs (tests H2); run 1 additional "hinted" run as ablation |
+| OQ-5 | Sliding window attention: drop entirely or implement custom mask for SDPA? | Phase 1 | Try custom causal mask first; fall back to full attention if complex |
+| OQ-6 | Open-source LLM replication (SQ-6): attempt or defer? | Phase 3 | Attempt 1 SMILES run with DeepSeek-V2 if API available; otherwise defer |
 
 ---
 
@@ -650,4 +750,4 @@ These changes are non-negotiable requirements derived from the stress-test panel
 
 *PRD version 1.0 — March 9, 2026*
 *Derived from: stress-test-final-recommendation.md + Self-Directed-Discovery-of-Molecular-Transformer-Architectures.md*
-*Next review: Checkpoint 1 (March 16)*
+*Next review: Phase 1 Checkpoint (March 16)*
