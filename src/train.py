@@ -18,6 +18,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+try:
+    import wandb
+    WANDB_AVAILABLE = True
+except ImportError:
+    WANDB_AVAILABLE = False
+
 TRACK = os.environ.get("RECURSIVE_MOL_TRACK", "nlp").lower()
 PREPARE_MODULE = {
     "nlp": "prepare",
@@ -710,6 +716,32 @@ x, y, epoch = next(train_loader)
 print(f"Time budget: {TIME_BUDGET}s")
 print(f"Gradient accumulation steps: {grad_accum_steps}")
 
+# --- W&B init ---
+WANDB_ENABLED = WANDB_AVAILABLE and os.environ.get("WANDB_DISABLED", "").lower() not in ("1", "true")
+if WANDB_ENABLED:
+    wandb.init(
+        project=os.environ.get("WANDB_PROJECT", "recursive-mol"),
+        name=os.environ.get("WANDB_RUN_NAME", f"{TRACK}-d{DEPTH}-{ACTIVATION}"),
+        config={
+            "track": TRACK,
+            "depth": DEPTH,
+            "max_seq_len": MAX_SEQ_LEN,
+            "total_batch_size": TOTAL_BATCH_SIZE,
+            "device_batch_size": DEVICE_BATCH_SIZE,
+            "time_budget": TIME_BUDGET,
+            "aspect_ratio": ASPECT_RATIO,
+            "head_dim": HEAD_DIM,
+            "attention_variant": ATTENTION_VARIANT,
+            "activation": ACTIVATION,
+            "num_params_M": num_params / 1e6,
+            "embedding_lr": EMBEDDING_LR,
+            "matrix_lr": MATRIX_LR,
+            "scalar_lr": SCALAR_LR,
+            "weight_decay": WEIGHT_DECAY,
+        },
+        tags=[TRACK, f"depth-{DEPTH}"],
+    )
+
 
 def get_lr_multiplier(progress):
     if progress < WARMUP_RATIO:
@@ -791,6 +823,16 @@ while True:
         flush=True,
     )
 
+    if WANDB_ENABLED and step % 10 == 0:
+        wandb.log({
+            "train/loss": debiased_smooth_loss,
+            "train/lr_multiplier": lrm,
+            "train/tok_per_sec": tok_per_sec,
+            "train/mfu": mfu,
+            "train/epoch": epoch,
+            "train/progress": pct_done,
+        }, step=step)
+
     if step == 0:
         gc.collect()
         gc.freeze()
@@ -819,6 +861,17 @@ steady_state_mfu = (
     else 0.0
 )
 peak_vram_mb = torch.cuda.max_memory_allocated() / 1024 / 1024 if device.type == "cuda" else 0.0
+
+if WANDB_ENABLED:
+    wandb.log({
+        "val/bpb": val_bpb,
+        "val/peak_vram_mb": peak_vram_mb,
+        "val/mfu_percent": steady_state_mfu,
+        "val/total_tokens_M": total_tokens / 1e6,
+        "val/num_steps": step,
+        "val/training_seconds": total_training_time,
+    })
+    wandb.finish()
 
 print("---")
 print(f"val_bpb:          {val_bpb:.6f}")

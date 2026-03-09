@@ -3,6 +3,8 @@
 Copy-paste each prompt to your AI agent when starting the corresponding phase.
 Check off items as they complete. Do NOT start a phase until the previous gate passes.
 
+**W&B Logging:** All training runs log to W&B project `recursive-mol` automatically via `train.py`. The API key is sourced from `~/.secrets`. Use `WANDB_DISABLED=1` to skip. Use `WANDB_RUN_NAME` to set custom run names.
+
 ---
 
 ## Phase 1: Infrastructure & Validation (Mar 9-16)
