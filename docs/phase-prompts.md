@@ -263,14 +263,24 @@ STEP 7 — Generation metrics:
 - Compute: validity (% parseable by RDKit), uniqueness, novelty (vs training set), FCD
 - Save to results/moleculenet/generation_metrics.json
 
+STEP 8 — Classify innovations as molecular-specific vs. universal (H3d):
+- Using the 3×3 transfer matrix from STEP 2, identify which architectural innovations
+  transfer well across domains (universal) vs. which degrade significantly (domain-specific)
+- For each distinct architectural change discovered in Phase 2, label it as:
+  - "universal": cross-domain val_bpb degradation < 10%
+  - "domain-specific": cross-domain val_bpb degradation >= 10%
+- Compute the percentage split (pitch target: ~30-40% universal, ~60-70% domain-specific)
+- Save classification to results/transfer/innovation_classification.json
+
 After completing all steps, report Checkpoint 4 criteria status.
 ```
 
 ### Checkpoint 4 — GATE
 
-- [ ] Transfer matrix complete (3×3 with mean ± std)
+- [ ] Transfer matrix complete (3×3 with mean ± std) with innovations classified as molecular-specific vs. universal
 - [ ] Layer freezing curves computed for all 6 cross-domain pairs
 - [ ] Length-controlled transfer results available
+- [ ] Innovation classification saved to results/transfer/innovation_classification.json
 - [ ] MoleculeNet ROC-AUC computed for all 9 conditions (3 archs × 3 tasks)
 - [ ] val_bpb vs ROC-AUC Spearman correlation computed
 - [ ] Generation metrics (validity, uniqueness, novelty, FCD) computed
@@ -322,7 +332,7 @@ STEP 1 — Implement analyze.py:
 STEP 2 — Generate all paper figures:
 - Figure 1: Architecture evolution plots (val_bpb over experiment number, one per track, with agent + baselines)
 - Figure 2: Architectural clustering visualization (PCA/t-SNE of feature vectors, colored by track)
-- Figure 3: Transfer heatmap (3×3 matrix with color intensity)
+- Figure 3: Transfer heatmap (3×3 matrix with color intensity) annotated with molecular-specific vs. universal innovation labels
 - Figure 4: Layer freezing curves (val_bpb degradation vs frozen layers, per cross-domain pair)
 - Figure 5: Calibration scatter plot (5-min vs 2-hr val_bpb with trend line and rho)
 - Figure 6: Attention pattern visualizations from best architecture per track
