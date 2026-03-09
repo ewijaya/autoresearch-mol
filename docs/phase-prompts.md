@@ -68,6 +68,8 @@ STEP 7 — Run calibration study:
 - DECISION GATE: rho > 0.7 → proceed. rho 0.4-0.7 → proceed with caution. rho < 0.4 → increase TIME_BUDGET to 15-30 min.
 
 After completing all steps, report the status of each Checkpoint 1 criterion below.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Checkpoint 1 — GATE
@@ -125,6 +127,8 @@ STEP 5 — Early monitoring:
 - Flag if agent is making zero architectural changes (kill condition)
 
 After all runs complete, report Checkpoint 2 criteria status.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Checkpoint 2 — GATE
@@ -192,6 +196,8 @@ STEP 6 — Agent behavior analysis:
 - Save qualitative summary to results/analysis/agent_behavior.md
 
 After completing all steps, report Checkpoint 3 criteria status.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Checkpoint 3 — GATE
@@ -273,6 +279,8 @@ STEP 8 — Classify innovations as molecular-specific vs. universal (H3d):
 - Save classification to results/transfer/innovation_classification.json
 
 After completing all steps, report Checkpoint 4 criteria status.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Checkpoint 4 — GATE
@@ -352,6 +360,8 @@ STEP 3 — Write the paper (NeurIPS format, LaTeX):
 - Paper draft v2: integrate actual figures and complete results tables
 
 Save paper to paper/main.tex with sections in paper/sections/.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Phase 5 Checklist (no formal gate)
@@ -414,6 +424,8 @@ STEP 5 — Post arXiv preprint:
 - Record the arXiv URL
 
 Deadline: arXiv preprint MUST be live by April 27.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Phase 6 Checklist
@@ -465,6 +477,8 @@ STEP 5 — Workshop fallback:
 - Shorter format, emphasize molecular results over methodology
 
 Deadline: NeurIPS submission by May 15.
+
+FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
 
 ### Phase 7 Checklist

@@ -61,6 +61,24 @@ tmux attach -t phase1
 
 ---
 
+## Auto-Stop Between Phases
+
+Each phase prompt ends with `stopinstance`, which stops the EC2 instance when the phase completes. To start the next phase:
+
+```bash
+# 1. Start the instance (from your local machine)
+aws ec2 start-instances --instance-ids i-0620c2546bd7f9322
+
+# 2. SSH in
+awsg3
+
+# 3. Start a new tmux session for the next phase
+tmux new -s phase2
+cd recursive-mol
+codex
+# Paste the next phase prompt
+```
+
 ## Repeating for Later Phases
 
 ```bash
