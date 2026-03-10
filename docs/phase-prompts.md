@@ -35,19 +35,19 @@ STEP 2 — Scale down the model:
 
 STEP 3 — Implement prepare_smiles.py:
 - Download ZINC-250K (250k_rndm_zinc_drugs_clean_3.csv)
-- Implement SMILES enumeration using RDKit: 5 random SMILES per molecule
+- Implement SMILES enumeration using RDKit: 20 random SMILES per molecule (train), 5 per molecule (val)
 - Character-level tokenizer (~45 chars + 4 special tokens: PAD, BOS, EOS, UNK)
 - Train/val split by MOLECULE (90/10), then enumerate — no molecule leakage
 - Output: train/val .pkl files in data/smiles/
-- Verify: total tokens ~62.5M, no molecule appears in both splits
+- Verify: train tokens ~217M, val tokens ~6M, no molecule appears in both splits
 
 STEP 4 — Implement prepare_protein.py:
 - Download UniRef50 subset from ftp.uniprot.org
-- Filter: length 50-500 residues, randomly sample 50K sequences
+- Filter: length 50-500 residues, randomly sample 200K sequences
 - Character-level tokenizer (20 amino acids + special tokens)
 - 90/10 random split
 - Output: train/val .pkl files in data/protein/
-- Verify: ~12.5M total tokens
+- Verify: ~36M total tokens
 
 STEP 5 — Write program.md:
 - Agent instructions for molecular architecture search
@@ -63,6 +63,7 @@ STEP 6 — Run baseline validation:
 STEP 7 — Run calibration study:
 - Implement calibration.py
 - Design 20 random architecture variants (vary depth 3-8, width 128-512, heads 2-8, activation {ReLU, GELU, SiLU, ReluSquared}, attention {full, windowed})
+- Ensure train.py has MAX_EPOCHS=10 epoch cap (RECURSIVE_MOL_MAX_EPOCHS env var) to prevent overfitting on small datasets
 - Train each for 5 minutes on SMILES → record val_bpb
 - Train each for 2 hours on SMILES → record val_bpb
 - Compute Spearman rank correlation between 5-min and 2-hr val_bpb
@@ -76,14 +77,14 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ### Checkpoint 1 — GATE
 
-- [ ] `python prepare_smiles.py` completes without error
-- [ ] `python train.py` completes 5-minute training on SMILES data
-- [ ] Baseline val_bpb < 4.0 (below random ~5.3)
-- [ ] Proxy calibration Spearman rho > 0.5
-- [ ] Protein `prepare_protein.py` functional
-- [ ] All 3 tracks produce valid val_bpb on a single baseline run
-- [ ] VRAM usage < 12GB on A10G
-- [ ] Model parameter count in 8-12M range
+- [x] `python prepare_smiles.py` completes without error
+- [x] `python train.py` completes 5-minute training on SMILES data
+- [x] Baseline val_bpb < 4.0 (below random ~5.3) — SMILES: 0.58, NLP: 1.15
+- [ ] Proxy calibration Spearman rho > 0.5 — re-running with expanded datasets + epoch cap
+- [x] Protein `prepare_protein.py` functional
+- [x] All 3 tracks produce valid val_bpb on a single baseline run
+- [x] VRAM usage < 12GB on A10G — peak 5.4GB
+- [x] Model parameter count in 8-12M range — 8.7M
 
 **Kill condition:** FA3 fix fails and no workaround → switch to p4d.24xlarge or abandon
 
