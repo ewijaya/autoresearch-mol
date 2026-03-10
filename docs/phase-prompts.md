@@ -95,7 +95,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 **Estimated compute:** ~$85 (13 agent runs × ~13hrs × $0.44/hr + baseline runs starting)
 
-**Storage note:** Track C (NLP) requires the climbmix-400b-shuffle dataset (~29GB). After cleaning up old checkpoints in `gflownet-peptide`, `storage1` has ~54GB free — sufficient to store the dataset directly without a separate volume. Download to `/home/ubuntu/storage1/recursive-mol/data/nlp/`.
+**Storage note:** Track C (NLP) uses the climbmix-400b-shuffle dataset (full: 600GB / 6,542 shards). Only a subset is needed — data caches to `~/.cache/autoresearch/data/` (root volume). Symlink it to storage1 for more space. With ~54GB free on storage1 (after gflownet-peptide checkpoint cleanup), download up to 475 shards (~42GB), reserving ~10GB for experiment outputs.
 
 ### Prompt
 
@@ -104,8 +104,10 @@ You are working on the recursive-mol project (PRD: docs/PRD-recursive-mol.md).
 Phase 1 is complete. Checkpoint 1 passed. Execute Phase 2: Main Experiments.
 
 PREREQUISITE — Download NLP data:
-- Download the climbmix-400b-shuffle dataset (~29GB) to data/nlp/
-- Verify: storage1 has sufficient free space (df -h /home/ubuntu/storage1)
+- Symlink cache to storage1: mkdir -p /home/ubuntu/storage1/recursive-mol/data/nlp && ln -sf /home/ubuntu/storage1/recursive-mol/data/nlp ~/.cache/autoresearch/data
+- Download 475 shards of climbmix-400b-shuffle (~42GB): python prepare.py --num-shards 475
+- The full dataset is 600GB / 6,542 shards — do NOT download all of it
+- Verify: df -h /home/ubuntu/storage1 shows at least 10GB free after download
 
 STEP 1 — Write program_hponly.md:
 - Copy program.md but restrict instructions to: "Only modify hyperparameters (learning rate, batch size, dropout, weight decay, warmup steps, optimizer params). Do NOT change model architecture (no new layers, no attention pattern changes, no activation function changes, no model structure changes)."
