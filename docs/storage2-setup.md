@@ -2,9 +2,11 @@
 
 **Purpose:** Additional EBS volume to store the NLP control dataset (FineWeb-Edu / climbmix-400b-shuffle) for Phase 2 Track C experiments (see `docs/phase-prompts.md`).
 
-**Why:** `storage1` (100GB, 69% used, 29GB free) cannot fit the climbmix-400b-shuffle dataset (~600GB). A dedicated volume avoids competing for space with molecular data and code.
+**Why:** `storage1` (100GB, 69% used, 29GB free) could technically fit the dataset but would leave no headroom for Phase 2 experiment outputs. A dedicated volume keeps NLP data isolated from molecular data and code.
 
-**Minimum size:** 700GB (600GB dataset + ~100GB headroom for processed tokens and intermediate files).
+**Dataset size:** ~29GB (322 parquet files × ~88MB each).
+
+**Minimum size:** 50GB (29GB dataset + ~21GB headroom for processed tokens and intermediate files).
 
 ---
 
@@ -24,7 +26,7 @@
 ```bash
 aws ec2 create-volume \
   --availability-zone ap-northeast-1c \
-  --size 700 \
+  --size 50 \
   --volume-type gp3 \
   --tag-specifications 'ResourceType=volume,Tags=[{Key=Name,Value=storage2-recursive-mol}]'
 ```
@@ -60,7 +62,7 @@ After attaching, the device name may differ from `/dev/xvdf` on NVMe instances. 
 lsblk
 ```
 
-Look for the new ~700GB disk (e.g., `/dev/nvme3n1`). Use that device name in the steps below.
+Look for the new ~50GB disk (e.g., `/dev/nvme3n1`). Use that device name in the steps below.
 
 ## Step 4: Format the Volume
 
@@ -101,9 +103,9 @@ df -h /home/ubuntu/storage2
 
 ## Cost Estimate
 
-- gp3 700GB in ap-northeast-1: ~$56/month ($0.08/GB/month)
+- gp3 50GB in ap-northeast-1: ~$4/month ($0.08/GB/month)
 - **This volume is temporary** — delete after the project completes (target: May 2026 post-NeurIPS submission)
-- Needed from Phase 2 (Mar 16) through Phase 5 (Apr 20) = ~5 weeks → **~$70 total**
+- Needed from Phase 2 (Mar 16) through Phase 5 (Apr 20) = ~5 weeks → **~$5 total**
 
 ## Cleanup: Delete the Volume
 
