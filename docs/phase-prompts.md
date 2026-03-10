@@ -95,7 +95,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 **Estimated compute:** ~$85 (13 agent runs × ~13hrs × $0.44/hr + baseline runs starting)
 
-**Storage prerequisite:** Track C (NLP) requires the climbmix-400b-shuffle dataset (~29GB). Before starting Phase 2, create and mount a 50GB EBS volume at `/home/ubuntu/storage2`. See `docs/storage2-setup.md` for step-by-step instructions.
+**Storage note:** Track C (NLP) requires the climbmix-400b-shuffle dataset (~29GB). After cleaning up old checkpoints in `gflownet-peptide`, `storage1` has ~54GB free — sufficient to store the dataset directly without a separate volume. Download to `/home/ubuntu/storage1/recursive-mol/data/nlp/`.
 
 ### Prompt
 
@@ -103,10 +103,9 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 You are working on the recursive-mol project (PRD: docs/PRD-recursive-mol.md).
 Phase 1 is complete. Checkpoint 1 passed. Execute Phase 2: Main Experiments.
 
-PREREQUISITE — Set up storage2 for NLP data:
-- A 50GB EBS volume must be mounted at /home/ubuntu/storage2 (see docs/storage2-setup.md)
-- Download the NLP dataset (climbmix-400b-shuffle) to /home/ubuntu/storage2/data/nlp/
-- Verify: df -h /home/ubuntu/storage2 shows sufficient space
+PREREQUISITE — Download NLP data:
+- Download the climbmix-400b-shuffle dataset (~29GB) to data/nlp/
+- Verify: storage1 has sufficient free space (df -h /home/ubuntu/storage1)
 
 STEP 1 — Write program_hponly.md:
 - Copy program.md but restrict instructions to: "Only modify hyperparameters (learning rate, batch size, dropout, weight decay, warmup steps, optimizer params). Do NOT change model architecture (no new layers, no attention pattern changes, no activation function changes, no model structure changes)."
