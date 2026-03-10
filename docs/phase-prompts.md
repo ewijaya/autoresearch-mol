@@ -89,11 +89,11 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ---
 
-## Phase 2: Main Experiments (Mar 16-23)
+## Phase 2: Main Experiments (Mar 16-30)
 
-**AWS Instance:** `g5.xlarge` × 3 (one per track, spot ~$0.44/hr each). Run agent sessions in parallel across instances to finish within 1 week.
+**AWS Instance:** `g5.xlarge` × 1 (single instance, sequential runs, spot ~$0.44/hr). All 3 tracks run on the same instance one after another (~2 weeks).
 
-**Estimated compute:** ~$85 (13 agent runs × ~13hrs × $0.44/hr + baseline runs starting)
+**Estimated compute:** ~$85 (13 agent runs + baselines ≈ 190 GPU-hrs × $0.44/hr)
 
 **Storage note:** Track C (NLP) uses the climbmix-400b-shuffle dataset (full: 600GB / 6,542 shards). Only a subset is needed — data caches to `~/.cache/autoresearch/data/` (root volume). Symlink it to storage1 for more space. With ~54GB free on storage1 (after gflownet-peptide checkpoint cleanup), download up to 475 shards (~42GB), reserving ~10GB for experiment outputs.
 
@@ -117,15 +117,16 @@ STEP 2 — Implement random_nas.py:
 - Each config must produce a valid train.py that compiles and trains
 - Output: modified train.py files saved per run
 
-STEP 3 — Launch agent runs (13 total):
+STEP 3 — Launch agent runs (13 total, sequential on single GPU):
 - Track A (SMILES): 5 independent agent sessions, each ~100 experiments
 - Track B (Protein): 3 independent agent sessions, each ~100 experiments
 - Track C (NLP): 5 independent agent sessions, each ~100 experiments
+- Run order: all SMILES first, then protein, then NLP (so early monitoring can happen)
 - Each session uses program.md, the autoresearch loop, TIME_BUDGET=300s
 - Save all results to results/{smiles,protein,nlp}/run_{1..N}/
 - Save every version of train.py the agent produces
 
-STEP 4 — Launch Tier 1 baselines (in parallel where possible):
+STEP 4 — Launch Tier 1 baselines (sequential, interleave with agent runs):
 - Random NAS: 9 runs (3 tracks × 3 replicates), 100 random archs each
 - HP-only agent: 9 runs (3 tracks × 3 replicates), using program_hponly.md
 - Fixed default: 3 runs (1 per track), unmodified starting architecture
@@ -154,7 +155,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ---
 
-## Phase 3: Baselines & Initial Analysis (Mar 23-30)
+## Phase 3: Baselines & Initial Analysis (Mar 30 - Apr 6)
 
 **AWS Instance:** `g5.xlarge` × 2-3 (spot, to finish remaining baselines). Once baselines complete, analysis can run on a `c5.xlarge` (CPU-only, ~$0.17/hr) or locally — no GPU needed for statistical analysis.
 
@@ -224,7 +225,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ---
 
-## Phase 4: Transfer & Downstream Evaluation (Mar 30 - Apr 6)
+## Phase 4: Transfer & Downstream Evaluation (Apr 6-13)
 
 **AWS Instance:** `g5.xlarge` × 2 (spot). Transfer experiments and MoleculeNet fine-tuning both need GPU. Run transfer matrix on one instance, MoleculeNet on another.
 
@@ -308,7 +309,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ---
 
-## Phase 5: Statistical Analysis & Writing (Apr 6-20)
+## Phase 5: Statistical Analysis & Writing (Apr 13-27)
 
 **AWS Instance:** `c5.2xlarge` (CPU-only, ~$0.34/hr) for statistical analysis. No GPU needed. PyMC/Stan runs on CPU. Paper writing needs no compute.
 
@@ -387,7 +388,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ---
 
-## Phase 6: Finalize & Preprint (Apr 20-27)
+## Phase 6: Finalize & Preprint (Apr 27 - May 4)
 
 **AWS Instance:** None needed. All work is writing, review, and repo cleanup. Use local machine or a `t3.medium` (~$0.04/hr) for LaTeX compilation if needed.
 
@@ -433,7 +434,7 @@ STEP 5 — Post arXiv preprint:
 - Verify PDF renders correctly on arXiv
 - Record the arXiv URL
 
-Deadline: arXiv preprint MUST be live by April 27.
+Deadline: arXiv preprint MUST be live by May 4.
 
 FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 ```
@@ -450,7 +451,7 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 ---
 
-## Phase 7: NeurIPS Submission (Apr 27 - May 15)
+## Phase 7: NeurIPS Submission (May 4-15)
 
 **AWS Instance:** None. Possibly a `g5.xlarge` for 1-2 days if you need to re-run any experiment based on feedback (~$10 contingency).
 
@@ -508,13 +509,13 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 | Phase | Instance | Count | Est. Hours | Spot $/hr | Est. Cost |
 |-------|----------|-------|------------|-----------|-----------|
 | Phase 1 | g5.xlarge | 1 | ~45 | $0.44 | ~$20 |
-| Phase 2 | g5.xlarge | 3 | ~170 total | $0.44 | ~$85 |
-| Phase 3 | g5.xlarge | 2 | ~100 total | $0.44 | ~$50 |
+| Phase 2 | g5.xlarge | 1 | ~190 | $0.44 | ~$85 |
+| Phase 3 | g5.xlarge | 1 | ~100 | $0.44 | ~$44 |
 | Phase 3 | c5.xlarge (analysis) | 1 | ~5 | $0.17 | ~$1 |
-| Phase 4 | g5.xlarge | 2 | ~80 total | $0.44 | ~$40 |
+| Phase 4 | g5.xlarge | 1 | ~80 | $0.44 | ~$35 |
 | Phase 5 | c5.2xlarge (analysis) | 1 | ~15 | $0.34 | ~$5 |
 | Phase 6 | — | — | — | — | ~$1 |
 | Phase 7 | g5.xlarge (contingency) | 1 | ~20 | $0.44 | ~$10 |
-| **Total** | | | | | **~$212** |
+| **Total** | | | | | **~$201** |
 
-All instances in `us-east-1`. Use spot instances for all GPU work. Budget includes 15% contingency → **$244 ceiling**.
+All phases use a single `g5.xlarge` instance (sequential runs). Use spot instances for all GPU work. Budget includes 15% contingency → **$231 ceiling**.
