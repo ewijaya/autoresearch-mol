@@ -619,6 +619,7 @@ TIE_EMBED_WEIGHTS = env_bool("RECURSIVE_MOL_TIE_EMBED_WEIGHTS", False)
 DEFAULT_DEVICE_BATCH = {"smiles": 256, "protein": 128, "nlp": 32}[TRACK]
 DEVICE_BATCH_SIZE = env_int("RECURSIVE_MOL_DEVICE_BATCH_SIZE", DEFAULT_DEVICE_BATCH)
 TIME_BUDGET = env_int("RECURSIVE_MOL_TIME_BUDGET", BASE_TIME_BUDGET)
+MAX_EPOCHS = env_int("RECURSIVE_MOL_MAX_EPOCHS", 10)
 ENABLE_TORCH_COMPILE = env_bool("RECURSIVE_MOL_ENABLE_COMPILE", True)
 
 t_start = time.time()
@@ -725,6 +726,7 @@ train_loader = next_batch("train")
 x, y, epoch = next(train_loader)
 
 print(f"Time budget: {TIME_BUDGET}s")
+print(f"Max epochs: {MAX_EPOCHS}")
 print(f"Gradient accumulation steps: {grad_accum_steps}")
 
 # --- W&B init ---
@@ -853,6 +855,9 @@ while True:
 
     step += 1
     if step > WARMUP_STEPS and total_training_time >= TIME_BUDGET:
+        break
+    if epoch > MAX_EPOCHS:
+        print(f"\nEpoch cap reached: {epoch} > {MAX_EPOCHS}")
         break
 
 print()

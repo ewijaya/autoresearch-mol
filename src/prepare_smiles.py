@@ -22,7 +22,8 @@ from prepare_char import (
 )
 
 MAX_SEQ_LEN = 256
-NUM_ENUMERATIONS = 5
+NUM_ENUMERATIONS = 20
+VAL_ENUMERATIONS = 5
 SPLIT_SEED = 42
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -114,11 +115,15 @@ def split_molecules(canonical_to_mol: dict[str, Chem.Mol]) -> tuple[list[str], l
     return molecule_ids[:cutoff], molecule_ids[cutoff:]
 
 
-def build_sequences(molecule_ids: list[str], canonical_to_mol: dict[str, Chem.Mol]) -> tuple[list[str], list[str]]:
+def build_sequences(
+    molecule_ids: list[str],
+    canonical_to_mol: dict[str, Chem.Mol],
+    enumeration_count: int,
+) -> tuple[list[str], list[str]]:
     enumerated = []
     canonical_ids = []
     for canonical in molecule_ids:
-        variants = enumerate_smiles(canonical_to_mol[canonical], NUM_ENUMERATIONS)
+        variants = enumerate_smiles(canonical_to_mol[canonical], enumeration_count)
         enumerated.extend(variants)
         canonical_ids.extend([canonical] * len(variants))
     return enumerated, canonical_ids
@@ -132,8 +137,16 @@ def main() -> None:
     canonical_to_mol = load_unique_molecules(csv_path)
     train_ids, val_ids = split_molecules(canonical_to_mol)
 
-    train_sequences, train_canonical_ids = build_sequences(train_ids, canonical_to_mol)
-    val_sequences, val_canonical_ids = build_sequences(val_ids, canonical_to_mol)
+    train_sequences, train_canonical_ids = build_sequences(
+        train_ids,
+        canonical_to_mol,
+        NUM_ENUMERATIONS,
+    )
+    val_sequences, val_canonical_ids = build_sequences(
+        val_ids,
+        canonical_to_mol,
+        VAL_ENUMERATIONS,
+    )
 
     tokenizer = build_tokenizer_from_texts(train_sequences + val_sequences)
     tokenizer.save(TOKENIZER_PATH)
@@ -150,6 +163,7 @@ def main() -> None:
         "num_train_molecules": len(train_ids),
         "num_val_molecules": len(val_ids),
         "num_enumerations": NUM_ENUMERATIONS,
+        "val_enumerations": VAL_ENUMERATIONS,
         "tokenizer_vocab_size": tokenizer.get_vocab_size(),
         "train_sequences": train_stats["num_sequences"],
         "val_sequences": val_stats["num_sequences"],

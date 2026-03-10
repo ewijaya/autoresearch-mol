@@ -1,5 +1,5 @@
 """
-Prepare a 50K protein-sequence subset from UniRef50.
+Prepare a 200K protein-sequence subset from UniRef50.
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ from prepare_char import (
 MAX_SEQ_LEN = 512
 MIN_LENGTH = 50
 MAX_LENGTH = 500
-TARGET_SEQUENCES = 50_000
+TARGET_SEQUENCES = 200_000
 SPLIT_SEED = 42
 VALID_AA = "ACDEFGHIKLMNPQRSTVWY"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
