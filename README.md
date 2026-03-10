@@ -4,7 +4,6 @@ Autonomous discovery of domain-specific transformer architectures for molecular 
 
 An AI agent iteratively modifies transformer architecture code, trains for 5 minutes, measures validation bits-per-byte (val_bpb), and keeps or discards each change. The core question: **do molecular sequences (SMILES, proteins) induce fundamentally different optimal transformer architectures than natural language?**
 
-Built on top of Karpathy's [autoresearch](https://github.com/karpathy/autoresearch) framework.
 
 ## Project Structure
 
@@ -27,7 +26,7 @@ data/
   protein/              # UniRef50 processed data
 results/
   calibration/          # Calibration study outputs
-autoresearch/           # Original autoresearch fork (reference)
+autoresearch/           # Reference training code
 ```
 
 ## Tracks
@@ -130,7 +129,7 @@ The agent will:
 
 | Phase | Timeline | Description |
 |-------|----------|-------------|
-| 1. Infrastructure | Mar 9-16 | Fork autoresearch, implement SMILES/protein tracks, calibration |
+| 1. Infrastructure | Mar 9-16 | Set up training pipeline, implement SMILES/protein tracks, calibration |
 | 2. Agent Search | Mar 16-Apr 6 | Run autonomous agents on all 3 tracks (5 SMILES + 3 protein + 5 NLP) |
 | 3. Baselines | Apr 6-13 | Random NAS, fixed default, HP-only baselines |
 | 4. Analysis | Apr 13-20 | Transfer matrix, MoleculeNet validation, statistical tests |
