@@ -1,6 +1,6 @@
 # Phase 2 Experiment Note
 
-Snapshot written on March 11, 2026.
+Snapshot updated on March 11, 2026.
 
 ## Planned workload
 
@@ -33,17 +33,30 @@ Planned Phase 2 total: about `3,103` experiments.
 
 Because the PRD uses "`~100`" for the agent and HP-only sessions, the exact final count may be slightly lower or higher than `3,103`, but this is the working expectation for the current queue.
 
+## Execution model
+
+Phase 2 is still running sequentially on a single GPU.
+
+The queue now uses one short-lived Codex session per experiment row for agent-driven runs instead of one long-lived Codex session per 100-experiment run. This reduces failure risk from context exhaustion or stalled post-run analysis.
+
+The runner also now verifies that the expected number of rows is actually recorded in `results.tsv` before it treats a task as complete.
+
 ## Current live status
 
 At the time this note was written:
 
 - the Phase 2 runner is on task `1/34`
 - active task: SMILES agent `run_1`
-- completed experiments in the active run: `2`
+- completed experiments in the active run: `6`
 - current recorded rows:
   - `exp001`: baseline, `val_bpb = 0.596350`, `keep`
   - `exp002`: full attention for all layers at seq len 256, `val_bpb = 0.597899`, `discard`
-- the next experiment is already running
+  - `exp003`: disable alternating value embeddings, `val_bpb = 0.598981`, `discard`
+  - `exp004`: increase default depth from 6 to 8 with matched aspect-ratio width, `val_bpb = 0.601616`, `discard`
+  - `exp005`: reduce default depth from 6 to 5 for a faster smaller model, `val_bpb = 0.597927`, `discard`
+  - `exp006`: replace dense FFN with parameter-matched SwiGLU gating, `val_bpb = 0.594814`, `keep`
+- the runner has resumed with the patched per-experiment Codex flow
+- the next experiment is `exp007`
 
 ## Where to check progress
 
@@ -51,4 +64,3 @@ At the time this note was written:
 - Runner log: `results/phase2/runner.log`
 - Active SMILES run log: `results/smiles/run_1/agent_session.log`
 - Active SMILES results: `results/smiles/run_1/results.tsv`
-
