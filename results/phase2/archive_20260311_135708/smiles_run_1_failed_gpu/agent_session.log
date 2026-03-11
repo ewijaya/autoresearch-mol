@@ -1,0 +1,266 @@
+OpenAI Codex v0.114.0 (research preview)
+--------
+workdir: /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src
+model: gpt-5.4
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR, /home/ubuntu/storage1/recursive-mol/results/smiles/run_1, /home/ubuntu/.codex/memories]
+reasoning effort: high
+reasoning summaries: none
+session id: 019cdb3c-79ed-7a70-98c2-f55529fccdd5
+--------
+user
+You are executing one bounded recursive-mol Phase 2 session for the smiles track.
+
+Read `program.md` and follow it. The run is bounded to exactly 100 experiments including the baseline.
+
+Operational requirements:
+- Work only inside this workspace's `src/` directory.
+- Do not edit any file except `train.py`.
+- Use `session_tools.py` for all experiment execution and logging.
+- Start with `python session_tools.py init`.
+- The first recorded experiment must be the unmodified baseline: `python session_tools.py run --description baseline`.
+- For every later experiment, edit only `train.py`, then record it with `python session_tools.py run --description "..."`
+- Stop once `results.tsv` contains 100 rows excluding the header.
+- If a run crashes, log it through `session_tools.py` and continue.
+- Keep the search behavior aligned with `program.md`.
+- When you finish, run `python session_tools.py status` and then stop.
+
+mcp startup: no servers
+codex
+I’m reading `program.md` and the local session tooling first so I can follow the run protocol exactly, then I’ll initialize the session and record the required baseline before changing `train.py`.
+exec
+/usr/bin/zsh -lc 'pwd && rg --files .' in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+/home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src
+./program.md
+./prepare_protein.py
+./pyproject.toml
+./uv.lock
+./prepare_smiles.py
+./prepare_char.py
+./train.py
+./prepare.py
+./program_hponly.md
+./random_nas.py
+./session_tools.py
+./README.md
+exec
+/usr/bin/zsh -lc "sed -n '1,260p' session_tools.py" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/srcexec
+/usr/bin/zsh -lc "sed -n '1,220p' program.md" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+"""
+Helpers for bounded Phase 2 experiment sessions.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import difflib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+SUMMARY_PATTERN = re.compile(r"^(val_bpb|peak_vram_mb|num_params_M):\s+([0-9.]+)$", re.MULTILINE)
+
+ succeeded in 0ms:
+# recursive-mol autoresearch program
+
+This program drives autonomous architecture search for short-sequence next-token prediction.
+
+## Scope
+
+Read these files before starting:
+
+- `README.md`
+- `prepare.py`, `prepare_smiles.py`, and `prepare_protein.py` to understand the fixed data/eval harness for each track
+- `train.py`, which is the only file you are allowed to modify during search
+
+The active track is selected externally with `RECURSIVE_MOL_TRACK={smiles,protein,nlp}`.
+
+## Fixed rules
+
+- Only edit `train.py`.
+- Do not modify any `prepare*.py` file.
+- Do not change the evaluation metric or the dataset split.
+- Keep the fixed loop structure:
+codex
+I have the protocol now. Next I’m checking the fixed data/eval harness and the starting `train.py`, then I’ll initialize the session and verify whether this workspace already has any recorded rows before running the baseline.
+exec
+/usr/bin/zsh -lc "sed -n '1,240p' prepare.py" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+"""
+One-time data preparation for autoresearch experiments.
+Downloads data shards and trains a BPE tokenizer.
+
+Usage:
+    python prepare.py                  # full prep (download + tokenizer)
+    python prepare.py --num-shards 8   # download only 8 shards (for testing)
+
+Data and tokenizer are stored in ~/.cache/autoresearch/.
+"""
+
+import os
+import sys
+import time
+import math
+import argparse
+import pickle
+from multiprocessing import Pool
+
+import requests
+exec
+/usr/bin/zsh -lc "sed -n '1,320p' train.py" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+"""
+Autoresearch pretraining script adapted for recursive-mol.
+"""
+
+from __future__ import annotations
+
+import contextlib
+import gc
+import importlib
+import os
+import time
+from dataclasses import asdict, dataclass
+
+os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+exec
+/usr/bin/zsh -lc "sed -n '1,240p' prepare_smiles.py" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+"""
+Prepare the SMILES track based on ZINC-250K with random enumeration.
+"""
+
+from __future__ import annotations
+
+import csv
+import json
+import random
+from pathlib import Path
+
+import requests
+from rdkit import Chem, RDLogger
+
+from prepare_char import (
+    TIME_BUDGET,
+    CharTokenizer,
+    build_tokenizer_from_texts,
+    evaluate_bpb as evaluate_bpb_shared,
+    make_stream_dataloader,
+exec
+/usr/bin/zsh -lc "sed -n '1,240p' README.md" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+# autoresearch
+
+![teaser](progress.png)
+
+*One day, frontier AI research used to be done by meat computers in between eating, sleeping, having other fun, and synchronizing once in a while using sound wave interconnect in the ritual of "group meeting". That era is long gone. Research is now entirely the domain of autonomous swarms of AI agents running across compute cluster megastructures in the skies. The agents claim that we are now in the 10,205th generation of the code base, in any case no one could tell if that's right or wrong as the "code" is now a self-modifying binary that has grown beyond human comprehension. This repo is the story of how it all began. -@karpathy, March 2026*.
+
+The idea: give an AI agent a small but real LLM training setup and let it experiment autonomously overnight. It modifies the code, trains for 5 minutes, checks if the result improved, keeps or discards, and repeats. You wake up in the morning to a log of experiments and (hopefully) a better model. The training code here is a simplified single-GPU implementation of [nanochat](https://github.com/karpathy/nanochat). The core idea is that you're not touching any of the Python files like you normally would as a researcher. Instead, you are programming the `program.md` Markdown files that provide context to the AI agents and set up your autonomous research org. The default `program.md` in this repo is intentionally kept as a bare bones baseline, though it's obvious how one would iterate on it over time to find the "research org code" that achieves the fastest research progress, how you'd add more agents to the mix, etc. A bit more context on this project is here in this [tweet](https://x.com/karpathy/status/2029701092347630069).
+
+## How it works
+
+The repo is deliberately kept small and only really has a three files that matter:
+
+- **`prepare.py`** — fixed constants, one-time data prep (downloads training data, trains a BPE tokenizer), and runtime utilities (dataloader, evaluation). Not modified.
+- **`train.py`** — the single file the agent edits. Contains the full GPT model, optimizer (Muon + AdamW), and training loop. Everything is fair game: architecture, hyperparameters, optimizer, batch size, etc. **This file is edited and iterated on by the agent**.
+- **`program.md`** — baseline instructions for one agent. Point your agent here and let it go. **This file is edited and iterated on by the human**.
+
+By design, training runs for a **fixed 5-minute time budget** (wall clock, excluding startup/compilation), regardless of the details of your compute. The metric is **val_bpb** (validation bits per byte) — lower is better, and vocab-size-independent so architectural changes are fairly compared.
+
+## Quick start
+
+exec
+/usr/bin/zsh -lc "if [ -f ../results.tsv ]; then wc -l ../results.tsv && sed -n '1,8p' ../results.tsv; else echo 'no results'; fi" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+no results
+codex
+The run directory is clean, so the baseline will become `exp001` as required. I’m reading the rest of `train.py` now to identify safe single-change directions before I begin the experiment loop.
+exec
+/usr/bin/zsh -lc "sed -n '321,520p' train.py" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+            "total": total,
+        }
+
+    def setup_optimizer(
+        self,
+        unembedding_lr=0.004,
+        embedding_lr=0.2,
+        matrix_lr=0.02,
+        weight_decay=0.0,
+        adam_betas=(0.8, 0.95),
+        scalar_lr=0.5,
+    ):
+        model_dim = self.config.n_embd
+        matrix_params = list(self.transformer.h.parameters())
+        value_embeds_params = list(self.value_embeds.parameters())
+        embedding_params = list(self.transformer.wte.parameters())
+        lm_head_params = [] if self.lm_head is None else list(self.lm_head.parameters())
+        resid_params = [self.resid_lambdas]
+        x0_params = [self.x0_lambdas]
+        dmodel_lr_scale = (model_dim / 768) ** -0.5
+exec
+/usr/bin/zsh -lc 'python session_tools.py init' in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+
+exec
+/usr/bin/zsh -lc "sed -n '521,920p' train.py" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+            state = self.state[p]
+            if not state:
+                state["step"] = 0
+                state["exp_avg"] = torch.zeros_like(p)
+                state["exp_avg_sq"] = torch.zeros_like(p)
+            state["step"] += 1
+            self._adamw_step_t.fill_(state["step"])
+            self._adamw_lr_t.fill_(group["lr"])
+            self._adamw_beta1_t.fill_(group["betas"][0])
+            self._adamw_beta2_t.fill_(group["betas"][1])
+            self._adamw_eps_t.fill_(group["eps"])
+            self._adamw_wd_t.fill_(group["weight_decay"])
+            adamw_step_fused(
+                p,
+                grad,
+                state["exp_avg"],
+                state["exp_avg_sq"],
+                self._adamw_step_t,
+                self._adamw_lr_t,
+                self._adamw_beta1_t,
+codex
+The session layout is initialized. I’m recording the unmodified baseline now; after that I’ll use the baseline log and metric as the reference point for the remaining search.
+exec
+/usr/bin/zsh -lc 'python session_tools.py run --description baseline' in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/srccodex
+The baseline job is in flight. While it runs, I’m using the current model structure to line up a search sequence that stays within one coherent change per experiment and leans toward architecture over pure tuning, per `program.md`.
+exec
+/usr/bin/zsh -lc "sed -n '1,220p' ../logs/exp001.log" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src exited 2 in 0ms:
+sed: can't read ../logs/exp001.log: No such file or directory
+exec
+/usr/bin/zsh -lc 'ls -la ..' in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+total 12
+drwxrwxr-x 3 ubuntu ubuntu 4096 Mar 11 13:51 .
+drwxrwxr-x 7 ubuntu ubuntu 4096 Mar 11 13:51 ..
+lrwxrwxrwx 1 ubuntu ubuntu   40 Mar 11 13:51 data -> /home/ubuntu/storage1/recursive-mol/data
+drwxrwxr-x 2 ubuntu ubuntu 4096 Mar 11 13:51 src
+exec
+/usr/bin/zsh -lc 'find .. -maxdepth 2 -type f | sort' in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 0ms:
+../src/prepare_char.py
+../src/prepare_protein.py
+../src/prepare.py
+../src/prepare_smiles.py
+../src/program_hponly.md
+../src/program.md
+../src/pyproject.toml
+../src/random_nas.py
+../src/README.md
+../src/session_tools.py
+../src/train.py
+../src/uv.lock
+exec
+/usr/bin/zsh -lc "find /home/ubuntu/storage1/recursive-mol/results/smiles/run_1 -maxdepth 3 \\( -name 'results.tsv' -o -name 'summary.json' -o -name 'session_state.json' -o -path '*/logs/*' \\) | sort" in /home/ubuntu/storage1/recursive-mol/results/smiles/run_1/workspace/src succeeded in 1ms:
+/home/ubuntu/storage1/recursive-mol/results/smiles/run_1/logs/exp001.log
+/home/ubuntu/storage1/recursive-mol/results/smiles/run_1/results.tsv
+/home/ubuntu/storage1/recursive-mol/results/smiles/run_1/summary.json
