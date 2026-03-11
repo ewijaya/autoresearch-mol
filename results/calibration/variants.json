@@ -1,0 +1,182 @@
+[
+  {
+    "id": "variant_00",
+    "depth": 8,
+    "model_dim": 160,
+    "num_heads": 2,
+    "head_dim": 80,
+    "activation": "SiLU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_01",
+    "depth": 3,
+    "model_dim": 448,
+    "num_heads": 7,
+    "head_dim": 64,
+    "activation": "ReLU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_02",
+    "depth": 3,
+    "model_dim": 128,
+    "num_heads": 2,
+    "head_dim": 64,
+    "activation": "GELU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_03",
+    "depth": 7,
+    "model_dim": 224,
+    "num_heads": 7,
+    "head_dim": 32,
+    "activation": "ReluSquared",
+    "attention": "full"
+  },
+  {
+    "id": "variant_04",
+    "depth": 6,
+    "model_dim": 416,
+    "num_heads": 4,
+    "head_dim": 104,
+    "activation": "ReLU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_05",
+    "depth": 8,
+    "model_dim": 320,
+    "num_heads": 4,
+    "head_dim": 80,
+    "activation": "SiLU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_06",
+    "depth": 4,
+    "model_dim": 512,
+    "num_heads": 4,
+    "head_dim": 128,
+    "activation": "ReLU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_07",
+    "depth": 6,
+    "model_dim": 160,
+    "num_heads": 4,
+    "head_dim": 40,
+    "activation": "SiLU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_08",
+    "depth": 3,
+    "model_dim": 480,
+    "num_heads": 5,
+    "head_dim": 96,
+    "activation": "ReLU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_09",
+    "depth": 3,
+    "model_dim": 384,
+    "num_heads": 4,
+    "head_dim": 96,
+    "activation": "SiLU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_10",
+    "depth": 8,
+    "model_dim": 160,
+    "num_heads": 2,
+    "head_dim": 80,
+    "activation": "GELU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_11",
+    "depth": 3,
+    "model_dim": 224,
+    "num_heads": 8,
+    "head_dim": 28,
+    "activation": "ReLU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_12",
+    "depth": 5,
+    "model_dim": 192,
+    "num_heads": 4,
+    "head_dim": 48,
+    "activation": "SiLU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_13",
+    "depth": 5,
+    "model_dim": 448,
+    "num_heads": 7,
+    "head_dim": 64,
+    "activation": "GELU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_14",
+    "depth": 3,
+    "model_dim": 224,
+    "num_heads": 8,
+    "head_dim": 28,
+    "activation": "ReLU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_15",
+    "depth": 6,
+    "model_dim": 256,
+    "num_heads": 2,
+    "head_dim": 128,
+    "activation": "GELU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_16",
+    "depth": 4,
+    "model_dim": 480,
+    "num_heads": 6,
+    "head_dim": 80,
+    "activation": "SiLU",
+    "attention": "windowed"
+  },
+  {
+    "id": "variant_17",
+    "depth": 7,
+    "model_dim": 320,
+    "num_heads": 4,
+    "head_dim": 80,
+    "activation": "GELU",
+    "attention": "full"
+  },
+  {
+    "id": "variant_18",
+    "depth": 8,
+    "model_dim": 192,
+    "num_heads": 8,
+    "head_dim": 24,
+    "activation": "ReluSquared",
+    "attention": "full"
+  },
+  {
+    "id": "variant_19",
+    "depth": 6,
+    "model_dim": 384,
+    "num_heads": 4,
+    "head_dim": 96,
+    "activation": "ReLU",
+    "attention": "full"
+  }
+]

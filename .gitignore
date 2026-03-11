@@ -14,8 +14,8 @@ data/
 *.bin
 *.csv
 
-# Results
-results/
+# Results - large log files
+results/calibration/logs/
 
 # IDE
 .vscode/
