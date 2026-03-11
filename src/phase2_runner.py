@@ -174,6 +174,10 @@ Operational requirements:
 - Stop once `results.tsv` contains {experiments} rows excluding the header.
 - If a run crashes, log it through `session_tools.py` and continue.
 - Keep the search behavior aligned with `{program_name}`.
+- `session_tools.py run` is the source of truth. Treat it as a blocking command and wait for it to finish.
+- Do not read full training logs unless a run crashes. For successful runs, use `python session_tools.py status` and `../../results.tsv`.
+- Do not spend time on long post-hoc analysis between experiments. After each completed run, decide the next change and continue promptly.
+- Avoid commands that print huge files. If you need log context, read only the tail.
 - When you finish, run `python session_tools.py status` and then stop.
 """.strip() + "\n"
 

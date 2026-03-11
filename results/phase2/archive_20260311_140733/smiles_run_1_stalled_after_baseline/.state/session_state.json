@@ -1,0 +1,5 @@
+{
+  "best_experiment": 1,
+  "best_snapshot": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_1/train_versions/exp001_keep.py",
+  "best_val_bpb": 0.596262
+}
