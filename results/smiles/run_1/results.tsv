@@ -20,3 +20,5 @@ exp018	0.594763	5.5	discard	delay the first non-final global attention layer to 
 exp019	0.606428	5.5	discard	use configured ReluSquared gated MLP instead of fixed SiLU gate
 exp020	0.596547	5.5	discard	use 4 wider attention heads (80d) instead of 5x64 heads at similar model width
 exp021	0.595900	6.4	discard	rebalance to 7 layers while keeping 320 width and 5x64 heads
+exp022	0.594463	4.7	discard	reduce to 5 layers while keeping 320 width and 224-token mixed attention
+exp023	0.594910	5.5	discard	expand value-embedding gates to use the full hidden state
