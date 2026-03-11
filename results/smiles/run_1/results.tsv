@@ -9,3 +9,5 @@ exp007	0.594333	5.5	keep	use learned value embeddings in every layer instead of 
 exp008	0.595380	5.5	discard	shrink local sliding attention window from 128 to 64 while keeping mixed local/global layers
 exp009	0.594438	5.5	discard	switch to multi-query attention with a single KV head
 exp010	0.594869	5.5	discard	replace SwiGLU gate activation with GELU in the parameter-matched FFN
+exp011	0.594328	5.5	keep	widen local sliding attention window from 128 to 192 while keeping mixed local/global layers
+exp012	0.595281	5.6	discard	alternate local/global attention layout while keeping 192-token local windows
