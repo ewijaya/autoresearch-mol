@@ -12,3 +12,4 @@ exp010	0.594869	5.5	discard	replace SwiGLU gate activation with GELU in the para
 exp011	0.594328	5.5	keep	widen local sliding attention window from 128 to 192 while keeping mixed local/global layers
 exp012	0.595281	5.6	discard	alternate local/global attention layout while keeping 192-token local windows
 exp013	0.593862	5.5	keep	widen local sliding attention window from 192 to 224 while keeping mixed local/global layers
+exp014	0.595618	5.5	discard	default to local attention in every non-final layer
