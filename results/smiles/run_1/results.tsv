@@ -8,3 +8,4 @@ exp006	0.594814	5.4	keep	replace dense FFN with parameter-matched SwiGLU gating
 exp007	0.594333	5.5	keep	use learned value embeddings in every layer instead of alternating layers
 exp008	0.595380	5.5	discard	shrink local sliding attention window from 128 to 64 while keeping mixed local/global layers
 exp009	0.594438	5.5	discard	switch to multi-query attention with a single KV head
+exp010	0.594869	5.5	discard	replace SwiGLU gate activation with GELU in the parameter-matched FFN
