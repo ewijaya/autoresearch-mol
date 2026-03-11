@@ -14,8 +14,38 @@ data/
 *.bin
 *.csv
 
-# Results - large log files
+# Results
+results/**
+!results/**/
+!results/**/results.tsv
+!results/**/summary.json
+!results/calibration/decision.md
+!results/calibration/results.json
+!results/calibration/summary.json
+!results/calibration/variants.json
+!results/phase2/checkpoint2_status.json
+!results/phase2/disk_space.json
+!results/phase2/queue_state.json
+!results/smiles/early_monitoring.json
+
+# Results - heavyweight artifacts
+results/**/.state/
+results/**/aborted_steps/
+results/**/diffs/
+results/**/generated_variants/
+results/**/logs/
+results/**/train_versions/
+results/**/workspace/
+results/**/agent_bootstrap.log
+results/**/agent_session.log
+results/**/baseline.log
+results/**/last_message.txt
+results/**/prompt.txt
+results/phase1/*.log
+results/phase2/*.log
+results/phase2/archive_*/
 results/calibration/logs/
+results/calibration_run.log
 
 # IDE
 .vscode/

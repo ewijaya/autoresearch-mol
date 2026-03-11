@@ -1,0 +1,10 @@
+commit	val_bpb	memory_gb	status	description
+exp001	0.596350	5.3	keep	baseline
+exp002	0.597899	5.4	discard	full attention for all layers at seq len 256
+exp003	0.598981	5.2	discard	disable alternating value embeddings
+exp004	0.601616	8.4	discard	increase default depth from 6 to 8 with matched aspect-ratio width
+exp005	0.597927	3.6	discard	reduce default depth from 6 to 5 for a faster smaller model
+exp006	0.594814	5.4	keep	replace dense FFN with parameter-matched SwiGLU gating
+exp007	0.594333	5.5	keep	use learned value embeddings in every layer instead of alternating layers
+exp008	0.595380	5.5	discard	shrink local sliding attention window from 128 to 64 while keeping mixed local/global layers
+exp009	0.594438	5.5	discard	switch to multi-query attention with a single KV head
