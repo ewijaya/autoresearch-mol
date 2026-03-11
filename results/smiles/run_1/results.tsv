@@ -22,3 +22,4 @@ exp020	0.596547	5.5	discard	use 4 wider attention heads (80d) instead of 5x64 he
 exp021	0.595900	6.4	discard	rebalance to 7 layers while keeping 320 width and 5x64 heads
 exp022	0.594463	4.7	discard	reduce to 5 layers while keeping 320 width and 224-token mixed attention
 exp023	0.594910	5.5	discard	expand value-embedding gates to use the full hidden state
+exp024	0.595062	6.6	discard	widen to 384 hidden size with 6x64 heads while keeping 6 layers and 224-token mixed attention
