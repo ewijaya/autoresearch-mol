@@ -41,6 +41,8 @@ The queue now uses one short-lived Codex session per experiment row for agent-dr
 
 The runner also now verifies that the expected number of rows is actually recorded in `results.tsv` before it treats a task as complete.
 
+The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage limit, the queue records a `paused_rate_limit` state in `results/phase2/queue_state.json`, keeps any script-only tasks available for execution, and can later resume from the recorded row counts in each run's `results.tsv`.
+
 ## Current live status
 
 At the time this note was written:

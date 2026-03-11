@@ -42,6 +42,8 @@ WORKSPACE_FILES = [
 ]
 AGENT_STEP_TIMEOUT_SECONDS = 20 * 60
 AGENT_STEP_MAX_RETRIES = 3
+FIVE_HOUR_RESET_SECONDS = 5 * 60 * 60
+WEEKLY_RESET_SECONDS = 7 * 24 * 60 * 60
 
 ARCHITECTURAL_PATTERNS = [
     r"\bclass\s+(GPT|Block|MLP|CausalSelfAttention)\b",
@@ -69,6 +71,14 @@ HP_PATTERNS = [
     r"\bWARMDOWN_RATIO\b",
     r"\bFINAL_LR_FRAC\b",
 ]
+
+
+class RateLimitPause(RuntimeError):
+    def __init__(self, message: str, scope: str, retry_after_seconds: int, task: dict | None = None) -> None:
+        super().__init__(message)
+        self.scope = scope
+        self.retry_after_seconds = retry_after_seconds
+        self.task = task
 
 
 def log(message: str) -> None:
@@ -165,6 +175,62 @@ def results_row_count(run_dir: Path) -> int:
     if not results_path.exists():
         return 0
     return max(0, len(results_path.read_text().splitlines()) - 1)
+
+
+def task_completed(task: dict) -> bool:
+    return results_row_count(run_dir_for_task(task)) >= expected_rows_for_task(task)
+
+
+def is_codex_task(task: dict) -> bool:
+    return task["kind"] in {"agent", "hp_only"}
+
+
+def detect_rate_limit_pause(text: str, returncode: int) -> RateLimitPause | None:
+    lower = text.lower()
+    is_weekly = bool(re.search(r"weekly limit:.*0% left", lower))
+    is_five_hour = bool(re.search(r"5h limit:.*0% left", lower))
+    generic_limit = any(
+        phrase in lower
+        for phrase in (
+            "rate limit",
+            "usage limit",
+            "limit reached",
+            "too many requests",
+            "credits exhausted",
+            "credits depleted",
+            "buy additional credits",
+        )
+    )
+    if not (is_weekly or is_five_hour or generic_limit):
+        return None
+    if returncode == 0 and not (is_weekly or is_five_hour):
+        return None
+
+    if is_weekly or "weekly" in lower:
+        return RateLimitPause(
+            "Codex weekly usage limit reached",
+            scope="weekly",
+            retry_after_seconds=WEEKLY_RESET_SECONDS,
+        )
+    return RateLimitPause(
+        "Codex 5-hour usage limit reached",
+        scope="5h",
+        retry_after_seconds=FIVE_HOUR_RESET_SECONDS,
+    )
+
+
+def iso_timestamp_from_now(seconds: int) -> str:
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + seconds))
+
+
+def maybe_run_early_monitoring(task: dict) -> None:
+    if task == {"kind": "agent", "track": "smiles", "run": 2, "program": "program.md"}:
+        payload = run_early_monitoring()
+        log(f"Early monitoring: {json.dumps(payload, sort_keys=True)}")
+
+
+def count_completed_tasks(tasks: list[dict]) -> int:
+    return sum(1 for task in tasks if task_completed(task))
 
 
 def expected_rows_for_task(task: dict) -> int:
@@ -265,9 +331,11 @@ def run_agent_session(run_dir: Path, track: str, program_name: str, experiments:
             "-",
         ]
         log(f"Launching agent step for {run_dir} experiment {existing_rows + 1}/{experiments}")
+        session_offset = session_log.stat().st_size if session_log.exists() else 0
+        returncode = 0
         with open(prompt_path) as prompt_handle, open(session_log, "a") as output_handle:
             try:
-                subprocess.run(
+                result = subprocess.run(
                     command,
                     cwd=PROJECT_ROOT,
                     env=env,
@@ -278,10 +346,18 @@ def run_agent_session(run_dir: Path, track: str, program_name: str, experiments:
                     check=False,
                     timeout=AGENT_STEP_TIMEOUT_SECONDS,
                 )
+                returncode = result.returncode
             except subprocess.TimeoutExpired:
                 output_handle.write(
                     f"\n[phase2_runner] agent step timed out after {AGENT_STEP_TIMEOUT_SECONDS} seconds\n"
                 )
+                returncode = 124
+
+        appended_text = ""
+        if session_log.exists():
+            with open(session_log, "r") as handle:
+                handle.seek(session_offset)
+                appended_text = handle.read()
 
         run_command([str(PYTHON_BIN), "session_tools.py", "status"], cwd=workspace_src, env=env, log_path=init_log)
         updated_rows = results_row_count(run_dir)
@@ -289,6 +365,10 @@ def run_agent_session(run_dir: Path, track: str, program_name: str, experiments:
             retries_without_progress = 0
             log(f"{run_dir}: recorded experiment row {updated_rows}/{experiments}")
             continue
+
+        pause = detect_rate_limit_pause(appended_text, returncode)
+        if pause is not None:
+            raise pause
 
         retries_without_progress += 1
         log(f"{run_dir}: no new row recorded after agent step (retry {retries_without_progress}/{AGENT_STEP_MAX_RETRIES})")
@@ -492,16 +572,82 @@ def main() -> None:
         download_nlp_subset(args.num_shards)
         verify_free_space()
 
+    rate_limit_pause: RateLimitPause | None = None
     try:
         if not args.skip_queue:
             tasks = queue_tasks()
+            skipped_codex_tasks: list[tuple[int, dict]] = []
             for index, task in enumerate(tasks, start=1):
+                if task_completed(task):
+                    maybe_run_early_monitoring(task)
+                    continue
+
+                if rate_limit_pause is not None and is_codex_task(task):
+                    skipped_codex_tasks.append((index, task))
+                    continue
+
                 log(f"Starting task {index}/{len(tasks)}: {task}")
-                write_queue_state({"status": "running", "task_index": index, "task": task, "tasks_completed": index - 1})
-                run_task(task)
-                if task == {"kind": "agent", "track": "smiles", "run": 2, "program": "program.md"}:
-                    payload = run_early_monitoring()
-                    log(f"Early monitoring: {json.dumps(payload, sort_keys=True)}")
+                write_queue_state(
+                    {
+                        "status": "running",
+                        "task_index": index,
+                        "task": task,
+                        "tasks_completed": count_completed_tasks(tasks),
+                    }
+                )
+                try:
+                    run_task(task)
+                    maybe_run_early_monitoring(task)
+                except RateLimitPause as exc:
+                    exc.task = task
+                    rate_limit_pause = exc
+                    skipped_codex_tasks.append((index, task))
+                    next_retry_at = iso_timestamp_from_now(exc.retry_after_seconds)
+                    write_queue_state(
+                        {
+                            "status": "paused_rate_limit",
+                            "task_index": index,
+                            "task": task,
+                            "tasks_completed": count_completed_tasks(tasks),
+                            "rate_limit_scope": exc.scope,
+                            "next_retry_at": next_retry_at,
+                            "pending_codex_tasks": len(
+                                skipped_codex_tasks
+                                + [
+                                    (later_index, later_task)
+                                    for later_index, later_task in enumerate(tasks[index:], start=index + 1)
+                                    if is_codex_task(later_task) and not task_completed(later_task)
+                                ]
+                            ),
+                        }
+                    )
+                    log(
+                        f"Codex rate limit reached on task {index}/{len(tasks)}; "
+                        f"continuing script-only tasks and pausing agent tasks until at least {next_retry_at}"
+                    )
+
+            if rate_limit_pause is not None:
+                pending_codex = [
+                    {"task_index": index, "task": task}
+                    for index, task in skipped_codex_tasks
+                    if not task_completed(task)
+                ]
+                next_retry_at = iso_timestamp_from_now(rate_limit_pause.retry_after_seconds)
+                write_queue_state(
+                    {
+                        "status": "paused_rate_limit",
+                        "tasks_completed": count_completed_tasks(tasks),
+                        "rate_limit_scope": rate_limit_pause.scope,
+                        "next_retry_at": next_retry_at,
+                        "pending_codex_tasks": pending_codex,
+                    }
+                )
+                log(
+                    f"Queue paused on Codex {rate_limit_pause.scope} limit with "
+                    f"{len(pending_codex)} Codex tasks remaining; resume after {next_retry_at}"
+                )
+                return
+
             write_queue_state({"status": "completed", "tasks_completed": len(tasks)})
             payload = checkpoint2_status()
             log(f"Checkpoint 2 status written to {CHECKPOINT2_PATH}: {json.dumps(payload['checkpoint_2'], sort_keys=True)}")
