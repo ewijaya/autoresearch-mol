@@ -40,6 +40,8 @@ WORKSPACE_FILES = [
     "train.py",
     "uv.lock",
 ]
+AGENT_STEP_TIMEOUT_SECONDS = 20 * 60
+AGENT_STEP_MAX_RETRIES = 3
 
 ARCHITECTURAL_PATTERNS = [
     r"\bclass\s+(GPT|Block|MLP|CausalSelfAttention)\b",
@@ -158,65 +160,140 @@ def base_env(run_dir: Path, track: str) -> dict[str, str]:
     return env
 
 
-def build_agent_prompt(track: str, program_name: str, experiments: int) -> str:
-    return f"""
-You are executing one bounded recursive-mol Phase 2 session for the {track} track.
+def results_row_count(run_dir: Path) -> int:
+    results_path = run_dir / "results.tsv"
+    if not results_path.exists():
+        return 0
+    return max(0, len(results_path.read_text().splitlines()) - 1)
 
-Read `{program_name}` and follow it. The run is bounded to exactly {experiments} experiments including the baseline.
+
+def expected_rows_for_task(task: dict) -> int:
+    if task["kind"] in {"agent", "hp_only", "random_nas"}:
+        return 100
+    if task["kind"] == "fixed_default":
+        return 1
+    raise ValueError(f"Unsupported task kind: {task['kind']}")
+
+
+def run_dir_for_task(task: dict) -> Path:
+    kind = task["kind"]
+    track = task["track"]
+    if kind == "agent":
+        return RESULTS_ROOT / track / f"run_{task['run']}"
+    if kind == "hp_only":
+        return RESULTS_ROOT / "baselines" / "hp_only" / track / f"run_{task['run']}"
+    if kind == "random_nas":
+        return RESULTS_ROOT / "baselines" / "random_nas" / track / f"run_{task['run']}"
+    if kind == "fixed_default":
+        return RESULTS_ROOT / "baselines" / "fixed_default" / track
+    raise ValueError(f"Unsupported task kind: {kind}")
+
+
+def verify_task_completion(task: dict) -> None:
+    run_dir = run_dir_for_task(task)
+    required_rows = expected_rows_for_task(task)
+    actual_rows = results_row_count(run_dir)
+    if actual_rows < required_rows:
+        raise RuntimeError(
+            f"Task incomplete for {run_dir}: expected {required_rows} rows, found {actual_rows}"
+        )
+
+
+def build_agent_prompt(track: str, program_name: str, experiments: int, existing_rows: int) -> str:
+    next_experiment = existing_rows + 1
+    if existing_rows >= experiments:
+        return f"""
+You are resuming a completed recursive-mol Phase 2 session for the {track} track.
+
+The run already has {existing_rows} recorded experiments, which meets the target of {experiments}.
+Do not make any further edits. Run `python session_tools.py status` and stop.
+""".strip() + "\n"
+
+    return f"""
+You are executing experiment {next_experiment} of up to {experiments} for the recursive-mol Phase 2 {track} track.
+
+Read `{program_name}` and follow it. This Codex session is responsible for exactly one additional experiment row.
 
 Operational requirements:
 - Work only inside this workspace's `src/` directory.
 - Do not edit any file except `train.py`.
 - Use `session_tools.py` for all experiment execution and logging.
 - Start with `python session_tools.py init`.
-- The first recorded experiment must be the unmodified baseline: `python session_tools.py run --description baseline`.
-- For every later experiment, edit only `train.py`, then record it with `python session_tools.py run --description "..."`
-- Stop once `results.tsv` contains {experiments} rows excluding the header.
+- Run `python session_tools.py status` before deciding the next step.
+- The shared run state lives in `../../results.tsv`, `../../summary.json`, `../../logs/`, and `../../train_versions/`.
+- Existing completed experiments: {existing_rows}.
+- Your goal is to leave the run with exactly one additional row in `../../results.tsv`.
+- If the run has zero completed experiments, the next row must be the untouched baseline: `python session_tools.py run --description baseline`.
+- Otherwise, inspect the current `train.py` and recent `../../results.tsv` rows, make one coherent change, then record it with `python session_tools.py run --description "..."`
+- Stop after that single additional row is recorded.
 - If a run crashes, log it through `session_tools.py` and continue.
 - Keep the search behavior aligned with `{program_name}`.
 - `session_tools.py run` is the source of truth. Treat it as a blocking command and wait for it to finish.
-- Do not read full training logs unless a run crashes. For successful runs, use `python session_tools.py status` and `../../results.tsv`.
-- Do not spend time on long post-hoc analysis between experiments. After each completed run, decide the next change and continue promptly.
+- Do not read full training logs unless a run crashes. For successful runs, use `python session_tools.py status` and `../../results.tsv`. If you need a crash log, read only the tail of the newest file in `../../logs/`.
+- Do not spend time on long post-hoc analysis. Make one reasonable next-step decision and execute it.
 - Avoid commands that print huge files. If you need log context, read only the tail.
-- When you finish, run `python session_tools.py status` and then stop.
+- When the new row is present, run `python session_tools.py status` and stop immediately.
 """.strip() + "\n"
 
 
 def run_agent_session(run_dir: Path, track: str, program_name: str, experiments: int = 100) -> None:
     workspace_src = create_workspace(run_dir)
     env = base_env(run_dir, track)
-    prompt_path = run_dir / "prompt.txt"
-    prompt_path.write_text(build_agent_prompt(track, program_name, experiments))
-
     init_log = run_dir / "agent_bootstrap.log"
     run_command([str(PYTHON_BIN), "session_tools.py", "init"], cwd=workspace_src, env=env, log_path=init_log)
-
     session_log = run_dir / "agent_session.log"
-    command = [
-        "codex",
-        "exec",
-        "--dangerously-bypass-approvals-and-sandbox",
-        "-C",
-        str(workspace_src),
-        "--add-dir",
-        str(run_dir),
-        "-o",
-        str(run_dir / "last_message.txt"),
-        "-",
-    ]
-    log(f"Launching agent session for {run_dir}")
-    with open(prompt_path) as prompt_handle, open(session_log, "a") as output_handle:
-        subprocess.run(
-            command,
-            cwd=PROJECT_ROOT,
-            env=env,
-            stdin=prompt_handle,
-            stdout=output_handle,
-            stderr=subprocess.STDOUT,
-            text=True,
-            check=False,
-        )
-    run_command([str(PYTHON_BIN), "session_tools.py", "status"], cwd=workspace_src, env=env, log_path=init_log)
+    retries_without_progress = 0
+
+    while True:
+        existing_rows = results_row_count(run_dir)
+        if existing_rows >= experiments:
+            run_command([str(PYTHON_BIN), "session_tools.py", "status"], cwd=workspace_src, env=env, log_path=init_log)
+            return
+
+        prompt_path = run_dir / "prompt.txt"
+        prompt_path.write_text(build_agent_prompt(track, program_name, experiments, existing_rows))
+        command = [
+            "codex",
+            "exec",
+            "--dangerously-bypass-approvals-and-sandbox",
+            "-C",
+            str(workspace_src),
+            "--add-dir",
+            str(run_dir),
+            "-o",
+            str(run_dir / "last_message.txt"),
+            "-",
+        ]
+        log(f"Launching agent step for {run_dir} experiment {existing_rows + 1}/{experiments}")
+        with open(prompt_path) as prompt_handle, open(session_log, "a") as output_handle:
+            try:
+                subprocess.run(
+                    command,
+                    cwd=PROJECT_ROOT,
+                    env=env,
+                    stdin=prompt_handle,
+                    stdout=output_handle,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    check=False,
+                    timeout=AGENT_STEP_TIMEOUT_SECONDS,
+                )
+            except subprocess.TimeoutExpired:
+                output_handle.write(
+                    f"\n[phase2_runner] agent step timed out after {AGENT_STEP_TIMEOUT_SECONDS} seconds\n"
+                )
+
+        run_command([str(PYTHON_BIN), "session_tools.py", "status"], cwd=workspace_src, env=env, log_path=init_log)
+        updated_rows = results_row_count(run_dir)
+        if updated_rows > existing_rows:
+            retries_without_progress = 0
+            log(f"{run_dir}: recorded experiment row {updated_rows}/{experiments}")
+            continue
+
+        retries_without_progress += 1
+        log(f"{run_dir}: no new row recorded after agent step (retry {retries_without_progress}/{AGENT_STEP_MAX_RETRIES})")
+        if retries_without_progress >= AGENT_STEP_MAX_RETRIES:
+            raise RuntimeError(f"Agent run stalled for {run_dir} after {AGENT_STEP_MAX_RETRIES} retries")
 
 
 def classify_text_change(diff_text: str) -> str:
@@ -366,19 +443,20 @@ def run_task(task: dict) -> None:
     kind = task["kind"]
     track = task["track"]
     if kind == "agent":
-        run_dir = RESULTS_ROOT / track / f"run_{task['run']}"
+        run_dir = run_dir_for_task(task)
         run_agent_session(run_dir, track, task["program"])
     elif kind == "hp_only":
-        run_dir = RESULTS_ROOT / "baselines" / "hp_only" / track / f"run_{task['run']}"
+        run_dir = run_dir_for_task(task)
         run_agent_session(run_dir, track, task["program"])
     elif kind == "random_nas":
-        run_dir = RESULTS_ROOT / "baselines" / "random_nas" / track / f"run_{task['run']}"
+        run_dir = run_dir_for_task(task)
         run_random_nas(run_dir, track, replicate=task["run"])
     elif kind == "fixed_default":
-        run_dir = RESULTS_ROOT / "baselines" / "fixed_default" / track
+        run_dir = run_dir_for_task(task)
         run_fixed_default(run_dir, track)
     else:
         raise ValueError(f"Unsupported task kind: {kind}")
+    verify_task_completion(task)
 
 
 def download_nlp_subset(num_shards: int) -> None:
@@ -414,18 +492,28 @@ def main() -> None:
         download_nlp_subset(args.num_shards)
         verify_free_space()
 
-    if not args.skip_queue:
-        tasks = queue_tasks()
-        for index, task in enumerate(tasks, start=1):
-            log(f"Starting task {index}/{len(tasks)}: {task}")
-            write_queue_state({"status": "running", "task_index": index, "task": task, "tasks_completed": index - 1})
-            run_task(task)
-            if task == {"kind": "agent", "track": "smiles", "run": 2, "program": "program.md"}:
-                payload = run_early_monitoring()
-                log(f"Early monitoring: {json.dumps(payload, sort_keys=True)}")
-        write_queue_state({"status": "completed", "tasks_completed": len(tasks)})
-        payload = checkpoint2_status()
-        log(f"Checkpoint 2 status written to {CHECKPOINT2_PATH}: {json.dumps(payload['checkpoint_2'], sort_keys=True)}")
+    try:
+        if not args.skip_queue:
+            tasks = queue_tasks()
+            for index, task in enumerate(tasks, start=1):
+                log(f"Starting task {index}/{len(tasks)}: {task}")
+                write_queue_state({"status": "running", "task_index": index, "task": task, "tasks_completed": index - 1})
+                run_task(task)
+                if task == {"kind": "agent", "track": "smiles", "run": 2, "program": "program.md"}:
+                    payload = run_early_monitoring()
+                    log(f"Early monitoring: {json.dumps(payload, sort_keys=True)}")
+            write_queue_state({"status": "completed", "tasks_completed": len(tasks)})
+            payload = checkpoint2_status()
+            log(f"Checkpoint 2 status written to {CHECKPOINT2_PATH}: {json.dumps(payload['checkpoint_2'], sort_keys=True)}")
+    except Exception as exc:
+        write_queue_state(
+            {
+                "status": "failed",
+                "error": str(exc),
+            }
+        )
+        log(f"Phase 2 runner failed: {exc}")
+        raise
 
     if args.stop_instance:
         log("Stopping instance")
