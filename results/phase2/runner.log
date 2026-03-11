@@ -6,3 +6,5 @@
 [2026-03-11 14:47:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_1 experiment 7/100
 [2026-03-11 14:48:40] Starting task 1/34: {'kind': 'agent', 'track': 'smiles', 'run': 1, 'program': 'program.md'}
 [2026-03-11 14:48:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_1 experiment 7/100
+[2026-03-11 14:56:26] /home/ubuntu/storage1/recursive-mol/results/smiles/run_1: recorded experiment row 7/100
+[2026-03-11 14:56:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_1 experiment 8/100
