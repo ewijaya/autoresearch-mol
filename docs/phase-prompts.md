@@ -79,8 +79,8 @@ FINALLY: Stop the EC2 instance by running: /home/ubuntu/bin/stopinstance
 
 - [x] `python prepare_smiles.py` completes without error
 - [x] `python train.py` completes 5-minute training on SMILES data
-- [x] Baseline val_bpb < 4.0 (below random ~5.3) — SMILES: 0.58, NLP: 1.15
-- [ ] Proxy calibration Spearman rho > 0.5 — re-running with expanded datasets + epoch cap
+- [x] Baseline val_bpb < 4.0 (below random ~5.3) — SMILES: 0.60, Protein: 3.98, NLP: 1.15
+- [x] Proxy calibration Spearman rho > 0.5 — rho = 0.5414 (p=0.014), proceed with caution
 - [x] Protein `prepare_protein.py` functional
 - [x] All 3 tracks produce valid val_bpb on a single baseline run
 - [x] VRAM usage < 12GB on A10G — peak 5.4GB
