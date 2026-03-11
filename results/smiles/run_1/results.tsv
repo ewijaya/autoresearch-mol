@@ -19,3 +19,4 @@ exp017	0.594467	5.5	discard	move the non-final global attention layer earlier wh
 exp018	0.594763	5.5	discard	delay the first non-final global attention layer to the penultimate block while keeping 224-token local windows
 exp019	0.606428	5.5	discard	use configured ReluSquared gated MLP instead of fixed SiLU gate
 exp020	0.596547	5.5	discard	use 4 wider attention heads (80d) instead of 5x64 heads at similar model width
+exp021	0.595900	6.4	discard	rebalance to 7 layers while keeping 320 width and 5x64 heads
