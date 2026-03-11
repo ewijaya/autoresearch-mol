@@ -26,3 +26,40 @@ exp024	0.595062	6.6	discard	widen to 384 hidden size with 6x64 heads while keepi
 exp025	0.594735	5.1	discard	reduce SwiGLU FFN expansion from 5x to 4x while keeping 320d mixed attention
 exp026	0.595789	5.2	discard	use multi-query attention with one shared KV head while keeping the 224-token mixed attention layout
 exp027	0.595199	5.6	discard	RMS-normalize learned value embeddings before gating them into attention values
+exp028	0.594036	5.5	discard	gate value embeddings from one full attention head instead of a fixed 32 channels
+exp029	0.595370	5.5	discard	restrict learned value embeddings to local-attention layers and keep global layers content-only
+exp030	0.597306	5.6	discard	use 8 medium-width attention heads (40d) instead of 5x64 heads at similar model width
+exp031	0.594248	5.6	discard	add a second mid-stack global attention layer with SSLL mixed attention while keeping 224-token local windows
+exp032	0.593839	5.5	keep	progressively widen local attention windows across S layers (160/192/224/224) instead of using a fixed 224-token local window
+exp033	0.593756	5.5	keep	narrow the earliest local attention window to 128 tokens while keeping later local windows at 192 and 224
+exp034	0.594101	5.5	discard	tighten the second local attention window to 160 tokens while keeping the first at 128 and later locals at 224
+exp035	0.593577	5.5	keep	hold the third local attention layer at a 192-token window before widening back to 224
+exp036	0.594895	5.5	discard	hold the later short attention layer at a 192-token window instead of widening it to 224
+exp037	0.593888	5.5	discard	widen the last non-final local attention window from 224 to 240 while keeping earlier progressive 128/192/192 windows
+exp038	0.594825	5.5	discard	widen the last non-final local attention window partway to 208 while keeping the earlier progressive 128/192/192 schedule
+exp039	0.593980	5.5	discard	insert a 176-token second local attention window before widening to 192 and 224
+exp040	0.593369	5.5	keep	halve the learned value-embedding gate range so auxiliary values inject more conservatively into attention
+exp041	0.593033	5.5	keep	tighten the earliest local attention window to 96 tokens while keeping later progressive windows at 192/192/224
+exp042	0.593334	5.5	discard	tighten the earliest local attention window to 64 tokens while keeping later progressive windows at 192/192/224
+exp043	0.593246	5.5	discard	moderately tighten the earliest local attention window to 80 tokens while keeping later progressive windows at 192/192/224
+exp044	0.593521	5.5	discard	shrink the learned value-embedding gate summary from 32 channels to 16 for more conservative auxiliary value mixing
+exp045	0.593586	5.5	discard	relax the earliest local attention window to 112 tokens while keeping later progressive windows at 192/192/224
+exp046	0.593586	5.5	discard	widen the second local attention window to 208 tokens while keeping the 96-token earliest window and later 192/224 progression
+exp047	0.604431	5.5	discard	use the configured ReluSquared activation on the gated MLP branch instead of hardcoded SiLU
+exp048	0.592946	5.5	keep	tighten the learned value-embedding gate range further to 0.75x sigmoid while keeping the 96/192/192/224 local window schedule
+exp049	0.593483	5.5	discard	drop value embeddings from the final global layer while keeping the tighter 0.75x sigmoid auxiliary-value gate
+exp050	0.593954	5.5	discard	attenuate auxiliary value-embedding gates on global-attention layers while keeping 0.75x gates on local layers
+exp051	0.592987	5.5	discard	tighten the learned value-embedding gate range further to 0.625x sigmoid while keeping the 96/192/192/224 local window schedule
+exp052	0.593003	5.5	discard	increase the final global layer's value-embedding gate to 0.875x sigmoid while keeping 0.75x gates on earlier layers
+exp053	0.593122	6.0	discard	widen the parameter-matched SwiGLU FFN expansion from 5x to 6x while keeping the 0.75x value gate and 96/192/192/224 local window schedule
+exp054	0.593114	5.5	discard	shrink the learned value-embedding gate summary from 32 channels to 24 while keeping the 0.75x value gate and 96/192/192/224 local window schedule
+exp055	0.594618	5.5	discard	halve the initial x0 residual skip to 0.05 while keeping the 0.75x value gate and 96/192/192/224 local window schedule
+exp056	0.592630	5.5	keep	RMS-normalize the gated MLP hidden activation before the output projection while keeping the 0.75x value gate and 96/192/192/224 local window schedule
+exp057	0.592452	5.7	keep	RMS-normalize the merged attention output before the output projection while keeping the 0.75x value gate and 96/192/192/224 local window schedule
+exp058	0.593780	5.9	discard	RMS-normalize merged attention values before the attention kernel while keeping the 0.75x value gate and 96/192/192/224 local window schedule
+exp059	0.593025	5.8	discard	RMS-normalize the MLP value branch before SwiGLU gating while keeping the hidden-state normalization before the output projection
+exp060	0.593768	5.7	discard	increase the initial x0 residual skip to 0.15 while keeping the 0.75x value gate and post-branch RMS norms
+exp061	0.601623	5.3	discard	switch each block to a parallel residual update so attention and MLP branches read the same normalized state
+exp062	0.594551	5.7	discard	initialize a depth-decayed x0 residual skip (0.14->0.06) so early layers stay closer to embeddings while later layers rely more on transformed state
+exp063	0.593826	5.7	discard	scale each normalized attention residual update to 0.875x while keeping post-branch RMS norms, the 0.75x auxiliary-value gate, and the 96/192/192/224 local window schedule
+exp064	0.595432	5.8	discard	apply GELU to the MLP value branch while keeping SiLU gating, post-branch RMS norm, the 0.75x value gate, and the 96/192/192/224 local window schedule
