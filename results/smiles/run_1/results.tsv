@@ -23,3 +23,6 @@ exp021	0.595900	6.4	discard	rebalance to 7 layers while keeping 320 width and 5x
 exp022	0.594463	4.7	discard	reduce to 5 layers while keeping 320 width and 224-token mixed attention
 exp023	0.594910	5.5	discard	expand value-embedding gates to use the full hidden state
 exp024	0.595062	6.6	discard	widen to 384 hidden size with 6x64 heads while keeping 6 layers and 224-token mixed attention
+exp025	0.594735	5.1	discard	reduce SwiGLU FFN expansion from 5x to 4x while keeping 320d mixed attention
+exp026	0.595789	5.2	discard	use multi-query attention with one shared KV head while keeping the 224-token mixed attention layout
+exp027	0.595199	5.6	discard	RMS-normalize learned value embeddings before gating them into attention values

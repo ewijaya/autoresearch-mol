@@ -2,7 +2,7 @@
   "best_experiment": "exp013",
   "best_val_bpb": 0.593862,
   "num_crash": 0,
-  "num_discard": 19,
-  "num_experiments": 24,
+  "num_discard": 22,
+  "num_experiments": 27,
   "num_keep": 5
 }
