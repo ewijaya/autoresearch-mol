@@ -63,3 +63,6 @@ exp061	0.601623	5.3	discard	switch each block to a parallel residual update so a
 exp062	0.594551	5.7	discard	initialize a depth-decayed x0 residual skip (0.14->0.06) so early layers stay closer to embeddings while later layers rely more on transformed state
 exp063	0.593826	5.7	discard	scale each normalized attention residual update to 0.875x while keeping post-branch RMS norms, the 0.75x auxiliary-value gate, and the 96/192/192/224 local window schedule
 exp064	0.595432	5.8	discard	apply GELU to the MLP value branch while keeping SiLU gating, post-branch RMS norm, the 0.75x value gate, and the 96/192/192/224 local window schedule
+exp065	0.596659	6.0	discard	RMS-normalize the projected MLP residual update before adding it back while keeping post-branch hidden norms, the 0.75x value gate, and the 96/192/192/224 local window schedule
+exp066	2.807691	5.7	discard	tie input and output embeddings so the improved exp057 stack shares a single token matrix
+exp067	0.592963	5.8	discard	scale the post-norm MLP residual update to 0.9x while keeping the 0.75x value gate and post-branch RMS norms
