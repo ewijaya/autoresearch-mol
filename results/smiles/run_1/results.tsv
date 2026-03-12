@@ -66,3 +66,36 @@ exp064	0.595432	5.8	discard	apply GELU to the MLP value branch while keeping SiL
 exp065	0.596659	6.0	discard	RMS-normalize the projected MLP residual update before adding it back while keeping post-branch hidden norms, the 0.75x value gate, and the 96/192/192/224 local window schedule
 exp066	2.807691	5.7	discard	tie input and output embeddings so the improved exp057 stack shares a single token matrix
 exp067	0.592963	5.8	discard	scale the post-norm MLP residual update to 0.9x while keeping the 0.75x value gate and post-branch RMS norms
+exp068	0.594250	5.7	discard	RMS-normalize auxiliary value embeddings before gating them into attention while keeping the 0.75x value gate, post-branch RMS norms, and the 96/192/192/224 local window schedule
+exp069	0.593735	6.2	discard	learn per-layer attention and MLP residual gains while keeping the 0.75x value gate, post-branch RMS norms, and the 96/192/192/224 local window schedule
+exp070	0.593614	5.3	discard	reduce the parameter-matched SwiGLU FFN expansion from 5x to 4x while keeping the exp057 post-branch RMS norms, 0.75x value gate, and 96/192/192/224 local window schedule
+exp071	0.591842	5.7	keep	shift the first full-attention block earlier with an SSLS layout while keeping the exp057 post-branch RMS norms, 0.75x value gate, and progressive local window schedule
+exp072	0.592029	5.7	discard	use an SLLS layout to add one more early full-attention block while keeping exp071 post-branch RMS norms, 0.75x value gate, and progressive local window sizing
+exp073	0.594398	5.7	discard	limit the learned x0 embedding skip to local-attention layers so the SSLS global blocks operate on transformed context instead of re-injected token embeddings
+exp074	0.592906	5.7	discard	widen the earliest SSLS local-attention window to 128 tokens so early local blocks see more context before the first global block
+exp075	0.592777	5.7	discard	narrow the earliest SSLS local-attention window to 64 tokens so the first block stays more local before global mixing
+exp076	0.593074	5.5	discard	restrict learned value embeddings to the global-attention layers in the exp071 SSLS stack
+exp077	0.594885	5.3	discard	use multi-query attention with one shared KV head in the exp071 SSLS stack while keeping post-branch RMS norms, the 0.75x value gate, and progressive local windows
+exp078	0.593199	5.7	discard	boost the learned x0 embedding skip on SSLS full-attention layers so global blocks start with slightly stronger direct token access
+exp079	0.592834	5.7	discard	move the first non-final global attention block earlier with an SLSS layout while keeping exp071 post-branch RMS norms, the 0.75x value gate, and progressive local windows
+exp080	0.593641	5.6	discard	keep auxiliary value embeddings only on local-attention layers in the exp071 SSLS stack
+exp081	0.591942	5.7	discard	tighten the middle SSLS local-attention schedule to 96/160/192/224 so the second short block stays more local before late global mixing
+exp082	0.597482	5.8	discard	apply ReluSquared to the gated MLP value branch in the exp071 SSLS stack while keeping post-branch RMS norms, the 0.75x value gate, and progressive local windows
+exp083	0.592454	5.7	discard	halve x0 skip init on full-attention layers in the exp071 SSLS stack so global blocks start with less direct raw embedding reinjection
+exp084	0.596488	6.0	discard	rebalance the exp071 SSLS stack to 7 narrower 280d layers with 5x56 heads so depth increases at similar compute while keeping post-branch RMS norms and the 0.75x value gate
+exp085	0.595726	6.0	discard	rebalance the exp071 SSLS stack to 336d with 6x56 heads so the model gets slightly more width and finer attention partitioning at similar depth
+exp086	0.592793	5.5	discard	share the auxiliary value embedding table across layers in the exp071-style SSLS stack while keeping per-layer value gates
+exp087	0.593926	5.7	discard	use the full hidden state to gate auxiliary value embeddings in the exp071 SSLS stack while keeping the 0.75x gate range and post-branch RMS norms
+exp088	0.593010	5.7	discard	keep the last SSLS local-attention block at a 192-token window so the model delays widening until the final global layer
+exp089	0.592536	5.7	discard	widen the second early SSLS local-attention window to 224 tokens so the block before the first global layer sees fuller context
+exp090	0.598774	5.5	discard	stop RMS-normalizing attention keys after RoPE in the exp071 SSLS stack so local/global attention keeps key magnitude information
+exp091	0.592181	5.7	discard	widen the first post-global local-attention window to 224 tokens in the exp071 SSLS stack so context expansion happens sooner after early full attention
+exp092	0.000000	0.0	crash	add learned per-head query temperatures after QK RMS normalization in the exp071 SSLS stack
+exp093	0.592545	5.7	discard	replace the second post-global local block with a second consecutive full-attention block by switching the exp071-style stack from SSLS to SSLL
+exp094	0.593657	5.7	discard	replace the SwiGLU gate activation with GELU in the exp071 SSLS stack while keeping post-branch RMS norms, the 0.75x value gate, and progressive local windows
+exp095	0.593498	5.5	discard	remove post-RoPE query RMS normalization in the exp071 SSLS stack while keeping key normalization, post-branch RMS norms, and the 0.75x value gate
+exp096	0.595657	5.7	discard	switch the exp071 SSLS stack from 5x64 attention heads to 4x80 heads so each head sees a wider subspace while keeping width, depth, post-branch RMS norms, the 0.75x value gate, and progressive local windows
+exp097	0.592286	5.7	discard	tighten the local-attention block immediately after a full-attention layer to 160 tokens so the SSLS stack refocuses locally after global mixing before widening again
+exp098	0.592990	5.7	discard	tighten the second early SSLS local-attention window to 160 tokens so the pre-global local stack stays more focused before the first full-attention layer
+exp099	2.440467	5.7	discard	tie input and output embeddings in the exp071 SSLS stack to regularize the small SMILES model while reducing unembedding parameters
+exp100	0.592804	5.7	discard	taper the exp071 SSLS value-embedding gate range with depth from 0.75x to 0.625x so later layers inject auxiliary token values more conservatively
