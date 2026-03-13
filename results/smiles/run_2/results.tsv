@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	0.596456	5.3	keep	baseline
+exp002	0.597403	5.3	discard	alternate local/global attention pattern (SLSL)
+exp003	0.597594	5.0	discard	grouped-query attention with single shared KV head
+exp004	0.608184	5.4	discard	parameter-matched gated MLP
+exp005	0.595909	5.6	keep	deeper narrower stack (8 layers, 256-d model)
+exp006	0.595684	5.8	keep	full attention in deeper narrower 8-layer stack
+exp007	0.593962	5.6	keep	half-width KV heads in 8-layer full-attention stack
+exp008	0.597192	5.6	discard	double query head count via 32-d heads in 8-layer half-KV full-attention stack
+exp009	0.596352	5.5	discard	disable auxiliary value embeddings in 8-layer half-KV full-attention stack
+exp010	0.595815	5.6	discard	value embeddings on every layer in 8-layer half-KV full-attention stack
+exp011	2.615399	5.6	discard	tie input/output embeddings in 8-layer half-KV full-attention stack
+exp012	0.593494	5.6	keep	switch best 8-layer half-KV full-attention stack to SiLU MLP activation
+exp013	0.591429	6.3	keep	deepen best half-KV full-attention SiLU stack to 9 layers at fixed 256-d width
+exp014	0.590716	7.0	keep	deepen best half-KV full-attention SiLU stack to 10 layers at fixed 256-d width
+exp015	0.593451	7.7	discard	deepen best half-KV full-attention SiLU stack to 11 layers at fixed 256-d width
+exp016	0.590039	6.3	keep	reduce best 10-layer full-attention SiLU stack to 4x MLP expansion
+exp017	0.589173	5.7	keep	reduce best 10-layer full-attention SiLU stack to 3x MLP expansion
+exp018	0.592526	5.6	discard	single KV head in best 10-layer full-attention SiLU 3x-MLP stack
+exp019	0.590778	5.7	discard	shift auxiliary value embeddings to even layers in best 10-layer full-attention SiLU 3x-MLP stack
+exp020	0.590306	5.1	discard	reduce best 10-layer full-attention SiLU stack to 2x MLP expansion
+exp021	0.589729	5.9	discard	full KV heads in best 10-layer full-attention SiLU 3x-MLP stack
+exp022	0.589175	5.7	discard	add RMS normalization on hidden MLP activations in best 10-layer full-attention SiLU 3x-MLP stack
+exp023	0.597203	8.6	discard	widen best 10-layer half-KV full-attention SiLU 3x-MLP stack to 384-d model
+exp024	0.591900	5.7	discard	switch best 10-layer half-KV full-attention 3x-MLP stack to GELU activation
+exp025	0.591697	6.0	discard	rebalance exp017 into a deeper narrower 12-layer 224-d half-KV full-attention SiLU 3x-MLP stack
+exp026	0.595688	6.4	discard	widen exp017 moderately to a 288-d 6-head half-KV full-attention SiLU 3x-MLP stack
+exp027	0.593099	5.7	discard	increase exp017 fixed-width full-attention stack to 8 query heads with 4 KV heads
+exp028	0.591644	5.6	discard	remove auxiliary value embeddings from best 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp029	0.590038	5.7	discard	switch best 10-layer half-KV full-attention SiLU 3x-MLP stack to a parameter-matched gated MLP
+exp030	0.591446	5.7	discard	concentrate auxiliary value embeddings in the upper half of the best 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp031	0.589972	5.7	discard	halve the initial auxiliary value-embedding gate in the best 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp032	0.588829	6.3	keep	add per-branch attention and MLP residual scalars to best 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp033	2.246206	6.4	discard	tie input and output embeddings in best residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp034	0.589495	6.3	discard	reparameterize exp032 attention and MLP residual scalars as bounded positive sigmoid gates
+exp035	0.593029	5.9	discard	switch best residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack to parallel residual branches
+exp036	0.589331	6.3	discard	add learned per-layer scaling to auxiliary value-embedding branch in exp032 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp037	0.589340	6.6	discard	switch exp032 residual-scaled 10-layer SiLU 3x-MLP stack from half-KV to full-KV attention
+exp038	0.590385	6.3	discard	front-load x0 skip-scalar init in exp032 residual-scaled 10-layer half-KV stack
+exp039	0.589448	6.3	discard	add RMS normalization on hidden MLP activations to exp032 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp040	0.589162	6.3	discard	switch exp032 residual-scaled 10-layer half-KV full-attention SiLU stack to a parameter-matched gated MLP
+exp041	0.591499	7.0	discard	promote exp032 attention and MLP residual scalars to per-channel layer scales
+exp042	0.591229	6.5	discard	RMS-normalize attention values after auxiliary value injection in residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp043	0.591113	5.7	discard	reduce exp032 residual-scaled 10-layer half-KV full-attention SiLU stack to 2x MLP expansion
+exp044	0.589207	6.3	discard	add learnable per-head attention temperatures to the exp032 residual-scaled half-KV full-attention stack
+exp045	0.590378	6.2	discard	switch exp032 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack to quarter-window local attention in lower 4 layers and full attention in upper 6 layers
+exp046	0.592640	4.8	discard	narrow exp032 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack to 192-d while keeping 4Q/2KV heads
+exp047	0.580818	6.4	keep	apply auxiliary value embeddings in all layers of the exp032 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp048	0.589823	7.1	discard	deepen exp047 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack with all-layer auxiliary value embeddings to 11 layers
+exp049	0.590761	6.4	discard	let exp047 all-layer auxiliary value-embedding gates read the full hidden state instead of only 32 channels
+exp050	0.589229	6.4	discard	shrink exp047 all-layer auxiliary value-embedding gate reader from 32 to 16 hidden channels
+exp051	0.590481	6.5	discard	replace exp047 auxiliary value-embedding gate's fixed first-32-channel reader with a learned 32-d bottleneck projection
+exp052	0.590922	6.3	discard	share one auxiliary value embedding table across all layers in exp047 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp053	0.590031	6.3	discard	switch exp047 all-layer value-embedding stack to half-window local attention in lower 5 layers and full attention in upper 5 layers
+exp054	0.591308	6.3	discard	remove learned gate from exp047 all-layer auxiliary value embeddings and inject them at fixed unit scale
+exp055	0.591864	6.4	discard	add per-layer auxiliary key embeddings alongside all-layer value embeddings
+exp056	0.590956	6.4	discard	lower auxiliary value-embedding LR below token embedding LR in exp047 all-layer value-embedding stack
+exp057	0.589018	6.4	discard	widen exp047 all-layer auxiliary value-embedding gate reader from 32 to 64 hidden channels
+exp058	0.590340	6.4	discard	RMS-normalize auxiliary value embeddings before gated injection in exp047 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp059	0.590460	6.6	discard	restore full per-head values while keeping half-KV keys in exp047 all-layer auxiliary value-embedding stack
+exp060	0.590414	5.8	discard	shallow exp047 residual-scaled all-layer auxiliary value-embedding stack to 9 layers
+exp061	0.589692	6.4	discard	swap exp047 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack to a parameter-matched SwiGLU feed-forward block
+exp062	0.589570	6.4	discard	add per-layer strength scalars on exp047 all-layer auxiliary value embeddings
+exp063	0.588913	6.3	discard	compress exp047 attention values to one shared head while keeping half-KV keys and all-layer auxiliary value embeddings
+exp064	0.590210	6.4	discard	drop auxiliary value embeddings from the final layer of the exp047 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp065	0.582070	6.6	discard	promote exp047 all-layer auxiliary value embeddings from per-head scalar gates to per-channel value gates
+exp066	0.581730	6.4	discard	promote exp047 all-layer auxiliary value embeddings from per-head scalar gates to per-16-channel grouped gates
+exp067	0.589742	6.4	discard	drop auxiliary value embeddings from the first layer of the exp047 all-layer value-embedding stack
+exp068	0.590332	6.4	discard	shift exp047 all-layer auxiliary value-embedding gates from shared KV heads to per-attention-head scalars
+exp069	0.000000	0.0	crash	add learnable negative biases to auxiliary value gates so all-layer value embeddings warm in gradually
+exp070	0.592166	6.4	discard	revisit exp047 with 8 query heads and 4 KV heads via 32-d head size
+exp071	0.589404	6.4	discard	raise auxiliary value-embedding LR above token embedding LR in exp047 residual-scaled 10-layer half-KV full-attention SiLU 3x-MLP stack
+exp072	0.589862	6.4	discard	promote exp047 all-layer auxiliary value embeddings from per-KV-head scalar gates to per-32-channel grouped gates
+exp073	0.581602	6.4	discard	promote exp047 all-layer auxiliary value embeddings from per-KV-head scalar gates to per-8-channel grouped gates
+exp074	0.590219	6.4	discard	reuse exp047 auxiliary token embeddings on keys as well as values
+exp075	0.590239	6.6	discard	replace exp047 additive auxiliary value injection with a magnitude-preserving gate that reallocates value mass between attention values and token value embeddings
+exp076	0.590187	6.4	discard	optimize auxiliary value-gate reader weights with AdamW instead of Muon in the exp047 all-layer value-embedding stack
+exp077	0.596620	5.9	discard	remove per-head RMS normalization from attention queries and keys in the exp047 all-layer auxiliary value-embedding stack
+exp078	0.581703	6.5	discard	promote exp047 all-layer auxiliary value embeddings from per-KV-head scalar gates to per-4-channel grouped gates
+exp079	0.590585	6.4	discard	add zero-init 8-channel grouped residual modulation on top of exp047 per-KV-head auxiliary value gates
+exp080	0.581852	6.5	discard	promote exp047 all-layer auxiliary value embeddings from per-KV-head scalar gates to per-2-channel grouped gates
+exp081	0.590190	6.5	discard	augment exp047 per-KV-head auxiliary value gates with a zero-init SiLU residual gate MLP on the same 32-channel reader
+exp082	0.594054	6.5	discard	rebalance exp047 into a 9-layer 288-d all-layer value-embedding stack with 6 query heads and 3 KV heads
+exp083	0.589493	6.4	discard	replace exp047 all-layer auxiliary value gates with centered tanh gates that keep unit init while increasing local gate sensitivity
+exp084	0.590195	6.4	discard	drive exp047 auxiliary value gates from normalized token embeddings x0 instead of each layer hidden state
+exp085	0.590486	6.5	discard	split exp047 raw-token x0 skip into separate attention and MLP branch scalars instead of one shared pre-block mix
+exp086	0.000000	0.0	crash	add zero-init causal depthwise k=3 local mixing inside the exp047 MLP path
+exp087	0.591131	6.3	discard	share one auxiliary value embedding table across all layers while keeping per-layer gates
+exp088	0.590516	6.5	discard	factorize exp047 all-layer auxiliary value embeddings into half-width latent tables with per-layer projections back to KV space
+exp089	0.589684	6.3	discard	interleave exp047 all-layer value-embedding stack with alternating full and half-window attention layers
+exp090	0.595753	7.2	discard	widen exp047 all-layer auxiliary value-embedding stack to 288-d with 6 query heads and 3 KV heads at the same 10-layer depth
+exp091	0.592941	6.3	discard	collapse exp047 all-layer auxiliary value-embedding stack to a single shared KV head
+exp092	0.000000	0.0	crash	add zero-init causal depthwise k=3 local mixing residual inside the exp047 MLP path
+exp093	0.590553	5.8	discard	shallow exp047 all-layer auxiliary value-embedding stack to 9 layers at fixed 256-d width
+exp094	0.589847	6.4	discard	replace exp047 SiLU MLP with parameter-matched SwiGLU feedforward blocks
+exp095	0.592452	6.4	discard	drive exp047 auxiliary value gates from the pre-norm residual stream instead of the normalized attention input
+exp096	0.590005	6.4	discard	zero-init exp047 raw-token x0 skip so all-layer auxiliary value embeddings carry token identity at startup
+exp097	0.589426	6.4	discard	add bounded per-head attention temperatures to the exp047 all-layer auxiliary value-embedding stack
+exp098	0.591446	6.4	discard	switch exp047 all-layer auxiliary value-embedding stack from SiLU to GELU MLP activation
+exp099	0.591579	6.4	discard	switch exp047 all-layer auxiliary value-embedding stack from SiLU to ReluSquared MLP activation
+exp100	0.593826	6.3	discard	shift exp047 all-layer auxiliary value-embedding stack to 8 query heads with 2 KV heads at fixed 256-d width
