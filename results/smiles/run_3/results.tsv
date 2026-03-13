@@ -1,0 +1,41 @@
+commit	val_bpb	memory_gb	status	description
+exp001	0.596189	5.3	keep	baseline
+exp002	0.595296	5.4	keep	parameter-matched SwiGLU gated MLP
+exp003	0.594463	5.6	keep	full attention across all layers for short SMILES context
+exp004	0.593405	5.7	keep	value embeddings in every layer
+exp005	0.594233	5.3	discard	multi-query attention with shared KV head
+exp006	0.593027	6.1	keep	deeper narrower 8x256 full-attention stack with value embeds
+exp007	0.593517	7.6	discard	deeper same-width 10x256 full-attention stack with value embeds
+exp008	0.595616	6.1	discard	smaller 32-dim heads for 8-head full attention on 8x256 value-embed stack
+exp009	0.592086	6.5	keep	wider SwiGLU MLP on 8x256 full-attention value-embed stack
+exp010	0.593707	6.2	discard	grouped-query attention with half-width KV heads on the 8x256 SwiGLU stack
+exp011	0.592405	6.5	discard	full-width hidden-state gate for value embeddings
+exp012	0.591894	6.5	keep	64-channel value-embedding gate on exp009 full-attention SwiGLU stack
+exp013	0.591766	6.5	keep	128-channel value-embedding gate on exp012 full-attention SwiGLU stack
+exp014	2.498767	6.5	discard	tied input/output embeddings on exp013 full-attention value-embed stack
+exp015	0.593422	6.5	discard	GEGLU gated MLP on exp013 full-attention value-embed stack
+exp016	0.592279	6.5	discard	192-channel value-embedding gate on exp013 full-attention SwiGLU stack
+exp017	0.592877	6.8	discard	bottleneck full-hidden-state value-embedding gate on exp013 full-attention SwiGLU stack
+exp018	0.595364	7.2	discard	wider shallower 7x320 full-attention value-embed SwiGLU stack
+exp019	0.593422	6.2	discard	grouped-query attention with 2 KV heads on exp013 full-attention value-embed SwiGLU stack
+exp020	0.591590	7.3	keep	9-layer 256-wide full-attention value-embed SwiGLU stack
+exp021	0.593616	7.3	discard	RMS-normalize value embeddings before per-head gating on the 9-layer full-attention stack
+exp022	0.593277	7.1	discard	deeper narrower 10x224 full-attention value-embed SwiGLU stack
+exp023	2.601280	7.3	discard	tied token embedding and unembedding weights on the 9-layer full-attention value-embed SwiGLU stack
+exp024	0.593918	8.0	discard	wider SwiGLU expansion (ffn_mult 7) on the 9-layer 256-wide full-attention value-embed stack
+exp025	0.592719	7.2	discard	3 short-window lower layers, 6 full-attention upper layers on the 9-layer 256-wide value-embed SwiGLU stack
+exp026	0.597844	7.3	discard	8-layer 288-wide full-attention value-embed SwiGLU stack
+exp027	0.594525	7.2	discard	upper-half value embeddings on the 9-layer 256-wide full-attention SwiGLU stack
+exp028	0.595517	7.3	discard	two 128-dim attention heads on the 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp029	0.594141	6.8	discard	reduced SwiGLU expansion to ffn_mult 5 on the 9-layer 256-wide full-attention value-embed stack
+exp030	0.592304	7.0	discard	shared value-embedding table reused across all 9 layers on the 9-layer 256-wide full-attention SwiGLU stack
+exp031	0.591916	7.2	discard	lower two-thirds value embeddings on the 9-layer 256-wide full-attention SwiGLU stack
+exp032	0.595921	6.7	discard	parallel residual block on the 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp033	0.591701	7.9	discard	learned per-layer attention and MLP residual scales on the 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp034	0.594635	7.3	discard	eight 32-dim attention heads on the 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp035	0.594379	7.3	discard	disable top-layer value embeddings on the 9-layer 256-wide full-attention SwiGLU stack
+exp036	0.591613	7.3	discard	learned affine RMSNorm on embedding, block, and final hidden states
+exp037	0.591719	7.3	discard	single short-window bottom layer with full upper layers on the 9-layer 256-wide value-embed SwiGLU stack
+exp038	0.592609	7.2	discard	alternating-layer value embeddings on the 9-layer 256-wide full-attention SwiGLU stack
+exp039	0.591344	7.3	keep	depth-decayed input-skip initialization on the 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp040	0.000000	0.0	crash	steeper geometric input-skip initialization on the 9-layer 256-wide full-attention value-embed SwiGLU stack

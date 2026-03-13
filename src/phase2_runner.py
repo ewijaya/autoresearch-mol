@@ -12,6 +12,7 @@ import shutil
 import subprocess
 import sys
 import time
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from random_nas import materialize_variants, render_train_variant, sample_configs
@@ -44,6 +45,9 @@ AGENT_STEP_TIMEOUT_SECONDS = 20 * 60
 AGENT_STEP_MAX_RETRIES = 3
 FIVE_HOUR_RESET_SECONDS = 5 * 60 * 60
 WEEKLY_RESET_SECONDS = 7 * 24 * 60 * 60
+AUTO_WAIT_MAX_SECONDS = 60 * 60
+AUTO_WAIT_POLL_SECONDS = 5 * 60
+RATE_LIMIT_BUFFER_SECONDS = 90
 
 ARCHITECTURAL_PATTERNS = [
     r"\bclass\s+(GPT|Block|MLP|CausalSelfAttention)\b",
@@ -79,6 +83,7 @@ class RateLimitPause(RuntimeError):
         self.scope = scope
         self.retry_after_seconds = retry_after_seconds
         self.task = task
+        self.retry_at: str | None = None
 
 
 def log(message: str) -> None:
@@ -221,6 +226,93 @@ def detect_rate_limit_pause(text: str, returncode: int) -> RateLimitPause | None
 
 def iso_timestamp_from_now(seconds: int) -> str:
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + seconds))
+
+
+def query_codex_usage() -> str | None:
+    try:
+        result = subprocess.run(
+            ["codex-usage"],
+            cwd=PROJECT_ROOT,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            check=False,
+            timeout=30,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return None
+    if result.returncode != 0:
+        return None
+    return result.stdout
+
+
+def parse_usage_reset_time(usage_text: str, scope: str, now: datetime | None = None) -> datetime | None:
+    now = now or datetime.now()
+
+    if scope == "5h":
+        match = re.search(r"5h limit:.*\(resets (\d{1,2}):(\d{2})\)", usage_text, re.IGNORECASE)
+        if not match:
+            return None
+        hour = int(match.group(1))
+        minute = int(match.group(2))
+        candidate = now.replace(hour=hour, minute=minute, second=0, microsecond=0)
+        if candidate <= now:
+            candidate += timedelta(days=1)
+        return candidate
+
+    if scope == "weekly":
+        match = re.search(
+            r"Weekly limit:.*\(resets (\d{1,2}):(\d{2}) on (\d{1,2}) ([A-Za-z]{3})\)",
+            usage_text,
+            re.IGNORECASE,
+        )
+        if not match:
+            return None
+        hour = int(match.group(1))
+        minute = int(match.group(2))
+        day = int(match.group(3))
+        month = datetime.strptime(match.group(4), "%b").month
+        candidate = now.replace(month=month, day=day, hour=hour, minute=minute, second=0, microsecond=0)
+        if candidate <= now:
+            candidate = candidate.replace(year=candidate.year + 1)
+        return candidate
+
+    return None
+
+
+def resolve_rate_limit_retry(pause: RateLimitPause) -> RateLimitPause:
+    usage_text = query_codex_usage()
+    if usage_text is None:
+        pause.retry_at = iso_timestamp_from_now(pause.retry_after_seconds)
+        return pause
+
+    retry_at = parse_usage_reset_time(usage_text, pause.scope)
+    if retry_at is None:
+        pause.retry_at = iso_timestamp_from_now(pause.retry_after_seconds)
+        return pause
+
+    retry_after_seconds = max(0, int((retry_at - datetime.now()).total_seconds())) + RATE_LIMIT_BUFFER_SECONDS
+    pause.retry_after_seconds = retry_after_seconds
+    pause.retry_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + retry_after_seconds))
+    return pause
+
+
+def should_auto_wait_on_rate_limit(pause: RateLimitPause) -> bool:
+    return pause.scope == "5h" and pause.retry_after_seconds <= AUTO_WAIT_MAX_SECONDS
+
+
+def sleep_for_rate_limit(pause: RateLimitPause, pending_codex_tasks: list[dict]) -> None:
+    remaining = pause.retry_after_seconds
+    wake_at = pause.retry_at or iso_timestamp_from_now(remaining)
+    log(
+        f"Auto-waiting for Codex {pause.scope} limit reset for {remaining // 60} minutes "
+        f"until {wake_at}; {len(pending_codex_tasks)} Codex tasks will resume afterwards"
+    )
+    while remaining > 0:
+        chunk = min(remaining, AUTO_WAIT_POLL_SECONDS)
+        time.sleep(chunk)
+        remaining -= chunk
+    log(f"Codex {pause.scope} wait complete; resuming pending Codex tasks")
 
 
 def maybe_run_early_monitoring(task: dict) -> None:
@@ -572,85 +664,95 @@ def main() -> None:
         download_nlp_subset(args.num_shards)
         verify_free_space()
 
-    rate_limit_pause: RateLimitPause | None = None
     try:
         if not args.skip_queue:
-            tasks = queue_tasks()
-            skipped_codex_tasks: list[tuple[int, dict]] = []
-            for index, task in enumerate(tasks, start=1):
-                if task_completed(task):
-                    maybe_run_early_monitoring(task)
-                    continue
+            while True:
+                tasks = queue_tasks()
+                rate_limit_pause: RateLimitPause | None = None
+                skipped_codex_tasks: list[tuple[int, dict]] = []
+                for index, task in enumerate(tasks, start=1):
+                    if task_completed(task):
+                        maybe_run_early_monitoring(task)
+                        continue
 
-                if rate_limit_pause is not None and is_codex_task(task):
-                    skipped_codex_tasks.append((index, task))
-                    continue
+                    if rate_limit_pause is not None and is_codex_task(task):
+                        skipped_codex_tasks.append((index, task))
+                        continue
 
-                log(f"Starting task {index}/{len(tasks)}: {task}")
-                write_queue_state(
-                    {
-                        "status": "running",
-                        "task_index": index,
-                        "task": task,
-                        "tasks_completed": count_completed_tasks(tasks),
-                    }
-                )
-                try:
-                    run_task(task)
-                    maybe_run_early_monitoring(task)
-                except RateLimitPause as exc:
-                    exc.task = task
-                    rate_limit_pause = exc
-                    skipped_codex_tasks.append((index, task))
-                    next_retry_at = iso_timestamp_from_now(exc.retry_after_seconds)
+                    log(f"Starting task {index}/{len(tasks)}: {task}")
                     write_queue_state(
                         {
-                            "status": "paused_rate_limit",
+                            "status": "running",
                             "task_index": index,
                             "task": task,
                             "tasks_completed": count_completed_tasks(tasks),
-                            "rate_limit_scope": exc.scope,
-                            "next_retry_at": next_retry_at,
-                            "pending_codex_tasks": len(
-                                skipped_codex_tasks
-                                + [
-                                    (later_index, later_task)
-                                    for later_index, later_task in enumerate(tasks[index:], start=index + 1)
-                                    if is_codex_task(later_task) and not task_completed(later_task)
-                                ]
-                            ),
                         }
                     )
-                    log(
-                        f"Codex rate limit reached on task {index}/{len(tasks)}; "
-                        f"continuing script-only tasks and pausing agent tasks until at least {next_retry_at}"
-                    )
+                    try:
+                        run_task(task)
+                        maybe_run_early_monitoring(task)
+                    except RateLimitPause as exc:
+                        exc.task = task
+                        rate_limit_pause = resolve_rate_limit_retry(exc)
+                        skipped_codex_tasks.append((index, task))
+                        pending_count = len(
+                            skipped_codex_tasks
+                            + [
+                                (later_index, later_task)
+                                for later_index, later_task in enumerate(tasks[index:], start=index + 1)
+                                if is_codex_task(later_task) and not task_completed(later_task)
+                            ]
+                        )
+                        write_queue_state(
+                            {
+                                "status": "paused_rate_limit",
+                                "task_index": index,
+                                "task": task,
+                                "tasks_completed": count_completed_tasks(tasks),
+                                "rate_limit_scope": rate_limit_pause.scope,
+                                "next_retry_at": rate_limit_pause.retry_at,
+                                "pending_codex_tasks": pending_count,
+                                "auto_waiting": should_auto_wait_on_rate_limit(rate_limit_pause),
+                            }
+                        )
+                        log(
+                            f"Codex rate limit reached on task {index}/{len(tasks)}; "
+                            f"continuing script-only tasks and pausing agent tasks until at least {rate_limit_pause.retry_at}"
+                        )
 
-            if rate_limit_pause is not None:
+                if rate_limit_pause is None:
+                    write_queue_state({"status": "completed", "tasks_completed": len(tasks)})
+                    payload = checkpoint2_status()
+                    log(
+                        f"Checkpoint 2 status written to {CHECKPOINT2_PATH}: "
+                        f"{json.dumps(payload['checkpoint_2'], sort_keys=True)}"
+                    )
+                    break
+
                 pending_codex = [
                     {"task_index": index, "task": task}
                     for index, task in skipped_codex_tasks
                     if not task_completed(task)
                 ]
-                next_retry_at = iso_timestamp_from_now(rate_limit_pause.retry_after_seconds)
                 write_queue_state(
                     {
                         "status": "paused_rate_limit",
                         "tasks_completed": count_completed_tasks(tasks),
                         "rate_limit_scope": rate_limit_pause.scope,
-                        "next_retry_at": next_retry_at,
+                        "next_retry_at": rate_limit_pause.retry_at,
                         "pending_codex_tasks": pending_codex,
+                        "auto_waiting": should_auto_wait_on_rate_limit(rate_limit_pause),
                     }
                 )
+                if should_auto_wait_on_rate_limit(rate_limit_pause) and pending_codex:
+                    sleep_for_rate_limit(rate_limit_pause, pending_codex)
+                    continue
+
                 log(
                     f"Queue paused on Codex {rate_limit_pause.scope} limit with "
-                    f"{len(pending_codex)} Codex tasks remaining; resume after {next_retry_at}"
+                    f"{len(pending_codex)} Codex tasks remaining; resume after {rate_limit_pause.retry_at}"
                 )
                 return
-
-            write_queue_state({"status": "completed", "tasks_completed": len(tasks)})
-            payload = checkpoint2_status()
-            log(f"Checkpoint 2 status written to {CHECKPOINT2_PATH}: {json.dumps(payload['checkpoint_2'], sort_keys=True)}")
     except Exception as exc:
         write_queue_state(
             {

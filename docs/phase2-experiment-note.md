@@ -43,6 +43,8 @@ The runner also now verifies that the expected number of rows is actually record
 
 The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage limit, the queue records a `paused_rate_limit` state in `results/phase2/queue_state.json`, keeps any script-only tasks available for execution, and can later resume from the recorded row counts in each run's `results.tsv`.
 
+If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.md` for the stop-and-resume procedure.
+
 ## Current live status
 
 At the time this note was written:
