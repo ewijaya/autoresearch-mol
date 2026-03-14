@@ -1,3 +1,160 @@
 [2026-03-13 17:07:16] Early monitoring: {"kill_condition_triggered": false, "runs": [{"architectural": 39, "hp_only": 0, "run_dir": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_1", "unclear": 61}, {"architectural": 48, "hp_only": 1, "run_dir": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_2", "unclear": 51}], "zero_architectural_changes": false}
 [2026-03-13 17:07:16] Starting task 5/34: {'kind': 'agent', 'track': 'smiles', 'run': 3, 'program': 'program.md'}
 [2026-03-13 17:07:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 41/100
+[2026-03-13 17:15:33] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 41/100
+[2026-03-13 17:15:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 42/100
+[2026-03-13 17:22:55] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 42/100
+[2026-03-13 17:22:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 43/100
+[2026-03-13 17:30:21] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 43/100
+[2026-03-13 17:30:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 44/100
+[2026-03-13 17:38:26] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 44/100
+[2026-03-13 17:38:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 45/100
+[2026-03-13 17:47:39] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 45/100
+[2026-03-13 17:47:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 46/100
+[2026-03-13 17:54:53] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 46/100
+[2026-03-13 17:54:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 47/100
+[2026-03-13 18:03:17] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 47/100
+[2026-03-13 18:03:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 48/100
+[2026-03-13 18:11:12] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 48/100
+[2026-03-13 18:11:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 49/100
+[2026-03-13 18:20:32] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 49/100
+[2026-03-13 18:20:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 50/100
+[2026-03-13 18:28:00] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 50/100
+[2026-03-13 18:28:00] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 51/100
+[2026-03-13 18:35:56] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 51/100
+[2026-03-13 18:35:56] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 52/100
+[2026-03-13 18:44:30] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 52/100
+[2026-03-13 18:44:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 53/100
+[2026-03-13 18:53:09] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 53/100
+[2026-03-13 18:53:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 54/100
+[2026-03-13 19:01:12] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 54/100
+[2026-03-13 19:01:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 55/100
+[2026-03-13 19:09:29] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 55/100
+[2026-03-13 19:09:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 56/100
+[2026-03-13 19:17:38] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 56/100
+[2026-03-13 19:17:38] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 57/100
+[2026-03-13 19:26:31] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 57/100
+[2026-03-13 19:26:31] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 58/100
+[2026-03-13 19:34:15] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 58/100
+[2026-03-13 19:34:15] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 59/100
+[2026-03-13 19:45:52] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 59/100
+[2026-03-13 19:45:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 60/100
+[2026-03-13 19:53:50] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 60/100
+[2026-03-13 19:53:50] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 61/100
+[2026-03-13 20:02:17] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 61/100
+[2026-03-13 20:02:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 62/100
+[2026-03-13 20:11:33] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 62/100
+[2026-03-13 20:11:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 63/100
+[2026-03-13 20:20:06] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 63/100
+[2026-03-13 20:20:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 64/100
+[2026-03-13 20:27:20] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 64/100
+[2026-03-13 20:27:20] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 65/100
+[2026-03-13 20:36:08] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 65/100
+[2026-03-13 20:36:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 66/100
+[2026-03-13 20:45:20] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 66/100
+[2026-03-13 20:45:20] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 67/100
+[2026-03-13 20:53:07] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 67/100
+[2026-03-13 20:53:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 68/100
+[2026-03-13 21:02:01] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 68/100
+[2026-03-13 21:02:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 69/100
+[2026-03-13 21:09:23] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 69/100
+[2026-03-13 21:09:23] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 70/100
+[2026-03-13 21:17:35] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 70/100
+[2026-03-13 21:17:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 71/100
+[2026-03-13 21:25:05] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 71/100
+[2026-03-13 21:25:05] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 72/100
+[2026-03-13 21:34:49] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 72/100
+[2026-03-13 21:34:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 73/100
+[2026-03-13 21:43:14] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 73/100
+[2026-03-13 21:43:14] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 74/100
+[2026-03-13 21:51:13] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 74/100
+[2026-03-13 21:51:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 75/100
+[2026-03-13 21:59:42] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 75/100
+[2026-03-13 21:59:42] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 76/100
+[2026-03-13 22:08:23] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 76/100
+[2026-03-13 22:08:23] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 77/100
+[2026-03-13 22:15:33] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 77/100
+[2026-03-13 22:15:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 78/100
+[2026-03-13 22:24:05] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 78/100
+[2026-03-13 22:24:05] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 79/100
+[2026-03-13 22:31:28] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 79/100
+[2026-03-13 22:31:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 80/100
+[2026-03-13 22:39:50] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 80/100
+[2026-03-13 22:39:50] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 81/100
+[2026-03-13 22:48:44] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 81/100
+[2026-03-13 22:48:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 82/100
+[2026-03-13 22:57:27] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 82/100
+[2026-03-13 22:57:27] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 83/100
+[2026-03-13 23:05:46] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 83/100
+[2026-03-13 23:05:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 84/100
+[2026-03-13 23:14:43] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 84/100
+[2026-03-13 23:14:43] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 85/100
+[2026-03-13 23:23:12] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 85/100
+[2026-03-13 23:23:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 86/100
+[2026-03-13 23:31:02] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 86/100
+[2026-03-13 23:31:02] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 87/100
+[2026-03-13 23:36:05] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 87/100
+[2026-03-13 23:36:05] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 88/100
+[2026-03-13 23:45:48] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 88/100
+[2026-03-13 23:45:48] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 89/100
+[2026-03-13 23:54:53] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 89/100
+[2026-03-13 23:54:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 90/100
+[2026-03-13 23:57:41] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 90/100
+[2026-03-13 23:57:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 91/100
+[2026-03-14 00:06:23] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 91/100
+[2026-03-14 00:06:23] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 92/100
+[2026-03-14 00:15:13] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 92/100
+[2026-03-14 00:15:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 93/100
+[2026-03-14 00:23:08] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 93/100
+[2026-03-14 00:23:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 94/100
+[2026-03-14 00:32:31] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 94/100
+[2026-03-14 00:32:31] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 95/100
+[2026-03-14 00:34:58] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 95/100
+[2026-03-14 00:34:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 96/100
+[2026-03-14 00:44:39] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 96/100
+[2026-03-14 00:44:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 97/100
+[2026-03-14 00:53:14] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 97/100
+[2026-03-14 00:53:14] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 98/100
+[2026-03-14 01:01:40] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 98/100
+[2026-03-14 01:01:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 99/100
+[2026-03-14 01:10:08] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 99/100
+[2026-03-14 01:10:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_3 experiment 100/100
+[2026-03-14 01:18:32] /home/ubuntu/storage1/recursive-mol/results/smiles/run_3: recorded experiment row 100/100
+[2026-03-14 01:18:32] Starting task 6/34: {'kind': 'random_nas', 'track': 'smiles', 'run': 3}
+[2026-03-14 02:18:02] run_3: completed random NAS experiment 10/100
+[2026-03-14 03:16:52] run_3: completed random NAS experiment 20/100
+[2026-03-14 04:14:37] run_3: completed random NAS experiment 30/100
+[2026-03-14 05:14:23] run_3: completed random NAS experiment 40/100
+[2026-03-14 06:12:37] run_3: completed random NAS experiment 50/100
+[2026-03-14 07:09:20] run_3: completed random NAS experiment 60/100
+[2026-03-14 08:06:39] run_3: completed random NAS experiment 70/100
+[2026-03-14 09:05:04] run_3: completed random NAS experiment 80/100
+[2026-03-14 10:02:20] run_3: completed random NAS experiment 90/100
+[2026-03-14 10:59:46] run_3: completed random NAS experiment 100/100
+[2026-03-14 10:59:46] Starting task 7/34: {'kind': 'agent', 'track': 'smiles', 'run': 4, 'program': 'program.md'}
+[2026-03-14 10:59:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 1/100
+[2026-03-14 11:06:16] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 1/100
+[2026-03-14 11:06:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 2/100
+[2026-03-14 11:14:01] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 2/100
+[2026-03-14 11:14:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 3/100
+[2026-03-14 11:20:55] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 3/100
+[2026-03-14 11:20:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 4/100
+[2026-03-14 11:28:08] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 4/100
+[2026-03-14 11:28:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 5/100
+[2026-03-14 11:35:30] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 5/100
+[2026-03-14 11:35:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 6/100
+[2026-03-14 11:42:41] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 6/100
+[2026-03-14 11:42:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 7/100
+[2026-03-14 11:50:35] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 7/100
+[2026-03-14 11:50:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 8/100
+[2026-03-14 11:58:24] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 8/100
+[2026-03-14 11:58:24] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 9/100
+[2026-03-14 12:05:37] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 9/100
+[2026-03-14 12:05:37] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 10/100
+[2026-03-14 12:12:31] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 10/100
+[2026-03-14 12:12:31] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 11/100
+[2026-03-14 12:20:17] /home/ubuntu/storage1/recursive-mol/results/smiles/run_4: recorded experiment row 11/100
+[2026-03-14 12:20:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_4 experiment 12/100
+[2026-03-14 12:20:21] Codex rate limit reached on task 7/34; continuing script-only tasks and pausing agent tasks until at least 2026-03-14 16:00:29
+[2026-03-14 12:20:21] Starting task 8/34: {'kind': 'random_nas', 'track': 'protein', 'run': 1}
+[2026-03-14 13:14:12] run_1: completed random NAS experiment 10/100

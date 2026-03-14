@@ -39,3 +39,63 @@ exp037	0.591719	7.3	discard	single short-window bottom layer with full upper lay
 exp038	0.592609	7.2	discard	alternating-layer value embeddings on the 9-layer 256-wide full-attention SwiGLU stack
 exp039	0.591344	7.3	keep	depth-decayed input-skip initialization on the 9-layer 256-wide full-attention value-embed SwiGLU stack
 exp040	0.000000	0.0	crash	steeper geometric input-skip initialization on the 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp041	0.591844	7.3	discard	restore full KV heads on the exp039 depth-decayed input-skip stack
+exp042	0.591414	7.3	discard	complementary residual initialization paired with the exp039 depth-decayed input-skip stack
+exp043	0.592934	7.3	discard	quadratically tapered input-skip initialization on the exp039 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp044	0.593072	7.3	discard	limit exp039 depth-decayed input-skip pathway to lower two-thirds of layers
+exp045	0.591952	7.4	discard	learned final token-embedding skip before output norm on the exp039 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp046	0.592039	7.3	discard	front-loaded plateau-decay input-skip initialization on the exp039 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp047	0.591485	7.4	discard	post-block depth-decayed input-skip merge on the exp039 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp048	0.594892	7.3	discard	attention-only depth-decayed input skip on the exp039 9-layer 256-wide full-attention value-embed SwiGLU stack
+exp049	0.594362	7.3	discard	depth-decayed value-embedding injection on the exp039 9-layer 256-wide full-attention input-skip stack
+exp050	2.395655	7.3	discard	tie input and output embeddings on the exp039 9-layer 256-wide full-attention value-embed input-skip stack
+exp051	0.583934	7.3	keep	swap SwiGLU for parameter-matched GeGLU gated MLP on the exp039 full-attention value-embed input-skip stack
+exp052	0.588574	9.1	discard	full-width GeGLU expansion on the exp051 full-attention value-embed input-skip stack
+exp053	0.597144	7.6	discard	10-layer 240-wide 5-head GeGLU depth-width rebalance on the exp051 full-attention value-embed input-skip stack
+exp054	0.586521	8.2	discard	moderately widen GeGLU hidden expansion to 5x model width on the exp051 full-attention value-embed input-skip stack
+exp055	0.594521	7.0	discard	grouped-query attention with 2 KV heads on the exp051 full-attention value-embed input-skip GeGLU stack
+exp056	0.593001	7.3	discard	per-channel input-skip gates on the exp051 full-attention value-embed input-skip GeGLU stack
+exp057	0.599799	7.3	discard	8-layer 288-wide 4-head depth-width rebalance on the exp051 full-attention value-embed input-skip GeGLU stack
+exp058	0.595217	7.3	discard	increase head count to 8 at fixed 256 width on the exp051 full-attention value-embed input-skip GeGLU stack
+exp059	0.591728	7.9	discard	learned per-layer attention and MLP residual scales on the exp051 full-attention value-embed input-skip GeGLU stack
+exp060	0.596098	7.3	discard	RMS-normalize value embeddings before gated attention injection on the exp051 full-attention value-embed input-skip GeGLU stack
+exp061	0.593119	7.2	discard	two lower half-window attention layers on the exp051 GeGLU value-embed input-skip stack
+exp062	0.592339	7.3	discard	affine RMSNorm on embedding, block, and final streams atop exp051 GeGLU input-skip stack
+exp063	0.585221	7.2	discard	lower two-thirds value embeddings on the exp051 full-attention GeGLU input-skip stack
+exp064	0.593676	7.2	discard	upper two-thirds value embeddings on the exp051 full-attention GeGLU input-skip stack
+exp065	0.593831	7.0	discard	share one value-embedding table across all layers on the exp051 full-attention GeGLU input-skip stack
+exp066	0.592715	7.2	discard	restrict value embeddings to the lower half of the exp051 full-attention GeGLU input-skip stack
+exp067	0.593261	7.3	discard	steepen depth-decayed input-skip initialization on the exp051 full-attention GeGLU value-embed stack
+exp068	0.586461	7.7	discard	intermediate 4.5x GeGLU hidden expansion on the exp051 full-attention value-embed input-skip stack
+exp069	0.593067	7.2	discard	alternate half-window and full attention layers on the exp051 GeGLU value-embed input-skip stack
+exp070	0.597177	6.7	discard	parallel attention and GeGLU residual branches on the exp051 full-attention value-embed input-skip stack
+exp071	0.592772	7.6	discard	per-channel gating for value-embedding injection on the exp051 full-attention GeGLU input-skip stack
+exp072	0.585775	7.4	discard	depth-taper GeGLU FFN expansion: 7x lower layers, 6x middle, 5x upper on the exp051 full-attention value-embed input-skip stack
+exp073	0.595544	7.3	discard	mixed local-global attention heads: half global and half 128-token local windows on the exp051 GeGLU value-embed input-skip stack
+exp074	0.596784	7.2	discard	7-layer 320-wide 5-head GeGLU depth-width rebalance on the exp051 full-attention value-embed input-skip stack
+exp075	0.591728	6.5	discard	8-layer 256-wide full-attention GeGLU value-embed input-skip stack
+exp076	0.596813	7.3	discard	learned per-layer attention temperature on the exp051 full-attention GeGLU value-embed input-skip stack
+exp077	0.591076	7.3	discard	flatter higher-floor input-skip initialization on the exp051 full-attention GeGLU value-embed stack
+exp078	0.584966	7.2	discard	remove value embeddings from only the top two blocks on the exp051 full-attention GeGLU input-skip stack
+exp079	0.584724	7.3	discard	remove value embeddings from only the final block on the exp051 full-attention GeGLU input-skip stack
+exp080	0.596480	7.3	discard	2-head full-attention GeGLU value-embed input-skip stack at fixed 9-layer 256 width on the exp051 baseline
+exp081	0.593376	7.3	discard	depth-decay value-embedding strength from lower to upper blocks on the exp051 full-attention GeGLU input-skip stack
+exp082	0.594421	7.3	discard	learnable per-layer value-embedding scales with final block initialized off on the exp051 full-attention GeGLU input-skip stack
+exp083	0.592477	7.3	discard	initialize final block input-skip off on the exp051 full-attention GeGLU value-embed stack
+exp084	0.594932	7.4	discard	stronger front-loaded GeGLU FFN taper: 8x lower, 6x middle, 4x upper on the exp051 full-attention value-embed input-skip stack
+exp085	0.593364	7.3	discard	inject token-conditioned embeddings into both keys and values on the exp051 full-attention GeGLU input-skip stack
+exp086	0.592149	7.3	discard	canonical GeGLU gate ordering in the exp051 full-attention value-embed input-skip stack
+exp087	0.000000	0.0	crash	add zero-init depthwise causal conv residual branch to each block on the exp051 full-attention GeGLU value-embed input-skip stack
+exp088	0.593137	7.2	discard	mild upper-layer GeGLU taper: keep 6x FFN in lower six blocks and reduce top three blocks to 5x on the exp051 full-attention value-embed input-skip stack
+exp089	0.594617	7.3	discard	keep a 10% LR floor during warmdown on the exp051 full-attention GeGLU value-embed input-skip stack
+exp090	0.000000	0.0	crash	add identity-init per-head projection on value embeddings before gated attention injection on the exp051 full-attention GeGLU input-skip stack
+exp091	0.595160	7.2	discard	swap GeGLU for parameter-matched ReLU-squared MLP on the exp051 full-attention value-embed input-skip stack
+exp092	0.585943	7.4	discard	back-loaded GeGLU FFN taper: 5x lower, 6x middle, 7x upper on the exp051 full-attention value-embed input-skip stack
+exp093	0.593852	7.9	discard	sandwich RMSNorm on attention and MLP branch outputs in the exp051 full-attention GeGLU value-embed input-skip stack
+exp094	0.591225	7.3	discard	RMS-normalize GeGLU hidden activations before the MLP output projection on the exp051 full-attention value-embed input-skip stack
+exp095	0.000000	0.0	crash	widen only the top two GeGLU MLP blocks from 6x to 7x on the exp051 full-attention value-embed input-skip stack
+exp096	0.593177	7.3	discard	gate value-embedding injection from the fixed token embedding stream instead of the evolving residual state on the exp051 full-attention GeGLU input-skip stack
+exp097	0.599577	7.6	discard	RMS-normalize attention values after gated token-conditioned value injection on the exp051 full-attention GeGLU input-skip stack
+exp098	0.593759	7.3	discard	swap sigmoid VE gate for centered 1+tanh gating on the exp051 full-attention GeGLU value-embed input-skip stack
+exp099	0.593365	7.3	discard	halve value-embedding injection only in the final block on the exp051 full-attention GeGLU input-skip stack
+exp100	0.592768	7.3	discard	disable value embeddings only in the first block on the exp051 full-attention GeGLU input-skip stack
