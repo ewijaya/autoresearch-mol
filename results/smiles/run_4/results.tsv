@@ -10,3 +10,6 @@ exp008	0.607204	5.1	discard	switch transformer blocks to parallel residual updat
 exp009	0.594161	5.5	keep	use only a final global attention layer by changing the default window pattern to SSSS
 exp010	0.599679	5.5	discard	narrow local attention window from 128 to 64 while keeping final global layer
 exp011	0.596524	7.3	discard	rebalance depth/width to 8 layers at roughly 320 dim while keeping the exp009 attention pattern
+exp012	0.595072	5.5	discard	widen local sliding window to 192 while keeping the successful SSSS final-global pattern
+exp013	0.594623	5.6	discard	add an early global attention layer before the successful final-global SSSS stack
+exp014	0.595174	5.5	discard	ramp local sliding attention windows with depth before the final global layer
