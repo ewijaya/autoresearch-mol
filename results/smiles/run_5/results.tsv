@@ -1,1 +1,101 @@
 commit	val_bpb	memory_gb	status	description
+exp001	0.596529	5.3	keep	baseline
+exp002	0.595841	5.4	keep	full attention for short SMILES sequences
+exp003	0.594210	5.6	keep	parameter-matched SwiGLU MLP replacing plain feed-forward block
+exp004	0.595208	5.6	discard	GeGLU gate activation in parameter-matched gated MLP
+exp005	0.596398	5.6	discard	same-width 8-head attention layout instead of 5 heads
+exp006	0.595198	5.3	discard	single shared KV head (MQA) with full attention + SwiGLU
+exp007	0.595658	6.8	discard	full-width SwiGLU MLP instead of parameter-matched hidden shrinkage
+exp008	0.597124	5.6	discard	same-width 4-head attention layout instead of 5 heads
+exp009	0.596134	7.4	discard	parameter-matched deeper stack: 8 layers at 320 width
+exp010	0.595526	5.5	discard	remove alternating value embeddings from full-attention SwiGLU model
+exp011	0.593483	5.7	keep	value embeddings on every transformer block instead of alternating layers
+exp012	0.593135	6.5	keep	add learned absolute positional embeddings on top of rotary full-attention all-value-embeds model
+exp013	2.365319	6.5	discard	tie input/output embeddings on full-attention abs-pos all-value-embeds model
+exp014	0.595196	6.4	discard	full-width value-embedding gate input instead of 32-channel prefix
+exp015	0.605998	6.5	discard	squared-ReLU gated MLP instead of hardcoded SwiGLU on abs-pos full-attention backbone
+exp016	0.597811	6.5	discard	remove rotary embeddings and rely on learned absolute positions
+exp017	0.595153	6.5	discard	learned scalar gate on absolute positional embeddings over rotary+abs-pos backbone
+exp018	0.596422	6.1	discard	shared KV head on rotary+abs-pos full-attention all-value-embeds backbone
+exp019	0.595741	6.4	discard	smiles default to 5-layer 384-dim 6-head wider backbone on rotary+abs-pos full-attention all-value-embeds model
+exp020	0.595708	6.3	discard	decouple learned absolute positional embeddings from x0 residual highway
+exp021	0.593955	6.5	discard	head-dim value-embedding gate instead of 32-channel prefix
+exp022	0.594456	6.3	discard	share one value-embedding table across transformer blocks on rotary+abs-pos full-attention backbone
+exp023	0.601559	5.9	discard	parallel residual attention+mlp branches on rotary+abs-pos full-attention backbone
+exp024	0.593112	6.9	keep	add per-layer learned attention and mlp residual gains on rotary+abs-pos full-attention backbone
+exp025	0.592833	6.9	keep	add per-layer learned gains on the value-embedding path over the residual-gain full-attention backbone
+exp026	0.592570	6.9	keep	replace scalar value-embedding gains with per-kv-head gains
+exp027	0.592974	6.9	discard	add per-layer per-head gains on attention outputs over the residual-gain full-attention backbone
+exp028	0.595783	6.9	discard	use configured gated-MLP activation instead of hardcoded SiLU
+exp029	0.593041	6.9	discard	replace parameter-free RMSNorm with LayerNorm throughout the rotary+abs-pos full-attention residual-gain backbone
+exp030	0.593190	6.9	discard	replace scalar x0 residual-highway gains with per-channel gains
+exp031	0.595577	8.2	discard	smiles default to 6-layer 384-dim 6-head wider backbone on residual-gain per-kv-head value-gain model
+exp032	0.592986	6.8	discard	use 128-token sliding attention in lower half and full attention in upper half on the residual-gain per-kv-head value-gain backbone
+exp033	0.592252	6.2	keep	drop learned absolute positional embeddings and rely on rotary only on the residual-gain per-kv-head value-gain backbone
+exp034	0.594457	5.8	discard	use single shared KV head (MQA) on the rotary-only residual-gain value-embedding backbone
+exp035	0.593360	6.2	discard	zero-init x0 residual-highway gains on the rotary-only residual-gain value-embedding backbone
+exp036	0.592530	6.1	discard	restrict learned value embeddings to the lower two-thirds of layers on the rotary-only residual-gain backbone
+exp037	2.477853	6.2	discard	tie input/output embeddings on the rotary-only residual-gain per-kv-head value-embedding backbone
+exp038	0.593406	6.2	discard	add per-layer learned attention temperature on the rotary-only residual-gain per-kv-head value-embedding backbone
+exp039	0.594786	6.2	discard	use the configured ReluSquared gated MLP instead of a hardcoded SiLU gate on the rotary-only residual-gain value-embedding backbone
+exp040	0.592456	6.1	discard	restrict learned value embeddings to the lower half of layers on the rotary-only residual-gain backbone
+exp041	0.596000	6.0	discard	use 10 query heads with 5 grouped KV heads at fixed 320d width on the rotary-only residual-gain value-embedding backbone
+exp042	0.594438	6.2	discard	remove learned value embeddings from the final transformer layer on the rotary-only residual-gain backbone
+exp043	0.594229	6.1	discard	use 64-token sliding attention in the lower half and full attention in the upper half on the rotary-only residual-gain value-embedding backbone
+exp044	0.594013	6.1	discard	restrict learned value embeddings to the upper half of layers on the rotary-only residual-gain backbone
+exp045	0.593706	6.2	discard	remove token-conditioned value-embedding gate and rely on per-layer per-kv-head value scales only
+exp046	0.595075	7.2	discard	smiles default to a deeper 7-layer 320d rotary-only residual-gain value-embedding backbone
+exp047	0.000000	0.0	crash	add learned RMSNorm scales on the block pre-attention and pre-MLP paths
+exp048	0.592937	6.2	discard	skip learned value embeddings in the first transformer layer on the rotary-only residual-gain backbone
+exp049	0.592132	6.2	keep	halve token-conditioned value-embedding gate strength on the rotary-only residual-gain per-kv-head value-embedding backbone
+exp050	0.592482	6.2	discard	shrink token-conditioned value-embedding gate bottleneck from 32 to 16 channels on the weakened-gate backbone
+exp051	0.592407	6.2	discard	halve initial per-kv-head value-embedding scales on the weakened-gate backbone
+exp052	0.593185	6.2	discard	narrow token-conditioned value-embedding gate around the 0.5 baseline on the weakened-gate backbone
+exp053	0.592176	6.2	discard	taper x0 residual-highway init from 0.1 in lower layers to 0.0 in the top layer on the weakened-gate backbone
+exp054	0.593580	6.2	discard	RMS-normalize learned value embeddings before per-head scaling and gated attention injection
+exp055	0.591677	6.2	keep	switch the weakened-gate rotary-only value-embedding backbone to full attention in every transformer layer
+exp056	0.592744	5.7	discard	shrink SwiGLU expansion from 5x to 4x on the weakened-gate rotary-only full-attention backbone
+exp057	0.592703	6.6	discard	increase SwiGLU expansion from 5x to 6x on the weakened-gate rotary-only full-attention backbone
+exp058	0.593950	6.2	discard	trade one layer for a 5-layer 384d 6-head wider backbone on the weakened-gate rotary-only full-attention model
+exp059	0.593839	6.2	discard	halve initial MLP residual gains on the weakened-gate rotary-only full-attention backbone
+exp060	0.595378	6.2	discard	use 10 full KV heads at fixed 320d width on the weakened-gate rotary-only full-attention backbone
+exp061	0.592587	6.2	discard	drop learned value embeddings from the final transformer layer on the weakened-gate rotary-only full-attention backbone
+exp062	0.591129	5.8	keep	trade width for a deeper 7-layer 256d 4-head backbone on the weakened-gate rotary-only full-attention model
+exp063	0.591032	6.5	keep	add learned absolute positional embeddings to the 7-layer 256d weakened-gate rotary full-attention backbone
+exp064	0.592729	6.2	discard	switch the 7-layer 256d weakened-gate rotary full-attention abs-pos backbone to grouped-query attention with 2 KV heads
+exp065	0.590939	7.4	keep	add an eighth 256d full-attention layer to the 7-layer abs-pos weakened-gate backbone
+exp066	0.595036	7.4	discard	halve head dimension to 32 so the 8-layer 256d abs-pos full-attention backbone uses 8 heads instead of 4
+exp067	0.592373	8.3	discard	add a ninth full-attention layer while keeping the 256d 4-head abs-pos weakened-gate backbone fixed
+exp068	2.565377	7.4	discard	tie token embedding and unembedding on the 8-layer 256d abs-pos full-attention weakened-gate backbone
+exp069	0.595292	7.3	discard	double head dimension to 128 so the 8-layer 256d abs-pos full-attention weakened-gate backbone uses 2 heads instead of 4
+exp070	0.589837	7.8	keep	increase SwiGLU expansion from 5x to 6x on the 8-layer 256d abs-pos full-attention weakened-gate backbone
+exp071	0.591852	8.4	discard	increase SwiGLU expansion from 6x to 7x on the 8-layer 256d abs-pos full-attention weakened-gate backbone
+exp072	0.596993	9.7	discard	widen the 8-layer 6x-FFN abs-pos full-attention backbone from 256d to 320d while keeping 64d heads
+exp073	0.589336	7.7	keep	use a local-to-global attention stack with 128-token windows in the first two layers of the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp074	0.590054	7.7	discard	extend the local-to-global attention stack to three 128-token window layers on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp075	0.589820	7.7	discard	shrink the first two local attention windows from 128 to 64 tokens on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp076	0.590112	7.7	discard	use a single 128-token local attention layer before full attention in the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp077	0.589670	7.7	discard	expand the first two local smiles attention windows from 128 to 192 tokens on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp078	0.590537	7.7	discard	use progressively wider local smiles attention windows of 64 then 128 tokens before global attention on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp079	0.589974	7.7	discard	interleave the two 128-token local smiles attention layers with a global layer on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp080	0.591474	6.9	discard	drop learned absolute positional embeddings from the 8-layer 256d 6x-FFN local-to-global weakened-gate backbone and rely on rotary only
+exp081	0.592001	7.6	discard	restrict learned value embeddings to the global-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global weakened-gate backbone
+exp082	0.591125	7.5	discard	restrict learned value embeddings to the local-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global weakened-gate backbone
+exp083	0.591517	7.5	discard	delay learned absolute position injection until the first global-attention layer on the 8-layer 256d 6x-FFN local-to-global backbone
+exp084	0.591011	8.6	discard	add a ninth local-to-global layer while keeping the smiles backbone in the 256d width regime
+exp085	0.589633	7.7	discard	use 128-token then 64-token local attention windows before global attention on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp086	0.589643	7.7	discard	broaden only the first local smiles attention layer to 192 tokens while keeping the second at 128 on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp087	0.589634	7.7	discard	use 128-token then 96-token local smiles attention windows before global attention on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp088	0.589783	7.7	discard	halve learned value-embedding gate strength in the two local-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global backbone
+exp089	0.589894	7.7	discard	use two 96-token local attention windows before global attention on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp090	0.589975	7.7	discard	start with one global layer, then use two 128-token local attention layers before returning to global attention on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp091	0.590315	7.7	discard	use 128-token then 192-token local attention windows before global attention on the 8-layer 256d 6x-FFN abs-pos weakened-gate backbone
+exp092	0.590135	7.7	discard	strengthen the x0 residual highway only in the two local-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global backbone
+exp093	0.589424	7.7	discard	reduce initial attention residual gain in the two local-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global backbone
+exp094	0.591349	7.4	discard	switch the 8-layer 256d local-to-global smiles backbone from 4 KV heads to 2 KV heads so it uses grouped-query attention
+exp095	0.593712	7.7	discard	replace SwiGLU with a ReLU-squared gated MLP on the 8-layer 256d 6x-FFN abs-pos local-to-global backbone
+exp096	0.589998	7.7	discard	lower initial attention residual gain in the six global-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global weakened-gate backbone
+exp097	0.589880	7.7	discard	lower initial MLP residual gain in the two local-attention layers of the 8-layer 256d 6x-FFN abs-pos local-to-global weakened-gate backbone
+exp098	0.589831	7.7	discard	add a learned 0.5x gate on absolute positional embeddings in the 8-layer 256d 6x-FFN abs-pos local-to-global weakened-gate backbone
+exp099	0.583383	7.6	keep	trade width for a deeper 9-layer 224d 4-head local-to-global backbone on the 6x-FFN abs-pos weakened-gate smiles model
+exp100	0.592977	7.2	discard	push the deeper-narrower smiles backbone to 10 layers at 192d while preserving the two-local-then-global attention layout
