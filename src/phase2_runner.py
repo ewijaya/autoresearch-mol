@@ -521,8 +521,11 @@ def run_random_nas(run_dir: Path, track: str, replicate: int, count: int = 100) 
     materialize_variants(TRAIN_PY, variant_dir, count=count, seed=1000 + replicate)
     manifest = json.loads((variant_dir / "manifest.json").read_text())
     template_text = TRAIN_PY.read_text()
+    existing = results_row_count(run_dir)
 
     for index, variant in enumerate(manifest, start=1):
+        if index <= existing:
+            continue
         config = {key: variant[key] for key in ("depth", "width", "heads", "activation", "attention")}
         rendered = render_train_variant(template_text, config)
         (workspace_src / "train.py").write_text(rendered)

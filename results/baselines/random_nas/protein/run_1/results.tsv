@@ -97,3 +97,8 @@ exp095	3.993387	9.3	discard	random nas d=7 width=480 heads=4 act=SiLU attn=windo
 exp096	3.988142	8.0	discard	random nas d=6 width=480 heads=3 act=ReluSquared attn=windowed
 exp097	3.976027	4.2	discard	random nas d=8 width=192 heads=2 act=GELU attn=windowed
 exp098	3.990196	5.3	discard	random nas d=4 width=480 heads=4 act=ReluSquared attn=windowed
+exp099	3.980437	7.8	discard	random nas d=8 width=352 heads=4 act=SiLU attn=windowed
+exp100	4.015943	1.7	discard	random nas d=3 width=192 heads=6 act=GELU attn=full
+exp101	3.981600	4.2	discard	random nas d=6 width=256 heads=2 act=SiLU attn=windowed
+exp102	3.975769	4.5	discard	random nas d=7 width=256 heads=4 act=ReLU attn=full
+exp103	3.973898	4.5	discard	random nas d=7 width=224 heads=4 act=SiLU attn=full
