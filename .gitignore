@@ -27,6 +27,7 @@ results/**
 !results/phase2/disk_space.json
 !results/phase2/queue_state.json
 !results/smiles/early_monitoring.json
+!results/analysis/*.png
 
 # Results - heavyweight artifacts
 results/**/.state/
