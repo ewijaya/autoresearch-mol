@@ -13,3 +13,89 @@ exp011	0.596524	7.3	discard	rebalance depth/width to 8 layers at roughly 320 dim
 exp012	0.595072	5.5	discard	widen local sliding window to 192 while keeping the successful SSSS final-global pattern
 exp013	0.594623	5.6	discard	add an early global attention layer before the successful final-global SSSS stack
 exp014	0.595174	5.5	discard	ramp local sliding attention windows with depth before the final global layer
+exp015	0.598383	5.5	discard	zero-center auxiliary value-embedding gate so the value path is learned from a neutral init
+exp016	0.600642	5.5	discard	use four 80-dim attention heads instead of five 64-dim heads while keeping the exp009 final-global SSSS pattern
+exp017	0.594254	5.0	discard	shrink SwiGLU FFN multiplier from 5x to 4x on the exp009 final-global stack
+exp018	0.597470	5.5	discard	move auxiliary value embeddings to the final half of layers instead of alternating parity
+exp019	0.596095	5.5	discard	use eight 40-dim attention heads instead of five 64-dim heads while keeping the exp009 final-global SSSS pattern
+exp020	0.595701	5.5	discard	shift alternating value embeddings onto local layers so the final global layer uses pure projected values
+exp021	0.595838	6.6	discard	widen the exp009 final-global SwiGLU stack from 320 to 384 model dim while keeping 6 layers
+exp022	0.597602	5.4	discard	restrict auxiliary value embeddings to the final global layer
+exp023	0.595454	5.5	discard	swap default SwiGLU FFN for parameter-matched GEGLU gating on the exp009 final-global stack
+exp024	0.596633	5.2	discard	use single shared KV head on the exp009 final-global SwiGLU stack
+exp025	0.596970	5.5	discard	restrict x0 input reinjection to global-attention layers on the final-global SwiGLU stack
+exp026	0.596354	6.4	discard	rebalance the final-global SwiGLU stack to 7 layers while holding model width at 320 via a lower aspect ratio
+exp027	0.593213	6.0	keep	add learned per-layer scaling on attention and MLP residual branches
+exp028	0.598639	6.0	discard	normalize learned x0 residual mixing before each block
+exp029	0.594425	5.9	discard	restrict x0 input reinjection to local-attention layers so the final global layer aggregates without direct input mixing
+exp030	0.593251	5.4	discard	shrink the exp027 learned-branch-scaling SwiGLU FFN from 5x to 4x
+exp031	5.209452	5.9	discard	add learnable per-channel RMSNorm gains around the exp027 residual-scaled stack
+exp032	0.593442	6.0	discard	add a mid-stack global attention layer to the exp027 residual-scaled SwiGLU stack
+exp033	0.593104	6.0	keep	initialize learned x0 input reinjection at zero instead of 0.1 on the exp027 residual-scaled final-global SwiGLU stack
+exp034	0.598376	6.0	discard	narrow non-final local attention from half-sequence to quarter-sequence while keeping the final layer global
+exp035	0.594673	6.0	discard	bound learned x0 input reinjection with tanh while keeping zero-init residual-scaled final-global SwiGLU stack
+exp036	0.594258	6.5	discard	increase residual-scaled final-global SwiGLU FFN multiplier from 5x to 6x
+exp037	0.593827	6.0	discard	reduce x0 reinjection scalar lr 4x so zero-init input mixing stays conservative longer on the residual-scaled final-global SwiGLU stack
+exp038	0.595282	5.7	discard	switch exp033 final-global residual-scaled stack to multi-query attention with a single shared KV head
+exp039	0.595142	7.0	discard	rebalance the exp033 residual-scaled zero-init-x0 final-global stack to 7 layers while holding model width at 320
+exp040	0.594546	5.4	discard	increase attention head granularity to ten 32-dim heads on the exp033 residual-scaled zero-init-x0 final-global SwiGLU stack
+exp041	0.594870	6.1	discard	use auxiliary value embeddings in every layer on the exp033 residual-scaled zero-init-x0 final-global SwiGLU stack
+exp042	0.593901	6.0	discard	use two final global attention layers instead of only the last layer on the exp033 residual-scaled zero-init-x0 SwiGLU stack
+exp043	0.595810	6.0	discard	rebalance exp033 residual-scaled zero-init-x0 final-global SwiGLU stack to 5 layers at 384 dim
+exp044	0.594563	6.0	discard	broaden non-final local attention from half-sequence to three-quarter-sequence while keeping the final layer global
+exp045	0.592945	5.4	keep	shrink exp033 residual-scaled zero-init-x0 final-global SwiGLU FFN multiplier from 5x to 4x
+exp046	0.591451	4.9	keep	shrink exp045 residual-scaled zero-init-x0 final-global SwiGLU FFN multiplier from 4x to 3x
+exp047	0.591551	4.4	discard	shrink exp046 residual-scaled zero-init-x0 final-global SwiGLU FFN multiplier from 3x to 2x
+exp048	0.592397	4.1	discard	rebalance exp046 residual-scaled zero-init-x0 final-global SwiGLU stack to 5 layers while holding 320 dim and 3x FFN
+exp049	0.593075	4.9	discard	narrow non-final local attention from half-sequence to quarter-sequence while keeping the final layer global
+exp050	0.590310	4.8	keep	disable auxiliary value embeddings in the exp046 residual-scaled zero-init-x0 final-global SwiGLU 3x FFN stack
+exp051	0.595343	4.5	discard	switch exp050 final-global SwiGLU 3x stack to multi-query attention with a single shared KV head
+exp052	0.590464	3.8	discard	rebalance exp050 residual-scaled zero-init-x0 final-global SwiGLU 3x stack down to 256 model dim with four 64-dim heads
+exp053	0.592218	5.7	discard	widen exp050 residual-scaled zero-init-x0 final-global SwiGLU 3x stack from 320 to 384 model dim
+exp054	0.590511	5.5	discard	rebalance exp050 residual-scaled zero-init-x0 final-global SwiGLU 3x stack to 7 layers while holding 320 dim
+exp055	0.590232	4.8	keep	add a mid-stack global attention layer to the exp050 6-layer 320-dim final-global SwiGLU 3x stack
+exp056	0.591701	4.8	discard	extend exp055 to two consecutive mid-stack global attention layers while keeping the final layer global
+exp057	0.591437	4.8	discard	move exp055 extra global attention layer later in the 6-layer stack, using layers 4 and 6 as global while keeping half-window local layers elsewhere
+exp058	0.590129	4.8	keep	move exp055 extra global attention layer earlier, using layers 2 and 6 as global while keeping half-window local layers elsewhere
+exp059	0.590465	4.8	discard	move exp058 extra global attention to the first layer, using layers 1 and 6 as global while keeping half-window local layers elsewhere
+exp060	0.591072	4.8	discard	add an interleaved third global attention layer to exp058 so layers 2, 4, and 6 are global while keeping the 6-layer 320-dim SwiGLU 3x stack
+exp061	0.590830	4.8	discard	move exp058 extra global attention later so layers 5 and 6 are global while keeping the 6-layer 320-dim SwiGLU 3x stack
+exp062	0.593494	4.8	discard	narrow non-global local attention from half-sequence to quarter-sequence while keeping the exp058 layers-2-and-6 global SwiGLU 3x stack
+exp063	0.591784	4.8	discard	broaden non-global local attention from half-sequence to three-quarter-sequence while keeping the exp058 layers-2-and-6 global SwiGLU 3x stack
+exp064	0.590948	4.9	discard	switch the exp058 residual-scaled zero-init-x0 SwiGLU 3x stack from mixed local/global attention to full attention in all layers
+exp065	0.590583	4.8	discard	broaden only the first local layer to a three-quarter-sequence window while keeping layers 2 and 6 global and later local layers at half-window
+exp066	0.594597	4.7	discard	switch exp058 layers-2-and-6-global SwiGLU stack to 10 query heads with 5 shared KV heads at 320 dim
+exp067	0.590538	4.8	discard	add a second consecutive early global attention layer to exp058 so layers 2, 3, and 6 are global while keeping the first and later middle layers local
+exp068	0.590940	4.8	discard	add learned per-layer attention-temperature scalars to the exp058 layers-2-and-6-global SwiGLU 3x stack so local and global layers can tune attention sharpness
+exp069	0.595296	4.8	discard	taper exp058 later local layers to quarter-window attention while keeping layers 2 and 6 global
+exp070	0.591983	5.0	discard	widen SwiGLU MLPs only on global-attention layers from 3x to 4x while keeping local layers at 3x in the exp058 two-global stack
+exp071	0.590387	4.6	discard	shrink SwiGLU MLPs only on global-attention layers from 3x to 2x while keeping local layers at 3x in the exp058 two-global stack
+exp072	0.589590	5.5	keep	rebalance the exp058 two-global SwiGLU stack to 7 layers at 320 dim, keeping an early extra global layer and the new final layer global
+exp073	0.590499	6.3	discard	rebalance exp072 two-global SwiGLU stack to 8 layers at fixed 320 dim
+exp074	0.590513	5.5	discard	move exp072 extra global attention one layer later so layers 3 and 7 are global while keeping the 7-layer 320-dim SwiGLU stack
+exp075	0.590105	5.4	discard	shrink SwiGLU MLPs only on global-attention layers from 3x to 2x while keeping the exp072 7-layer two-global stack otherwise unchanged
+exp076	0.591476	5.2	discard	shrink SwiGLU MLPs only on local-attention layers from 3x to 2x while keeping the exp072 7-layer two-global stack's global layers at 3x
+exp077	0.589878	5.6	discard	add a mid-stack third global attention layer to the exp072 7-layer 320-dim SwiGLU stack so layers 2, 4, and 7 are global
+exp078	0.595084	5.0	discard	rebalance the exp072 7-layer two-global SwiGLU stack to 288 model dim with six 48-dim heads
+exp079	0.589422	5.6	keep	add a penultimate global attention layer to the exp072 7-layer 320-dim SwiGLU stack so layers 2, 6, and 7 are global
+exp080	0.593791	5.3	discard	switch exp079 three-global 7-layer stack to multi-query attention with one shared KV head
+exp081	0.590222	5.6	discard	move exp079's early global attention from layer 2 to layer 1 while keeping layers 6 and 7 global in the 7-layer 320-dim SwiGLU stack
+exp082	0.589400	5.6	keep	move exp079's early global attention from layer 2 to layer 3 while keeping layers 6 and 7 global in the 7-layer 320-dim SwiGLU stack
+exp083	0.589933	5.6	discard	move exp082's early global attention from layer 3 to layer 4 while keeping layers 6 and 7 global in the 7-layer 320-dim SwiGLU stack
+exp084	0.589536	5.6	discard	add another upper-stack global attention layer to exp082 so layers 3, 5, 6, and 7 are global while keeping the 7-layer 320-dim SwiGLU stack otherwise unchanged
+exp085	0.590107	5.6	discard	broaden upper-stack local attention to three-quarter-sequence after the first global layer while keeping the exp082 7-layer 320-dim SwiGLU stack's global layers at 3, 6, and 7
+exp086	0.590199	5.6	discard	broaden only the two local layers before exp082's first global layer to three-quarter-sequence while keeping layers 3, 6, and 7 global
+exp087	0.589825	5.3	discard	shrink SwiGLU MLPs only on global-attention layers from 3x to 2x while keeping the exp082 three-global 7-layer stack's local layers at 3x
+exp088	0.590703	5.6	discard	move exp082's penultimate global attention earlier so layers 3, 5, and 7 are global in the 7-layer 320-dim SwiGLU stack
+exp089	0.590326	5.6	discard	add learned per-layer attention-temperature scalars to the exp082 three-global 7-layer 320-dim SwiGLU stack
+exp090	0.589329	5.6	keep	narrow only the two local layers before exp082's first global attention to quarter-sequence while keeping layers 3, 6, and 7 global and later locals at half-window
+exp091	0.589487	5.4	discard	shrink only the two quarter-window local MLPs before exp090's first global attention from 3x to 2x while keeping layers 3, 6, and 7 global and later/local-plus-global MLPs at 3x
+exp092	0.589210	5.6	keep	broaden only the last local layer before exp090's first global attention from quarter-window back to half-window while keeping layers 3, 6, and 7 global
+exp093	0.591342	5.6	discard	narrow only the first local layer after exp092's first global attention from half-window to quarter-window while keeping layers 3, 6, and 7 global
+exp094	0.590483	5.6	discard	narrow only the earliest local layer before exp092's first global attention from quarter-window to eighth-window while keeping the second pre-global local at half-window and layers 3, 6, and 7 global
+exp095	0.590147	5.6	discard	narrow only the last local layer before exp092's penultimate global attention from half-window to quarter-window while keeping layers 3, 6, and 7 global and the earlier post-global local at half-window
+exp096	0.589475	5.6	discard	broaden only the local layer before the penultimate global attention from half-window to three-quarter-window while keeping layers 3, 6, and 7 global and the other locals unchanged
+exp097	0.592444	5.6	discard	halve head dim to 32 so the exp092 7-layer 320-dim SwiGLU stack uses ten attention heads instead of five while keeping layers 3, 6, and 7 global and the mixed quarter/half local windows unchanged
+exp098	0.590118	5.6	discard	broaden only the first local layer after exp092's first global attention from half-window to three-quarter-window while keeping the earlier quarter/half pre-global locals and layers 3, 6, and 7 global
+exp099	4.853510	5.6	discard	tie input and output embeddings in the exp092 7-layer three-global SwiGLU stack to test a lighter unembedding structure
+exp100	0.590795	5.7	discard	enable auxiliary value embeddings only on the exp092 three-global layers instead of using no value embeddings

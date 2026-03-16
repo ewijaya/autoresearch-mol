@@ -11,29 +11,44 @@ SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
-echo "== Codex Usage =="
-if command -v codex-usage >/dev/null 2>&1; then
-  if ! codex-usage; then
-    echo "codex-usage unavailable"
-  fi
-else
-  echo "codex-usage not found"
+QUEUE="results/phase2/queue_state.json"
+
+if [[ ! -f "$QUEUE" ]]; then
+  echo "queue_state.json not found"
+  exit 1
 fi
 
-echo
-echo "== Queue State =="
-if [[ -f results/phase2/queue_state.json ]]; then
-  cat results/phase2/queue_state.json
+STATUS=$(jq -r .status "$QUEUE")
+TASK_INDEX=$(jq -r .task_index "$QUEUE")
+TRACK=$(jq -r .task.track "$QUEUE")
+KIND=$(jq -r .task.kind "$QUEUE")
+RUN=$(jq -r '.task.run // empty' "$QUEUE")
+TOTAL=34
+
+# Build task label
+if [[ "$KIND" == "agent" ]]; then
+  TASK_LABEL="agent $TRACK run_$RUN"
+elif [[ "$KIND" == "random_nas" ]]; then
+  TASK_LABEL="random_nas $TRACK"
 else
-  echo "results/phase2/queue_state.json not found"
+  TASK_LABEL="$KIND $TRACK"
 fi
 
-echo
-echo "== Latest Phase 2 Log =="
-latest_log="$(ls -1t logs/phase2-resume-*.log 2>/dev/null | head -n 1 || true)"
-if [[ -n "${latest_log}" ]]; then
-  echo "$latest_log"
-  tail -n 20 "$latest_log"
+# Experiment count and best score from results.tsv for current track/run
+if [[ -n "$RUN" ]]; then
+  RESULTS_TSV="results/$TRACK/run_$RUN/results.tsv"
 else
-  echo "No logs/phase2-resume-*.log found"
+  RESULTS_TSV=""
 fi
+
+if [[ -n "$RESULTS_TSV" && -f "$RESULTS_TSV" ]]; then
+  EXP_COUNT=$(( $(wc -l < "$RESULTS_TSV") - 1 ))
+  BEST_LINE=$(awk 'NR>1 && $4=="keep" {print $1, $2}' "$RESULTS_TSV" | sort -k2 -n | head -1)
+  BEST_EXP=$(echo "$BEST_LINE" | awk '{print $1}')
+  BEST_VAL=$(echo "$BEST_LINE" | awk '{printf "%.4f", $2}')
+  EXP_PART="| $EXP_COUNT/100 exp | best $BEST_VAL ($BEST_EXP)"
+else
+  EXP_PART=""
+fi
+
+echo "$TASK_INDEX/$TOTAL | $TASK_LABEL $EXP_PART"
