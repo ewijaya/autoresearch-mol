@@ -201,3 +201,17 @@
 [2026-03-16 23:55:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/smiles/run_5 experiment 100/100
 [2026-03-17 00:04:58] /home/ubuntu/storage1/recursive-mol/results/smiles/run_5: recorded experiment row 100/100
 [2026-03-17 00:04:58] Starting task 10/34: {'kind': 'random_nas', 'track': 'protein', 'run': 2}
+[2026-03-17 00:55:40] run_2: completed random NAS experiment 10/100
+[2026-03-17 01:52:42] run_2: completed random NAS experiment 20/100
+[2026-03-17 02:48:24] run_2: completed random NAS experiment 30/100
+[2026-03-17 03:39:35] run_2: completed random NAS experiment 40/100
+[2026-03-17 04:35:25] run_2: completed random NAS experiment 50/100
+[2026-03-17 05:32:01] run_2: completed random NAS experiment 60/100
+[2026-03-17 06:28:10] run_2: completed random NAS experiment 70/100
+[2026-03-17 07:22:27] run_2: completed random NAS experiment 80/100
+[2026-03-17 08:18:09] run_2: completed random NAS experiment 90/100
+[2026-03-17 09:12:41] run_2: completed random NAS experiment 100/100
+[2026-03-17 09:12:41] Starting task 11/34: {'kind': 'agent', 'track': 'protein', 'run': 1, 'program': 'program.md'}
+[2026-03-17 09:12:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/protein/run_1 experiment 1/100
+[2026-03-17 09:19:06] /home/ubuntu/storage1/recursive-mol/results/protein/run_1: recorded experiment row 1/100
+[2026-03-17 09:19:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/protein/run_1 experiment 2/100
