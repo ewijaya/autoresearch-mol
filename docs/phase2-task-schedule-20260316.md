@@ -1,7 +1,7 @@
 # Phase 2 Task Schedule
 
-**Date**: 2026-03-16
-**Status**: Task 8 of 34 running (random NAS protein run_1, ~94/100 experiments)
+**Date**: 2026-03-16 (updated 2026-03-17)
+**Status**: Task 11 of 34 running (agent protein run_1, 67/100 experiments)
 
 ---
 
@@ -9,7 +9,7 @@
 
 The runner interleaves agent runs with baseline runs to ensure incremental data collection across conditions.
 
-### Completed (Tasks 1-7)
+### Completed (Tasks 1-10)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
@@ -20,27 +20,22 @@ The runner interleaves agent runs with baseline runs to ensure incremental data 
 | 5 | agent | smiles | 3 | Done | 0.5839 (exp051) | 4 crashes |
 | 6 | random_nas | smiles | 3 | Done | 0.5914 (exp084) | |
 | 7 | agent | smiles | 4 | Done | 0.5892 (exp092) | 0 crashes |
+| 8 | random_nas | protein | 1 | Done | 3.9719 (exp047) | 103 experiments, 0 crashes |
+| 9 | agent | smiles | 5 | Done | 0.5834 (exp099) | 1 crash |
+| 10 | random_nas | protein | 2 | Done | 3.9710 (exp064) | 0 crashes |
 
-### Currently Running (Task 8)
+### Currently Running (Task 11)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
-| 8 | random_nas | protein | 1 | **Running** | 3.9719 (exp047) | ~94/100 experiments complete |
+| 11 | agent | protein | 1 | **Running** | 3.9666 (exp066) | 67/100 experiments, 3 crashes |
 
-### Upcoming (Tasks 9-34)
+### Upcoming (Tasks 12-34)
 
-#### SMILES track — final agent run
-
-| # | Kind | Track | Run | Est. duration | Purpose |
-|---|------|-------|-----|---------------|---------|
-| 9 | agent | smiles | 5 | ~13 hrs | Last SMILES agent replicate; critical for AUC significance |
-
-#### Protein track — all agent + random NAS runs
+#### Protein track — remaining runs
 
 | # | Kind | Track | Run | Est. duration | Purpose |
 |---|------|-------|-----|---------------|---------|
-| 10 | random_nas | protein | 2 | ~10 hrs | Protein NAS replicate 2 |
-| 11 | agent | protein | 1 | ~13 hrs | First protein agent run |
 | 12 | random_nas | protein | 3 | ~10 hrs | Protein NAS replicate 3 |
 | 13 | agent | protein | 2 | ~13 hrs | Protein agent replicate 2 |
 | 15 | agent | protein | 3 | ~13 hrs | Protein agent replicate 3 |
@@ -93,7 +88,7 @@ Fixed default trains the unmodified baseline architecture (no agent, no random s
 | Agent runs (~8 min/experiment, 100 experiments) | ~13 hrs each |
 | Random NAS runs (~6 min/experiment, 100 experiments) | ~10 hrs each |
 | Fixed default (single architecture, one training run) | ~10 hrs |
-| **Total remaining (26 tasks)** | **~290 hrs (~12 days)** |
+| **Total remaining (23 tasks)** | **~260 hrs (~11 days)** |
 
 **Assumptions**:
 - Continuous runtime with no API rate-limit pauses (optimistic; we've already hit one weekly limit pause during SMILES run_4)

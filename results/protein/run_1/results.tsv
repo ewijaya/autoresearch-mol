@@ -62,3 +62,6 @@ exp060	3.970475	5.8	discard	rebalance exp047 into a 10-layer 240-wide 2-head ful
 exp061	3.977883	5.2	discard	ablate query-key RMS normalization in exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
 exp062	3.973036	5.5	discard	switch exp047 from full attention to alternating half-window local/global attention
 exp063	3.968240	6.2	discard	deepen exp047 256-wide 2-head full-attention MQA model with untied value projections from 9 to 10 layers
+exp064	3.972495	5.8	discard	switch exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections from ReluSquared FFN to parameter-matched SwiGLU
+exp065	3.969589	5.6	discard	add RMSNorm on FFN hidden activations in exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
+exp066	3.966638	5.6	keep	hybridize exp047 value projections by keeping MQA shared values in early layers and untied per-head values only in deeper layers
