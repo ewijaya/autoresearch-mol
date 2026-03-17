@@ -1,2 +1,8 @@
 commit	val_bpb	memory_gb	status	description
 exp001	3.977780	5.3	keep	baseline
+exp002	3.973821	5.4	keep	value embeddings on every layer instead of alternating
+exp003	3.975207	5.5	discard	replace plain FFN with parameter-matched SwiGLU MLP while keeping all-layer value embeddings
+exp004	3.975371	5.4	discard	reduce short attention window from 256 to 128 so local layers are actually local
+exp005	3.972923	5.4	keep	increase global attention frequency from SSSL to alternating SLSL with all-layer value embeddings
+exp006	3.972646	5.6	keep	switch default attention layout from alternating SLSL windows to full global attention
+exp007	3.977545	5.1	discard	halve attention head dim to 32 for 9-head full attention

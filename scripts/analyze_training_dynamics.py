@@ -24,7 +24,7 @@ os.makedirs(OUT, exist_ok=True)
 
 AGENT_RUNS = {
     f"run_{i}": os.path.join(BASE, "smiles", f"run_{i}", "logs")
-    for i in range(1, 5)
+    for i in range(1, 6)
 }
 NAS_RUNS = {
     f"run_{i}": os.path.join(BASE, "baselines", "random_nas", "smiles", f"run_{i}", "logs")
