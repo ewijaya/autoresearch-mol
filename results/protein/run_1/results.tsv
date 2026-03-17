@@ -32,3 +32,22 @@ exp030	3.975320	6.1	discard	increase exp027 9-layer 256-wide full-attention MQA 
 exp031	3.969617	6.2	discard	increase exp027 9-layer 256-wide no-value-embed full-attention model from 1 to 2 KV heads to test light GQA
 exp032	3.973548	7.0	discard	widen exp027 9-layer 256-wide full-attention MQA no-value-embed model to 288 hidden size with 4 heads
 exp033	3.977270	5.9	discard	ablate learned per-layer x0 skip from embeddings in exp027 9-layer 256-wide full-attention MQA model
+exp034	3.968439	5.5	keep	reduce exp027 9-layer 256-wide full-attention MQA no-value-embed model MLP expansion from 5x to 4x
+exp035	3.968299	5.6	keep	reduce exp034 9-layer 256-wide full-attention MQA no-value-embed model from 4 heads to 2 heads by using 128-d head size
+exp036	3.969390	5.0	discard	reduce exp035 9-layer 256-wide 2-head full-attention MQA no-value-embed model MLP expansion from 4x to 3x
+exp037	3.972750	5.5	discard	switch exp035 9-layer 256-wide 2-head MQA no-value-embed model from full attention to alternating SLSL with 256-token local windows
+exp038	3.968624	5.8	discard	switch exp035 9-layer 256-wide 2-head full-attention no-value-embed model from 1 to 2 KV heads to test 2-head MHA
+exp039	3.972601	5.5	discard	reduce exp035 9-layer 256-wide full-attention MQA no-value-embed model from 2 heads to 1 head by using 256-d head size
+exp040	4.574585	5.6	discard	tie exp035 9-layer 256-wide 2-head full-attention MQA no-value-embed model input and output embeddings
+exp041	3.969576	4.9	discard	narrow exp035 9-layer full-attention MQA no-value-embed model from 256 to 224 width while keeping 2 heads via 112-d head size
+exp042	3.969925	6.3	discard	widen exp035 9-layer full-attention MQA no-value-embed model from 256 to 288 while keeping head count low at 3 via 96-d head size
+exp043	3.970160	5.6	discard	replace exp035 plain 4x FFN with parameter-matched SwiGLU gated MLP
+exp044	3.969424	6.2	discard	deepen exp035 9-layer 256-wide 2-head full-attention MQA no-value-embed model to 10 layers while keeping 4x FFN
+exp045	3.973642	5.6	discard	switch exp035 9-layer 256-wide 2-head full-attention MQA no-value-embed model MLP activation from ReluSquared to GELU
+exp046	3.969432	5.6	discard	initialize exp035 x0 embedding skip with depth-decayed 0.1->0.0 profile
+exp047	3.967951	5.6	keep	keep exp035 multi-query keys but untie value projections across query heads
+exp048	3.970264	5.9	discard	re-enable all-layer value embeddings on exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
+exp049	3.968479	5.6	discard	increase exp047 9-layer 256-wide full-attention MQA model from 2 to 4 query heads by using 64-d heads while keeping untied value projections
+exp050	3.968728	6.2	discard	increase exp047 9-layer 256-wide 2-head full-attention MQA model FFN multiplier from 4x to 5x while keeping untied value projections
+exp051	3.970058	5.0	discard	reduce exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections to 8 layers for a faster optimization tradeoff
+exp052	3.968470	5.8	discard	untie key projections across heads in exp047 9-layer 256-wide 2-head full-attention model
