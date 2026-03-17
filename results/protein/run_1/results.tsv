@@ -51,3 +51,14 @@ exp049	3.968479	5.6	discard	increase exp047 9-layer 256-wide full-attention MQA 
 exp050	3.968728	6.2	discard	increase exp047 9-layer 256-wide 2-head full-attention MQA model FFN multiplier from 4x to 5x while keeping untied value projections
 exp051	3.970058	5.0	discard	reduce exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections to 8 layers for a faster optimization tradeoff
 exp052	3.968470	5.8	discard	untie key projections across heads in exp047 9-layer 256-wide 2-head full-attention model
+exp053	3.969033	5.7	discard	re-enable untied value embeddings only in the deepest third of layers on exp047 9-layer 256-wide 2-head full-attention MQA model
+exp054	0.000000	0.0	crash	add learned per-head query temperature to exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
+exp055	3.967987	5.5	discard	rebalance exp047 into a 10-layer 224-wide 2-head full-attention MQA model with untied value projections
+exp056	3.969166	5.6	discard	retry exp047 with bounded learned per-layer per-head query temperatures
+exp057	3.969254	5.7	discard	re-enable untied value embeddings only in the earliest third of layers on exp047 9-layer 256-wide 2-head full-attention MQA model
+exp058	3.969698	5.1	discard	rebalance exp047 into an 11-layer 192-wide 2-head full-attention MQA model with untied value projections
+exp059	0.000000	0.0	crash	add learned hidden-state RMSNorm gains to exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
+exp060	3.970475	5.8	discard	rebalance exp047 into a 10-layer 240-wide 2-head full-attention MQA model with untied value projections
+exp061	3.977883	5.2	discard	ablate query-key RMS normalization in exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
+exp062	3.973036	5.5	discard	switch exp047 from full attention to alternating half-window local/global attention
+exp063	3.968240	6.2	discard	deepen exp047 256-wide 2-head full-attention MQA model with untied value projections from 9 to 10 layers
