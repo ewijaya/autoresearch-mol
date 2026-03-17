@@ -30,6 +30,43 @@ The entire experimental budget is ~$200 in AWS compute over 6 weeks. Compare tha
 
 Karpathy released the base framework March 7, 2026. Nobody has applied it to molecules yet. The first team to do this and publish sets the benchmark everyone else cites.
 
+## Why This Is Strategic for StemRIM
+
+StemRIM is a 1-person computational division (ISDD) supporting 7+ active ML projects — bioactivity prediction, generative drug design, peptide-enzyme interaction modeling, protein language models, and more — all feeding into StemRIM's Regeneration-Inducing Medicine pipeline (Redasemtide, TRIM3/4/5).
+
+This project is strategic on four axes:
+
+### 1. Direct pipeline acceleration
+
+StemRIM's drug candidates are peptides. Every ISDD project — hemagglutination prediction, MSC proliferation modeling, PDGF-BB secretion prediction, peptide stability optimization — depends on neural networks that process molecular or protein sequences. If this project discovers that molecular data wants fundamentally different architectures than NLP, that finding immediately upgrades every model in the ISDD portfolio. Better architectures mean better bioactivity predictions, which means faster candidate selection for TRIM3/4/5.
+
+### 2. Capability multiplier for a resource-constrained team
+
+ISDD is one person doing the work that Astellas, Daiichi Sankyo, and Takeda assign to entire ML engineering teams. An autonomous agent that searches architecture space overnight — without human supervision — is the single highest-leverage tool a 1-person division can have. Instead of manually running ablation studies for weeks, you deploy the agent, go home, and review the results in the morning. This project proves that workflow works, and benchmarks it rigorously.
+
+### 3. Competitive positioning and investor signal
+
+StemRIM is pre-revenue (EPS: -¥34.42, market cap: ~¥6.2B). The stock has declined 66% from its 2022 peak. Investor confidence depends on demonstrating that StemRIM's R&D capabilities justify the burn rate. Publishing at a top ML venue (NeurIPS/ICML/ICLR) — from a 1-person division at a small Japanese biotech — sends an outsized signal: this company is doing frontier computational work, not just running off-the-shelf models. That matters for:
+
+- **Partnership negotiations** (Shionogi, potential new licensees): demonstrates computational sophistication
+- **Investor relations**: concrete, peer-reviewed evidence of AI-driven R&D capability
+- **Recruiting**: attracts computational talent who want to publish, not just run pipelines
+
+### 4. Generalizable framework across the pipeline
+
+The methodology is modality-agnostic. Once validated on SMILES, proteins, and NLP, the same agent framework can be pointed at any new task:
+
+- Glycan sequence modeling for the cell collection device (PJ4)
+- Gene therapy target prediction for SR-GT1 (PJ5)
+- ADMET property prediction for next-generation peptide optimization
+- Any new modality StemRIM encounters as the pipeline expands
+
+The $200 compute cost per search means ISDD can afford to run architecture optimization for every new project, not just the highest-priority ones.
+
+### The internal elevator pitch
+
+*"We built an AI system that automatically discovers optimal neural network architectures for molecular modeling. It costs $200 per run and works overnight. This lets our 1-person computational division deliver models that would normally require a dedicated ML engineering team — directly accelerating peptide discovery for Redasemtide, TRIM3, TRIM4, and TRIM5. The research also positions StemRIM as a credible AI-driven drug discovery company at a time when investor confidence depends on demonstrating exactly that."*
+
 ---
 
 **The one-liner:** "You're running billion-dollar drug programs on transformer architectures nobody bothered to optimize for chemistry. We built an AI that does that optimization automatically for $200. Here's what it found."

@@ -65,3 +65,7 @@ exp063	3.968240	6.2	discard	deepen exp047 256-wide 2-head full-attention MQA mod
 exp064	3.972495	5.8	discard	switch exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections from ReluSquared FFN to parameter-matched SwiGLU
 exp065	3.969589	5.6	discard	add RMSNorm on FFN hidden activations in exp047 9-layer 256-wide 2-head full-attention MQA model with untied value projections
 exp066	3.966638	5.6	keep	hybridize exp047 value projections by keeping MQA shared values in early layers and untied per-head values only in deeper layers
+exp067	3.968123	5.6	discard	delay untied per-head value projections until the deepest third of layers on the exp066 hybrid-value model
+exp068	3.968453	5.6	discard	move exp066 hybrid value-head transition earlier so only the earliest third of layers keep shared MQA values
+exp069	3.967636	5.8	discard	enable value embeddings only in the untied deeper half of the exp066 hybrid-value model
+exp070	3.969623	5.7	discard	enable value embeddings only in the early shared-value layers of the exp066 hybrid-value model
