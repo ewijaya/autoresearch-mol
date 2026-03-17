@@ -31,3 +31,4 @@ exp029	3.969432	6.7	discard	increase exp027 9-layer 256-wide full-attention MQA 
 exp030	3.975320	6.1	discard	increase exp027 9-layer 256-wide full-attention MQA no-value-embed model from 4 heads to 8 heads by using 32-d head size
 exp031	3.969617	6.2	discard	increase exp027 9-layer 256-wide no-value-embed full-attention model from 1 to 2 KV heads to test light GQA
 exp032	3.973548	7.0	discard	widen exp027 9-layer 256-wide full-attention MQA no-value-embed model to 288 hidden size with 4 heads
+exp033	3.977270	5.9	discard	ablate learned per-layer x0 skip from embeddings in exp027 9-layer 256-wide full-attention MQA model

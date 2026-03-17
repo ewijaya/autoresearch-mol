@@ -173,7 +173,19 @@ Same LLM agent loop, but restricted by `program_hponly.md` to only modify hyperp
 
 > "Only modify hyperparameters: learning rate, batch size, dropout, weight decay, warmup steps, optimizer params. Do NOT change model architecture."
 
-This isolates the contribution of **architectural** changes by giving the agent the same reasoning capability but constraining it to the parametric search space that HPO tools operate in.
+This isolates the contribution of **architectural** changes by giving the agent the same reasoning capability but constraining it to the parametric search space.
+
+**Important distinction: HP-Only Agent ≠ Traditional HPO.** The HP-only agent is *not* equivalent to running Optuna or Ray Tune. It is still an LLM-guided search that reads source code, reasons about prior results, and proposes targeted changes through a cumulative ratcheting process. The only restriction is that it cannot modify the model architecture — it must work within the hyperparameter space.
+
+| Aspect | HP-Only Agent (our baseline) | Traditional HPO (Optuna, etc.) |
+|--------|------------------------------|-------------------------------|
+| Search strategy | LLM reasoning over code + results | Statistical surrogate model (TPE, BO) |
+| Accumulation | Ratcheting (keeps best, builds on it) | Independent trials |
+| Parameter interactions | Understands how params interact via code reading | Models marginal distributions independently |
+| Cost per trial | LLM API call + training | Training only |
+| Trial structure | Sequential, informed by full history | Parallel-friendly, informed by surrogate |
+
+The HP-only agent is therefore a **stronger baseline** than traditional HPO — it has the LLM's reasoning advantage applied to hyperparameters. If the full agent (with architectural freedom) outperforms the HP-only agent, that is strong evidence that **architectural changes specifically** (not just better hyperparameter tuning embedded within architectural modifications) drive the improvement. This is a more conservative test than comparing against Optuna, which would lack the LLM's reasoning ability entirely.
 
 ### C. Fixed Default (3 runs: 1 per track)
 
@@ -184,9 +196,12 @@ Single run of the unmodified baseline model. Establishes the floor.
 | Comparison | Tests |
 |-----------|-------|
 | Agent vs. Random NAS | Does LLM reasoning add value over random sampling? |
-| Agent vs. HP-Only Agent | Do architectural changes add value beyond hyperparameter tuning? |
+| Agent vs. HP-Only Agent | Do architectural changes add value beyond hyperparameter tuning? (Conservative test: both sides use LLM reasoning) |
 | Agent vs. Fixed Default | Does any search at all improve on the default? |
 | HP-Only Agent vs. Random NAS | Does LLM-guided HP search beat random architecture sampling? |
+| HP-Only Agent vs. Fixed Default | Does LLM-guided HP tuning alone improve the baseline? |
+
+**Note on missing baseline:** The project does not include a traditional HPO baseline (e.g., Optuna with TPE). The HP-only agent is a *stronger* control because it uses LLM reasoning, making the Agent vs. HP-Only comparison more conservative. If a reviewer requests an Optuna comparison, the HP-Only Agent results provide an upper bound on what HPO could achieve — any improvement the full agent shows over the HP-only agent would also hold against Optuna.
 
 ---
 
