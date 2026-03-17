@@ -1,6 +1,6 @@
 # Phase 2 Experiment Note
 
-Snapshot updated on March 11, 2026.
+Snapshot updated on March 17, 2026.
 
 ## Planned workload
 
@@ -45,26 +45,42 @@ The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage lim
 
 If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.md` for the stop-and-resume procedure.
 
+## Completed tasks (10/34)
+
+| # | Kind | Track | Run | Experiments | Best val_bpb | Notes |
+|---|------|-------|-----|-------------|-------------|-------|
+| 1 | agent | SMILES | run_1 | 100 | 0.5918 | |
+| 2 | agent | SMILES | run_2 | 100 | 0.5808 | Overall best SMILES |
+| 3 | agent | SMILES | run_3 | 100 | 0.5839 | |
+| 4 | agent | SMILES | run_4 | 100 | 0.5892 | |
+| 5 | random_nas | SMILES | run_1 | 100 | 0.5906 | |
+| 6 | random_nas | SMILES | run_2 | 100 | 0.5923 | |
+| 7 | random_nas | SMILES | run_3 | 100 | 0.5914 | |
+| 8 | agent | SMILES | run_5 | 100 | 0.5834 | |
+| 9 | random_nas | protein | run_1 | 103 | 0.5906 | Slightly over 100 |
+| 10 | random_nas | protein | run_2 | 100 | 3.9710 | |
+
+**Total completed experiments:** `1,003`
+
 ## Current live status
 
-At the time this note was written:
+- the Phase 2 runner is on task `11/34`
+- active task: protein agent `run_1`
+- completed experiments in the active run: `32/100`
+- current best: `exp027`, `val_bpb = 3.968776` (9-layer, 256-wide, full-attention MQA, no value embeddings)
+- `10` keeps, `21` discards, `1` crash out of `32` experiments
+- the agent is trending toward deeper-narrower architectures with reduced attention heads for protein
 
-- the Phase 2 runner is on task `1/34`
-- active task: SMILES agent `run_1`
-- completed experiments in the active run: `6`
-- current recorded rows:
-  - `exp001`: baseline, `val_bpb = 0.596350`, `keep`
-  - `exp002`: full attention for all layers at seq len 256, `val_bpb = 0.597899`, `discard`
-  - `exp003`: disable alternating value embeddings, `val_bpb = 0.598981`, `discard`
-  - `exp004`: increase default depth from 6 to 8 with matched aspect-ratio width, `val_bpb = 0.601616`, `discard`
-  - `exp005`: reduce default depth from 6 to 5 for a faster smaller model, `val_bpb = 0.597927`, `discard`
-  - `exp006`: replace dense FFN with parameter-matched SwiGLU gating, `val_bpb = 0.594814`, `keep`
-- the runner has resumed with the patched per-experiment Codex flow
-- the next experiment is `exp007`
+## Remaining tasks (24/34)
+
+- **Agent:** protein run_1 (in progress), protein run_2, protein run_3, NLP runs 1–5 = `8` tasks
+- **Random NAS:** protein run_3, NLP runs 1–3 = `4` tasks
+- **HP-only agent:** SMILES runs 1–3, protein runs 1–3, NLP runs 1–3 = `9` tasks
+- **Fixed default:** SMILES, protein, NLP = `3` tasks
 
 ## Where to check progress
 
 - Runner state: `results/phase2/queue_state.json`
-- Runner log: `results/phase2/runner.log`
-- Active SMILES run log: `results/smiles/run_1/agent_session.log`
-- Active SMILES results: `results/smiles/run_1/results.tsv`
+- Runner log: `logs/phase2-resume-20260316_103926.log`
+- Active protein run results: `results/protein/run_1/results.tsv`
+- Active protein run summary: `results/protein/run_1/summary.json`
