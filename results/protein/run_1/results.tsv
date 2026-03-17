@@ -10,3 +10,23 @@ exp008	3.974447	5.2	discard	switch default full attention to multi-query with 1 
 exp009	3.973196	6.5	discard	shift full-attention model to 7 layers with aspect ratio 40 to test a deeper-narrower balance at 320 width
 exp010	3.973255	5.6	discard	broaden value-embedding gate from 32 channels to full hidden-state conditioning
 exp011	3.974081	6.7	discard	widen full-attention all-value-embed model from 320 to 384 hidden size
+exp012	3.972407	5.6	keep	reduce full-attention head count from 5 to 4 by widening head dim from 64 to 80 at 320 model width
+exp013	3.971664	5.3	keep	switch exp012 full-attention model from 4 KV heads to grouped-query attention with 2 KV heads
+exp014	4.392318	5.4	discard	tie input and output embeddings on exp013 full-attention 4-head GQA model
+exp015	3.973326	5.2	discard	tighten exp013 full-attention 4-head GQA model to multi-query attention with 1 KV head
+exp016	0.000000	0.0	crash	add learnable per-layer scaling on value embeddings in exp013 4-head GQA model
+exp017	3.979753	5.3	discard	switch exp013 full-attention 4-head GQA model from ReluSquared MLPs to SiLU activations
+exp018	3.973138	4.8	discard	reduce exp013 full-attention 4-head GQA model MLP expansion from 5x to 4x for a faster capacity tradeoff
+exp019	3.975940	5.4	discard	replace exp013 plain FFN with parameter-matched SwiGLU MLP
+exp020	3.977469	4.4	discard	reduce exp013 full-attention 320-wide 4-head GQA model from 6 layers to 5 to trade depth for faster optimization
+exp021	3.982600	4.9	discard	switch transformer blocks to parallel residual attn+mlp branches
+exp022	3.971118	5.6	keep	deepen full-attention GQA model to 8 layers while narrowing to 256 width with 64-d heads
+exp023	3.969359	6.3	keep	deepen exp022 full-attention 256-wide 4-head GQA model to 9 layers while holding width fixed
+exp024	3.972054	7.0	discard	deepen exp023 full-attention 256-wide 4-head GQA model to 10 layers while holding width fixed
+exp025	3.976929	6.4	discard	increase exp023 full-attention 256-wide 9-layer model from 4/2 heads to 8/4 heads by using 32-d head size
+exp026	3.969111	6.2	keep	switch exp023 full-attention 256-wide 9-layer model from 4-query/2-kv GQA to 4-query/1-kv multi-query attention
+exp027	3.968776	6.1	keep	ablate value embeddings from exp026 9-layer 256-wide full-attention MQA model
+exp028	3.971186	6.8	discard	deepen exp027 256-wide full-attention MQA no-value-embed model from 9 to 10 layers
+exp029	3.969432	6.7	discard	increase exp027 9-layer 256-wide full-attention MQA no-value-embed model MLP expansion from 5x to 6x
+exp030	3.975320	6.1	discard	increase exp027 9-layer 256-wide full-attention MQA no-value-embed model from 4 heads to 8 heads by using 32-d head size
+exp031	3.969617	6.2	discard	increase exp027 9-layer 256-wide no-value-embed full-attention model from 1 to 2 KV heads to test light GQA
