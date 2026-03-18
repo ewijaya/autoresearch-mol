@@ -1,6 +1,6 @@
 # Phase 2 Experiment Note
 
-Snapshot updated on March 17, 2026.
+Snapshot updated on March 18, 2026.
 
 ## Planned workload
 
@@ -45,7 +45,7 @@ The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage lim
 
 If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.md` for the stop-and-resume procedure.
 
-## Completed tasks (10/34)
+## Completed tasks (13/34)
 
 | # | Kind | Track | Run | Experiments | Best val_bpb | Notes |
 |---|------|-------|-----|-------------|-------------|-------|
@@ -57,24 +57,26 @@ If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.m
 | 6 | random_nas | SMILES | run_2 | 100 | 0.5923 | |
 | 7 | random_nas | SMILES | run_3 | 100 | 0.5914 | |
 | 8 | agent | SMILES | run_5 | 100 | 0.5834 | |
-| 9 | random_nas | protein | run_1 | 103 | 0.5906 | Slightly over 100 |
+| 9 | random_nas | protein | run_1 | 103 | 3.9719 | Slightly over 100 |
 | 10 | random_nas | protein | run_2 | 100 | 3.9710 | |
+| 11 | agent | protein | run_1 | 100 | 3.9656 | Best protein overall; 3 crashes |
+| 12 | random_nas | protein | run_3 | 100 | 3.9693 | |
+| 13 | agent | protein | run_2 | 100 | 3.9684 | 3 crashes |
 
-**Total completed experiments:** `1,003`
+**Total completed experiments:** `1,303`
 
 ## Current live status
 
-- the Phase 2 runner is on task `11/34`
-- active task: protein agent `run_1`
-- completed experiments in the active run: `32/100`
-- current best: `exp027`, `val_bpb = 3.968776` (9-layer, 256-wide, full-attention MQA, no value embeddings)
-- `10` keeps, `21` discards, `1` crash out of `32` experiments
-- the agent is trending toward deeper-narrower architectures with reduced attention heads for protein
+- the Phase 2 runner is on task `14/34`
+- active task: random_nas NLP `run_1`
+- completed experiments in the active run: `11/100`
+- current best: `exp001`, `val_bpb = 1.1431`
+- first NLP track run; all protein runs (agent + random_nas) now complete
 
-## Remaining tasks (24/34)
+## Remaining tasks (21/34)
 
-- **Agent:** protein run_1 (in progress), protein run_2, protein run_3, NLP runs 1–5 = `8` tasks
-- **Random NAS:** protein run_3, NLP runs 1–3 = `4` tasks
+- **Agent:** protein run_3, NLP runs 1–5 = `6` tasks
+- **Random NAS:** NLP runs 1 (in progress), 2, 3 = `3` tasks
 - **HP-only agent:** SMILES runs 1–3, protein runs 1–3, NLP runs 1–3 = `9` tasks
 - **Fixed default:** SMILES, protein, NLP = `3` tasks
 
@@ -82,5 +84,5 @@ If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.m
 
 - Runner state: `results/phase2/queue_state.json`
 - Runner log: `logs/phase2-resume-20260316_103926.log`
-- Active protein run results: `results/protein/run_1/results.tsv`
-- Active protein run summary: `results/protein/run_1/summary.json`
+- Active NLP run results: `results/baselines/random_nas/nlp/run_1/results.tsv`
+- Active NLP run summary: `results/baselines/random_nas/nlp/run_1/summary.json`

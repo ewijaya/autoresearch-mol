@@ -1,7 +1,7 @@
 # Phase 2 Task Schedule
 
-**Date**: 2026-03-16 (updated 2026-03-17)
-**Status**: Task 11 of 34 running (agent protein run_1, 67/100 experiments)
+**Date**: 2026-03-16 (updated 2026-03-18)
+**Status**: Task 14 of 34 running (random_nas nlp run_1, 11/100 experiments)
 
 ---
 
@@ -9,13 +9,13 @@
 
 The runner interleaves agent runs with baseline runs to ensure incremental data collection across conditions.
 
-### Completed (Tasks 1-10)
+### Completed (Tasks 1-13)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
 | 1 | agent | smiles | 1 | Done | 0.5918 (exp071) | 1 crash |
 | 2 | random_nas | smiles | 1 | Done | 0.5906 (exp093) | |
-| 3 | agent | smiles | 2 | Done | 0.5808 (exp047) | 3 crashes; overall best |
+| 3 | agent | smiles | 2 | Done | 0.5808 (exp047) | 3 crashes; overall best SMILES |
 | 4 | random_nas | smiles | 2 | Done | 0.5923 (exp082) | |
 | 5 | agent | smiles | 3 | Done | 0.5839 (exp051) | 4 crashes |
 | 6 | random_nas | smiles | 3 | Done | 0.5914 (exp084) | |
@@ -23,28 +23,28 @@ The runner interleaves agent runs with baseline runs to ensure incremental data 
 | 8 | random_nas | protein | 1 | Done | 3.9719 (exp047) | 103 experiments, 0 crashes |
 | 9 | agent | smiles | 5 | Done | 0.5834 (exp099) | 1 crash |
 | 10 | random_nas | protein | 2 | Done | 3.9710 (exp064) | 0 crashes |
+| 11 | agent | protein | 1 | Done | 3.9656 (exp099) | 3 crashes; best protein overall |
+| 12 | random_nas | protein | 3 | Done | 3.9693 (exp078) | 0 crashes |
+| 13 | agent | protein | 2 | Done | 3.9684 (exp099) | 3 crashes |
 
-### Currently Running (Task 11)
+### Currently Running (Task 14)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
-| 11 | agent | protein | 1 | **Running** | 3.9666 (exp066) | 67/100 experiments, 3 crashes |
+| 14 | random_nas | nlp | 1 | **Running** | 1.1431 (exp001) | 11/100 experiments; first NLP track run |
 
-### Upcoming (Tasks 12-34)
+### Upcoming (Tasks 15-34)
 
 #### Protein track — remaining runs
 
 | # | Kind | Track | Run | Est. duration | Purpose |
 |---|------|-------|-----|---------------|---------|
-| 12 | random_nas | protein | 3 | ~10 hrs | Protein NAS replicate 3 |
-| 13 | agent | protein | 2 | ~13 hrs | Protein agent replicate 2 |
 | 15 | agent | protein | 3 | ~13 hrs | Protein agent replicate 3 |
 
-#### NLP track — all agent + random NAS runs
+#### NLP track — remaining agent + random NAS runs
 
 | # | Kind | Track | Run | Est. duration | Purpose |
 |---|------|-------|-----|---------------|---------|
-| 14 | random_nas | nlp | 1 | ~10 hrs | NLP NAS replicate 1; uses the 41 GB NLP dataset |
 | 16 | random_nas | nlp | 2 | ~10 hrs | NLP NAS replicate 2 |
 | 17 | agent | nlp | 1 | ~13 hrs | First NLP agent run |
 | 18 | random_nas | nlp | 3 | ~10 hrs | NLP NAS replicate 3 |
@@ -88,7 +88,7 @@ Fixed default trains the unmodified baseline architecture (no agent, no random s
 | Agent runs (~8 min/experiment, 100 experiments) | ~13 hrs each |
 | Random NAS runs (~6 min/experiment, 100 experiments) | ~10 hrs each |
 | Fixed default (single architecture, one training run) | ~10 hrs |
-| **Total remaining (23 tasks)** | **~260 hrs (~11 days)** |
+| **Total remaining (20 tasks)** | **~230 hrs (~10 days)** |
 
 **Assumptions**:
 - Continuous runtime with no API rate-limit pauses (optimistic; we've already hit one weekly limit pause during SMILES run_4)
