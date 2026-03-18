@@ -69,3 +69,33 @@ exp067	3.968123	5.6	discard	delay untied per-head value projections until the de
 exp068	3.968453	5.6	discard	move exp066 hybrid value-head transition earlier so only the earliest third of layers keep shared MQA values
 exp069	3.967636	5.8	discard	enable value embeddings only in the untied deeper half of the exp066 hybrid-value model
 exp070	3.969623	5.7	discard	enable value embeddings only in the early shared-value layers of the exp066 hybrid-value model
+exp071	3.969040	6.2	discard	deepen exp066 hybrid-value full-attention 256-wide 2-head model from 9 to 10 layers
+exp072	3.967843	5.7	discard	untie key projections only in the deeper half of the exp066 hybrid-value model
+exp073	3.969269	5.5	discard	rebalance exp066 hybrid-value full-attention model to 10 layers and 224 width while keeping 2 heads
+exp074	3.967960	5.0	discard	reduce exp066 hybrid-value model FFN expansion from 4x to 3x
+exp075	3.966628	5.6	keep	increase exp066 hybrid-value full-attention model from 2 to 4 query heads while keeping shared early values and untied deeper values
+exp076	3.977529	5.5	discard	increase exp075 hybrid-value full-attention model from 4 to 8 query heads while keeping shared early values and untied deeper values
+exp077	3.967587	5.7	discard	untie key projections in the deeper half of exp075's 4-head hybrid-value model while keeping shared early MQA keys
+exp078	3.968113	5.5	discard	group deeper-half values into 2 groups on exp075 4-head hybrid-value model
+exp079	3.969153	5.6	discard	switch exp075 4-head hybrid-value full-attention model from 1 to 2 KV heads to test grouped-query keys
+exp080	3.968332	5.7	discard	enable learned value embeddings only in the deeper untied half of the exp075 4-head hybrid-value model
+exp081	3.968519	5.6	discard	move exp075 4-head hybrid-value model transition earlier so only the earliest third of layers keep shared MQA values
+exp082	3.967877	5.6	discard	ramp hybrid-value heads across depth from shared MQA to 2-group middle layers to fully untied deeper layers on exp075
+exp083	3.968524	5.6	discard	delay exp075 4-head hybrid-value model transition so only the deepest third of layers use untied per-head values
+exp084	3.967721	5.6	discard	shift FFN capacity toward the deeper untied-value layers by using 3x expansion early and 5x expansion late on the exp075 hybrid-value 4-head model
+exp085	3.971922	6.2	discard	widen exp075 hybrid-value full-attention 4-head model from 256 to 288 hidden size while keeping shared early values and untied deeper values
+exp086	3.969505	6.1	discard	increase exp075 4-head hybrid-value full-attention model FFN expansion uniformly from 4x to 5x
+exp087	3.969399	5.6	discard	zero-initialize x0 residual skip coefficients on the exp075 hybrid-value 4-head full-attention model
+exp088	3.966099	6.1	keep	add learned per-layer attention and MLP residual gates on the exp075 hybrid-value 4-head full-attention model
+exp089	3.965910	6.1	keep	constrain exp088's per-layer attention and MLP residual gates to positive sigmoid scales
+exp090	3.968883	6.1	discard	constrain exp089 residual stream and x0 skip mix coefficients to positive sigmoid scales
+exp091	3.967797	6.1	discard	constrain only the x0 embedding skip coefficients to positive sigmoid scales while keeping exp089's unconstrained residual stream mix
+exp092	3.966697	6.1	discard	constrain only exp089 residual stream mix coefficients to positive sigmoid scales while keeping x0 skips unconstrained
+exp093	3.967544	6.1	discard	initialize positive attn/mlp gates with a depth-shaped profile: earlier layers start slightly attention-heavier and deeper layers slightly MLP-heavier
+exp094	3.974048	5.6	discard	switch exp089 gated hybrid-value full-attention model MLP activation from ReluSquared to ReLU
+exp095	3.971981	6.0	discard	rebalance exp089 gated hybrid-value full-attention model to 10 layers and 224 width while keeping 4 heads
+exp096	3.968528	6.1	discard	shift FFN capacity toward the early shared-value layers by using 5x expansion early and 3x expansion late on the exp089 gated hybrid-value 4-head model
+exp097	3.966623	6.2	discard	reduce exp089 gated hybrid-value full-attention model from 4 query heads back to 2 while keeping positive per-layer attention and MLP branch gates
+exp098	3.966100	6.1	discard	replace exp089's capped sigmoid attention/MLP branch gates with uncapped softplus-positive scales that keep unit initialization
+exp099	3.965618	6.2	keep	give the deeper half of exp089's gated hybrid-value model 2 grouped-query key heads while keeping early layers on shared MQA keys
+exp100	3.967871	6.2	discard	delay exp099 deeper grouped-query key transition so only the deepest third of layers use 2 key heads

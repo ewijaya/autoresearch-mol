@@ -1,0 +1,21 @@
+commit	val_bpb	memory_gb	status	description
+exp001	3.976020	5.3	keep	baseline
+exp002	3.974975	5.4	keep	protein default full attention instead of windowed pattern
+exp003	3.977232	5.0	discard	protein smaller head dim to double attention head count at fixed width
+exp004	3.972313	5.6	keep	protein replace ReLU-squared MLP with parameter-matched SwiGLU under full attention
+exp005	3.972570	5.3	discard	protein switch full-attention SwiGLU model to single KV head (MQA)
+exp006	3.972232	6.7	keep	protein widen full-attention SwiGLU default from 320d to 384d
+exp007	3.970246	6.4	keep	protein grouped-query attention with half as many KV heads in the widened full-attention SwiGLU model
+exp008	3.970436	6.4	discard	protein disable learned value embeddings in widened full-attention GQA SwiGLU model
+exp009	3.971227	6.5	discard	protein use learned value embeddings in every block of the widened full-attention GQA SwiGLU model
+exp010	3.971064	6.4	discard	protein use one-third KV-head grouped-query attention in the widened full-attention SwiGLU model
+exp011	3.976375	6.4	discard	protein keep widened full-attention SwiGLU model but raise GQA head count to 8 query heads and 4 KV heads at fixed 384d width
+exp012	3.970518	5.8	discard	protein reduce widened full-attention GQA SwiGLU FFN multiplier from 5x to 4x
+exp013	3.970797	6.4	discard	protein enlarge attention head dim from 64 to 96 for 4-query/2-KV GQA at fixed 384d width
+exp014	3.971547	7.0	discard	protein increase SwiGLU FFN expansion from 5x to 6x in the widened full-attention GQA model
+exp015	4.375021	6.5	discard	protein tie input and output embeddings in the widened full-attention GQA SwiGLU model
+exp016	3.973049	8.5	discard	protein deepen full-attention GQA SwiGLU model from 6 to 8 layers at fixed 384d width
+exp017	3.970173	6.4	keep	protein move learned value embeddings from alternating blocks to the upper half of the widened full-attention GQA SwiGLU model
+exp018	3.972719	6.4	discard	protein restrict learned value embeddings from the upper half to only the top third of blocks in the widened full-attention GQA SwiGLU model
+exp019	3.972042	6.4	discard	protein expand learned value embeddings from upper half to upper two-thirds of layers in the widened full-attention GQA SwiGLU model
+exp020	3.970504	6.4	discard	protein let upper-half value-embedding gates use full hidden state instead of 32-channel slice
