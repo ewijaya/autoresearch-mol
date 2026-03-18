@@ -1,11 +1,10 @@
 {
   "status": "running",
   "task": {
-    "kind": "agent",
-    "program": "program.md",
-    "run": 2,
-    "track": "protein"
+    "kind": "random_nas",
+    "run": 1,
+    "track": "nlp"
   },
-  "task_index": 13,
-  "tasks_completed": 12
+  "task_index": 14,
+  "tasks_completed": 13
 }

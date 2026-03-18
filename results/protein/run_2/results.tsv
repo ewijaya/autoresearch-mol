@@ -19,3 +19,83 @@ exp017	3.970173	6.4	keep	protein move learned value embeddings from alternating 
 exp018	3.972719	6.4	discard	protein restrict learned value embeddings from the upper half to only the top third of blocks in the widened full-attention GQA SwiGLU model
 exp019	3.972042	6.4	discard	protein expand learned value embeddings from upper half to upper two-thirds of layers in the widened full-attention GQA SwiGLU model
 exp020	3.970504	6.4	discard	protein let upper-half value-embedding gates use full hidden state instead of 32-channel slice
+exp021	3.970143	6.4	keep	protein RMS-normalize upper-half learned value embeddings before mixing them into attention values
+exp022	3.973038	6.5	discard	protein RMS-normalize combined attention values after mixing in upper-half learned value embeddings
+exp023	3.971658	6.5	discard	protein RMS-normalize native attention values before mixing upper-half learned value embeddings
+exp024	3.970359	6.4	discard	protein RMS-normalize upper-half value-embedding gate inputs before gate projection
+exp025	3.969413	6.4	keep	protein use a short-window first block before global attention in the widened GQA SwiGLU model
+exp026	3.970582	6.3	discard	protein use two short-window prefix blocks before global attention in the widened GQA SwiGLU model
+exp027	3.969491	6.4	discard	protein narrow the single front-local attention block from half-context to quarter-context in the widened GQA SwiGLU model
+exp028	3.970953	6.4	discard	protein widen the single front-local attention block from half-context to three-quarter-context in the widened GQA SwiGLU model
+exp029	3.970552	6.4	discard	protein move the single half-context local attention block from the first block to the middle of the widened GQA SwiGLU model
+exp030	3.969637	6.4	discard	protein narrow the single front-local attention block slightly from half-context to three-eighths context in the widened GQA SwiGLU model
+exp031	3.970406	6.3	discard	protein add a penultimate short-window block alongside the successful front-local block in the widened GQA SwiGLU model
+exp032	3.970299	6.4	discard	protein widen upper-half value-embedding gate input slice from 32 to 64 channels in the front-local widened GQA SwiGLU model
+exp033	3.969917	6.4	discard	protein learn a 32-channel gate-input projection for upper-half value embeddings in the front-local widened GQA SwiGLU model
+exp034	3.977272	8.6	discard	protein widen the successful front-local GQA SwiGLU model from 384d to 512d
+exp035	3.969570	6.3	discard	protein add a narrower quarter-context second block after the successful half-context front-local block
+exp036	3.970546	6.4	discard	protein use full KV heads in short-window blocks while keeping GQA in global blocks
+exp037	3.970966	6.4	discard	protein widen the single front-local attention block modestly from half-context to five-eighths context in the widened GQA SwiGLU model
+exp038	3.968775	6.3	keep	protein reduce KV heads from 3 to 2 in the front-local widened GQA SwiGLU model
+exp039	3.970781	6.2	discard	protein push the front-local widened GQA SwiGLU model from 2 KV heads to single-KV MQA
+exp040	3.969774	6.4	discard	protein make upper-half learned value embeddings query-head aligned while keeping 2-KV front-local GQA
+exp041	3.972181	7.3	discard	protein deepen the front-local 2-KV GQA SwiGLU model from 6 to 7 layers while holding width at 384d
+exp042	3.968889	5.7	discard	protein reduce SwiGLU FFN expansion from 5x to 4x in the front-local 2-KV GQA model
+exp043	3.974543	7.7	discard	protein rebalance the front-local 2-KV GQA SwiGLU model to 7 layers with 4x FFN expansion
+exp044	3.968980	5.3	discard	protein rebalance the front-local 2-KV GQA SwiGLU model to 5 layers while keeping width at 384d
+exp045	3.972337	6.3	discard	protein use 48-d attention heads to raise the front-local 384d 2-KV GQA baseline from 6 to 8 query heads
+exp046	3.969474	6.4	discard	protein use channelwise upper-half value-embedding gates in the front-local 384d 2-KV GQA SwiGLU model
+exp047	3.972023	6.4	discard	protein keep 2 KV heads in the front-local block but raise later global blocks to 3 KV heads
+exp048	3.971200	6.3	discard	protein use single-KV MQA only in the short-window first block while keeping 2-KV global blocks
+exp049	3.968885	6.3	discard	protein tighten the front-local 2-KV GQA SwiGLU model short window from half-context to quarter-context
+exp050	3.971499	6.3	discard	protein remove the raw-input x0 skip from the first front-local block while keeping the exp038 2-KV GQA architecture
+exp051	3.970077	6.9	discard	protein add learned per-layer residual scales on attention and MLP branches atop the exp038 2-KV front-local GQA model
+exp052	3.968642	6.3	keep	protein add a quarter-then-half local prefix before global attention in the widened 2-KV GQA SwiGLU model
+exp053	3.970886	6.3	discard	protein tighten the front-pyramid local prefix from quarter-then-half to eighth-then-half attention
+exp054	3.971197	6.2	discard	protein add a third quarter-context local block after the successful quarter-then-half local prefix
+exp055	3.969958	6.3	discard	protein reverse the successful local prefix to half-then-quarter before global attention in the widened 2-KV GQA SwiGLU model
+exp056	3.976064	7.3	discard	protein widen the successful quarter-then-half local-prefix 2-KV GQA SwiGLU model from 384d to 448d
+exp057	3.971609	6.3	discard	protein widen the first local-prefix block from quarter- to three-eighths-context while keeping the half-context second block
+exp058	3.968933	5.7	discard	protein reduce SwiGLU FFN expansion from 5x to 4x in the successful quarter-then-half local-prefix 2-KV GQA model
+exp059	3.968731	6.3	discard	protein restrict raw-input x0 skip warm-start to the quarter-then-half local-prefix blocks while global layers start without x0 shortcut
+exp060	3.972650	6.2	discard	protein keep 2-KV local-prefix blocks but collapse global layers to single-KV MQA in the quarter-then-half front-pyramid model
+exp061	3.969441	6.3	discard	protein tighten the second local-prefix block from half- to three-eighths-context while keeping the quarter-context first block
+exp062	3.968989	6.3	discard	protein raise head dim from 64 to 96 in the successful quarter-then-half local-prefix 2-KV GQA model, reducing query heads from 6 to 4 at fixed 384d width
+exp063	3.971745	6.3	discard	protein use full-KV attention in the quarter-then-half local prefix while keeping 2-KV GQA in later global layers
+exp064	3.971172	6.9	discard	protein raise SwiGLU FFN expansion from 5x to 6x in the successful quarter-then-half local-prefix 2-KV GQA model
+exp065	3.969116	6.3	discard	protein widen the second quarter-then-half local-prefix block from half- to three-quarter-context before global attention
+exp066	3.971028	6.3	discard	protein raise KV heads from 2 to 3 in the successful quarter-then-half local-prefix GQA model
+exp067	4.392318	6.3	discard	protein tie input and output embeddings in the successful quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp068	3.970459	6.3	discard	protein move learned value embeddings from the upper half to the quarter-then-half local-prefix blocks plus the final layer
+exp069	3.970570	6.3	discard	protein extend learned value embeddings from the upper half to the quarter-then-half local-prefix blocks while keeping the successful upper-half placement
+exp070	3.972655	7.3	discard	protein deepen the successful quarter-then-half local-prefix 2-KV GQA SwiGLU model from 6 to 7 layers while keeping width fixed at 384d
+exp071	3.970740	6.3	discard	protein depth-ramp the raw-input x0 skip warm-start from 0 in the earliest local-prefix block to 0.2 in the final global block while keeping the quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp072	3.972358	6.3	discard	protein use ReluSquared MLPs only in the quarter-then-half local-prefix blocks while keeping SwiGLU in later global layers
+exp073	3.969152	6.3	discard	protein extend learned value embeddings from the upper half to all global-attention layers in the quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp074	3.970861	6.3	discard	protein front-load raw-input x0 skip into the quarter-then-half local-prefix blocks while reducing it in later global layers
+exp075	3.970429	6.3	discard	protein initialize raw-input x0 skip only in global-attention layers while keeping the quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp076	3.971153	6.2	discard	protein reduce head dim from 64 to 48, raising query heads from 6 to 8 at fixed 384d width in the quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp077	3.970379	6.2	discard	protein restrict learned value embeddings from the upper half to the final third of layers in the quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp078	3.968845	6.1	discard	protein reduce SwiGLU FFN expansion only in the quarter-then-half local-prefix blocks while keeping 5x FFN in later global layers
+exp079	3.968565	5.8	keep	protein reduce SwiGLU FFN expansion only in later global-attention layers while keeping 5x FFN in the quarter-then-half local-prefix blocks
+exp080	3.969446	5.9	discard	protein restore 5x SwiGLU only in the first global-attention layer while keeping 4x FFN in later global layers of the quarter-then-half local-prefix 2-KV GQA model
+exp081	3.971772	5.9	discard	protein add a third half-context local block after the successful quarter-then-half local prefix while keeping 4x FFN in later global layers
+exp082	0.000000	0.0	crash	protein taper the successful quarter-then-half local-prefix 2-KV GQA model by reducing the last two global SwiGLU blocks from 4x to 3x FFN while keeping earlier global layers at 4x and local-prefix blocks at 5x
+exp083	3.969957	5.8	discard	protein disable upper-half learned value embeddings in the successful quarter-then-half local-prefix 2-KV GQA model while keeping 5x local and 4x global SwiGLU FFNs
+exp084	0.000000	0.0	crash	protein taper only the final global SwiGLU block from 4x to 3x FFN while keeping 5x local and earlier 4x global FFNs in the successful quarter-then-half local-prefix 2-KV GQA model
+exp085	3.969563	5.8	discard	protein admit quarter-window Q tokens in layer-pattern validation so the quarter-then-half front-pyramid configuration can execute as intended
+exp086	3.970687	6.0	discard	protein restore 5x SwiGLU only in the final global-attention layer while keeping 4x FFN in earlier global layers and 5x in the quarter-then-half local prefix
+exp087	3.970304	5.8	discard	protein replace the quarter-then-half local prefix with two quarter-window prefix blocks while keeping 5x local and 4x global SwiGLU FFNs in the 2-KV GQA model
+exp088	3.969715	5.8	discard	protein lower raw-input x0 skip warm-start from 0.1 to 0.05 across all layers while keeping the quarter-then-half local-prefix 2-KV GQA model with 5x local and 4x global SwiGLU FFNs
+exp089	0.000000	0.0	crash	protein raise SwiGLU FFN expansion only in the quarter-window prefix block from 5x to 6x while keeping the half-window prefix at 5x and later global layers at 4x
+exp090	3.970211	5.5	discard	protein reduce later global-attention SwiGLU FFN expansion from 4x to 3x while keeping the quarter-then-half local prefix at 5x in the successful 2-KV GQA model
+exp091	3.969863	5.8	discard	protein widen the first front-pyramid local block from quarter-context to three-eighths context while keeping the half-window second block and 5x local / 4x global SwiGLU FFNs
+exp092	3.969898	5.8	discard	protein bound upper-half learned value-embedding gates to [0,1] instead of doubling sigmoid output in the quarter-then-half local-prefix 2-KV GQA SwiGLU model
+exp093	3.969828	5.8	discard	protein use single-KV MQA only in the quarter-then-half local prefix while keeping 2-KV GQA in later global layers and 5x local / 4x global SwiGLU FFNs
+exp094	3.970327	5.9	discard	protein add a late half-window refinement block before the final global layer, using QSLLSL attention while keeping the successful quarter-then-half prefix, 2-KV GQA, and 5x local / 4x global SwiGLU FFNs
+exp095	3.969923	5.8	discard	protein reduce SwiGLU FFN expansion only in the quarter-window prefix block from 5x to 4x while keeping the half-window prefix at 5x and later global layers at 4x
+exp096	3.969161	5.8	discard	protein reduce SwiGLU FFN expansion only in the half-window prefix block from 5x to 4x while keeping the quarter-window prefix at 5x and later global blocks at 4x
+exp097	3.969313	5.8	discard	protein replace the upper-half value-embedding doubled-sigmoid gate with an identity-centered tanh gate so the successful quarter-then-half 2-KV GQA model keeps unit initialization but gets sharper gate modulation
+exp098	3.971600	5.8	discard	protein keep SwiGLU in the quarter-then-half local prefix but switch later global-attention MLP blocks to ReluSquared while keeping 2-KV GQA, upper-half value embeddings, and 5x local / 4x global FFN widths
+exp099	3.968380	5.9	keep	protein insert a mid-stack half-window refinement block into the successful quarter-then-half prefix, using QSLSLL attention while keeping 5x local / 4x global SwiGLU FFNs
+exp100	3.971654	5.9	discard	protein replace the exp099 mid-stack half-window refinement block with a quarter-window refinement block, using QSLQLL attention while keeping 5x local / 4x global SwiGLU FFNs

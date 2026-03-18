@@ -1,0 +1,11 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.143118	5.6	keep	random nas d=3 width=512 heads=8 act=GELU attn=full
+exp002	1.201623	7.4	discard	random nas d=7 width=320 heads=8 act=GELU attn=windowed
+exp003	1.157836	7.7	discard	random nas d=8 width=288 heads=6 act=ReluSquared attn=full
+exp004	1.201709	3.6	discard	random nas d=7 width=128 heads=2 act=ReluSquared attn=full
+exp005	1.160644	10.8	discard	random nas d=7 width=480 heads=6 act=GELU attn=full
+exp006	1.183048	3.2	discard	random nas d=3 width=256 heads=4 act=GELU attn=windowed
+exp007	1.267130	2.5	discard	random nas d=3 width=192 heads=8 act=ReLU attn=full
+exp008	1.291454	17.5	discard	random nas d=5 width=224 heads=8 act=GELU attn=windowed
+exp009	1.222360	5.2	discard	random nas d=4 width=416 heads=2 act=ReLU attn=windowed
+exp010	1.265233	3.9	discard	random nas d=6 width=192 heads=8 act=ReLU attn=windowed
