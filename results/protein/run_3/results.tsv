@@ -1,0 +1,60 @@
+commit	val_bpb	memory_gb	status	description
+exp001	3.976560	5.3	keep	baseline
+exp002	3.974884	5.4	keep	protein full attention default at seq_len 512
+exp003	3.971052	6.5	keep	protein widen full-attention backbone to 384d/6 heads
+exp004	3.972182	6.7	discard	protein switch widened full-attention backbone to SwiGLU MLP
+exp005	3.971316	6.3	discard	protein grouped-query full attention: keep 384d/6 query heads, halve KV heads to 3
+exp006	3.972455	7.6	discard	protein deepen winning full-attention backbone to 7 layers while keeping 384d/6 heads
+exp007	3.971704	5.5	discard	protein rebalance winning 384d/6-head full-attention backbone to 5 layers
+exp008	4.589392	6.6	discard	protein tie input/output embeddings on winning 384d/6-head full-attention backbone
+exp009	3.979090	6.0	discard	protein parallel pre-norm residual block on winning 384d/6-head full-attention backbone
+exp010	3.974723	6.7	discard	protein densify value-embedding path to every full-attention block
+exp011	3.971609	6.5	discard	protein back-load value embeddings into deeper half of winning 384d/6-head full-attention backbone
+exp012	3.971292	6.5	discard	protein front-load value embeddings into shallower half of winning 384d/6-head full-attention backbone
+exp013	3.973101	7.1	discard	protein raise winning 384d/6-head full-attention backbone MLP expansion from 5x to 6x
+exp014	3.971156	6.4	discard	protein remove alternating value-embedding side path from winning 384d/6-head full-attention backbone
+exp015	3.974652	6.6	discard	protein split winning 384d full-attention backbone into 8 narrower attention heads
+exp016	3.971840	6.5	discard	protein keep winning 384d full-attention backbone but reduce to 4 wider attention heads
+exp017	3.972461	6.5	discard	protein front-local hybrid attention: keep winning 384d/6-head backbone but window only the first block
+exp018	3.975033	7.7	discard	protein widen full-attention backbone to 448d/7 heads
+exp019	3.976865	7.4	discard	protein per-channel residual and x0 gates on winning 384d/6-head full-attention backbone
+exp020	0.000000	0.0	crash	protein add learned RMSNorm gains on residual-stream norms for winning 384d/6-head full-attention backbone
+exp021	3.970507	6.2	keep	protein grouped-query full attention: keep winning 384d/6 query heads, cut KV heads to 2
+exp022	3.972582	6.2	discard	protein multi-query full attention: keep winning 384d/6 query-head backbone, cut KV heads from 2 to 1
+exp023	3.971365	6.3	discard	protein grouped-query full attention: keep winning 384d/6 query-head backbone, raise KV heads from 2 to 3
+exp024	3.970050	6.2	keep	protein simplify winning grouped-query full-attention backbone by removing alternating value-embedding side path
+exp025	3.968623	5.6	keep	protein shrink winning grouped-query full-attention backbone MLP expansion from 5x to 4x
+exp026	3.971154	5.0	discard	protein shrink winning grouped-query full-attention backbone MLP expansion from 4x to 3x
+exp027	4.459431	5.7	discard	protein tie input/output embeddings on winning grouped-query full-attention 384d/6-head backbone
+exp028	3.976088	5.6	discard	protein switch winning grouped-query full-attention 384d/6-head backbone MLP activation from ReluSquared to GELU
+exp029	3.969352	5.7	discard	protein replace winning grouped-query full-attention 384d/6-head backbone 4x ReLU-squared MLP with parameter-matched SwiGLU
+exp030	3.969928	6.5	discard	protein deepen winning grouped-query full-attention backbone to 7 layers while keeping 384d/6 query heads and 2 KV heads
+exp031	3.969854	5.6	discard	protein zero-init x0 skip scalars on winning grouped-query full-attention 384d/6-head backbone
+exp032	3.970266	4.7	discard	protein rebalance winning grouped-query full-attention backbone to 5 layers while keeping 384d/6 query heads and 2 KV heads
+exp033	3.973521	5.6	discard	protein switch winning grouped-query full-attention 384d/6-head backbone MLP activation from ReluSquared to SiLU
+exp034	3.974983	5.6	discard	protein raise winning grouped-query full-attention backbone from 6 to 8 query heads while keeping 384d, 2 KV heads, and 4x ReLU-squared MLP
+exp035	3.969164	5.6	discard	protein switch winning grouped-query full-attention backbone from 2 KV heads to multi-query attention (1 KV head)
+exp036	3.996830	5.2	discard	protein remove per-head rotary qk RMS normalization from winning grouped-query full-attention 384d/6-head backbone
+exp037	3.969731	5.9	discard	protein test intermediate 4.5x MLP expansion on winning grouped-query full-attention 384d/6-head backbone
+exp038	3.971699	5.7	discard	protein rebalance winning grouped-query full-attention backbone to 7 layers and 336d while keeping 6 query heads, 2 KV heads, and 4x ReLU-squared MLP
+exp039	3.971008	5.5	discard	protein front-local hybrid attention on winning grouped-query backbone: first 3 blocks use 256-token sliding windows and top 3 stay global
+exp040	3.969465	5.6	discard	protein raise winning grouped-query full-attention backbone x0 skip scalar init from 0.1 to 0.2
+exp041	0.000000	0.0	crash	protein rebalance winning grouped-query full-attention backbone to 5 layers and 448d/7 query heads while keeping 2 KV heads and 4x ReLU-squared MLP
+exp042	3.969332	5.6	discard	protein depth-ramped x0 skip init on winning grouped-query full-attention 384d/6-head backbone: linearly initialize x0 scalars from 0.0 to 0.2 across layers
+exp043	3.970182	5.6	discard	protein depth-ramped MLP on winning grouped-query full-attention backbone: lower layers 3x, middle layers 4x, upper layers 5x while keeping average 4x expansion
+exp044	0.000000	0.0	crash	protein rebalance winning grouped-query full-attention backbone to 7 layers and 320d/5 query heads while keeping 2 KV heads and 4x ReLU-squared MLP
+exp045	3.970403	5.6	discard	protein front-local hybrid attention on winning grouped-query backbone: first block uses 256-token sliding window and upper 5 stay global
+exp046	3.972023	6.5	discard	protein widen winning grouped-query full-attention backbone to 448d/8 query heads while keeping 2 KV heads and 4x ReLU-squared MLP
+exp047	3.968814	5.5	discard	protein slightly leaner winning grouped-query full-attention backbone: reduce MLP expansion from 4x to 3.75x
+exp048	3.968829	6.2	discard	protein add learned per-layer attention and MLP branch scales on winning grouped-query full-attention 384d/6-head backbone
+exp049	3.970007	5.6	discard	protein middle-local hybrid attention on winning grouped-query backbone: keep 384d/6 query heads, 2 KV heads, and 4x ReLU-squared MLP, but window only the middle block
+exp050	3.969765	5.6	discard	protein depth-ramped residual-stream skip init on winning grouped-query full-attention 384d/6-head backbone: linearly initialize residual lambdas from 0.85 to 1.0 across layers
+exp051	3.969277	5.3	discard	protein reduce winning grouped-query full-attention backbone MLP expansion from 4x to 3.5x
+exp052	3.972508	4.9	discard	protein shrink winning grouped-query full-attention backbone head dimension from 64 to 56, yielding 336d/6 query heads with 2 KV heads and 4x ReLU-squared MLP
+exp053	3.972070	5.7	discard	protein widen per-head channel size on winning grouped-query full-attention backbone from 64 to 96, yielding 384d/4 query heads with 2 KV heads and 4x ReLU-squared MLP
+exp054	3.982127	5.7	discard	protein replace winning grouped-query full-attention backbone 4x ReLU-squared MLP with parameter-matched ReLU2GLU gated MLP
+exp055	3.969958	5.7	discard	protein raise winning grouped-query full-attention backbone KV heads from 2 to 3 while keeping 384d/6 query heads, no value-embedding side path, and 4x ReLU-squared MLP
+exp056	3.970784	4.6	discard	protein rebalance winning grouped-query full-attention backbone to a leaner 320d/5-query-head variant and let odd head counts fall back to 1 KV head (multi-query)
+exp057	3.968542	5.6	keep	protein narrow winning grouped-query full-attention backbone MLP expansion from 4x to 3.875x
+exp058	3.969408	5.5	discard	protein slightly narrow winning grouped-query full-attention backbone MLP expansion from 3.875x to 3.8125x
+exp059	3.968866	5.6	discard	protein slightly widen winning grouped-query full-attention backbone MLP expansion from 3.875x to 3.9375x
