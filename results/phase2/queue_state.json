@@ -3,9 +3,9 @@
   "task": {
     "kind": "agent",
     "program": "program.md",
-    "run": 3,
-    "track": "protein"
+    "run": 1,
+    "track": "nlp"
   },
-  "task_index": 15,
-  "tasks_completed": 14
+  "task_index": 17,
+  "tasks_completed": 16
 }

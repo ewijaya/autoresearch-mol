@@ -1,0 +1,8 @@
+{
+  "best_experiment": "exp052",
+  "best_val_bpb": 1.130139,
+  "num_crash": 2,
+  "num_discard": 93,
+  "num_experiments": 100,
+  "num_keep": 5
+}

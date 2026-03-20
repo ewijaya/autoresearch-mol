@@ -58,3 +58,44 @@ exp056	3.970784	4.6	discard	protein rebalance winning grouped-query full-attenti
 exp057	3.968542	5.6	keep	protein narrow winning grouped-query full-attention backbone MLP expansion from 4x to 3.875x
 exp058	3.969408	5.5	discard	protein slightly narrow winning grouped-query full-attention backbone MLP expansion from 3.875x to 3.8125x
 exp059	3.968866	5.6	discard	protein slightly widen winning grouped-query full-attention backbone MLP expansion from 3.875x to 3.9375x
+exp060	3.969853	5.6	discard	protein lower winning grouped-query full-attention backbone x0 skip scalar init from 0.1 to 0.05 while keeping 384d/6 query heads, 2 KV heads, no value-embedding side path, and 3.875x ReLU-squared MLP
+exp061	3.969533	6.2	discard	protein add learned per-layer attention and MLP branch scales on the winning grouped-query full-attention 384d/6-query-head, 2-KV-head, 3.875x ReLU-squared backbone
+exp062	3.968596	5.6	discard	protein add learned affine RMSNorm gains on the winning grouped-query full-attention 384d/6-query-head, 2-KV-head, 3.875x ReLU-squared backbone residual-stream norms while routing 1D norm weights through AdamW instead of Muon
+exp063	3.969351	5.6	discard	protein reduce winning grouped-query full-attention 384d/6-query-head backbone KV heads from 2 to 1 while keeping no value-embedding side path and 3.875x ReLU-squared MLP
+exp064	3.970723	5.6	discard	protein tighten the lowest block of the winning grouped-query full-attention 384d/6-query-head, 2-KV-head, 3.875x ReLU-squared backbone to a 128-token sliding window while keeping upper 5 blocks global
+exp065	3.970384	5.6	discard	protein add learned scalar RMSNorm gains on the winning grouped-query full-attention 384d/6-query-head, 2-KV-head, 3.875x ReLU-squared backbone residual-stream norms while routing norm scalars through AdamW
+exp066	0.000000	0.0	crash	protein linearly ramp winning grouped-query full-attention 384d/6-query-head, 2-KV-head backbone MLP expansion from 3.5x in lower layers to 4.25x in upper layers while preserving 3.875x average width
+exp067	3.972441	5.6	discard	protein keep winning 384d full-attention grouped-query backbone but raise query-head count from 6 to 8 while keeping 2 KV heads and 3.875x ReLU-squared MLP
+exp068	3.970063	6.5	discard	protein deepen winning grouped-query full-attention backbone from 6 to 7 layers while keeping 384d, 6 query heads, 2 KV heads, no value-embedding side path, and 3.875x ReLU-squared MLP
+exp069	3.969073	5.6	discard	protein replace winning grouped-query full-attention 384d/6-query-head, 2-KV-head, 3.875x backbone ReLU-squared MLP with a parameter-matched SwiGLU MLP
+exp070	0.000000	0.0	crash	protein linearly ramp winning grouped-query full-attention 384d/6-query-head, 2-KV-head backbone MLP expansion from 3.75x in lower layers to 4.0x in upper layers while preserving 3.875x average width
+exp071	3.967894	5.7	keep	protein keep winning 384d grouped-query full-attention backbone and reduce query heads from 6 to 4 while keeping 2 KV heads and 3.875x ReLU-squared MLP
+exp072	3.967593	5.6	keep	protein keep winning 384d grouped-query full-attention backbone with 4 query heads and reduce KV heads from 2 to 1 while keeping 3.875x ReLU-squared MLP
+exp073	3.970408	5.6	discard	protein keep winning 384d grouped-query full-attention backbone with 1 KV head and reduce query heads from 4 to 3 while keeping 3.875x ReLU-squared MLP
+exp074	3.971381	4.6	discard	protein keep winning 4-query-head multi-query full-attention backbone and reduce model width from 384d to 320d while keeping 3.875x ReLU-squared MLP
+exp075	3.971873	5.4	discard	protein rebalance winning 4-query-head multi-query full-attention backbone to 5 layers and 448d while keeping 1 KV head and 3.875x ReLU-squared MLP
+exp076	3.969276	6.5	discard	protein deepen winning 384d multi-query full-attention backbone from 6 to 7 layers while keeping 4 query heads, 1 KV head, and 3.875x ReLU-squared MLP
+exp077	3.969054	5.6	discard	protein reintroduce alternating value-embedding side path on the winning 384d 6-layer full-attention multi-query backbone with 4 query heads, 1 KV head, and 3.875x ReLU-squared MLP
+exp078	3.966596	5.6	keep	protein retune winning 384d 6-layer 4-query-head multi-query full-attention backbone by lowering Muon matrix LR from 0.04 to 0.035
+exp079	3.967585	5.6	discard	protein retune winning 384d 6-layer 4-query-head multi-query full-attention backbone by lowering Muon matrix LR from 0.035 to 0.03
+exp080	3.968655	5.6	discard	protein retune winning 384d 6-layer 4-query-head multi-query full-attention backbone by nudging Muon matrix LR from 0.035 to 0.0375
+exp081	3.968159	5.6	discard	protein keep winning 384d 6-layer 4-query-head multi-query full-attention backbone and shorten LR warmdown from the final 50% to the final 25% of training while keeping Muon matrix LR at 0.035
+exp082	3.969132	5.6	discard	protein retune winning 384d 6-layer 4-query-head multi-query full-attention backbone by widening the ReLU-squared MLP from 3.875x to 4.0x
+exp083	3.969902	5.2	discard	protein slightly narrow winning 384d 6-layer 4-query-head multi-query full-attention backbone to 352d while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp084	3.974278	5.7	discard	protein keep winning 384d 6-layer multi-query full-attention backbone and reduce query heads from 4 to 2 while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp085	3.967509	5.6	discard	protein split Muon matrix groups by transformer role and shape on the winning 384d 6-layer 4-query-head multi-query full-attention backbone
+exp086	3.967323	5.6	discard	protein keep winning 384d 6-layer 4-query-head multi-query full-attention backbone and keep a 10% LR floor during the final 50% warmdown
+exp087	3.972550	6.2	discard	protein slightly widen winning 384d 6-layer 4-query-head multi-query full-attention backbone to 416d while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp088	3.971241	5.9	discard	protein rebalance winning 384d 6-layer 4-query-head multi-query full-attention backbone to 400d with 5 query heads while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp089	3.975731	5.6	discard	protein swap winning 384d 6-layer 4-query-head multi-query full-attention backbone MLP activation from ReLU-squared to SiLU while keeping 1 KV head, 3.875x width, and Muon matrix LR at 0.035
+exp090	3.971077	5.9	discard	protein rebalance winning 384d 6-layer 4-query-head multi-query full-attention backbone to 7 layers and 336d while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp091	3.970433	5.6	discard	protein add 5% LR warmup to the winning 384d 6-layer 4-query-head multi-query full-attention backbone while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp092	3.969177	5.6	discard	protein raise default logit softcap from 15 to 30 on the winning 384d 6-layer 4-query-head multi-query full-attention backbone
+exp093	3.969384	5.6	discard	protein revisit 384d 6-layer multi-query full-attention backbone by raising query heads from 4 back to 6 while keeping 1 KV head, 3.875x ReLU-squared MLP, and Muon matrix LR at 0.035
+exp094	3.969170	5.7	discard	protein revisit 384d 6-layer 4-query-head full-attention backbone with 2 KV heads while keeping 3.875x ReLU-squared MLP and Muon matrix LR at 0.035
+exp095	3.967338	5.6	discard	protein retune winning 384d 6-layer 4-query-head multi-query full-attention backbone by lowering Muon matrix weight decay from 0.2 to 0.15
+exp096	3.969116	5.6	discard	protein retune winning 384d 6-layer 4-query-head multi-query full-attention backbone by raising Muon matrix weight decay from 0.2 to 0.25
+exp097	3.976267	5.6	discard	protein swap winning 384d 6-layer 4-query-head multi-query full-attention backbone MLP activation from ReLU-squared to GELU while keeping 1 KV head, 3.875x width, and Muon matrix LR at 0.035
+exp098	3.969847	5.6	discard	protein initialize attention and MLP residual output projections with small depth-scaled weights instead of zeros on the winning 384d 6-layer 4-query-head multi-query full-attention backbone
+exp099	3.968032	5.5	discard	protein slightly narrow winning 384d 6-layer 4-query-head multi-query full-attention backbone MLP expansion from 3.875x to 3.75x while keeping 1 KV head, ReLU-squared activation, and Muon matrix LR at 0.035
+exp100	3.968678	5.6	discard	protein add learned affine RMSNorm gains on residual-stream norms for the winning 384d 6-layer 4-query-head multi-query full-attention backbone while routing norm weights through AdamW
