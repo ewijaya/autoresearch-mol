@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.152732	6.4	keep	baseline
+exp002	1.164477	6.5	discard	gated MLP with parameter-matched inner width
+exp003	1.165997	6.1	discard	shared single KV head (multi-query attention)
+exp004	1.149055	6.4	keep	quarter-context sliding window for local attention layers
+exp005	1.149676	6.4	discard	progressive local attention windows across stacked sliding layers
+exp006	1.147983	6.5	keep	front-loaded quarter-window local attention layout
+exp007	2.935681	6.5	discard	tied input/output embeddings for shared token readout
+exp008	1.152315	6.6	discard	value embeddings in every layer instead of alternating layers
+exp009	1.159781	6.5	discard	value embeddings only in sliding-window attention layers
+exp010	1.148560	6.5	discard	half-context window for front-loaded local attention layers
+exp011	1.148901	6.5	discard	eighth-context window for front-loaded local attention layers
+exp012	1.147166	6.5	keep	full-hidden-state value-embedding gate instead of 32-channel bottleneck
+exp013	1.183669	6.3	discard	8 query heads with paired grouped KV heads at the same width
+exp014	1.151463	6.6	discard	channel-wise value-embedding gate instead of per-head scalar gate
+exp015	1.148980	6.5	discard	parameter-matched SwiGLU feed-forward instead of plain activated MLP
+exp016	1.148198	6.5	discard	three front-loaded quarter-window attention layers before global upper layers
+exp017	1.152559	6.4	discard	shared value-embedding table across alternating layers
+exp018	1.157216	7.4	discard	7-layer depth/width rebalance at fixed 320 model width
+exp019	1.149889	6.5	discard	value embeddings only on global attention layers
+exp020	1.153289	6.5	discard	RMS-normalize value embeddings before gated attention injection
+exp021	1.144834	6.5	keep	explicit two-layer front-loaded quarter-window attention instead of repeating SSLL pattern
+exp022	1.139198	6.5	keep	single front-loaded quarter-window attention layer before global upper layers
+exp023	1.141478	6.5	discard	4 wider attention heads at fixed 320 width
+exp024	1.146473	6.5	discard	front local layer plus one upper-middle quarter-window attention layer
+exp025	1.141621	6.5	discard	shift single quarter-window attention from layer 0 to layer 1
+exp026	1.140957	6.5	discard	shift alternating value embeddings to even-indexed layers including the front local block
+exp027	1.174576	6.5	discard	10 full attention heads at fixed 320 width
+exp028	1.139820	5.6	discard	5-layer 320-width model with the same single front-loaded quarter-window attention
+exp029	2.927456	6.5	discard	tie token embedding and unembedding weights on the exp022 front-local attention model
+exp030	1.138350	6.5	keep	scaled embedding-copy initialization for untied lm head on the exp022 front-local attention model
+exp031	1.158981	6.2	discard	single shared KV head grouped-query attention on the exp030 front-local model
+exp032	1.139018	6.5	discard	tighten the single front-local attention layer from quarter-window to eighth-window on the exp030 model
+exp033	1.156473	6.5	discard	switch default MLP activation from ReluSquared to GELU on the exp030 front-local model
+exp034	1.143955	6.5	discard	layerwise-decayed x0 input-skip initialization on the exp030 front-local model
+exp035	1.141503	6.6	discard	5-layer 384-width front-local model with scaled untied lm head
+exp036	1.161088	6.3	discard	remove alternating value embeddings from the exp030 front-local model
+exp037	1.149321	6.6	discard	swap plain FFN for parameter-matched SwiGLU gated MLP on the exp030 front-local model
+exp038	1.143090	6.0	discard	reduce FFN expansion from 5x to 4x on the exp030 front-local model
+exp039	1.146175	6.5	discard	add a second front-loaded quarter-window attention layer on the exp030 model
+exp040	1.140496	6.5	discard	widen the single front-local attention layer from quarter-window to half-window on the exp030 model
+exp041	1.139408	6.5	discard	scaled token-embedding-copy initialization for alternating value embeddings on the exp030 front-local model
+exp042	1.148019	6.7	discard	value embeddings in every layer on the exp030 front-local attention model
+exp043	1.150339	6.5	discard	drop final-block value embedding from the exp030 front-local model
+exp044	1.144257	6.5	discard	RMS-normalize post-activation MLP states on the exp030 front-local model
+exp045	1.151192	6.6	discard	RMS-normalize gated attention values after value-embedding injection on the exp030 front-local model
+exp046	1.139057	6.5	discard	tighten the single front-local attention layer from quarter-window to three-sixteenths-window on the exp030 model
+exp047	1.154366	6.3	discard	tie alternating value embeddings to the token embedding table on the exp030 front-local model
+exp048	1.140401	7.6	discard	widen the exp030 single front-local attention model from 320 to 384 width while keeping 64-dim heads
+exp049	1.150683	6.3	discard	320d grouped-query attention with 4 query heads and 2 KV heads on the exp030 front-local model
+exp050	1.158304	7.5	discard	scaled tied-base readout with zero-init untied delta head on the exp030 front-local model
+exp051	1.144629	7.4	discard	deepen the exp030 front-local model from 6 to 7 layers while keeping 320 width
+exp052	1.144071	6.5	discard	move the single quarter-window attention layer from block 1 to block 2 on the exp030 front-local model
+exp053	1.169504	6.5	discard	8 full attention heads at fixed 320 width on the exp030 front-local model
+exp054	1.146218	7.0	discard	widen the exp030 front-local model MLP expansion from 5x to 6x
+exp055	1.142877	7.2	discard	per-channel residual and input-skip gates on the exp030 front-local model
+exp056	1.146217	6.5	discard	add a multiscale front-local stack with eighth-window then quarter-window attention
+exp057	1.149755	5.4	discard	rebalance the exp030 front-local model down to 256 width via a lower default aspect ratio
+exp058	1.147804	6.6	discard	replace the exp030 ReLU-squared MLP with a parameter-matched SwiGLU feedforward block
+exp059	1.136516	7.0	keep	separate learned per-layer attention and MLP residual branch scales on the exp030 front-local model
+exp060	1.137971	7.0	discard	add learned per-layer value-embedding scales on the exp059 branch-scaled front-local model
+exp061	1.138335	7.0	discard	bound separate learned per-layer attention and MLP residual branch scales to positive [0,2] gates on the exp059 front-local model
+exp062	1.139952	7.0	discard	widen the single front-local sliding-attention layer from quarter to half context on the exp059 branch-scaled model
+exp063	1.138161	7.0	discard	tighten the exp059 branch-scaled model's single front-local attention layer from quarter to three-sixteenths context
+exp064	1.141409	7.0	discard	initialize learned MLP residual branch scales below attention scales on the exp059 front-local model
+exp065	1.140452	7.0	discard	add a zero-init learned per-layer x0 skip into each MLP on the exp059 branch-scaled model
+exp066	1.157091	6.6	discard	parallelize branch-scaled attention and MLP residual updates from a shared normalized block input
+exp067	1.137850	7.0	discard	restrict the learned x0 skip path to the attention sublayer on the exp059 branch-scaled front-local model
+exp068	1.138989	7.0	discard	double the learned attention/MLP branch-scale optimizer lr on the exp059 front-local model
+exp069	1.140162	8.2	discard	widen the exp059 branch-scaled front-local model from 320 to 384 width while keeping 64-dim heads
+exp070	1.145454	8.0	discard	add a seventh 320d branch-scaled block to the exp059 front-local model
+exp071	1.158457	6.6	discard	switch the exp059 branch-scaled front-local model to multi-query attention with 5 query heads sharing 1 KV head
+exp072	1.148861	7.0	discard	shift alternating value embeddings onto the even-indexed blocks so the front-local layer gets value embeddings
+exp073	1.139460	7.0	discard	blend each block residual stream toward x0 instead of purely adding the learned x0 skip on the exp059 branch-scaled front-local model
+exp074	1.145741	7.0	discard	add a second front-loaded quarter-window attention layer on the exp059 branch-scaled model
+exp075	1.139603	7.0	discard	widen the exp059 branch-scaled model's single front-local attention layer from quarter to three-eighths context
+exp076	1.133830	7.0	keep	RMS-normalize attention and MLP residual branch outputs before learned branch scales on the exp059 front-local model
+exp077	1.162042	7.0	discard	RMS-normalize the carried residual stream before learned residual/x0 mixing on the exp076 front-local model
+exp078	1.130373	7.1	keep	add value embeddings to every global block while keeping the front-local block plain
+exp079	1.133839	7.1	discard	add value embeddings to the front-local attention block so every layer gets value embeddings
+exp080	1.134874	6.9	discard	share one learned value-embedding table across all global blocks on the exp078 branch
+exp081	1.138878	7.1	discard	add a penultimate quarter-window attention block before the final global layer on the exp078 branch
+exp082	1.140731	7.1	discard	replace the exp078 ReluSquared feed-forward with a width-matched SwiGLU MLP
+exp083	1.134264	7.0	discard	skip value embeddings in the first global block so only upper global layers get them
+exp084	1.132900	7.1	discard	halve value-embedding AdamW lr on the exp078 all-global-value-embedding branch
+exp085	1.130278	7.1	keep	raise value-embedding AdamW lr above token embedding lr on the exp078 all-global-value-embedding branch
+exp086	1.129238	7.1	keep	narrow the front-local attention block from quarter to eighth context on the exp085 value-embedding branch
+exp087	1.130318	7.1	discard	narrow the front-local attention block from eighth to sixteenth context on the exp086 value-embedding branch
+exp088	1.129544	7.1	discard	tighten the front-local attention block from eighth to three-thirty-seconds context on the exp086 value-embedding branch
+exp089	1.130042	7.1	discard	widen the exp086 front-local attention block from eighth to three-sixteenths context
+exp090	1.128584	7.1	keep	tighten the exp086 front-local attention block from eighth to seven-sixty-fourths context
+exp091	1.128916	7.1	discard	slightly widen the exp090 front-local attention block from seven-sixty-fourths to fifteen-one-twenty-eighths context
+exp092	1.128420	7.1	keep	slightly tighten the exp090 front-local attention block from seven-sixty-fourths to twenty-seven-two-fifty-sixths context
+exp093	1.128113	7.1	keep	slightly tighten the exp092 front-local attention block from twenty-seven-two-fifty-sixths to thirteen-one-twenty-eighths context
+exp094	1.131313	7.1	discard	slightly tighten the exp093 front-local attention block from thirteen-one-twenty-eighths to twenty-five-two-fifty-sixths context
+exp095	1.131730	7.1	discard	slightly raise global value-embedding AdamW lr on the exp093 narrow-front-window branch
+exp096	1.142772	7.1	discard	add a second front-loaded thirteen-one-twenty-eighths-window attention block on the exp093 narrow-front-window branch
+exp097	1.128771	7.1	discard	slightly widen the exp093 front-local attention block from thirteen-one-twenty-eighths to one-hundred-five-one-thousand-twenty-fourths context
+exp098	1.130700	7.0	discard	drop the earliest global block's value embedding on the exp093 narrow-front-window branch
+exp099	1.127670	7.1	keep	move the earliest global block's value embedding down to the front-local block on the exp093 narrow-front-window branch
+exp100	1.129500	7.0	discard	drop the second-earliest global block's value embedding while keeping the exp099 front-local transfer

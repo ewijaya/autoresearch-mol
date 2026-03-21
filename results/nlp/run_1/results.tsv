@@ -47,3 +47,55 @@ exp045	1.134112	6.2	discard	RMS-normalize upper-four-layer value embeddings befo
 exp046	1.128759	6.2	discard	make the upper-four-layer value-embedding taper learnable, initialized from the exp044 depth schedule
 exp047	1.126794	6.2	discard	compress the upper-four-layer value-embedding taper into a stronger 0.8-to-1.0 band in the 5-layer 384-dim full-attention stack
 exp048	1.129975	7.2	discard	same-width 6-layer version of the exp044 full-attention upper-four-layer value-embedding stack
+exp049	1.130212	6.2	discard	use full hidden-state input for the upper-four-layer value-embedding gates in the 5-layer 384-dim full-attention stack
+exp050	1.120026	6.2	keep	reduce the exp044 full-attention upper-four-layer value-embedding stack from 6 to 4 heads to widen head dimension at fixed 384 model width
+exp051	1.129689	5.9	discard	switch the 5-layer 384-dim 4-head full-attention value-embedding stack to grouped-query attention with 2 KV heads
+exp052	1.120140	6.2	discard	parameter-matched SwiGLU FFN replaces the ReluSquared MLP in the exp050 5-layer 384-dim 4-head full-attention upper-four-layer value-embedding stack
+exp053	1.122974	6.2	discard	reduce the exp050 5-layer 384-dim full-attention upper-four-layer value-embedding stack from 4 to 3 heads to widen head dimension further at fixed model width
+exp054	1.124160	5.7	discard	reduce FFN expansion from 4x to 3x in the exp050 5-layer 384-dim 4-head full-attention upper-four-layer value-embedding stack
+exp055	1.121784	6.2	discard	widen the exp050 upper-four-layer value-embedding gate input slice from 32 to 64 channels in the 5-layer 384-dim 4-head full-attention stack
+exp056	1.132422	6.6	discard	widen the exp050 4-head full-attention upper-four-layer value-embedding stack by increasing head dimension from 96 to 104 for a 416-dim model
+exp057	1.127367	6.1	discard	make only the first layer use a one-sixteenth local window while keeping the upper four layers full-attention in the exp050 5-layer 384-dim 4-head upper-four-layer value-embedding stack
+exp058	1.119690	6.2	keep	reduce the exp050 upper-four-layer value-embedding gate input slice from 32 to 16 channels in the 5-layer 384-dim 4-head full-attention stack
+exp059	1.119655	6.2	keep	reduce the exp058 upper-four-layer value-embedding gate input slice from 16 to 8 channels in the 5-layer 384-dim 4-head full-attention stack
+exp060	1.120387	6.2	discard	reduce the exp059 upper-four-layer value-embedding gate input slice from 8 to 4 channels in the 5-layer 384-dim 4-head full-attention stack
+exp061	0.000000	0.0	crash	sample the 8-channel upper-four-layer value-embedding gate input evenly across hidden-state channels instead of using the first contiguous slice
+exp062	1.119479	6.2	keep	sample the 8-channel upper-four-layer value-embedding gate input evenly across hidden-state channels with meta-safe static indices instead of using the first contiguous slice
+exp063	1.121062	6.2	discard	switch the exp062 upper-four-layer value-embedding gate from per-KV-head outputs to one shared scalar gate per token
+exp064	1.120579	6.2	discard	reduce the exp062 evenly sampled upper-four-layer value-embedding gate input from 8 channels to 6 channels
+exp065	0.000000	0.0	crash	add a learnable bias to the exp062 per-KV-head value-embedding gate so each upper-layer head can shift its default injection strength independently of the 8 sampled channels
+exp066	1.120424	6.2	discard	widen the exp062 evenly sampled upper-four-layer value-embedding gate input from 8 to 12 channels in the 5-layer 384-dim 4-head full-attention stack
+exp067	1.123091	6.1	discard	restrict the exp062 value-embedding path to the top three layers while keeping the 8-channel evenly sampled per-KV-head gate in the 5-layer 384-dim 4-head full-attention stack
+exp068	1.119611	6.2	discard	RMS-normalize the exp062 evenly sampled 8-channel value-embedding gate input before the per-KV-head gate projection
+exp069	0.000000	0.0	crash	revisit exp065 with explicit zero-initialized per-KV-head bias on the exp062 evenly sampled 8-channel upper-layer value gate
+exp070	1.121335	6.2	discard	taper the exp062 upper-layer value-embedding depth scale across the four VE-active layers so the first injected block is weakest and the top block stays full strength
+exp071	1.120483	6.2	discard	replace the exp062 upper-layer value-embedding gate with a zero-initialized 8-to-8-to-4 SiLU MLP so the 8 evenly sampled channels can interact before producing per-KV-head gates
+exp072	1.120343	6.2	discard	replace the exp062 8-channel evenly sampled value-gate probes with 8 evenly partitioned hidden-state band means before the per-KV-head gate
+exp073	1.121300	6.2	discard	replace the exp062 evenly sampled upper-four-layer per-KV-head value gate activation with 1+tanh instead of 2*sigmoid so unit initialization is preserved with a less saturating gate
+exp074	1.120216	6.2	discard	initialize the learned x0 residual skip with a 0.16-to-0.04 depth taper so lower blocks start with stronger direct access to token embeddings than upper blocks
+exp075	1.127928	6.2	discard	initialize the learned x0 residual skip with a 0.04-to-0.16 depth taper so upper blocks start with stronger direct access to token embeddings than lower blocks
+exp076	1.128898	6.2	discard	lower the exp062 flat learned x0 residual skip initialization from 0.1 to 0.05 so token-embedding injection starts weaker across all five layers
+exp077	1.121234	6.2	discard	gate the exp062 upper-layer value-embedding injection from normalized token-embedding x0 instead of the current hidden state so lexical identity steers VE strength
+exp078	1.120067	6.2	discard	blend the exp062 upper-layer value-embedding gate probe between normalized hidden state and normalized token-embedding x0 so VE strength can use both context and lexical identity
+exp079	1.123096	6.2	discard	reallocate the exp062 FFN budget across depth with a 3x,3x,4x,5x,5x MLP schedule so upper layers get more feed-forward capacity at fixed average 4x expansion
+exp080	1.122120	6.2	discard	phase-shift the exp062 8-channel upper-layer value-gate probes by layer so each VE-active block samples a different sparse hidden-state subset
+exp081	1.120872	6.2	discard	optimize the tiny upper-layer value-embedding gate projections with AdamW instead of grouping them into Muon matrix updates
+exp082	1.121284	6.2	discard	replace the exp062 ReLU-squared FFN with a parameter-matched SwiGLU block so the improved evenly sampled upper-four-layer value-gated stack gets multiplicative channel selection
+exp083	1.119180	6.2	keep	add a zero-initialized per-KV-head bias to the exp062 upper-four-layer value gate and optimize non-matrix transformer params with AdamW so each head can shift its default VE injection without Muon crashes
+exp084	1.127601	6.2	discard	RMS-normalize per-head value embeddings before the exp083 gate scales and injects them so the new per-KV-head bias controls a stable VE magnitude
+exp085	1.122013	6.2	discard	extend the stabilized exp083 per-KV-head gated value-embedding path to layer 0 so all five blocks can inject lexical value features
+exp086	1.119121	6.2	keep	add zero-initialized per-KV-head log gains on the exp083 upper-four-layer value-embedding path so gate bias sets the default injection while each head can separately learn VE amplitude
+exp087	1.119037	6.2	keep	initialize the exp086 per-KV-head value-embedding log gains slightly below zero so the gate-biased upper-layer VE path starts at about 0.8x amplitude and each head can scale up conservatively during training
+exp088	1.120010	6.2	discard	add a zero-initialized per-layer log gain on top of the exp087 upper-layer value-embedding path so each VE-active block can globally rebalance lexical injection in addition to the existing per-head gains
+exp089	1.118831	6.2	keep	initialize the exp087 per-KV-head value-embedding log gains more conservatively so the gate-biased upper-layer VE path starts at about 0.7x amplitude and each head can scale up only if needed
+exp090	0.000000	0.0	crash	depth-taper the exp089 upper-layer per-KV-head value-embedding gain initialization so lower VE-active blocks start around 0.55x and the top block starts around 0.85x while keeping the same average 0.7x injection strength
+exp091	1.120181	6.2	discard	bug-fixed rerun of the exp090 depth-tapered upper-layer per-KV-head value-embedding gain initialization so lower VE-active blocks start around 0.55x and the top block starts around 0.85x while keeping the same average 0.7x injection strength
+exp092	1.120039	6.2	discard	increase the exp089 upper-layer per-KV-head value gate from 8 to 12 evenly sampled hidden-state probe channels so each head sees a slightly richer sparse context before scaling lexical value injection
+exp093	1.119437	6.2	discard	initialize the exp089 upper-layer per-KV-head value gate biases slightly negative so the default lexical injection starts just under 1x before the existing 0.7x per-head gains scale it
+exp094	1.119878	6.2	discard	lower the exp089 upper-layer per-KV-head value-embedding gain initialization from about 0.7x to 0.6x so lexical injection starts even more conservatively before training can scale it up
+exp095	1.119134	6.2	discard	compress the exp089 upper-layer per-KV-head value gate to a 0.5-to-1.5 tanh band around unit scale so VE injection stays adaptive but less extreme than the prior 0-to-2 sigmoid gate
+exp096	1.119777	6.2	discard	halve the value-embedding AdamW learning rate relative to token embeddings so the exp089 gated upper-layer lexical path updates more conservatively than the main token table
+exp097	1.119305	6.2	discard	remove the exp089 built-in upper-layer VE depth taper so every VE-active block starts at the same conservative per-head lexical injection amplitude instead of weakening lower upper layers by default
+exp098	1.122630	6.1	discard	restrict the exp089 gated value-embedding path to the upper half of layers so lexical reinjection happens later after lower blocks build context
+exp099	1.129959	5.9	discard	switch the exp089 full-attention stack to grouped-query attention with 2 KV heads so pairs of query heads share K/V and the gated value-embedding path becomes lower-rank
+exp100	1.122568	7.2	discard	same-width 6-layer version of the exp089 384-dim 4-head full-attention upper-four-layer gated value-embedding stack
