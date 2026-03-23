@@ -1,2 +1,101 @@
 commit	val_bpb	memory_gb	status	description
 exp001	0.596736	5.3	keep	baseline
+exp002	0.597921	5.3	discard	add 5% lr warmup ratio
+exp003	0.593388	5.3	keep	reduce muon weight decay to 0.1
+exp004	0.591717	5.3	keep	reduce muon weight decay to 0.05
+exp005	0.591349	5.3	keep	reduce muon weight decay to 0.02
+exp006	0.590629	5.3	keep	reduce muon weight decay to 0.01
+exp007	0.591705	5.3	discard	reduce muon weight decay to 0.005
+exp008	0.590539	5.3	keep	reduce muon matrix lr to 0.03
+exp009	0.590111	5.3	keep	reduce muon matrix lr to 0.025
+exp010	0.581422	5.3	keep	reduce muon matrix lr to 0.02
+exp011	0.590958	5.3	discard	reduce muon matrix lr to 0.015
+exp012	0.581044	5.3	keep	slightly raise muon matrix lr to 0.022
+exp013	0.581354	5.3	discard	slightly reduce muon matrix lr to 0.021
+exp014	0.590135	5.3	discard	slightly raise muon matrix lr to 0.023
+exp015	0.589377	5.3	discard	slightly reduce embedding lr to 0.5
+exp016	0.581295	5.3	discard	slightly raise muon weight decay to 0.015
+exp017	0.580894	5.3	keep	slightly raise muon weight decay to 0.012
+exp018	0.590473	5.3	discard	keep 10% lr floor during warmdown
+exp019	0.589936	5.3	discard	slightly reduce muon beta2 to 0.94
+exp020	0.581351	5.3	discard	slightly raise muon weight decay to 0.013
+exp021	0.590210	5.3	discard	slightly reduce muon weight decay to 0.011
+exp022	0.580871	5.3	keep	slightly raise muon beta2 to 0.96
+exp023	0.581493	5.3	discard	slightly raise muon beta2 to 0.97
+exp024	0.589486	5.3	discard	slightly raise embedding lr to 0.7
+exp025	0.590333	5.3	discard	slightly raise AdamW beta2 to 0.96
+exp026	0.589559	5.3	discard	slightly raise unembedding lr to 0.005
+exp027	0.581675	5.3	discard	reduce warmdown ratio to 0.4
+exp028	0.590534	5.3	discard	slightly raise muon momentum schedule to 0.86->0.96
+exp029	0.591048	5.3	discard	slightly reduce AdamW beta1 to 0.75
+exp030	0.590054	5.3	discard	slightly raise AdamW beta1 to 0.85
+exp031	0.581506	5.3	discard	extend warmdown ratio to 0.6
+exp032	0.590221	5.3	discard	slightly reduce AdamW beta2 to 0.94
+exp033	0.581374	5.3	discard	slightly raise muon beta2 to 0.965
+exp034	0.581224	5.3	discard	slightly raise muon weight decay to 0.0125
+exp035	0.591322	7.9	discard	increase smiles batch size to 384 (total batch 98304)
+exp036	0.588806	2.7	discard	reduce smiles batch size to 128 (total batch 32768)
+exp037	0.590117	5.3	discard	slightly reduce scalar lr to 0.4
+exp038	0.581426	5.3	discard	slightly raise scalar lr to 0.6
+exp039	0.591563	5.3	discard	add 2% lr warmup ratio
+exp040	0.581273	5.3	discard	slightly reduce muon momentum schedule to 0.84->0.94
+exp041	0.590848	5.3	discard	slightly reduce unembedding lr to 0.003
+exp042	0.590307	5.3	discard	keep muon weight decay constant at 0.012
+exp043	0.580909	5.3	discard	slightly reduce muon beta2 to 0.955
+exp044	0.589989	5.3	discard	increase CUDA warmup steps to 20
+exp045	0.589678	5.3	discard	slightly reduce muon beta2 to 0.958
+exp046	0.581257	5.3	discard	slightly raise muon beta2 to 0.965
+exp047	0.581383	5.3	discard	slightly reduce muon matrix lr to 0.021
+exp048	0.605870	2.7	discard	halve smiles device batch to 128 and use grad accumulation 2 at total batch 65536
+exp049	0.580958	5.3	discard	slightly reduce muon final momentum to 0.94
+exp050	0.590762	5.3	discard	set final lr floor to 10% during warmdown
+exp051	0.610811	5.3	discard	double smiles total batch to 131072 with grad accumulation 2 at device batch 256
+exp052	0.589972	5.3	discard	slightly reduce muon matrix lr to 0.0215
+exp053	0.581268	5.3	discard	slightly raise scalar lr to 0.55
+exp054	0.589974	5.3	discard	slightly raise muon final momentum to 0.955
+exp055	0.590018	5.3	discard	slightly reduce muon final momentum to 0.945
+exp056	0.580989	5.3	discard	keep 25% muon weight decay floor during schedule decay
+exp057	0.589706	5.3	discard	slightly raise AdamW beta1 to 0.85
+exp058	0.590268	5.3	discard	slightly reduce x0 AdamW beta1 to 0.95
+exp059	0.590312	5.3	discard	slightly raise x0 AdamW beta2 to 0.96
+exp060	0.590201	5.3	discard	keep 10% muon weight decay floor during schedule decay
+exp061	0.581071	5.3	discard	slightly reduce x0 AdamW beta2 to 0.94
+exp062	0.590447	5.3	discard	slightly raise muon weight decay to 0.01225
+exp063	0.589922	5.3	discard	slightly raise AdamW eps to 1e-9
+exp064	0.581227	5.3	discard	slightly reduce muon beta2 to 0.959
+exp065	0.589755	5.3	discard	slightly reduce AdamW eps to 1e-11
+exp066	0.581550	5.3	discard	slightly reduce x0 AdamW beta2 to 0.945
+exp067	0.590363	5.3	discard	keep 20% muon weight decay floor during schedule decay
+exp068	0.591679	5.3	discard	add 2% learning-rate warmup ratio
+exp069	0.581873	5.3	discard	slightly raise x0 AdamW beta1 to 0.97
+exp070	0.589763	4.0	discard	reduce smiles batch size to 192 (total batch 49152)
+exp071	0.581067	5.3	discard	slightly reduce muon beta2 to 0.956
+exp072	0.590015	5.3	discard	slightly raise muon beta2 to 0.961
+exp073	0.589803	6.0	discard	slightly increase smiles batch size to 288 (total batch 73728)
+exp074	0.590356	5.3	discard	slightly raise muon matrix lr to 0.0225
+exp075	0.589851	5.3	discard	reduce CUDA warmup steps to 5
+exp076	0.590112	5.3	discard	keep 5% muon weight decay floor during schedule decay
+exp077	0.590206	5.3	discard	keep 30% muon weight decay floor during schedule decay
+exp078	0.589929	5.3	discard	slightly reduce value-embed AdamW lr to 0.5 while keeping token embedding lr at 0.6
+exp079	0.581630	5.3	discard	slightly raise embedding AdamW lr to 0.65
+exp080	0.581064	5.3	discard	slightly reduce shared embedding and value-embed AdamW lr to 0.575
+exp081	0.591341	5.3	discard	slightly reduce unembedding lr to 0.0035
+exp082	0.589724	5.3	discard	slightly raise AdamW eps to 1e-9
+exp083	0.581763	5.3	discard	slightly raise value-embed AdamW lr to 0.65 while keeping token embedding lr at 0.6
+exp084	0.589488	5.3	discard	slightly reduce token embedding AdamW lr to 0.575 while keeping value-embed lr at 0.6
+exp085	0.581412	5.3	discard	slightly reduce value-embed AdamW lr to 0.575 while keeping token embedding lr at 0.6
+exp086	0.581142	5.3	discard	slightly reduce shared embedding and value-embed AdamW lr to 0.59
+exp087	0.590149	5.3	discard	extend muon momentum ramp to 600 steps
+exp088	0.589578	5.3	discard	slightly raise token embedding AdamW lr to 0.625 while keeping value-embed lr at 0.6
+exp089	0.589797	5.3	discard	slightly reduce value-embed AdamW lr to 0.59 while keeping token embedding lr at 0.6
+exp090	0.581327	5.3	discard	shorten muon momentum ramp to 200 steps
+exp091	0.589825	5.3	discard	slightly reduce x0 AdamW beta2 to 0.93
+exp092	0.589623	5.3	discard	slightly reduce AdamW beta2 to 0.94
+exp093	0.590081	5.3	discard	slightly raise value-embed AdamW lr to 0.625 while keeping token embedding lr at 0.6
+exp094	0.590119	5.3	discard	slightly raise embedding lr to 0.61
+exp095	0.580725	5.3	keep	slightly raise unembedding lr to 0.0045
+exp096	0.589389	5.3	discard	slightly raise unembedding lr to 0.00475
+exp097	0.581569	5.3	discard	slightly reduce unembedding lr to 0.00425
+exp098	0.581604	5.3	discard	shorten learning-rate warmdown ratio to 0.4
+exp099	0.589563	5.3	discard	slightly reduce shared embedding and value-embed AdamW lr to 0.59 on top of unembedding lr 0.0045
+exp100	0.589550	5.3	discard	slightly reduce muon weight decay to 0.0115 on top of unembedding lr 0.0045

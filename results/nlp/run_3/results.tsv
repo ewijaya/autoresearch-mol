@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.152686	6.4	keep	baseline
+exp002	1.155301	6.5	discard	replace ReLU-squared FFN with parameter-matched SwiGLU MLP
+exp003	2.964280	6.4	discard	tie token embedding and lm head weights
+exp004	1.149034	6.5	keep	change default window pattern from SSSL to SSLL to add one extra full-attention layer
+exp005	1.146053	6.5	keep	change default window pattern from SSLL to SLLL to add another full-attention layer
+exp006	1.146305	6.5	discard	change default window pattern from SLLL to LLLL to use full attention in all layers
+exp007	1.142072	6.5	keep	change default window pattern from SLLL to SLLLL to keep only the first layer short-windowed
+exp008	1.144174	6.5	discard	widen short attention window from half to three-quarters context under SLLLL
+exp009	1.139844	6.5	keep	switch from 5 KV heads to multi-query attention with 1 KV head under SLLLL
+exp010	1.152637	6.2	discard	activate actual multi-query attention by setting n_kv_head=1 under SLLLL
+exp011	1.142558	6.5	discard	increase head_dim from 64 to 80, reducing the 320d SLLLL model from 5 to 4 attention heads
+exp012	1.160954	6.3	discard	disable alternating value embeddings under SLLLL
+exp013	1.139827	6.5	keep	narrow the single short attention layer from half to quarter context under SLLLL
+exp014	1.139876	6.5	discard	narrow the single short attention layer from quarter to eighth context under SLLLL
+exp015	1.139455	6.7	keep	use value embeddings in every layer instead of alternating layers under the exp013 quarter-window SLLLL baseline
+exp016	1.141238	6.7	discard	move the single quarter-window local attention layer from block 1 to block 2 under the exp015 all-value-embeds setup
+exp017	1.147664	6.7	discard	add a second adjacent quarter-window local attention layer so the first two blocks use short attention under the exp015 all-value-embeds setup
+exp018	1.176737	6.7	discard	increase attention head count from 5x64 to 10x32 at fixed 320d width under the exp015 SLLLL quarter-window all-value-embeds baseline
+exp019	1.140863	7.0	discard	rebalance from 6x320d ffn5 to 7x320d ffn4 while keeping the exp015 quarter-window SLLLL all-value-embeds attention layout
+exp020	1.142043	6.7	discard	expand value-embedding gates from a 32-channel slice to the full hidden state under the exp015 quarter-window all-value-embeds baseline
+exp021	1.140970	6.7	discard	narrow the single short attention layer from quarter to three-sixteenths context under the exp015 all-value-embeds SLLLL baseline
+exp022	1.133877	7.8	keep	widen the exp015 quarter-window all-value-embeds baseline from 320d/5 heads to 384d/6 heads at fixed 6-layer depth
+exp023	1.140407	7.4	discard	switch the exp022 384d/6-head quarter-window all-value-embeds model from full 6 KV heads to grouped-query attention with 2 KV heads
+exp024	1.136784	9.0	discard	widen the exp022 quarter-window all-value-embeds baseline from 384d/6 heads to 448d/7 heads at fixed 6-layer depth
+exp025	1.132520	7.2	keep	shrink the exp022 384d/6-head quarter-window all-value-embeds baseline from ffn_mult 5 to 4 at fixed 6-layer depth
+exp026	1.135533	6.7	discard	shrink the exp025 384d/6-head quarter-window all-value-embeds baseline from ffn_mult 4 to 3 at fixed 6-layer depth
+exp027	1.143953	8.2	discard	increase depth from 6 to 7 layers under the exp025 384d/6-head quarter-window all-value-embeds ffn_mult=4 baseline
+exp028	1.135796	7.2	discard	replace the exp025 ReLU-squared FFN with a parameter-matched SwiGLU MLP while keeping the 384d/6-head quarter-window all-value-embeds layout
+exp029	1.150962	7.3	discard	increase attention head count from 6x64 to 8x48 at fixed 384d width under the exp025 quarter-window all-value-embeds baseline
+exp030	1.136538	7.2	discard	add a second quarter-window local attention layer in the penultimate block while keeping the exp025 384d/6-head all-value-embeds ffn_mult=4 baseline otherwise fixed
+exp031	1.131056	7.3	keep	switch the exp025 384d/6-head all-value-embeds ffn_mult=4 baseline from one quarter-window local layer to full attention in all 6 layers
+exp032	1.130501	7.8	keep	add learnable per-layer residual gains on the attention and MLP branches under the exp031 384d/6-head full-attention ffn_mult=4 baseline
+exp033	1.131396	7.7	discard	rebalance the exp032 384d/6-head full-attention residual-gain baseline to 5 layers at 448d/7 heads while keeping all-value-embeds and ffn_mult=4
+exp034	1.141929	7.3	discard	switch the exp032 full-attention residual-gain baseline to parallel pre-norm attention and MLP branches within each block
+exp035	1.130458	7.8	keep	add learnable per-layer gains on the value-embedding injection path under the exp032 384d/6-head full-attention residual-gain baseline
+exp036	1.139155	8.4	discard	replace exp035 scalar attention/MLP residual gains with per-channel LayerScale vectors at fixed 384d/6-head full-attention all-value-embeds baseline
+exp037	1.129702	7.8	keep	widen the exp035 value-embedding gate conditioning slice from 32 to 64 channels under the full-attention residual-gain baseline
+exp038	1.130365	7.8	discard	expand the value-embedding gate from a 64-channel hidden-state slice to the full normalized hidden state under the exp037 full-attention residual-gain baseline
+exp039	1.133050	7.5	discard	switch the exp037 full-attention residual-gain baseline from full 6 KV heads to grouped-query attention with 3 KV heads
+exp040	1.130100	7.8	discard	widen the exp037 value-embedding gate conditioning slice from 64 to 128 channels under the full-attention residual-gain baseline
+exp041	2.946719	7.9	discard	tie input and output embeddings under the exp037 full-attention residual-gain value-embedding baseline
+exp042	1.128541	7.8	keep	normalize value embeddings before the exp037 gated attention-value injection path
+exp043	1.136143	7.7	discard	limit learned value embeddings to the lower two-thirds of layers under the exp042 normalized value-injection baseline
+exp044	1.127323	8.1	keep	RMS-normalize base attention value projections before fusing them with the exp042 normalized value-embedding path
+exp045	1.128433	8.1	discard	add learned per-layer per-KV-head scaling on normalized base attention values before value-embedding fusion
+exp046	1.133989	8.1	discard	RMS-normalize the fused attention value tensor after combining normalized base attention values with normalized learned value embeddings
+exp047	1.128248	8.1	discard	add learned per-layer per-KV-head gains on the normalized value-embedding injection branch under the exp044 baseline
+exp048	1.128602	8.7	discard	increase FFN multiplier from 4 to 5 under the exp044 full-attention normalized-value baseline
+exp049	1.132420	8.1	discard	replace ReLU-squared FFN activation with SiLU under the exp044 normalized-value full-attention baseline
+exp050	0.000000	0.0	crash	add learned per-layer per-head query temperatures after Q/K RMS normalization under the exp044 normalized-value full-attention baseline
+exp051	1.130723	8.0	discard	restrict learned value embeddings to the upper two-thirds of layers under the exp044 normalized-value baseline
+exp052	1.133698	7.8	discard	share the learned value-embedding table across layers under the exp044 normalized-value full-attention baseline
+exp053	1.134512	9.3	discard	widen the exp044 normalized-value full-attention baseline from 384d/6 heads to 448d/7 heads at fixed 6-layer depth
+exp054	1.128101	8.1	discard	widen the exp044 normalized-value full-attention baseline value-embedding gate conditioning slice from 64 to 96 channels
+exp055	1.132606	8.1	discard	replace the exp044 ReLU-squared FFN with a parameter-matched gated MLP
+exp056	1.134264	8.2	discard	spread the exp044 value-embedding gate conditioning over an evenly spaced 64-channel hidden-state subset instead of the first contiguous slice
+exp057	1.130730	7.0	discard	shrink the exp044 normalized-value full-attention baseline from 6 to 5 layers at fixed 384d/6 heads
+exp058	1.119685	8.1	keep	change the exp044 normalized-value full-attention baseline from 6x64 attention heads to 4x96 heads at fixed 384 width
+exp059	1.123741	8.1	discard	change the exp058 normalized-value full-attention baseline from 4x96 attention heads to 3x128 heads at fixed 384 width
+exp060	1.130881	7.6	discard	switch the exp058 normalized-value full-attention baseline from full 4 KV heads to grouped-query attention with 2 KV heads
+exp061	1.123388	7.5	discard	shrink the exp058 normalized-value full-attention baseline from ffn_mult 4 to 3 while keeping the 384d/4-head setup fixed
+exp062	1.145278	8.2	discard	change the exp058 normalized-value full-attention baseline from 4x96 attention heads to 8x48 heads at fixed 384 width
+exp063	1.134403	7.4	discard	switch the exp058 normalized-value full-attention baseline from 4 KV heads to multi-query attention with 1 KV head
+exp064	1.131506	8.5	discard	rebalance the exp058 normalized-value full-attention baseline to 5 layers of 480d with 5x96 attention heads
+exp065	1.128738	9.3	discard	widen the exp058 normalized-value full-attention baseline from 384d/4 heads to 448d/4 heads at fixed 6-layer depth
+exp066	1.126401	8.1	discard	reintroduce a single quarter-window bottom attention layer under the exp058 384d/4-head normalized-value baseline
+exp067	1.135437	7.9	discard	limit value embeddings to the lower half of layers under the exp058 384d/4-head normalized-value full-attention baseline
+exp068	1.120184	8.1	discard	align the exp058 normalized-value full-attention baseline value-embedding gate conditioning width with the 96d attention head size
+exp069	1.136380	8.4	discard	rebalance the exp058 normalized-value full-attention baseline from 384d/4 heads to 400d/5 heads with 80d attention heads
+exp070	1.128376	8.1	discard	keep Muon weight decay constant instead of linearly annealing it to zero under the exp058 384d/4-head normalized-value full-attention baseline
+exp071	1.120525	8.1	discard	make value-embedding gates head-local by conditioning each KV gate on its own head slice instead of a shared leading hidden-state slice
+exp072	1.119828	8.7	discard	increase the exp058 384d/4-head normalized-value full-attention baseline from ffn_mult 4 to 5
+exp073	1.127906	8.1	discard	taper the learned x0 residual skip with depth so the input anchor is strongest in early layers and weakest in late layers under the exp058 384d/4-head normalized-value baseline
+exp074	1.117428	8.1	keep	RMS-normalize the ReLU-squared MLP hidden activations before the output projection under the exp058 full-attention normalized-value baseline
+exp075	1.135832	8.6	discard	rebalance the exp074 normalized-value full-attention baseline from 6 layers at 384d to 7 layers at 352d while keeping the 4-head layout fixed
+exp076	1.118571	8.1	discard	RMS-normalize the mixed attention activations before the output projection under the exp074 normalized-value full-attention baseline
+exp077	1.117992	8.7	discard	increase the exp074 full-attention normalized-value baseline from ffn_mult 4 to 5 after adding MLP hidden-state RMS normalization
+exp078	1.119050	8.1	discard	widen the exp074 value-embedding gate conditioning slice from 64 channels to max(64, head_dim), giving 96 channels in the 384d/4-head baseline
+exp079	1.119755	8.1	discard	add learned per-channel gains after the exp074 MLP hidden-state RMS normalization before the output projection
+exp080	1.124832	8.1	discard	ramp the learned x0 residual anchor from 0.0 to 0.2 across depth so later full-attention blocks start with a stronger input skip under the exp074 baseline
+exp081	1.115139	8.1	keep	add bounded learned per-layer per-head attention temperatures after Q/K RMS normalization under the exp074 baseline
+exp082	1.115941	8.7	discard	increase FFN multiplier from 4 to 5 under the exp081 bounded per-head attention-temperature baseline
+exp083	1.125793	7.6	discard	switch the exp081 384d/4-head attention-temperature baseline from full multi-head KV projections to grouped-query attention with 2 KV heads
+exp084	1.115819	8.1	discard	widen the exp081 bounded per-head attention-temperature range from [0.5, 1.5] to [0.25, 1.75]
+exp085	1.116143	8.1	discard	add bounded learned per-layer per-head gains on attention outputs before the output projection under the exp081 attention-temperature baseline
+exp086	1.115600	8.1	discard	split attention-temperature scalars into a dedicated higher-lr AdamW group so the exp081 bounded per-head temperatures adapt faster within the fixed budget
+exp087	1.117622	8.1	discard	replace the exp081 normalized ReLU-squared MLP with a parameter-matched SwiGLU-style gated MLP while keeping the bounded per-head attention temperatures
+exp088	1.116688	8.1	discard	narrow the exp081 bounded per-head attention-temperature range from [0.5, 1.5] to [0.75, 1.25]
+exp089	1.116831	8.1	discard	initialize exp081 bounded per-head attention temperatures with a mild depth ramp so lower layers start slightly sharper and upper layers slightly softer
+exp090	1.115733	8.1	discard	bound learned per-layer attention, MLP, and value-injection gains to [0.5, 1.5] under the exp081 attention-temperature baseline
+exp091	1.122482	8.1	discard	mean-center each layer's bounded per-head attention temperatures so heads specialize relative to one another while preserving the exp081 baseline's average logit scale
+exp092	1.115404	8.1	discard	replace exp081's bounded per-head attention temperatures with bounded per-layer scalar temperatures
+exp093	1.116890	8.1	discard	add bounded per-head channel gains on normalized Q/K under the exp081 attention-temperature baseline
+exp094	1.116651	8.4	discard	widen the exp081 normalized ReLU-squared MLP from 4.0x to 4.5x hidden expansion while keeping the bounded per-head attention temperatures
+exp095	1.120164	7.0	discard	shrink the exp081 384d/4-head full-attention attention-temperature baseline from 6 to 5 layers at fixed width
+exp096	1.132516	7.5	discard	rebalance the exp081 6-layer 384d/4-head full-attention attention-temperature baseline to 352d while keeping depth and head count fixed
+exp097	1.129068	8.0	discard	limit value embeddings to the lower 4 of 6 layers under the exp081 bounded per-head attention-temperature baseline so upper layers use only contextual values
+exp098	0.000000	0.0	crash	make value-embedding gates head-local under the exp081 bounded per-head attention-temperature baseline so each KV head is conditioned on its own hidden-state slice
+exp099	1.122162	8.1	discard	rebalance the exp081 384d full-attention attention-temperature baseline from 4x96 heads to 6x64 heads at fixed width to increase head specialization
+exp100	1.117273	8.1	discard	RMS-normalize mixed attention activations before the output projection under the exp081 bounded per-head attention-temperature baseline

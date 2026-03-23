@@ -1,11 +1,11 @@
 {
   "status": "running",
   "task": {
-    "kind": "hp_only",
-    "program": "program_hponly.md",
-    "run": 1,
-    "track": "smiles"
+    "kind": "agent",
+    "program": "program.md",
+    "run": 4,
+    "track": "nlp"
   },
-  "task_index": 20,
-  "tasks_completed": 19
+  "task_index": 23,
+  "tasks_completed": 22
 }

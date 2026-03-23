@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	0.596694	5.3	keep	baseline
+exp002	0.596764	5.3	discard	add 5pct lr warmup
+exp003	0.593822	5.3	keep	halve Muon weight decay to 0.1
+exp004	0.591495	5.3	keep	halve Muon weight decay again to 0.05
+exp005	0.591379	5.3	keep	halve Muon weight decay to 0.025
+exp006	0.591393	5.3	discard	halve Muon weight decay to 0.0125
+exp007	0.590782	5.3	keep	reduce Muon matrix lr to 0.03 at weight decay 0.025
+exp008	0.581398	5.3	keep	lower Muon matrix lr to 0.025 at weight decay 0.025
+exp009	0.581863	5.3	discard	lower Muon matrix lr to 0.02 at weight decay 0.025
+exp010	0.589817	5.3	discard	lower Muon weight decay to 0.02 at matrix lr 0.025
+exp011	0.589802	5.3	discard	raise Muon weight decay slightly to 0.03 at matrix lr 0.025
+exp012	0.589854	5.3	discard	lower Muon matrix lr slightly to 0.0225 at weight decay 0.025
+exp013	0.590883	5.3	discard	add 2pct lr warmup at matrix lr 0.025 and weight decay 0.025
+exp014	0.589282	5.3	discard	lower embedding lr to 0.5 at matrix lr 0.025 and weight decay 0.025
+exp015	0.589455	5.3	discard	raise Adam beta1 to 0.85 at matrix lr 0.025 and weight decay 0.025
+exp016	0.581970	5.3	discard	keep 10pct lr floor during warmdown at matrix lr 0.025 and weight decay 0.025
+exp017	0.582932	5.3	discard	shorten lr warmdown to final 25pct at matrix lr 0.025 and weight decay 0.025
+exp018	0.581333	5.3	keep	add 5pct lr floor during warmdown at matrix lr 0.025 and weight decay 0.025
+exp019	0.589993	5.3	discard	lower lr floor to 2.5pct during warmdown at matrix lr 0.025 and weight decay 0.025
+exp020	0.590425	5.3	discard	raise Muon matrix lr to 0.0275 while keeping 5pct lr floor during warmdown at weight decay 0.025
+exp021	0.581162	5.3	keep	lengthen warmdown to final 75pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp022	0.589276	5.3	discard	lengthen warmdown to final 85pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp023	0.589917	5.3	discard	raise Adam beta2 to 0.98 while keeping 75pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp024	0.589377	5.3	discard	lower Adam beta2 to 0.9 while keeping 75pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp025	0.581364	5.3	discard	raise lr floor slightly to 7.5pct while keeping 75pct warmdown at matrix lr 0.025 and weight decay 0.025
+exp026	0.589135	5.3	discard	raise embedding lr to 0.7 while keeping 75pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp027	0.590361	5.3	discard	lower Adam beta1 to 0.75 while keeping 75pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp028	0.581050	5.3	keep	shorten warmdown slightly to final 70pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp029	0.580921	5.3	keep	shorten warmdown slightly further to final 65pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp030	0.581365	5.3	discard	shorten warmdown slightly further to final 60pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp031	0.589660	5.3	discard	split warmdown midpoint to final 67.5pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp032	0.580966	5.3	discard	shorten warmdown slightly to final 62.5pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp033	0.589737	5.3	discard	raise Adam beta1 slightly to 0.82 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp034	0.590258	5.3	discard	shorten warmdown slightly to final 64pct while keeping 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp035	0.580578	5.3	keep	lower final Muon momentum slightly to 0.93 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp036	0.580538	5.3	keep	lower final Muon momentum slightly further to 0.92 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp037	0.580583	5.3	discard	lower final Muon momentum slightly further to 0.91 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp038	0.580252	5.3	keep	raise final Muon momentum slightly to 0.925 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp039	0.580395	5.3	discard	raise final Muon momentum slightly to 0.93 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp040	0.580556	5.3	discard	raise final Muon momentum slightly to 0.9275 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp041	0.580160	5.3	keep	lower final Muon momentum slightly to 0.9225 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp042	0.580938	5.3	discard	raise final Muon momentum slightly to 0.92375 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp043	0.589328	5.3	discard	lower final Muon momentum slightly to 0.92125 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp044	0.580601	5.3	discard	lower final Muon momentum slightly to 0.922 while keeping 65pct warmdown and 5pct lr floor at matrix lr 0.025 and weight decay 0.025
+exp045	0.580532	5.3	discard	lower Muon matrix lr slightly to 0.024 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, and weight decay 0.025
+exp046	0.589093	5.3	discard	raise Muon matrix lr slightly to 0.026 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, and weight decay 0.025
+exp047	0.580729	5.3	discard	lower Muon matrix lr slightly to 0.0245 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, and weight decay 0.025
+exp048	0.580206	5.3	discard	lengthen Muon momentum ramp to reach final 0.9225 by step 450 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp049	0.581087	5.3	discard	raise final Muon momentum slightly to 0.92275 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp050	0.588925	5.3	discard	shorten Muon momentum ramp to reach final 0.9225 by step 200 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp051	0.589121	5.3	discard	lower lr floor slightly to 4pct while keeping final Muon momentum 0.9225 with 65pct warmdown, matrix lr 0.025, and weight decay 0.025
+exp052	0.580478	5.3	discard	lengthen Muon momentum ramp moderately to reach final 0.9225 by step 375 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp053	0.580410	5.3	discard	shorten Muon momentum ramp slightly to reach final 0.9225 by step 275 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp054	0.594041	10.5	discard	double smiles batch size to device batch 512 and total batch 131072 while keeping the current lr schedule, matrix lr 0.025, weight decay 0.025, and final Muon momentum 0.9225
+exp055	0.589178	5.3	discard	lower Muon weight decay slightly to 0.0225 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and final Muon momentum 0.9225
+exp056	0.580381	5.3	discard	raise Muon weight decay slightly to 0.0275 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, and matrix lr 0.025
+exp057	0.589111	5.3	discard	raise lr floor slightly to 6pct while keeping 65pct warmdown, final Muon momentum 0.9225, matrix lr 0.025, and weight decay 0.025
+exp058	0.588173	5.3	discard	lower scalar lr slightly to 0.45 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and final Muon momentum 0.9225
+exp059	0.581066	5.3	discard	raise scalar lr slightly to 0.55 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and final Muon momentum 0.9225
+exp060	0.589191	5.3	discard	raise initial Muon momentum slightly to 0.875 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp061	0.589131	5.3	discard	keep 10pct Muon weight decay floor during training while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, and matrix lr 0.025
+exp062	0.588516	2.7	discard	halve smiles batch size to device batch 128 and total batch 32768 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp063	0.588716	5.3	discard	lower initial Muon momentum slightly to 0.825 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp064	0.580445	5.3	discard	raise Muon beta2 slightly to 0.975 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp065	0.580492	5.3	discard	lower Muon beta2 slightly to 0.925 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp066	0.580736	5.3	discard	lengthen Muon momentum ramp moderately to reach final 0.9225 by step 425 while keeping 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp067	0.588543	5.3	discard	raise unembedding lr slightly to 0.005 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp068	0.589920	5.3	discard	lower unembedding lr slightly to 0.0035 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp069	0.580457	5.3	discard	raise embedding lr slightly to 0.65 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp070	0.589143	5.3	discard	lower embedding lr slightly to 0.55 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp071	0.609550	5.3	discard	double effective total batch to 131072 via grad accumulation while keeping device batch 256 and the exp041 lr, weight decay, and momentum schedule
+exp072	0.581230	5.3	discard	raise embedding lr slightly to 0.625 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and weight decay 0.025
+exp073	0.589392	5.3	discard	raise Muon weight decay very slightly to 0.026 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, and embedding lr 0.6
+exp074	0.580484	5.3	discard	raise Muon beta2 slightly to 0.96 while keeping final Muon momentum 0.9225 with 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and embedding lr 0.6
+exp075	0.590250	5.3	discard	add 1pct lr warmup on top of the exp041 schedule with 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and final Muon momentum 0.9225
+exp076	0.589439	5.3	discard	lower x0 Adam beta1 slightly to 0.95 while keeping the exp041 schedule and embedding lr 0.6
+exp077	0.580551	5.3	discard	raise x0 Adam beta1 slightly to 0.97 while keeping the exp041 schedule and embedding lr 0.6
+exp078	0.589445	5.3	discard	raise shared Adam beta2 slightly to 0.96 while keeping the exp041 schedule and embedding lr 0.6
+exp079	0.583161	5.3	discard	lower shared Adam beta2 slightly to 0.94 while keeping the exp041 schedule and embedding lr 0.6
+exp080	0.580527	5.3	discard	shorten warmdown slightly to final 62.5pct while keeping the exp041 optimizer settings and 5pct lr floor
+exp081	0.588824	5.3	discard	raise shared Adam beta2 slightly to 0.955 while keeping the exp041 schedule and embedding lr 0.6
+exp082	0.588927	5.3	discard	raise x0 Adam beta2 slightly to 0.96 while keeping the exp041 schedule and embedding lr 0.6
+exp083	0.580441	5.3	discard	raise Muon beta2 to 0.97 while keeping the exp041 momentum schedule, 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and embedding lr 0.6
+exp084	0.580673	5.3	discard	lower x0 Adam beta2 slightly to 0.945 while keeping the exp041 schedule and embedding lr 0.6
+exp085	0.589049	5.3	discard	lower Muon NS steps to 4 while keeping the exp041 schedule and embedding lr 0.6
+exp086	0.580411	5.3	discard	raise scalar lr slightly to 0.525 while keeping the exp041 optimizer schedule, matrix lr 0.025, weight decay 0.025, embedding lr 0.6, and final Muon momentum 0.9225
+exp087	0.589246	5.3	discard	raise Muon NS steps to 6 while keeping the exp041 optimizer schedule, matrix lr 0.025, weight decay 0.025, embedding lr 0.6, and final Muon momentum 0.9225
+exp088	0.581000	5.3	discard	lower scalar lr slightly to 0.475 while keeping the exp041 optimizer schedule, matrix lr 0.025, weight decay 0.025, embedding lr 0.6, and final Muon momentum 0.9225
+exp089	0.580646	5.3	discard	raise x0 Adam beta1 slightly to 0.965 while keeping the exp041 schedule and embedding lr 0.6
+exp090	0.580146	5.3	keep	lower shared Adam beta1 slightly to 0.79 while keeping the exp041 schedule and embedding lr 0.6
+exp091	0.589506	5.3	discard	lower shared Adam beta1 slightly further to 0.785 while keeping the exp090 schedule and embedding lr 0.6
+exp092	0.588613	5.3	discard	raise shared Adam beta1 slightly to 0.795 while keeping the exp090 schedule and embedding lr 0.6
+exp093	0.589430	5.3	discard	lower shared Adam beta2 slightly to 0.945 while keeping the exp090 schedule and embedding lr 0.6
+exp094	0.580606	5.3	discard	raise scalar lr slightly to 0.525 while keeping the exp090 schedule and embedding lr 0.6
+exp095	0.588617	5.3	discard	raise x0 Adam beta1 slightly to 0.965 while keeping the exp090 shared Adam beta1, 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and embedding lr 0.6
+exp096	0.589026	5.3	discard	lower embedding lr slightly to 0.575 while keeping the exp090 shared Adam beta1, 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and scalar lr 0.5
+exp097	0.589144	5.3	discard	raise scalar lr slightly to 0.5125 while keeping the exp090 shared Adam beta1, 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and embedding lr 0.6
+exp098	0.589196	5.3	discard	raise embedding lr slightly to 0.625 while keeping the exp090 shared Adam beta1, 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and scalar lr 0.5
+exp099	0.588732	5.3	discard	lower Muon weight decay slightly to 0.024 while keeping the exp090 shared Adam beta1, 65pct warmdown, 5pct lr floor, matrix lr 0.025, scalar lr 0.5, and embedding lr 0.6
+exp100	0.588404	5.3	discard	lower x0 Adam beta1 slightly to 0.955 while keeping the exp090 shared Adam beta1, 65pct warmdown, 5pct lr floor, matrix lr 0.025, weight decay 0.025, and embedding lr 0.6

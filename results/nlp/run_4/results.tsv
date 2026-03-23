@@ -1,0 +1,88 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.152519	6.4	keep	baseline
+exp002	1.166307	6.1	discard	multi-query attention default with 1 KV head
+exp003	1.168017	6.5	discard	parameter-matched gated MLP feedforward
+exp004	1.148433	6.5	keep	two full-attention top layers with SSLL window pattern
+exp005	1.144665	6.5	keep	expand upper stack to four global attention layers with SSLLL pattern
+exp006	1.141475	6.5	keep	leave only the bottom layer sliding; use SLLLL so five layers attend globally
+exp007	1.138865	6.5	keep	make all six layers global attention with LLLLL window pattern
+exp008	2.914367	6.5	discard	tie token embedding and output projection in the fully global 6-layer model
+exp009	1.136460	7.5	keep	add a seventh fully global transformer layer while keeping width fixed at 320
+exp010	1.133854	8.3	keep	add an eighth fully global transformer layer while keeping width fixed at 320
+exp011	1.136821	9.3	discard	add a ninth fully global transformer layer while keeping width fixed at 320
+exp012	1.164937	8.4	discard	increase attention head count from 5 to 10 at fixed 8-layer 320-dim fully global model
+exp013	1.135341	9.8	discard	increase model width from 320 to 384 while keeping the 8-layer fully global architecture
+exp014	1.136963	8.6	discard	enable value embeddings in every layer of the 8-layer fully global model
+exp015	1.143323	8.3	discard	switch 8-layer fully global model MLP activation from ReLU squared to SiLU
+exp016	1.136653	7.7	discard	shrink FFN expansion from 5x to 4x in the 8-layer fully global model
+exp017	1.151363	7.9	discard	apply multi-query attention with 1 KV head to the 8-layer fully global 320-dim model
+exp018	1.138881	9.0	discard	increase FFN expansion from 5x to 6x in the 8-layer fully global 320-dim model
+exp019	1.155644	8.1	discard	disable alternating value embeddings in the 8-layer fully global 320-dim model
+exp020	1.141523	8.3	discard	move value embeddings from alternating layers to the top half of the 8-layer fully global 320-dim model
+exp021	1.142063	9.3	discard	make residual and x0 skip weights channelwise instead of per-layer scalars in the 8-layer fully global model
+exp022	1.138081	8.3	discard	reintroduce one bottom sliding-window layer in the 8-layer 320-dim model
+exp023	1.133227	9.0	keep	add per-layer scalar gates on attention and MLP residual branches in the 8-layer fully global model
+exp024	1.133154	9.0	keep	add per-layer scalar gates on alternating value-embedding injection in the 8-layer fully global model
+exp025	1.136022	10.0	discard	add a ninth fully global transformer layer on top of the residual-gated and value-gated 8-layer model
+exp026	1.159481	9.0	discard	increase attention head count from 5 to 8 in the residual-gated and value-gated 8-layer fully global 320-dim model
+exp027	1.138612	9.0	discard	reduce attention head count from 5 to 4 in the residual-gated and value-gated 8-layer fully global 320-dim model
+exp028	1.171057	8.7	discard	switch to grouped-query attention with 10 query heads and 5 KV heads in the residual-gated and value-gated 8-layer fully global 320-dim model
+exp029	1.134259	9.0	discard	small-init alternating value-embedding residual scalars in the residual-gated and value-gated 8-layer fully global model
+exp030	1.138417	9.0	discard	shift alternating value embeddings to even-indexed layers so lexical injection starts at the bottom of the 8-layer residual-gated model
+exp031	1.136737	9.0	discard	expand value-embedding gate input from 32 channels to the full hidden state in the residual-gated and value-gated 8-layer fully global model
+exp032	1.141397	8.8	discard	share one alternating value-embedding table across layers in the residual-gated and value-gated 8-layer fully global model
+exp033	1.134893	9.0	discard	RMS-normalize alternating value embeddings before gated injection in the residual-gated 8-layer fully global model
+exp034	1.138946	8.7	discard	remove the upfront embedding RMS normalization so the residual stream starts from raw token embeddings
+exp035	1.132830	9.0	keep	replace per-layer alternating value-embedding scales with per-head scales in the residual-gated 8-layer fully global model
+exp036	1.133983	8.7	discard	replace per-layer attention residual gates with per-head attention output scales in the residual-gated and value-gated 8-layer fully global model
+exp037	1.134047	9.0	discard	add per-head attention output scales on top of the existing per-layer attention residual gates in the residual-gated and value-gated 8-layer fully global model
+exp038	1.134464	9.0	discard	add zero-init token-conditional scalar gates on each MLP residual branch in the residual-gated and value-gated 8-layer fully global model
+exp039	1.136959	9.2	discard	enable per-head-scaled value embeddings in every layer of the residual-gated 8-layer fully global model
+exp040	1.269090	9.0	discard	tie token embedding and output projection in the residual-gated and value-gated 8-layer fully global model, and train the shared matrix at the output-projection LR
+exp041	1.142562	8.3	discard	remove query/key RMS normalization in the residual-gated and value-gated 8-layer fully global model
+exp042	1.134558	9.0	discard	expand value-embedding gate input from 32 to 64 channels in the residual-gated and value-gated 8-layer fully global model
+exp043	1.140669	9.0	discard	replace the ReLU-squared feedforward with a parameter-matched SwiGLU MLP in the residual-gated and value-gated 8-layer fully global model
+exp044	1.127704	9.0	keep	add per-head post-qk-norm query scales in the residual-gated and value-gated 8-layer fully global model
+exp045	1.128578	9.0	discard	train the tiny alternating value-embedding gate projections with scalar-schedule AdamW instead of Muon in the residual-gated and value-gated 8-layer fully global model
+exp046	1.144305	9.2	discard	rebalance the residual-gated and value-gated fully global model to 9 layers at 288 dims with 6 heads for similar compute
+exp047	1.128704	9.0	discard	keep a 10% learning-rate floor during the second-half cooldown in the residual-gated and value-gated 8-layer fully global model
+exp048	1.703560	9.0	discard	add affine RMSNorm weights to block pre-norms and attention q/k norms in the residual-gated and value-gated 8-layer fully global model
+exp049	1.142759	8.5	discard	switch the q-scaled residual-gated and value-gated 8-layer fully global model to multi-query attention with a single shared KV head
+exp050	1.132815	8.9	discard	use a bottom-local and upper-global attention pattern in the q-scaled residual-gated and value-gated 8-layer model
+exp051	1.130086	8.3	discard	reduce the ReLU-squared feedforward expansion from 5x to 4x in the q-scaled residual-gated and value-gated 8-layer fully global model
+exp052	1.130918	9.6	discard	increase the ReLU-squared FFN expansion from 5x to 6x in the q-scaled residual-gated and value-gated 8-layer fully global model
+exp053	1.129103	9.0	discard	train per-head query-scale logits with a faster AdamW group in the q-scaled residual-gated and value-gated 8-layer fully global model
+exp054	1.130715	9.0	discard	switch the alternating value-embedding gate from 2x-sigmoid to a unit-centered 1+tanh modulation in the q-scaled residual-gated 8-layer fully global model
+exp055	1.128694	9.0	discard	bound per-head post-qk-norm query scales with a 2x-sigmoid gate in the residual-gated and value-gated 8-layer fully global model
+exp056	1.131879	9.0	discard	replace per-layer scalar x0 skip gates with per-channel input-skip vectors in the q-scaled residual-gated and value-gated 8-layer fully global model
+exp057	1.133592	9.0	discard	reduce attention head count from 5 to 4 in the q-scaled residual-gated and value-gated 8-layer fully global 320-dim model
+exp058	1.133698	9.0	discard	concentrate value embeddings in the upper half of layers instead of alternating them in the q-scaled residual-gated 8-layer fully global model
+exp059	1.129166	9.0	discard	add a learned negative-init per-head bias on the alternating value-embedding gates so lexical injection ramps in more cautiously in the q-scaled residual-gated 8-layer fully global model
+exp060	1.127563	10.6	keep	increase model width from 320 to 384 in the q-scaled residual-gated and value-gated 8-layer fully global model
+exp061	1.135997	10.3	discard	switch the widened q-scaled residual-gated 8-layer fully global 384-dim model to grouped-query attention with 6 query heads and 3 KV heads
+exp062	1.134625	10.9	discard	rebalance the widened q-scaled residual-gated and value-gated fully global model to 7 layers at 448 dims
+exp063	1.139087	10.6	discard	increase attention head count from 6 to 8 in the widened q-scaled residual-gated and value-gated 8-layer fully global 384-dim model
+exp064	1.136249	10.6	discard	scale Muon matrix learning rate by model width like the AdamW groups in the widened q-scaled residual-gated and value-gated 8-layer fully global model
+exp065	1.141258	12.2	discard	increase model width from 384 to 448 in the q-scaled residual-gated and value-gated 8-layer fully global model
+exp066	1.135063	11.8	discard	increase depth from 8 to 9 layers in the widened q-scaled residual-gated and value-gated fully global 384-dim model
+exp067	1.130514	9.8	discard	reduce the ReLU-squared FFN expansion from 5x to 4x in the widened q-scaled residual-gated and value-gated 8-layer fully global 384-dim model
+exp068	1.128417	10.6	discard	widen the token-conditioned value-embedding gate bottleneck from 32 to 48 channels in the widened q-scaled residual-gated and value-gated 8-layer fully global 384-dim model
+exp069	1.125815	10.6	keep	RMS-normalize each attention and MLP residual update before applying the learned branch gates in the widened q-scaled residual-gated and value-gated 8-layer fully global model
+exp070	1.135912	9.8	discard	switch each transformer block to parallel attention and MLP residual branches from the same normalized input in the widened q-scaled residual-gated and value-gated 8-layer fully global model
+exp071	1.134572	10.6	discard	switch the widened q-scaled residual-gated and value-gated 8-layer fully global model from ReLU-squared to GELU MLPs
+exp072	1.122652	10.6	keep	reduce attention head count from 6 to 4 in the widened q-scaled residual-gated and value-gated 8-layer fully global model with RMS-normalized branch updates
+exp073	1.127038	10.6	discard	reduce attention head count from 4 to 3 in the widened q-scaled residual-gated and value-gated 8-layer fully global model with RMS-normalized branch updates
+exp074	1.124368	10.6	discard	front-load x0 input-skip mixing with a depth-decaying initialization in the widened 4-head RMS-normalized branch-gated model
+exp075	1.131330	10.2	discard	switch the widened 4-head RMS-normalized branch-gated model to grouped-query attention with 2 KV heads
+exp076	1.129952	10.5	discard	reintroduce one bottom sliding-window layer in the widened 4-head RMS-normalized branch-gated model
+exp077	1.122257	10.6	keep	widen the token-conditioned value-embedding gate bottleneck from 32 to 48 channels in the widened 4-head RMS-normalized branch-gated model
+exp078	1.128039	10.6	discard	let the token-conditioned value-embedding gate read the full hidden state instead of a 48-channel bottleneck in the widened 4-head RMS-normalized branch-gated model
+exp079	1.122229	10.6	keep	RMS-normalize the 48-channel token-conditioned value-gate bottleneck input before the gate projection in the widened 4-head RMS-normalized branch-gated model
+exp080	1.128298	10.6	discard	RMS-normalize the alternating value embeddings before the token-conditioned gate mixes them into attention values in the widened 4-head RMS-normalized branch-gated model
+exp081	1.123245	10.6	discard	widen the RMS-normalized token-conditioned value-gate bottleneck from 48 to 64 channels in the widened 4-head RMS-normalized branch-gated model
+exp082	1.124237	10.7	discard	replace the single linear token-conditioned value gate with a tiny two-layer SiLU MLP on the RMS-normalized 48-channel bottleneck
+exp083	1.124299	10.6	discard	replace the fixed first-48-channel value-gate readout with a learned RMS-normalized 48-channel linear bottleneck
+exp084	1.126651	10.6	discard	swap the RMS-normalized 48-channel token-conditioned value gate from sigmoid to identity-centered tanh in the widened 4-head RMS-normalized branch-gated model
+exp085	1.125320	11.2	discard	add a zero-init residual full-state bottleneck on top of the RMS-normalized 48-channel token-conditioned value gate input in the widened 4-head RMS-normalized branch-gated model
+exp086	1.123406	10.6	discard	add a learned -0.5 per-head bias to the RMS-normalized 48-channel token-conditioned value gate so lexical injection ramps in more cautiously in the widened 4-head RMS-normalized branch-gated model
+exp087	1.138013	10.6	discard	sample the RMS-normalized 48-channel value-gate bottleneck evenly across the hidden state instead of reading the first 48 channels
