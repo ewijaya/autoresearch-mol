@@ -1,6 +1,6 @@
 # Phase 2 Experiment Note
 
-Snapshot updated on March 21, 2026.
+Snapshot updated on March 25, 2026.
 
 ## Planned workload
 
@@ -45,7 +45,7 @@ The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage lim
 
 If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.md` for the stop-and-resume procedure.
 
-## Completed tasks (19/34)
+## Completed tasks (25/34)
 
 | # | Kind | Track | Run | Experiments | Best val_bpb | Notes |
 |---|------|-------|-----|-------------|-------------|-------|
@@ -65,31 +65,36 @@ If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.m
 | 14 | random_nas | NLP | run_1 | 100 | 1.1297 | 3 crashes |
 | 15 | agent | protein | run_3 | 100 | 3.9666 | 5 crashes |
 | 16 | random_nas | NLP | run_2 | 100 | 1.1301 | 2 crashes |
-| 17 | agent | NLP | run_1 | 100 | 1.1188 | 4 crashes; best NLP overall |
+| 17 | agent | NLP | run_1 | 100 | 1.1188 | 4 crashes |
 | 18 | random_nas | NLP | run_3 | 100 | 1.1306 | 1 crash |
 | 19 | agent | NLP | run_2 | 100 | 1.1277 | |
+| 20 | hp_only | SMILES | run_1 | 100 | 0.5807 | |
+| 21 | agent | NLP | run_3 | 100 | 1.1151 | 2 crashes; best NLP overall |
+| 22 | hp_only | SMILES | run_2 | 100 | 0.5801 | best hp_only SMILES |
+| 23 | agent | NLP | run_4 | 100 | 1.1212 | |
+| 24 | hp_only | SMILES | run_3 | 100 | 0.5810 | 1 crash |
+| 25 | agent | NLP | run_5 | 100 | 1.1314 | 21 crashes |
 
-**Total completed experiments:** `1,903`
+**Total completed experiments:** `2,503`
 
 ## Current live status
 
-- the Phase 2 runner is on task `20/34`
-- active task: hp_only SMILES `run_1`
-- completed experiments in the active run: `1/~100`
-- current best: `exp001`, `val_bpb = 0.5967`
-- all agent + random_nas runs for SMILES and protein are complete
-- NLP agent runs 1–2 and all 3 NLP random_nas runs complete; NLP agent runs 3–5 remain
-- HP-only baseline phase has begun
+- the Phase 2 runner is on task `26/34`
+- active task: hp_only protein `run_1`
+- completed experiments in the active run: `99/~100`
+- current best: `exp068`, `val_bpb = 3.9901`
+- all agent runs complete (SMILES 5/5, protein 3/3, NLP 5/5)
+- all random_nas runs complete (SMILES 3/3, protein 3/3, NLP 3/3)
+- hp_only SMILES runs 1–3 complete; hp_only protein run_1 nearly done
 
-## Remaining tasks (15/34)
+## Remaining tasks (9/34)
 
-- **Agent:** NLP runs 3–5 = `3` tasks
-- **HP-only:** SMILES runs 1 (in progress), 2, 3; protein runs 1–3; NLP runs 1–3 = `9` tasks
+- **HP-only:** protein runs 1 (in progress, 99/100), 2, 3; NLP runs 1–3 = `6` tasks
 - **Fixed default:** SMILES, protein, NLP = `3` tasks
 
 ## Where to check progress
 
 - Runner state: `results/phase2/queue_state.json`
 - Runner log: `logs/phase2-resume-20260316_103926.log`
-- Active run results: `results/baselines/hp_only/smiles/run_1/results.tsv`
-- Active run summary: `results/baselines/hp_only/smiles/run_1/summary.json`
+- Active run results: `results/baselines/hp_only/protein/run_1/results.tsv`
+- Active run summary: `results/baselines/hp_only/protein/run_1/summary.json`
