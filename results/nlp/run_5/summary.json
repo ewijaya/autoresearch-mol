@@ -1,8 +1,8 @@
 {
-  "best_experiment": "exp003",
-  "best_val_bpb": 1.148434,
-  "num_crash": 0,
-  "num_discard": 1,
-  "num_experiments": 3,
-  "num_keep": 2
+  "best_experiment": "exp098",
+  "best_val_bpb": 1.131438,
+  "num_crash": 21,
+  "num_discard": 61,
+  "num_experiments": 100,
+  "num_keep": 18
 }

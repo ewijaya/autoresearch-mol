@@ -2,3 +2,100 @@ commit	val_bpb	memory_gb	status	description
 exp001	1.152380	6.4	keep	baseline
 exp002	1.157326	6.5	discard	parameter-matched SwiGLU gated MLP
 exp003	1.148434	6.5	keep	alternating local/global attention pattern
+exp004	1.145857	6.5	keep	narrow local attention window from 1024 to 512 in alternating local/global stack
+exp005	1.149156	6.8	discard	deeper/narrower alternating local/global stack (8 layers, 256d)
+exp006	1.145749	6.5	keep	halve alternating local attention window again from 512 to 256
+exp007	1.141347	6.5	keep	halve alternating local attention window again from 256 to 128
+exp008	1.143248	6.5	discard	halve alternating local attention window again from 128 to 64
+exp009	1.154401	6.5	discard	shift learned value embeddings from global-attention blocks to short-window blocks
+exp010	1.149183	6.4	discard	periodic global mixing with SSL attention pattern
+exp011	1.157528	6.1	discard	switch to multi-query attention with 1 KV head on the exp007 SLSL/128 stack
+exp012	2.929201	6.5	discard	tie input/output embeddings on the exp007 SLSL/128 stack
+exp013	1.141103	6.5	keep	interpolate alternating local attention window from 128 toward 64 with a 96-token short window
+exp014	1.141470	6.5	discard	taper short-window attention across local layers (128->96->64) in the alternating stack
+exp015	1.140990	6.5	keep	reduce the exp013 alternating short attention window from 96 to 80 tokens
+exp016	1.142355	6.5	discard	reduce the exp015 alternating short attention window from 80 to 72 tokens
+exp017	1.141421	6.5	discard	widen higher local attention layers from 80 toward 96 tokens in the alternating stack
+exp018	1.144114	6.0	discard	reduce FFN expansion from 5x to 4x on the exp015 SLSL/80 stack
+exp019	1.141134	6.5	discard	increase alternating short attention window from 80 to 88 tokens
+exp020	1.150996	6.5	discard	switch from 5x64 to 4x80 attention heads on the exp015 SLSL/80 stack
+exp021	1.139131	7.6	keep	widen the exp015 SLSL/80 stack from 320d/5 heads to 384d/6 heads while keeping 64-dim heads
+exp022	1.138620	7.6	keep	retune the widened 384d/6-head SLSL stack to an 88-token short local window
+exp023	1.141736	7.3	discard	grouped-query attention with 3 KV heads on the widened 384d/6-head SLSL/88 stack
+exp024	1.141125	7.6	discard	replace the exp022 ReLU-squared FFN with a matched-budget SwiGLU-style gated MLP
+exp025	1.141924	7.5	discard	restrict x0 residual reinjection to global-attention layers on the widened SLSL/88 stack
+exp026	1.159500	7.4	discard	ablate learned value embeddings on the widened 384d/6-head SLSL/88 stack
+exp027	1.140675	7.8	discard	extend learned value embeddings from alternating global layers to all layers on the widened 384d/6-head SLSL/88 stack
+exp028	1.139116	8.1	discard	increase FFN expansion from 5x to 6x on the widened 384d/6-head SLSL/88 stack
+exp029	1.141741	7.6	discard	group early local passes with an SSLL attention cycle on the widened 384d/6-head 88-window stack
+exp030	1.152961	7.6	discard	increase head count from 6x64 to 8x48 on the widened 384d SLSL/88 stack
+exp031	1.139323	7.6	discard	increase the widened 384d/6-head SLSL stack's short local attention window from 88 to 96 tokens
+exp032	1.146783	8.2	discard	rebalance the exp022 SLSL/88 stack into an 8-layer 320d/5-head model while keeping global-layer value embeddings
+exp033	2.969105	7.6	discard	tie input and output embeddings on the widened 384d/6-head SLSL/88 stack
+exp034	1.140712	7.6	discard	restrict x0 residual reinjection to local-attention layers on the widened 384d/6-head SLSL/88 stack
+exp035	1.137706	8.1	keep	add learnable per-layer attention and MLP residual gates on the widened 384d/6-head SLSL/88 stack
+exp036	1.138244	8.1	discard	bound attention and MLP residual gates with 2x-sigmoid parameterization on the widened 384d/6-head SLSL/88 stack
+exp037	1.138135	8.1	discard	split x0 residual reinjection into separate attention and MLP gates on the gated 384d/6-head SLSL/88 stack
+exp038	1.152416	8.1	discard	move learned value embeddings from global-attention layers to local-attention layers on the gated 384d/6-head SLSL/88 stack
+exp039	1.153856	7.7	discard	parallelize residual block branches so attention and MLP read the same normalized input on the gated 384d/6-head SLSL/88 stack
+exp040	1.139556	8.3	discard	promote global-layer value-embedding injection from per-head scalars to per-channel gates on the gated 384d/6-head SLSL/88 stack
+exp041	1.138358	8.7	discard	increase FFN expansion from 5x to 6x on the gated 384d/6-head SLSL/88 stack
+exp042	1.141895	8.1	discard	reduce attention head count from 6x64 to 4x96 on the gated 384d/6-layer SLSL/88 stack
+exp043	1.140516	8.1	discard	add learned affine RMSNorm scales around the gated 384d/6-head SLSL/88 residual stream
+exp044	1.141420	7.9	discard	switch the gated 384d/6-head SLSL/88 stack to grouped-query attention with 3 KV heads
+exp045	1.137481	7.5	keep	reduce FFN expansion from 5x to 4x on the gated 384d/6-head SLSL/88 stack
+exp046	1.137220	7.5	keep	retune the gated 384d/6-head SLSL stack with ffn_mult=4 back to an 80-token short local window
+exp047	1.145132	7.5	discard	swap ReLU-squared FFN for SiLU in the gated 384d/6-head SLSL/80 stack with ffn_mult=4
+exp048	1.139989	7.5	discard	replace the 4x ReLU-squared FFN with a parameter-matched SwiGLU MLP on the gated 384d/6-head SLSL/80 stack
+exp049	1.139033	7.0	discard	reduce FFN expansion from 4x to 3x on the gated 384d/6-head SLSL/80 stack
+exp050	1.139173	7.5	discard	restrict learned value embeddings to the deeper global-attention layers on the gated 384d/6-head SLSL/80 stack
+exp051	1.144222	7.3	discard	ablate x0 residual reinjection on the gated 384d/6-head SLSL/80 stack
+exp052	1.146909	7.5	discard	shift the gated 384d/6-head SLSL/80 stack to an SSSL/80 attention cycle with one extra early local pass before global mixing
+exp053	1.138169	7.5	discard	taper local attention windows wider with depth around the gated SLSL/80 baseline
+exp054	1.134480	7.5	keep	rebalance the gated SLSL/80 baseline into a shallower, wider 5-layer 448d stack with 64-dim heads
+exp055	0.000000	0.0	crash	widen the gated SLSL/80 5-layer stack from 448d/7 heads to 512d/8 heads
+exp056	1.139337	6.9	discard	rebalance the gated SLSL/80 448d baseline further toward width with a 4-layer 512d stack and 64-dim heads
+exp057	0.000000	0.0	crash	front-load global mixing by shifting the 5-layer 448d gated stack from SLSL to LSLS attention ordering
+exp058	1.134178	7.5	keep	retune the gated SLSL/80 5-layer 448d stack to an 88-token short local window
+exp059	0.000000	0.0	crash	route learned value embeddings to global-attention layers on the gated 5-layer 448d SLSL/88 stack
+exp060	0.000000	0.0	crash	widen the short local window from 88 to 96 on the gated 5-layer 448d SLSL stack
+exp061	0.000000	0.0	crash	rebalance the gated SLSL/88 5-layer 448d baseline toward depth with a parameter-matched 7-layer 384d stack
+exp062	0.000000	0.0	crash	increase attention head count from 7x64 to 8x56 on the gated 5-layer 448d SLSL/88 stack
+exp063	0.000000	0.0	crash	switch the gated 5-layer 448d SLSL/88 stack to grouped-query attention with a single shared KV head
+exp064	0.000000	0.0	crash	retune the gated 5-layer 448d SLSL/88 stack to a 92-token short local window
+exp065	0.000000	0.0	crash	slightly narrow the gated 5-layer 448d SLSL stack's short local window from 88 to 86 tokens
+exp066	0.000000	0.0	crash	shrink the gated 5-layer 448d SLSL/88 stack's FFN expansion from 4x to 3x
+exp067	1.207204	16.7	discard	disable full-model torch.compile on the gated 5-layer 448d SLSL/88 baseline to avoid the recent Inductor crash streak
+exp068	0.000000	0.0	crash	tie input and output embeddings on the gated 5-layer 448d SLSL/88 stack
+exp069	0.000000	0.0	crash	reduce attention head count from 7x64 to 4x112 on the gated 5-layer 448d SLSL/88 stack
+exp070	0.000000	0.0	crash	retune the gated 5-layer 448d SLSL/88 stack with a slightly lower Muon matrix learning rate
+exp071	0.000000	0.0	crash	swap ReluSquared for SiLU on the gated 5-layer 448d SLSL/88 stack
+exp072	0.000000	0.0	crash	restrict x0 residual reinjection to short-window layers on the gated 5-layer 448d SLSL/88 stack
+exp073	1.134197	7.5	discard	relocate torch compile and temp caches into the workspace storage mount to avoid root-disk Inductor crashes
+exp074	1.134323	7.5	discard	relocate compile/temp caches into src and retune the gated 5-layer 448d SLSL/88 stack to a 92-token short local window
+exp075	0.000000	0.0	crash	retune the gated 5-layer 448d SLSL/88 stack to a 87-token short local window
+exp076	0.000000	0.0	crash	retune the gated 5-layer 448d SLSL/88 stack with a lower 0.05 x0 residual reinjection init
+exp077	0.000000	0.0	crash	switch the gated 5-layer 448d SLSL/88 stack to a parameter-matched gated MLP with activation-gated feed-forward channels
+exp078	0.000000	0.0	crash	retune the gated 5-layer 448d SLSL/88 stack to an 84-token short local window
+exp079	0.000000	0.0	crash	continue the shallower-wider trend by widening the gated 5-layer 448d SLSL/88 stack to 480d with 8 heads
+exp080	0.000000	0.0	crash	slightly widen the short local window from 88 to 90 on the gated 5-layer 448d SLSL stack
+exp081	1.134127	7.5	keep	relocate temp and compile caches into src/.runtime_cache so the exp058 5-layer 448d SLSL/88 baseline can train cleanly with the root filesystem full
+exp082	1.134356	7.5	discard	retry the gated 5-layer 448d SLSL stack with a 90-token short local window now that src/.runtime_cache restores clean training
+exp083	1.133739	7.5	keep	lower the stable 5-layer 448d SLSL/88 baseline's default Muon matrix learning rate from 0.04 to 0.035
+exp084	1.134408	7.5	discard	continue lowering the stable 5-layer 448d SLSL/88 baseline's default Muon matrix learning rate from 0.035 to 0.0325
+exp085	1.137189	7.5	discard	let value-embedding gates read the full 448d residual stream instead of only the first 32 channels on the stable 5-layer 448d SLSL/88 stack
+exp086	1.133970	7.5	discard	widen value-embedding gates from 32 to 64 residual channels on the stable 5-layer 448d SLSL/88 stack
+exp087	1.134007	7.5	discard	nudge the stable 5-layer 448d SLSL/88 baseline's default Muon matrix learning rate back up from 0.035 to 0.0375 after the 0.0325 regression
+exp088	1.132363	7.5	keep	route learned value embeddings to global-attention layers only on the stable 5-layer 448d SLSL/88 stack
+exp089	1.132456	7.5	discard	narrow value-embedding gates from 32 to 16 residual channels on the stable 5-layer 448d SLSL/88 stack with value embeddings routed to global-attention layers only
+exp090	1.153958	7.0	discard	switch the stable global-VE 5-layer 448d SLSL/88 stack to multi-query attention with one KV head
+exp091	1.133120	7.5	discard	narrow the stable global-VE 5-layer 448d SLSL/88 stack's short local window from 88 to 86
+exp092	1.143439	7.5	discard	increase the stable global-VE 5-layer 448d SLSL/88 stack's attention head count from 7 to 8 at fixed model width
+exp093	1.139553	7.5	discard	lower the stable global-VE 5-layer 448d SLSL/88 stack's x0 residual reinjection init from 0.1 to 0.05
+exp094	1.133091	7.5	discard	slightly widen the stable global-VE 5-layer 448d SLSL/88 stack's short local window from 88 to 90
+exp095	1.142047	7.4	discard	front-load global mixing by shifting the stable global-VE 5-layer 448d 88-window stack from SLSL to LSLS attention ordering
+exp096	1.132752	7.5	discard	lower the global-VE 5-layer 448d SLSL/88 stack's value-embedding AdamW learning rate from 0.6 to 0.45 while keeping token embeddings at 0.6
+exp097	1.177914	16.4	discard	widen the stable global-VE 5-layer SLSL/88 stack from 448d/7 heads to 480d/8 heads
+exp098	1.131438	7.5	keep	halve the stable global-VE 5-layer 448d SLSL/88 stack's initial value-embedding injection strength by switching VE gates from 2x-sigmoid to sigmoid
+exp099	1.138264	7.5	discard	swap the stable global-VE 5-layer 448d SLSL/88 stack's MLP activation from ReluSquared to SiLU now that cache relocation allows clean training
+exp100	1.135187	8.0	discard	increase the stable global-VE 5-layer 448d SLSL/88 stack's FFN expansion from 4x to 5x while keeping sigmoid VE gating
