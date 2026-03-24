@@ -86,3 +86,16 @@ exp084	1.126651	10.6	discard	swap the RMS-normalized 48-channel token-conditione
 exp085	1.125320	11.2	discard	add a zero-init residual full-state bottleneck on top of the RMS-normalized 48-channel token-conditioned value gate input in the widened 4-head RMS-normalized branch-gated model
 exp086	1.123406	10.6	discard	add a learned -0.5 per-head bias to the RMS-normalized 48-channel token-conditioned value gate so lexical injection ramps in more cautiously in the widened 4-head RMS-normalized branch-gated model
 exp087	1.138013	10.6	discard	sample the RMS-normalized 48-channel value-gate bottleneck evenly across the hidden state instead of reading the first 48 channels
+exp088	1.122866	10.6	discard	widen the RMS-normalized token-conditioned value-gate bottleneck from 48 to 56 channels in the widened 4-head RMS-normalized branch-gated model
+exp089	1.127704	11.0	discard	RMS-normalize the combined attention values after token-conditioned value-embedding injection in the widened 4-head RMS-normalized branch-gated model
+exp090	1.122455	10.6	discard	widen the RMS-normalized token-conditioned value-gate bottleneck from 48 to 52 channels in the widened 4-head RMS-normalized branch-gated model
+exp091	1.122788	10.6	discard	small-random-init the RMS-normalized 48-channel token-conditioned value gate projection so lexical modulation starts informative instead of uniform
+exp092	1.126971	10.8	discard	replace the token-conditioned value gate with per-channel KV modulation on the RMS-normalized 48-channel bottleneck in the widened 4-head RMS-normalized branch-gated model
+exp093	1.122840	10.6	discard	switch the RMS-normalized token-conditioned value gate to per-KV-head local hidden-state slices instead of a shared first-48-channel bottleneck
+exp094	1.122638	10.6	discard	narrow the RMS-normalized token-conditioned value-gate bottleneck from 48 to 44 channels in the widened 4-head RMS-normalized branch-gated model
+exp095	1.128319	10.6	discard	flip the alternating value-embedding parity so token-conditioned lexical value injection starts at layer 0 instead of layer 1 in the widened 4-head RMS-normalized branch-gated model
+exp096	1.121863	10.6	keep	halve the initial per-head value-embedding scales so the RMS-normalized 48-channel token-conditioned lexical injection starts more conservatively in the widened 4-head RMS-normalized branch-gated model
+exp097	1.122761	10.6	discard	depth-ramp the initial per-head value-embedding scales so later lexical injection starts stronger than earlier injection in the RMS-normalized 48-channel token-conditioned value-gated model
+exp098	1.122456	10.6	discard	lower the initial per-head value-embedding scales from 0.5 to 0.4 so the RMS-normalized 48-channel token-conditioned lexical injection starts slightly more conservatively in the widened 4-head RMS-normalized branch-gated model
+exp099	1.121233	10.6	keep	halve the alternating value-embedding table init range so token-conditioned lexical injection starts softer at the source in the RMS-normalized 48-channel value-gated model
+exp100	1.122305	10.6	discard	compress the RMS-normalized token-conditioned value gate around a neutral 1.0 scale with 0.5*tanh so lexical injection stays centered but swings less aggressively

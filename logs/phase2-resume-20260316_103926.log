@@ -2041,3 +2041,237 @@
 [2026-03-23 18:58:45] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 87/100
 [2026-03-23 19:07:38] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 87/100
 [2026-03-23 19:07:38] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 88/100
+[2026-03-23 19:16:01] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 88/100
+[2026-03-23 19:16:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 89/100
+[2026-03-23 19:24:49] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 89/100
+[2026-03-23 19:24:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 90/100
+[2026-03-23 19:33:13] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 90/100
+[2026-03-23 19:33:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 91/100
+[2026-03-23 19:41:50] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 91/100
+[2026-03-23 19:41:50] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 92/100
+[2026-03-23 19:50:27] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 92/100
+[2026-03-23 19:50:27] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 93/100
+[2026-03-23 19:59:16] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 93/100
+[2026-03-23 19:59:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 94/100
+[2026-03-23 20:08:01] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 94/100
+[2026-03-23 20:08:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 95/100
+[2026-03-23 20:16:29] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 95/100
+[2026-03-23 20:16:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 96/100
+[2026-03-23 20:24:29] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 96/100
+[2026-03-23 20:24:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 97/100
+[2026-03-23 20:32:35] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 97/100
+[2026-03-23 20:32:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 98/100
+[2026-03-23 20:40:12] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 98/100
+[2026-03-23 20:40:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 99/100
+[2026-03-23 20:47:35] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 99/100
+[2026-03-23 20:47:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_4 experiment 100/100
+[2026-03-23 20:55:26] /home/ubuntu/storage1/recursive-mol/results/nlp/run_4: recorded experiment row 100/100
+[2026-03-23 20:55:26] Starting task 24/34: {'kind': 'hp_only', 'track': 'smiles', 'run': 3, 'program': 'program_hponly.md'}
+[2026-03-23 20:55:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 1/100
+[2026-03-23 21:01:10] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 1/100
+[2026-03-23 21:01:10] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 2/100
+[2026-03-23 21:07:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 2/100
+[2026-03-23 21:07:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 3/100
+[2026-03-23 21:14:43] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 3/100
+[2026-03-23 21:14:43] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 4/100
+[2026-03-23 21:21:37] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 4/100
+[2026-03-23 21:21:37] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 5/100
+[2026-03-23 21:28:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 5/100
+[2026-03-23 21:28:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 6/100
+[2026-03-23 21:34:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 6/100
+[2026-03-23 21:34:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 7/100
+[2026-03-23 21:41:09] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 7/100
+[2026-03-23 21:41:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 8/100
+[2026-03-23 21:48:17] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 8/100
+[2026-03-23 21:48:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 9/100
+[2026-03-23 21:54:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 9/100
+[2026-03-23 21:54:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 10/100
+[2026-03-23 22:01:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 10/100
+[2026-03-23 22:01:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 11/100
+[2026-03-23 22:08:03] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 11/100
+[2026-03-23 22:08:03] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 12/100
+[2026-03-23 22:14:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 12/100
+[2026-03-23 22:14:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 13/100
+[2026-03-23 22:21:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 13/100
+[2026-03-23 22:21:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 14/100
+[2026-03-23 22:27:51] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 14/100
+[2026-03-23 22:27:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 15/100
+[2026-03-23 22:34:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 15/100
+[2026-03-23 22:34:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 16/100
+[2026-03-23 22:42:15] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 16/100
+[2026-03-23 22:42:15] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 17/100
+[2026-03-23 22:49:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 17/100
+[2026-03-23 22:49:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 18/100
+[2026-03-23 22:56:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 18/100
+[2026-03-23 22:56:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 19/100
+[2026-03-23 23:03:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 19/100
+[2026-03-23 23:03:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 20/100
+[2026-03-23 23:05:33] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 20/100
+[2026-03-23 23:05:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 21/100
+[2026-03-23 23:12:35] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 21/100
+[2026-03-23 23:12:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 22/100
+[2026-03-23 23:19:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 22/100
+[2026-03-23 23:19:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 23/100
+[2026-03-23 23:26:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 23/100
+[2026-03-23 23:26:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 24/100
+[2026-03-23 23:34:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 24/100
+[2026-03-23 23:34:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 25/100
+[2026-03-23 23:40:44] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 25/100
+[2026-03-23 23:40:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 26/100
+[2026-03-23 23:48:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 26/100
+[2026-03-23 23:48:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 27/100
+[2026-03-23 23:55:15] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 27/100
+[2026-03-23 23:55:15] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 28/100
+[2026-03-24 00:02:48] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 28/100
+[2026-03-24 00:02:48] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 29/100
+[2026-03-24 00:09:22] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 29/100
+[2026-03-24 00:09:22] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 30/100
+[2026-03-24 00:16:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 30/100
+[2026-03-24 00:16:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 31/100
+[2026-03-24 00:23:57] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 31/100
+[2026-03-24 00:23:57] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 32/100
+[2026-03-24 00:31:44] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 32/100
+[2026-03-24 00:31:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 33/100
+[2026-03-24 00:38:50] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 33/100
+[2026-03-24 00:38:50] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 34/100
+[2026-03-24 00:45:34] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 34/100
+[2026-03-24 00:45:34] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 35/100
+[2026-03-24 00:52:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 35/100
+[2026-03-24 00:52:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 36/100
+[2026-03-24 00:59:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 36/100
+[2026-03-24 00:59:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 37/100
+[2026-03-24 01:06:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 37/100
+[2026-03-24 01:06:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 38/100
+[2026-03-24 01:13:53] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 38/100
+[2026-03-24 01:13:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 39/100
+[2026-03-24 01:21:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 39/100
+[2026-03-24 01:21:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 40/100
+[2026-03-24 01:27:35] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 40/100
+[2026-03-24 01:27:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 41/100
+[2026-03-24 01:35:13] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 41/100
+[2026-03-24 01:35:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 42/100
+[2026-03-24 01:42:33] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 42/100
+[2026-03-24 01:42:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 43/100
+[2026-03-24 01:49:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 43/100
+[2026-03-24 01:49:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 44/100
+[2026-03-24 01:57:56] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 44/100
+[2026-03-24 01:57:56] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 45/100
+[2026-03-24 02:05:31] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 45/100
+[2026-03-24 02:05:31] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 46/100
+[2026-03-24 02:12:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 46/100
+[2026-03-24 02:12:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 47/100
+[2026-03-24 02:20:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 47/100
+[2026-03-24 02:20:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 48/100
+[2026-03-24 02:27:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 48/100
+[2026-03-24 02:27:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 49/100
+[2026-03-24 02:34:51] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 49/100
+[2026-03-24 02:34:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 50/100
+[2026-03-24 02:42:06] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 50/100
+[2026-03-24 02:42:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 51/100
+[2026-03-24 02:48:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 51/100
+[2026-03-24 02:48:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 52/100
+[2026-03-24 02:56:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 52/100
+[2026-03-24 02:56:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 53/100
+[2026-03-24 03:04:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 53/100
+[2026-03-24 03:04:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 54/100
+[2026-03-24 03:12:03] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 54/100
+[2026-03-24 03:12:03] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 55/100
+[2026-03-24 03:19:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 55/100
+[2026-03-24 03:19:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 56/100
+[2026-03-24 03:26:41] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 56/100
+[2026-03-24 03:26:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 57/100
+[2026-03-24 03:33:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 57/100
+[2026-03-24 03:33:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 58/100
+[2026-03-24 03:41:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 58/100
+[2026-03-24 03:41:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 59/100
+[2026-03-24 03:48:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 59/100
+[2026-03-24 03:48:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 60/100
+[2026-03-24 03:55:48] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 60/100
+[2026-03-24 03:55:48] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 61/100
+[2026-03-24 04:03:09] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 61/100
+[2026-03-24 04:03:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 62/100
+[2026-03-24 04:10:13] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 62/100
+[2026-03-24 04:10:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 63/100
+[2026-03-24 04:17:42] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 63/100
+[2026-03-24 04:17:42] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 64/100
+[2026-03-24 04:25:03] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 64/100
+[2026-03-24 04:25:03] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 65/100
+[2026-03-24 04:32:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 65/100
+[2026-03-24 04:32:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 66/100
+[2026-03-24 04:41:02] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 66/100
+[2026-03-24 04:41:02] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 67/100
+[2026-03-24 04:48:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 67/100
+[2026-03-24 04:48:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 68/100
+[2026-03-24 04:57:05] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 68/100
+[2026-03-24 04:57:05] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 69/100
+[2026-03-24 05:05:02] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 69/100
+[2026-03-24 05:05:02] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 70/100
+[2026-03-24 05:12:33] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 70/100
+[2026-03-24 05:12:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 71/100
+[2026-03-24 05:19:18] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 71/100
+[2026-03-24 05:19:18] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 72/100
+[2026-03-24 05:26:22] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 72/100
+[2026-03-24 05:26:22] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 73/100
+[2026-03-24 05:33:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 73/100
+[2026-03-24 05:33:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 74/100
+[2026-03-24 05:40:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 74/100
+[2026-03-24 05:40:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 75/100
+[2026-03-24 05:47:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 75/100
+[2026-03-24 05:47:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 76/100
+[2026-03-24 05:53:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 76/100
+[2026-03-24 05:53:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 77/100
+[2026-03-24 06:00:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 77/100
+[2026-03-24 06:00:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 78/100
+[2026-03-24 06:07:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 78/100
+[2026-03-24 06:07:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 79/100
+[2026-03-24 06:15:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 79/100
+[2026-03-24 06:15:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 80/100
+[2026-03-24 06:22:46] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 80/100
+[2026-03-24 06:22:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 81/100
+[2026-03-24 06:30:46] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 81/100
+[2026-03-24 06:30:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 82/100
+[2026-03-24 06:37:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 82/100
+[2026-03-24 06:37:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 83/100
+[2026-03-24 06:44:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 83/100
+[2026-03-24 06:44:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 84/100
+[2026-03-24 06:51:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 84/100
+[2026-03-24 06:51:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 85/100
+[2026-03-24 06:58:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 85/100
+[2026-03-24 06:58:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 86/100
+[2026-03-24 07:05:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 86/100
+[2026-03-24 07:05:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 87/100
+[2026-03-24 07:12:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 87/100
+[2026-03-24 07:12:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 88/100
+[2026-03-24 07:18:44] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 88/100
+[2026-03-24 07:18:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 89/100
+[2026-03-24 07:25:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 89/100
+[2026-03-24 07:25:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 90/100
+[2026-03-24 07:33:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 90/100
+[2026-03-24 07:33:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 91/100
+[2026-03-24 07:40:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 91/100
+[2026-03-24 07:40:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 92/100
+[2026-03-24 07:48:06] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 92/100
+[2026-03-24 07:48:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 93/100
+[2026-03-24 07:55:34] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 93/100
+[2026-03-24 07:55:34] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 94/100
+[2026-03-24 08:02:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 94/100
+[2026-03-24 08:02:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 95/100
+[2026-03-24 08:10:22] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 95/100
+[2026-03-24 08:10:22] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 96/100
+[2026-03-24 08:17:33] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 96/100
+[2026-03-24 08:17:33] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 97/100
+[2026-03-24 08:25:23] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 97/100
+[2026-03-24 08:25:23] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 98/100
+[2026-03-24 08:32:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 98/100
+[2026-03-24 08:32:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 99/100
+[2026-03-24 08:39:51] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 99/100
+[2026-03-24 08:39:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3 experiment 100/100
+[2026-03-24 08:47:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/smiles/run_3: recorded experiment row 100/100
+[2026-03-24 08:47:01] Starting task 25/34: {'kind': 'agent', 'track': 'nlp', 'run': 5, 'program': 'program.md'}
+[2026-03-24 08:47:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_5 experiment 1/100
+[2026-03-24 08:53:21] /home/ubuntu/storage1/recursive-mol/results/nlp/run_5: recorded experiment row 1/100
+[2026-03-24 08:53:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_5 experiment 2/100
+[2026-03-24 09:01:44] /home/ubuntu/storage1/recursive-mol/results/nlp/run_5: recorded experiment row 2/100
+[2026-03-24 09:01:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_5 experiment 3/100
+[2026-03-24 09:08:54] /home/ubuntu/storage1/recursive-mol/results/nlp/run_5: recorded experiment row 3/100
+[2026-03-24 09:08:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/nlp/run_5 experiment 4/100

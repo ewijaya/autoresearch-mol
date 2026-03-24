@@ -1,0 +1,4 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.152380	6.4	keep	baseline
+exp002	1.157326	6.5	discard	parameter-matched SwiGLU gated MLP
+exp003	1.148434	6.5	keep	alternating local/global attention pattern

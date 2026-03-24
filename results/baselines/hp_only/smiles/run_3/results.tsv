@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	0.596080	5.3	keep	baseline
+exp002	0.597942	5.3	discard	2% LR warmup ratio
+exp003	0.593438	5.3	keep	halve Muon weight decay to 0.1
+exp004	0.592106	5.3	keep	halve Muon weight decay again to 0.05
+exp005	0.591994	5.3	keep	halve Muon weight decay again to 0.025
+exp006	0.591207	5.3	keep	halve Muon weight decay again to 0.0125
+exp007	0.591619	5.3	discard	halve Muon weight decay again to 0.00625
+exp008	0.590580	5.3	keep	reduce Muon matrix LR to 0.035
+exp009	0.590317	5.3	keep	reduce Muon matrix LR to 0.03
+exp010	0.589704	5.3	keep	reduce Muon matrix LR to 0.025
+exp011	0.581016	5.3	keep	reduce Muon matrix LR to 0.02
+exp012	0.581755	5.3	discard	reduce Muon matrix LR to 0.015
+exp013	0.581434	5.3	discard	lower Muon matrix LR to 0.018
+exp014	0.581364	5.3	discard	retune Muon weight decay to 0.01 after matrix LR 0.02
+exp015	0.581579	5.3	discard	lower Adam beta1 to 0.75 for AdamW parameter groups
+exp016	0.582488	5.3	discard	keep 10% LR floor during warmdown at matrix LR 0.02
+exp017	0.581384	5.3	discard	raise Muon matrix LR slightly to 0.022 around the 0.02 optimum
+exp018	0.582389	5.3	discard	shorten LR warmdown to 30% at matrix LR 0.02
+exp019	0.589668	5.3	discard	lower embedding/value-embed AdamW LR to 0.45 at matrix LR 0.02
+exp020	0.000000	0.0	crash	halve total batch size to 32768 for more optimizer updates per 5-minute budget
+exp021	0.590414	5.3	discard	double untied lm_head AdamW LR to 0.008 at matrix LR 0.02
+exp022	0.589811	5.3	discard	raise Adam beta1 to 0.85 for AdamW parameter groups
+exp023	0.581593	5.3	discard	raise AdamW beta2 to 0.975 for non-Muon parameter groups
+exp024	0.589924	5.3	discard	raise embedding/value-embed AdamW LR to 0.75 at matrix LR 0.02
+exp025	0.581923	5.3	discard	halve Muon weight decay again to 0.00625 at matrix LR 0.02
+exp026	0.581551	5.3	discard	lower Muon beta2 to 0.90 at matrix LR 0.02
+exp027	0.581524	5.3	discard	raise Muon beta2 to 0.975 at matrix LR 0.02
+exp028	0.592742	5.3	discard	add 2% LR warmup ratio at matrix LR 0.02
+exp029	0.590747	5.3	discard	lower untied lm_head AdamW LR to 0.003 at matrix LR 0.02
+exp030	0.590305	5.3	discard	lengthen LR warmdown to 70% at matrix LR 0.02
+exp031	0.581554	5.3	discard	nudge Muon matrix LR to 0.021 around the 0.02 optimum
+exp032	0.581501	5.3	discard	slightly lower Muon weight decay to 0.011 around the 0.0125 optimum
+exp033	0.581572	5.3	discard	slightly raise Muon weight decay to 0.015 at matrix LR 0.02
+exp034	0.590060	5.3	discard	lower scalar LR to 0.4 for residual/x0 AdamW groups at matrix LR 0.02
+exp035	0.581224	5.3	discard	lower AdamW beta2 to 0.90 for non-Muon parameter groups
+exp036	0.581552	5.3	discard	slightly lower AdamW beta2 to 0.925 for non-Muon parameter groups
+exp037	0.581781	5.3	discard	slightly raise AdamW beta2 to 0.9625 for non-Muon parameter groups
+exp038	0.589044	2.7	discard	halve total and device batch to 32768/128 for more optimizer updates per 5-minute budget
+exp039	0.590324	5.3	discard	slightly raise scalar LR to 0.55 for residual/x0 AdamW groups at matrix LR 0.02
+exp040	0.589778	5.3	discard	slightly raise AdamW beta1 to 0.825 for non-Muon parameter groups
+exp041	0.589727	5.3	discard	lower initial Muon momentum to 0.80 while keeping the ramp target at 0.95
+exp042	0.581666	5.3	discard	slightly lower Muon matrix LR to 0.0195 around the 0.02 optimum
+exp043	0.581504	5.3	discard	raise initial Muon momentum to 0.90 while keeping the ramp target at 0.95
+exp044	0.581688	5.3	discard	lower x0 AdamW beta1 to 0.94 while keeping other optimizer settings at the exp011 baseline
+exp045	0.581725	5.3	discard	raise x0 AdamW beta1 to 0.98 while keeping the exp011 baseline otherwise
+exp046	0.581793	5.3	discard	slightly lower AdamW beta1 to 0.775 for non-Muon parameter groups
+exp047	0.581268	5.3	discard	lower Muon momentum ramp target to 0.925 while keeping the 0.85 start and exp011 baseline otherwise
+exp048	0.581193	5.3	discard	slightly lower AdamW beta2 to 0.91 for non-Muon parameter groups
+exp049	0.581685	5.3	discard	keep 25% Muon weight decay floor through late training instead of decaying to zero
+exp050	0.581533	5.3	discard	lower x0 AdamW beta2 to 0.925 while keeping the exp011 baseline otherwise
+exp051	0.581041	5.3	discard	raise x0 AdamW beta2 to 0.975 while keeping the exp011 baseline otherwise
+exp052	0.590247	5.3	discard	lower x0 AdamW LR to 0.45 while keeping residual scalar LR at 0.5 and other exp011 settings unchanged
+exp053	0.590391	5.3	discard	lower value-embed AdamW LR to 0.5 while keeping token embedding LR at 0.6
+exp054	0.581483	5.3	discard	slightly raise value-embed AdamW LR to 0.7 while keeping token embedding LR at 0.6
+exp055	0.581396	5.3	discard	raise x0 AdamW beta2 to 0.97 while keeping the exp011 baseline otherwise
+exp056	0.581312	5.3	discard	raise x0 AdamW beta2 to 0.98 while keeping the exp011 baseline otherwise
+exp057	0.581722	5.3	discard	double residual scalar AdamW LR multiplier from 0.01 to 0.02 while keeping x0 scalar LR at the exp011 baseline
+exp058	0.590068	5.3	discard	raise x0 AdamW LR to 0.55 while keeping residual scalar LR at the exp011 baseline
+exp059	0.581918	5.3	discard	lower shared embedding and value-embed AdamW LR slightly to 0.55 around the 0.6 baseline
+exp060	0.581765	5.3	discard	slightly raise token embedding AdamW LR to 0.65 while keeping value-embed LR at 0.6
+exp061	0.582023	5.3	discard	set x0 AdamW beta2 to 0.9725 while keeping the exp011 baseline otherwise
+exp062	0.581165	5.3	discard	halve residual scalar AdamW LR multiplier from 0.01 to 0.005 while keeping x0 scalar LR and exp011 Muon settings unchanged
+exp063	0.581325	5.3	discard	set residual scalar AdamW LR multiplier to 0.0075 while keeping x0 scalar LR and exp011 Muon settings unchanged
+exp064	0.581627	5.3	discard	raise x0 AdamW beta2 slightly to 0.9775 while keeping the exp011 baseline otherwise
+exp065	0.592015	5.3	discard	raise Muon momentum ramp target to 0.975 while keeping the exp011 baseline otherwise
+exp066	0.590294	5.3	discard	raise AdamW epsilon from 1e-10 to 1e-8 for all non-Muon parameter groups
+exp067	0.590572	5.3	discard	lower token embedding AdamW LR to 0.55 while keeping value-embed LR at 0.6
+exp068	0.581725	5.3	discard	ramp Muon momentum from 0.85 to 0.95 over 200 steps instead of 300
+exp069	0.581406	5.3	discard	slightly raise value-embed AdamW LR to 0.65 while keeping token embedding LR at 0.6
+exp070	0.590423	5.3	discard	raise x0 AdamW beta2 slightly to 0.965 while keeping the exp011 baseline otherwise
+exp071	0.581464	5.3	discard	lower x0 AdamW beta1 to 0.95 while keeping the exp011 baseline otherwise
+exp072	0.581628	5.3	discard	set non-Muon AdamW beta2 to 0.905 while keeping the exp011 baseline otherwise
+exp073	0.580989	5.3	keep	set non-Muon AdamW beta2 to 0.9125 while keeping the exp011 baseline otherwise
+exp074	0.581320	5.3	discard	slightly raise non-Muon AdamW beta2 from 0.9125 to 0.915 around the exp073 optimum
+exp075	0.581596	5.3	discard	slightly lower non-Muon AdamW beta2 from 0.9125 to 0.91125 around the exp073 optimum
+exp076	0.581501	5.3	discard	slightly raise non-Muon AdamW beta2 from 0.9125 to 0.9135 around the exp073 optimum
+exp077	0.581320	5.3	discard	raise x0 AdamW beta2 to 0.975 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp078	0.581196	5.3	discard	slightly lower x0 AdamW beta2 to 0.94 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp079	0.581460	5.3	discard	lower Muon beta2 to 0.925 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp080	0.581347	5.3	discard	lower Muon momentum ramp target slightly to 0.94 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp081	0.581853	5.3	discard	set non-Muon AdamW beta2 to 0.914 while keeping the exp073 configuration otherwise
+exp082	0.589621	5.3	discard	slightly raise unembedding AdamW LR to 0.005 while keeping the exp073 configuration otherwise
+exp083	0.581517	5.3	discard	slightly lower non-Muon AdamW beta2 from 0.9125 to 0.912 around the exp073 optimum
+exp084	0.590301	5.3	discard	raise Muon beta2 to 0.975 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp085	0.590229	5.3	discard	slightly lower untied lm_head AdamW LR to 0.0035 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp086	0.590221	5.3	discard	slightly lower Muon matrix LR to 0.019 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp087	0.581342	5.3	discard	slightly lower x0 AdamW beta2 from 0.95 to 0.945 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp088	0.581386	5.3	discard	slightly raise Muon weight decay to 0.014 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp089	0.581881	5.3	discard	shorten LR warmdown to 40% while keeping the exp073 AdamW beta2 optimum otherwise
+exp090	0.589831	5.3	discard	slightly raise non-Muon AdamW beta2 from 0.9125 to 0.913 around the exp073 optimum
+exp091	0.581810	5.3	discard	slightly lower Muon weight decay from 0.0125 to 0.012 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp092	0.589696	5.3	discard	raise value-embed AdamW LR to 0.65 while keeping token embedding LR at 0.6 and the exp073 non-Muon beta2 optimum otherwise
+exp093	0.589897	5.3	discard	slightly raise Muon weight decay from 0.0125 to 0.013 around the exp073 optimum
+exp094	0.581304	5.3	discard	keep 5% LR floor during warmdown while keeping the exp073 non-Muon beta2 optimum otherwise
+exp095	0.581256	5.3	discard	lengthen LR warmdown to 60% while keeping the exp073 AdamW beta2 optimum otherwise
+exp096	0.581482	5.3	discard	slightly lower shared embedding and value-embed AdamW LR from 0.6 to 0.575 while keeping the exp073 non-Muon beta2 optimum otherwise
+exp097	0.581717	5.3	discard	keep 2% LR floor during warmdown while keeping the exp073 non-Muon beta2 optimum otherwise
+exp098	0.581254	5.3	discard	slightly lengthen LR warmdown to 55% while keeping the exp073 AdamW beta2 optimum otherwise
+exp099	0.581752	5.3	discard	slightly shorten LR warmdown to 45% while keeping the exp073 AdamW beta2 optimum otherwise
+exp100	0.590483	5.3	discard	slightly lower non-Muon AdamW beta1 from 0.8 to 0.79 while keeping the exp073 beta2 optimum otherwise
