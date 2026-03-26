@@ -1,2 +1,6 @@
 commit	val_bpb	memory_gb	status	description
 exp001	1.153129	6.4	keep	baseline
+exp002	1.155651	6.4	discard	add 5% lr warmup
+exp003	1.151357	6.4	keep	halve muon weight decay to 0.1
+exp004	1.152572	6.4	discard	halve muon weight decay again to 0.05
+exp005	1.151925	6.4	discard	increase muon weight decay slightly to 0.12

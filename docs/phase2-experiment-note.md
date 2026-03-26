@@ -85,7 +85,7 @@ If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.m
 
 - the Phase 2 runner is on task `30/34`
 - active task: hp_only NLP `run_2`
-- completed experiments in the active run: `0/~100`
+- completed experiments in the active run: `4/~100` (best 1.1514 bpb at exp003)
 - all agent runs complete (SMILES 5/5, protein 3/3, NLP 5/5)
 - all random_nas runs complete (SMILES 3/3, protein 3/3, NLP 3/3)
 - hp_only SMILES runs 1–3 complete; hp_only protein runs 1–3 complete; hp_only NLP run_1 complete, run_2 in progress

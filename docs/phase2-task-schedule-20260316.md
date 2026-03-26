@@ -1,7 +1,7 @@
 # Phase 2 Task Schedule
 
 **Date**: 2026-03-16 (updated 2026-03-26)
-**Status**: Task 30 of 34 running (hp_only nlp run_2, 0/100 experiments)
+**Status**: Task 30 of 34 running (hp_only nlp run_2, 4/100 experiments)
 
 ---
 
@@ -47,7 +47,7 @@ The runner interleaves agent runs with baseline runs to ensure incremental data 
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
-| 30 | hp_only | nlp | 2 | **Running** | — | just started; 0 crashes |
+| 30 | hp_only | nlp | 2 | **Running** (4/100) | 1.1514 (exp003) | 0 crashes |
 
 ### Upcoming (Tasks 31-34)
 

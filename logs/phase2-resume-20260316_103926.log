@@ -3308,3 +3308,11 @@ nohup: ignoring input
 [2026-03-26 20:54:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 1/100
 [2026-03-26 21:00:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2: recorded experiment row 1/100
 [2026-03-26 21:00:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 2/100
+[2026-03-26 21:08:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2: recorded experiment row 2/100
+[2026-03-26 21:08:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 3/100
+[2026-03-26 21:15:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2: recorded experiment row 3/100
+[2026-03-26 21:15:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 4/100
+[2026-03-26 21:22:41] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2: recorded experiment row 4/100
+[2026-03-26 21:22:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 5/100
+[2026-03-26 21:30:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2: recorded experiment row 5/100
+[2026-03-26 21:30:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 6/100
