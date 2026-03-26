@@ -1,7 +1,7 @@
 # Phase 2 Task Schedule
 
 **Date**: 2026-03-16 (updated 2026-03-26)
-**Status**: Task 29 of 34 running (hp_only nlp run_1, 13/100 experiments)
+**Status**: Task 30 of 34 running (hp_only nlp run_2, 0/100 experiments)
 
 ---
 
@@ -9,7 +9,7 @@
 
 The runner interleaves agent runs with baseline runs to ensure incremental data collection across conditions.
 
-### Completed (Tasks 1-28)
+### Completed (Tasks 1-29)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
@@ -41,14 +41,15 @@ The runner interleaves agent runs with baseline runs to ensure incremental data 
 | 26 | hp_only | protein | 1 | Done | 3.9901 (exp068) | 8 crashes |
 | 27 | hp_only | protein | 2 | Done | 3.9699 (exp018) | 0 crashes |
 | 28 | hp_only | protein | 3 | Done | 3.9684 (exp038) | 0 crashes |
+| 29 | hp_only | nlp | 1 | Done | 1.1462 (exp094) | 0 crashes |
 
-### Currently Running (Task 29)
+### Currently Running (Task 30)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
-| 29 | hp_only | nlp | 1 | **Running** | 1.1505 (exp013) | 13/100 experiments; 0 crashes |
+| 30 | hp_only | nlp | 2 | **Running** | — | just started; 0 crashes |
 
-### Upcoming (Tasks 30-34)
+### Upcoming (Tasks 31-34)
 
 #### HP-only baseline — remaining runs
 
@@ -56,7 +57,6 @@ HP-only uses `program_hponly.md`, which restricts the agent to only tuning hyper
 
 | # | Kind | Track | Run | Est. duration | Purpose |
 |---|------|-------|-----|---------------|---------|
-| 30 | hp_only | nlp | 2 | ~13 hrs | NLP HP-only replicate 2 |
 | 31 | hp_only | nlp | 3 | ~13 hrs | NLP HP-only replicate 3 |
 
 #### Fixed default baseline — one run per track
@@ -78,7 +78,7 @@ Fixed default trains the unmodified baseline architecture (no agent, no random s
 | Agent runs (~8 min/experiment, 100 experiments) | ~13 hrs each |
 | Random NAS runs (~6 min/experiment, 100 experiments) | ~10 hrs each |
 | Fixed default (single architecture, one training run) | ~10 hrs |
-| **Total remaining (6 tasks)** | **~72 hrs (~3 days)** |
+| **Total remaining (5 tasks)** | **~59 hrs (~2.5 days)** |
 
 **Assumptions**:
 - Continuous runtime with no API rate-limit pauses (optimistic; we've already hit one weekly limit pause during SMILES run_4)
@@ -119,4 +119,4 @@ The 4-condition design enables a decomposition analysis (Story 7):
 
 - **SMILES track**: All 5 agent + 3 random_nas + 3/3 hp_only runs complete. Best agent: 0.5808 (run_2). Best overall: 0.5801 (hp_only run_2).
 - **Protein track**: All 3 agent + 3 random_nas + 3/3 hp_only runs complete. Best agent: 3.9656 (run_1). Best hp_only: 3.9684 (run_3).
-- **NLP track**: All 5 agent + 3 random_nas runs complete; hp_only run_1 in progress (13/100). Best agent: 1.1151 (run_3). Best random_nas: 1.1297 (run_1).
+- **NLP track**: All 5 agent + 3 random_nas runs complete; hp_only run_1 complete, run_2 in progress. Best agent: 1.1151 (run_3). Best hp_only: 1.1462 (run_1). Best random_nas: 1.1297 (run_1).

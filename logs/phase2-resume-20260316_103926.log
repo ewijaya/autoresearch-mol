@@ -3302,3 +3302,7 @@ Traceback (most recent call last):
   File "/home/ubuntu/anaconda3/lib/python3.12/subprocess.py", line 2045, in _wait
     time.sleep(delay)
 KeyboardInterrupt
+nohup: ignoring input
+[2026-03-26 20:54:16] Early monitoring: {"kill_condition_triggered": false, "runs": [{"architectural": 39, "hp_only": 0, "run_dir": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_1", "unclear": 61}, {"architectural": 48, "hp_only": 1, "run_dir": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_2", "unclear": 51}], "zero_architectural_changes": false}
+[2026-03-26 20:54:16] Starting task 30/34: {'kind': 'hp_only', 'track': 'nlp', 'run': 2, 'program': 'program_hponly.md'}
+[2026-03-26 20:54:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 1/100
