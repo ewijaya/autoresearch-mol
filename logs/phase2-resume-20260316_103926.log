@@ -3306,3 +3306,5 @@ nohup: ignoring input
 [2026-03-26 20:54:16] Early monitoring: {"kill_condition_triggered": false, "runs": [{"architectural": 39, "hp_only": 0, "run_dir": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_1", "unclear": 61}, {"architectural": 48, "hp_only": 1, "run_dir": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_2", "unclear": 51}], "zero_architectural_changes": false}
 [2026-03-26 20:54:16] Starting task 30/34: {'kind': 'hp_only', 'track': 'nlp', 'run': 2, 'program': 'program_hponly.md'}
 [2026-03-26 20:54:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 1/100
+[2026-03-26 21:00:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2: recorded experiment row 1/100
+[2026-03-26 21:00:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_2 experiment 2/100
