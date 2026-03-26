@@ -12,3 +12,90 @@ exp010	1.150788	6.4	keep	lower final lr floor to 5% from exp008 best
 exp011	1.150674	6.4	keep	lower final lr floor to 2% from exp010 best
 exp012	1.151317	6.4	discard	lower final lr floor to 1% from exp011 best
 exp013	1.150519	6.4	keep	increase warmdown ratio to 0.6 from exp011 best while keeping 2% final lr floor
+exp014	1.151373	6.4	discard	increase warmdown ratio to 0.7 from exp013 best while keeping 2% final lr floor
+exp015	1.151406	6.4	discard	lower warmdown ratio to 0.5 from exp013 best while keeping 2% final lr floor
+exp016	1.151098	6.4	discard	raise Adam beta1 to 0.85 from exp013 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp017	1.149511	6.4	keep	lower Adam beta1 to 0.75 from exp013 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp018	1.148786	6.4	keep	lower Adam beta1 to 0.70 from exp017 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp019	1.147891	6.4	keep	lower Adam beta1 to 0.65 from exp018 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp020	1.148236	6.4	discard	lower Adam beta1 to 0.60 from exp019 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp021	1.147412	6.4	keep	lower Adam beta1 to 0.625 from exp019 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp022	1.148170	6.4	discard	refine Adam beta1 upward to 0.6375 from exp021 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp023	1.147999	6.4	discard	refine Adam beta1 downward to 0.61875 from exp021 best while keeping wd=0.1, warmdown=0.6, and 2% final lr floor
+exp024	1.152253	6.4	discard	add 2% LR warmup from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp025	1.148357	6.4	discard	raise Adam beta2 to 0.97 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp026	1.148739	6.4	discard	lower Adam beta2 to 0.93 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp027	1.147792	6.4	discard	raise weight decay slightly to 0.12 from exp021 best while keeping beta1=0.625, warmdown=0.6, and 2% final lr floor
+exp028	1.148482	6.4	discard	lower weight decay slightly to 0.09 from exp021 best while keeping beta1=0.625, warmdown=0.6, and 2% final lr floor
+exp029	1.152538	6.4	discard	lower matrix lr slightly to 0.035 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp030	1.151569	6.4	discard	raise matrix lr slightly to 0.045 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp031	1.151936	6.4	discard	lower embedding lr slightly to 0.5 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp032	1.149504	6.4	discard	raise embedding lr slightly to 0.7 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp033	1.148194	6.4	discard	lower warmdown ratio to 0.55 from exp021 best while keeping beta1=0.625, wd=0.1, and 2% final lr floor
+exp034	1.148719	6.4	discard	raise warmdown ratio slightly to 0.65 from exp021 best while keeping beta1=0.625, wd=0.1, and 2% final lr floor
+exp035	1.161562	12.6	discard	double NLP device batch to 64 and total batch to 131072 to test higher-throughput larger-batch training from exp021 best
+exp036	1.153394	3.3	discard	halve NLP device batch to 16 and total batch to 32768 from exp021 best to test smaller-batch more frequent updates
+exp037	1.148447	6.4	discard	lower scalar lr to 0.4 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp038	1.148025	6.4	discard	raise final lr floor slightly to 3% from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and other lrs fixed
+exp039	1.152042	6.4	discard	raise scalar lr slightly to 0.6 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp040	1.148629	6.4	discard	lower x0 Adam beta1 to 0.94 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp041	1.149415	6.4	discard	raise x0 Adam beta1 to 0.97 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp042	1.149500	6.4	discard	raise unembedding lr slightly to 0.006 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp043	1.153257	6.4	discard	lower unembedding lr slightly to 0.003 from exp021 best while keeping beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp044	1.147743	6.4	discard	refine weight decay upward to 0.11 from exp021 best while keeping beta1=0.625, warmdown=0.6, and 2% final lr floor
+exp045	1.146649	6.4	keep	lower Muon momentum cap to 0.925 from 0.95 while keeping exp021 Adam settings, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp046	1.147979	6.4	discard	lower Muon momentum cap slightly to 0.9125 from exp045 best while keeping exp021 Adam settings, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp047	1.147565	6.4	discard	raise Muon momentum cap slightly to 0.9375 from exp045 best while keeping exp021 Adam settings, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp048	1.147561	6.4	discard	lower Muon momentum ramp start to 0.80 from 0.85 while keeping the 0.925 cap, beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp049	1.148267	6.4	discard	raise Muon momentum ramp start to 0.90 from 0.85 while keeping the 0.925 cap, beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp050	1.147360	6.4	discard	raise weight decay slightly to 0.105 from exp045 best while keeping the 0.85->0.925 Muon momentum ramp, beta1=0.625, warmdown=0.6, and 2% final lr floor
+exp051	1.146837	6.4	discard	lower Muon beta2 to 0.925 from exp045 best while keeping the 0.85->0.925 Muon momentum ramp, beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp052	1.147628	6.4	discard	raise Muon beta2 slightly to 0.975 from exp045 best while keeping the 0.85->0.925 Muon momentum ramp, beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp053	1.147234	6.4	discard	lower Muon weight decay slightly to 0.095 from exp045 best while keeping the 0.85->0.925 Muon momentum ramp, beta1=0.625, warmdown=0.6, and 2% final lr floor
+exp054	1.147462	6.4	discard	lower Muon beta2 slightly to 0.9375 from exp045 best while keeping the 0.85->0.925 Muon momentum ramp, beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp055	1.146749	6.4	discard	shorten Muon momentum ramp to 200 steps while keeping the 0.85->0.925 schedule, beta1=0.625, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp056	1.146468	6.4	keep	lower Adam beta1 slightly to 0.60 from exp045 best while keeping the 0.85->0.925 Muon momentum ramp, beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp057	1.146847	6.4	discard	refine Adam beta1 downward to 0.5875 from exp056 best while keeping the 0.85->0.925 Muon momentum ramp, beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp058	1.146267	6.4	keep	refine Adam beta1 upward to 0.6125 from exp056 best while keeping the 0.85->0.925 Muon momentum ramp, beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp059	1.147388	6.4	discard	refine Adam beta1 downward to 0.60625 from exp058 best while keeping the 0.85->0.925 Muon momentum ramp, beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp060	1.148224	6.4	discard	refine Adam beta1 upward to 0.61875 from exp058 best while keeping the 0.85->0.925 Muon momentum ramp, beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp061	1.146748	6.4	discard	lower Muon beta2 to 0.925 from exp058 best while keeping Adam beta1=0.6125, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp062	1.147335	6.4	discard	raise Muon beta2 slightly to 0.9625 from exp058 best while keeping Adam beta1=0.6125, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp063	1.146398	6.4	discard	shorten Muon momentum ramp slightly to 250 steps from exp058 best while keeping Adam beta1=0.6125, Muon beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp064	1.146598	6.4	discard	raise Adam beta2 slightly to 0.96 from exp058 best while keeping Adam beta1=0.6125, Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp065	1.146559	6.4	discard	lengthen Muon momentum ramp to 350 steps from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon schedule, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp066	1.148109	6.4	discard	lower Adam beta2 slightly to 0.945 from exp058 best while keeping Adam beta1=0.6125, Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp067	1.146877	6.4	discard	raise Adam beta2 slightly to 0.955 from exp058 best while keeping Adam beta1=0.6125, Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp068	1.146924	6.4	discard	refine final lr floor downward to 1.5% from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and warmdown=0.6
+exp069	1.147092	6.4	discard	refine weight decay downward to 0.0975 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, warmdown=0.6, and 2% final lr floor
+exp070	1.147341	6.4	discard	refine weight decay upward to 0.1025 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, warmdown=0.6, and 2% final lr floor
+exp071	1.148785	6.4	discard	refine embedding/value lr upward to 0.65 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp072	1.148156	6.4	discard	refine embedding/value lr downward to 0.55 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp073	1.147049	6.4	discard	refine warmdown ratio slightly downward to 0.575 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp074	1.146616	6.4	discard	shorten Muon momentum ramp slightly to 275 steps from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp075	1.150022	6.4	discard	add light 1% LR warmup from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp076	1.146379	6.4	discard	refine x0 Adam beta1 downward to 0.95 from exp058 settings while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp077	1.146871	6.4	discard	refine x0 Adam beta1 slightly downward to 0.955 from exp058 settings while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp078	1.147126	6.4	discard	refine x0 Adam beta1 slightly upward to 0.965 from exp058 settings while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp079	1.147498	6.4	discard	raise x0 Adam beta2 slightly to 0.975 from exp058 settings while keeping x0 beta1=0.96, Adam beta1=0.6125, Adam/Muon beta2=0.95 elsewhere, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp080	1.148445	6.4	discard	lower x0 Adam beta2 to 0.925 from exp058 settings while keeping x0 beta1=0.96, Adam beta1=0.6125, Adam/Muon beta2=0.95 elsewhere, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp081	1.149669	6.4	discard	refine Muon matrix lr slightly downward to 0.0375 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp082	1.147512	6.4	discard	refine x0 Adam beta1 slightly downward to 0.9475 from exp058 settings while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp083	1.152686	6.4	discard	raise Muon matrix lr slightly to 0.0425 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp084	1.147154	6.4	discard	refine x0 Adam beta1 slightly downward to 0.9525 from exp058 settings while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp085	1.207094	6.5	discard	double total batch to 131072 via grad accumulation from exp058 best while keeping NLP device batch at 32, Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp086	1.148271	6.4	discard	refine unembedding lr slightly upward to 0.0045 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp087	1.153140	6.4	discard	refine unembedding lr slightly downward to 0.0035 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp088	1.146294	6.4	discard	refine warmdown ratio slightly upward to 0.625 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp089	1.148538	6.4	discard	refine warmdown ratio slightly upward to 0.6125 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp090	1.150256	4.9	discard	test milder NLP batch reduction to device batch 24 and total batch 49152 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp091	1.146795	6.4	discard	refine x0 Adam beta1 slightly downward to 0.95125 from exp058 settings while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp092	1.148307	6.4	discard	refine scalar lr slightly downward to 0.45 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp093	1.152997	6.4	discard	raise scalar lr slightly to 0.55 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, warmdown=0.6, and 2% final lr floor
+exp094	1.146165	6.4	keep	refine warmdown ratio upward to 0.6375 from exp058 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp095	1.146930	6.4	discard	refine warmdown ratio slightly upward to 0.65 from exp094 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp096	1.146563	6.4	discard	refine warmdown ratio slightly downward to 0.63125 from exp094 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp097	1.147645	6.4	discard	lower Muon momentum floor slightly to 0.825 from exp094 best while keeping the 0.925 cap, 300-step ramp, Adam beta1=0.6125, Adam/Muon beta2=0.95, wd=0.1, warmdown=0.6375, and 2% final lr floor
+exp098	1.147087	6.4	discard	raise Muon momentum floor slightly to 0.875 from exp094 best while keeping the 0.925 cap, 300-step ramp, Adam beta1=0.6125, Adam/Muon beta2=0.95, wd=0.1, warmdown=0.6375, and 2% final lr floor
+exp099	1.146774	6.4	discard	refine warmdown ratio slightly upward to 0.64 from exp094 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
+exp100	1.147240	6.4	discard	refine warmdown ratio slightly downward to 0.635 from exp094 best while keeping Adam beta1=0.6125, Adam/Muon beta2=0.95, the 0.85->0.925 Muon momentum ramp, wd=0.1, and 2% final lr floor
