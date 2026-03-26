@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	3.975705	5.3	keep	baseline
+exp002	3.974142	5.3	keep	add 5% lr warmup
+exp003	3.975980	5.3	discard	extend lr warmup from 5% to 8%
+exp004	3.974652	5.3	discard	reduce weight decay from 0.2 to 0.15
+exp005	3.975374	5.3	discard	set final lr floor to 10% during warmdown
+exp006	3.974255	5.3	discard	reduce matrix lr from 0.04 to 0.03
+exp007	3.974090	5.3	keep	reduce embedding/value AdamW lr from 0.6 to 0.5
+exp008	3.975647	5.3	discard	reduce embedding/value AdamW lr from 0.5 to 0.4
+exp009	3.975361	5.3	discard	raise embedding/value AdamW lr from 0.5 to 0.55
+exp010	3.974163	5.3	discard	raise AdamW beta2 from 0.95 to 0.96
+exp011	3.975067	5.3	discard	raise AdamW beta1 from 0.8 to 0.85
+exp012	3.976036	5.3	discard	raise matrix lr from 0.04 to 0.045
+exp013	3.973977	5.3	keep	shorten lr warmdown from 50% to 40%
+exp014	3.975424	5.3	discard	shorten lr warmdown from 40% to 30%
+exp015	3.974413	5.3	discard	trim lr warmup from 5% to 4%
+exp016	3.977735	5.3	discard	increase weight decay from 0.2 to 0.25
+exp017	3.973912	5.3	keep	reduce AdamW beta1 from 0.8 to 0.75
+exp018	3.969921	5.3	keep	reduce AdamW beta1 from 0.75 to 0.70
+exp019	3.970852	5.3	discard	reduce AdamW beta1 from 0.70 to 0.65
+exp020	3.971044	5.3	discard	reduce AdamW beta2 from 0.95 to 0.94
+exp021	3.974748	5.3	discard	reduce scalar AdamW lr from 0.5 to 0.4
+exp022	3.975411	5.3	discard	raise AdamW beta2 from 0.95 to 0.96 with beta1 at 0.70
+exp023	3.974850	5.3	discard	raise scalar AdamW lr from 0.5 to 0.6
+exp024	3.974851	5.3	discard	raise AdamW beta1 from 0.70 to 0.72
+exp025	3.974084	5.3	discard	reduce matrix lr from 0.04 to 0.035 with beta1 at 0.70
+exp026	3.973970	5.3	discard	shorten lr warmdown slightly from 40% to 35%
+exp027	3.974814	5.3	discard	reduce AdamW beta1 from 0.70 to 0.68
+exp028	3.975508	5.3	discard	reduce unembedding AdamW lr from 0.004 to 0.003
+exp029	3.976013	5.3	discard	slightly reduce AdamW beta2 from 0.95 to 0.945 with beta1 at 0.70
+exp030	3.973694	5.3	discard	reduce Muon weight decay from 0.2 to 0.15 with AdamW beta1 at 0.70
+exp031	3.973991	5.3	discard	slightly reduce Muon weight decay from 0.2 to 0.18 with AdamW beta1 at 0.70
+exp032	3.975598	5.3	discard	raise Muon beta2 from 0.95 to 0.975
+exp033	3.975911	5.3	discard	raise Muon weight decay slightly from 0.20 to 0.22 with AdamW beta1 at 0.70
+exp034	3.975129	5.3	discard	slightly lengthen lr warmdown from 40% to 45%
+exp035	3.981319	2.7	discard	halve protein batch size from 65536/128 to 32768/64
+exp036	3.970685	5.3	discard	slightly lengthen lr warmup from 5% to 6% with AdamW beta1 at 0.70
+exp037	3.975448	5.3	discard	slightly raise matrix lr from 0.04 to 0.042 with AdamW beta1 at 0.70
+exp038	3.974231	5.3	discard	slightly lengthen lr warmup from 5% to 5.5% with AdamW beta1 at 0.70
+exp039	3.975900	5.3	discard	slightly raise unembedding AdamW lr from 0.004 to 0.005 with beta1 at 0.70
+exp040	3.976807	5.3	discard	slightly reduce matrix lr from 0.04 to 0.0375 with AdamW beta1 at 0.70
+exp041	3.975533	5.3	discard	slightly reduce unembedding AdamW lr from 0.004 to 0.003
+exp042	3.975465	5.3	discard	slightly reduce embedding/value AdamW lr from 0.5 to 0.475
+exp043	3.974888	5.3	discard	slightly lengthen lr warmup from 5% to 5.25% with AdamW beta1 at 0.70
+exp044	3.974865	5.3	discard	reduce Muon beta2 from 0.95 to 0.925
+exp045	3.970697	5.3	discard	set final lr floor to 5% during warmdown with AdamW beta1 at 0.70
+exp046	3.976186	5.3	discard	slightly shorten lr warmdown from 40% to 37.5%
+exp047	3.973667	5.3	discard	slightly raise embedding/value AdamW lr from 0.5 to 0.525
+exp048	3.974940	5.3	discard	slightly reduce x0 scalar AdamW beta1 from 0.96 to 0.95
+exp049	3.975513	5.3	discard	reduce AdamW beta1 from 0.70 to 0.65
+exp050	3.974891	5.3	discard	raise x0 scalar AdamW beta1 from 0.96 to 0.97
+exp051	3.975889	5.3	discard	lower Muon momentum schedule endpoint from 0.95 to 0.93
+exp052	3.975250	5.3	discard	slightly reduce x0 scalar AdamW beta2 from 0.95 to 0.94
+exp053	3.974900	5.3	discard	slightly raise x0 scalar AdamW beta2 from 0.95 to 0.96
+exp054	3.974057	5.3	discard	set final lr floor to 2.5% during warmdown with AdamW beta1 at 0.70
+exp055	3.976447	5.3	discard	raise Muon momentum schedule endpoint from 0.95 to 0.97
+exp056	3.976497	5.3	discard	slightly raise Muon momentum schedule start from 0.85 to 0.87
+exp057	3.972579	10.5	discard	double protein batch size from 65536/128 to 131072/256
+exp058	3.974201	5.3	discard	set final lr floor to 4% during warmdown with AdamW beta1 at 0.70
+exp059	3.975664	5.3	discard	slightly raise Muon beta2 from 0.95 to 0.96
+exp060	3.971626	7.9	discard	increase protein batch size from 65536/128 to 98304/192
+exp061	3.974292	6.6	discard	increase protein batch size from 65536/128 to 81920/160
+exp062	3.975879	5.3	discard	slightly raise AdamW beta2 from 0.95 to 0.96 with beta1 at 0.70
+exp063	3.975729	5.3	discard	slightly lower Muon momentum schedule start from 0.85 to 0.83
+exp064	3.976129	5.3	discard	slightly reduce weight decay from 0.2 to 0.18
+exp065	3.991373	2.7	discard	halve protein device batch from 128 to 64 while keeping total batch 65536 via grad accumulation
+exp066	3.974372	5.3	discard	set final lr floor to 1% during warmdown with AdamW beta1 at 0.70
+exp067	3.976348	9.2	discard	increase protein batch size from 65536/128 to 114688/224
+exp068	3.976140	7.3	discard	increase protein batch size from 65536/128 to 90112/176
+exp069	3.975970	5.3	discard	slightly reduce matrix lr from 0.04 to 0.035
+exp070	3.976384	5.3	discard	slightly reduce AdamW beta1 from 0.70 to 0.69
+exp071	3.975132	4.7	discard	modestly reduce protein batch size from 65536/128 to 57344/112
+exp072	3.974400	6.0	discard	modestly increase protein batch size from 65536/128 to 73728/144
+exp073	3.974080	8.2	discard	probe higher protein batch near prior best large-batch run: 102400/200
+exp074	3.974686	5.3	discard	slightly reduce scalar AdamW lr from 0.5 to 0.4
+exp075	3.970845	5.3	discard	increase CUDA warmup steps from 10 to 20
+exp076	3.977172	5.3	discard	set Muon weight decay floor to 25% instead of decaying fully to zero
+exp077	3.974172	5.3	discard	slightly reduce Muon beta2 from 0.95 to 0.94 with AdamW beta1 at 0.70
+exp078	3.975659	5.3	discard	increase CUDA warmup steps from 10 to 15
+exp079	3.975069	5.3	discard	reduce CUDA warmup steps from 10 to 5
+exp080	3.974211	5.3	discard	slightly raise AdamW beta1 from 0.70 to 0.705
+exp081	3.976091	5.3	discard	slightly lengthen lr warmup from 5% to 6.5% with AdamW beta1 at 0.70
+exp082	3.976163	5.3	discard	slightly reduce AdamW beta2 from 0.95 to 0.935 with beta1 at 0.70
+exp083	3.974291	5.3	discard	slightly reduce embedding/value AdamW lr from 0.5 to 0.45 with beta1 at 0.70
+exp084	3.976504	5.3	discard	reduce Muon ns_steps from 5 to 4 to trade optimizer work for throughput
+exp085	3.974315	5.3	discard	increase CUDA warmup steps from 10 to 25
+exp086	3.976063	5.3	discard	set final lr floor to 6% during warmdown with AdamW beta1 at 0.70
+exp087	3.974468	5.3	discard	slightly reduce unembedding AdamW lr from 0.004 to 0.0035 with beta1 at 0.70
+exp088	3.975245	5.3	discard	increase Muon ns_steps from 5 to 6 to test slightly higher-quality matrix updates
+exp089	3.979342	5.3	discard	hold Muon weight decay at 0.2 until warmdown, then decay during final 40%
+exp090	3.974894	5.3	discard	lengthen Muon momentum ramp from 300 to 400 steps while keeping 0.85->0.95 endpoints
+exp091	3.975436	5.3	discard	slightly reduce Muon weight decay from 0.20 to 0.19 with AdamW beta1 at 0.70
+exp092	3.973853	5.3	discard	shorten Muon momentum ramp from 300 to 200 steps while keeping 0.85->0.95 endpoints
+exp093	3.975022	5.3	discard	reduce scalar AdamW lr from 0.5 to 0.4
+exp094	3.975114	5.3	discard	shorten lr warmdown slightly from 40% to 35% with AdamW beta1 at 0.70
+exp095	3.974516	5.3	discard	slightly reduce x0 scalar AdamW lr from 0.5 to 0.45
+exp096	3.975541	5.3	discard	raise x0 scalar AdamW lr from 0.5 to 0.55
+exp097	3.975635	5.3	discard	switch final 40% lr warmdown from linear decay to cosine decay
+exp098	3.976304	5.3	discard	slightly raise unembedding AdamW lr from 0.004 to 0.0045 with beta1 at 0.70
+exp099	3.972815	5.3	discard	slightly raise embedding/value AdamW lr from 0.5 to 0.515 to probe just below the prior 0.525 trial
+exp100	3.975156	5.3	discard	slightly lengthen lr warmup from 5% to 5.75% with AdamW beta1 at 0.70

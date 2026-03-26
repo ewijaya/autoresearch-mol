@@ -1,0 +1,13 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.153313	6.4	keep	baseline
+exp002	1.151589	6.4	keep	halve weight decay to 0.1
+exp003	1.152074	6.4	discard	halve weight decay again to 0.05
+exp004	1.153714	6.4	discard	add 5% LR warmup from wd=0.1 best
+exp005	1.151880	6.4	discard	refine weight decay to 0.075 from 0.1 best
+exp006	1.153559	6.4	discard	lower matrix lr to 0.03 from wd=0.1 best
+exp007	1.154603	6.4	discard	raise matrix lr to 0.05 from wd=0.1 best
+exp008	1.151241	6.4	keep	set final lr floor to 10% from wd=0.1 best
+exp009	1.154309	6.4	discard	raise final lr floor to 20% from exp008 best
+exp010	1.150788	6.4	keep	lower final lr floor to 5% from exp008 best
+exp011	1.150674	6.4	keep	lower final lr floor to 2% from exp010 best
+exp012	1.151317	6.4	discard	lower final lr floor to 1% from exp011 best

@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	3.976672	5.3	keep	baseline
+exp002	3.974810	5.3	keep	add 3% LR warmup
+exp003	3.975443	5.3	discard	increase LR warmup to 5%
+exp004	3.973011	5.3	keep	reduce Muon weight decay to 0.15 after 3% warmup keep
+exp005	3.969158	5.3	keep	reduce Muon weight decay to 0.12 after 3% warmup keep
+exp006	3.969585	5.3	discard	reduce Muon weight decay to 0.10 after 3% warmup keep
+exp007	3.968750	5.3	keep	increase Muon weight decay slightly to 0.13 after 3% warmup keep
+exp008	3.970378	5.3	discard	increase Muon weight decay slightly to 0.14 after 3% warmup
+exp009	3.973499	5.3	discard	shorten LR warmdown from 50% to 40% while keeping 3% warmup and Muon weight decay 0.13
+exp010	3.971085	5.3	discard	reduce LR warmup from 3% to 2% while keeping Muon weight decay 0.13
+exp011	3.970316	5.3	discard	reduce matrix LR to 0.035 while keeping 3% warmup, 50% warmdown, and Muon weight decay 0.13
+exp012	3.969843	5.3	discard	increase matrix LR to 0.045 while keeping 3% warmup, 50% warmdown, and Muon weight decay 0.13
+exp013	3.969512	5.3	discard	lengthen LR warmdown from 50% to 60% while keeping 3% warmup and Muon weight decay 0.13
+exp014	3.973575	5.3	discard	increase initial Muon momentum from 0.85 to 0.90 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp015	3.969313	5.3	discard	lower initial Muon momentum from 0.85 to 0.80 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp016	3.969542	5.3	discard	increase Muon beta2 from 0.95 to 0.97 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp017	3.970675	5.3	discard	set LR decay floor to 10% while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp018	3.969091	5.3	discard	increase AdamW beta2 from 0.95 to 0.97 for embedding, unembedding, and scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp019	3.972460	5.3	discard	lower AdamW beta1 from 0.8 to 0.75 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp020	3.989355	5.3	discard	double total batch size to 131072 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp021	3.968935	5.3	discard	lower AdamW beta2 from 0.95 to 0.93 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp022	3.974571	5.3	discard	lower Muon beta2 from 0.95 to 0.93 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp023	3.970205	5.3	discard	increase Muon weight decay slightly to 0.14 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and AdamW betas 0.8/0.95
+exp024	3.969306	5.3	discard	lower embedding and value-embed AdamW LR from 0.6 to 0.5 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp025	3.970456	5.3	discard	increase AdamW beta1 from 0.8 to 0.85 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and Muon weight decay 0.13
+exp026	3.970192	5.3	discard	increase embedding and value-embed AdamW LR from 0.6 to 0.7 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp027	3.969683	5.3	discard	increase unembedding AdamW LR from 0.004 to 0.006 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, embedding LR 0.6, and AdamW betas 0.8/0.95
+exp028	3.973263	5.3	discard	lower scalar LR from 0.5 to 0.4 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95
+exp029	3.968825	5.3	discard	lower unembedding AdamW LR from 0.004 to 0.003 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, embedding LR 0.6, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp030	3.969992	5.3	discard	lower unembedding AdamW LR from 0.004 to 0.0035 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, embedding LR 0.6, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp031	3.969524	5.3	discard	lower embedding and value-embed AdamW LR from 0.6 to 0.55 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, scalar LR 0.5, unembedding LR 0.004, and AdamW betas 0.8/0.95
+exp032	3.969446	5.3	discard	lower Muon beta2 slightly from 0.95 to 0.94 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp033	3.973841	10.5	discard	double protein batch scale to total batch 131072 and device batch 256 to test larger no-accumulation updates while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp034	3.969479	5.3	discard	increase scalar LR from 0.5 to 0.6 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp035	3.978262	2.7	discard	halve protein batch scale to total batch 32768 and device batch 64 to test smaller-batch updates while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.13, and AdamW betas 0.8/0.95
+exp036	3.969009	5.3	discard	keep a 20% Muon weight decay floor late in training instead of decaying to zero while keeping 3% warmup, 50% warmdown, matrix LR 0.04, and AdamW betas 0.8/0.95
+exp037	3.969009	5.3	discard	lengthen LR warmdown from 50% to 55% while keeping 3% warmup, matrix LR 0.04, Muon weight decay 0.13, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp038	3.968379	5.3	keep	lower Muon weight decay slightly from 0.13 to 0.125 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp039	3.969723	5.3	discard	lower Muon weight decay slightly from 0.125 to 0.12 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp040	3.969763	5.3	discard	increase unembedding AdamW LR slightly from 0.004 to 0.0045 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp041	3.974048	5.3	discard	raise Muon weight decay slightly from 0.125 to 0.1275 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp042	3.969727	5.3	discard	set LR decay floor to 5% while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp043	3.988877	2.7	discard	halve protein device batch to 64 while keeping total batch 65536 to use 2-step gradient accumulation with 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp044	3.969342	5.3	discard	lower unembedding AdamW LR from 0.004 to 0.003 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp045	3.970115	5.3	discard	increase embedding and value-embed AdamW LR slightly from 0.6 to 0.65 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp046	3.969081	5.3	discard	lower AdamW beta2 slightly from 0.95 to 0.94 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and scalar LR 0.5
+exp047	3.969710	5.3	discard	lower Muon weight decay slightly from 0.125 to 0.1225 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp048	3.968664	5.3	discard	increase Muon beta2 slightly from 0.95 to 0.96 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp049	3.969666	5.3	discard	increase matrix LR slightly from 0.04 to 0.042 while keeping 3% warmup, 50% warmdown, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp050	3.969162	5.3	discard	lower matrix LR slightly from 0.04 to 0.038 while keeping 3% warmup, 50% warmdown, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp051	3.970332	5.3	discard	increase AdamW beta1 slightly from 0.8 to 0.82 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW beta2 0.95
+exp052	3.969824	5.3	discard	lower AdamW beta1 slightly from 0.8 to 0.78 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW beta2 0.95
+exp053	3.969483	5.3	discard	increase Muon beta2 slightly from 0.95 to 0.955 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp054	3.968965	5.3	discard	increase AdamW beta2 slightly from 0.95 to 0.96 for embedding, unembedding, value-embed, and residual scalar groups while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and scalar LR 0.5
+exp055	3.969107	5.3	discard	shorten LR warmdown from 50% to 45% while keeping 3% warmup, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp056	3.973875	5.3	discard	lengthen LR warmdown from 50% to 55% while keeping 3% warmup, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp057	3.973639	5.3	discard	lower scalar LR slightly from 0.5 to 0.45 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95
+exp058	3.973188	5.3	discard	increase LR warmup slightly from 3% to 4% while keeping 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp059	3.974119	5.3	discard	increase x0 scalar AdamW beta1 from 0.96 to 0.98 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other scalar and embedding groups
+exp060	3.969509	5.3	discard	lower x0 scalar AdamW beta1 from 0.96 to 0.94 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other scalar and embedding groups
+exp061	3.968975	5.3	discard	increase scalar LR slightly from 0.5 to 0.55 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp062	3.970306	5.3	discard	shorten LR warmup from 3% to 2% while keeping 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp063	3.972847	5.3	discard	increase x0 scalar AdamW beta2 from 0.95 to 0.96 while keeping x0 beta1 at 0.96, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other groups
+exp064	3.969305	5.3	discard	lower x0 scalar AdamW beta2 from 0.95 to 0.94 while keeping x0 beta1 at 0.96, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other groups
+exp065	3.968979	5.3	discard	lower embedding and value-embed AdamW LR slightly from 0.6 to 0.55 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp066	3.969871	5.3	discard	increase x0 scalar AdamW LR slightly from 0.5 to 0.55 while keeping residual scalar LR at 0.005, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp067	3.972566	5.3	discard	lower x0 scalar AdamW LR slightly from 0.5 to 0.45 while keeping residual scalar LR at 0.005, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp068	3.969197	5.3	discard	increase residual scalar AdamW LR slightly from 0.005 to 0.006 while keeping x0 scalar LR at 0.5, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp069	3.969414	5.3	discard	lower residual scalar AdamW LR slightly from 0.005 to 0.004 while keeping x0 scalar LR at 0.5, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp070	3.969763	5.3	discard	lower unembedding AdamW LR slightly from 0.004 to 0.0035 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, scalar LR 0.5, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp071	3.968842	5.3	discard	lower x0 scalar AdamW beta1 slightly from 0.96 to 0.95 while keeping x0 beta2 at 0.95, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other groups
+exp072	3.972453	5.3	discard	lower final Muon momentum slightly from 0.95 to 0.94 while keeping its 0.85 start over the first 300 steps, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp073	3.969360	5.3	discard	increase final Muon momentum slightly from 0.95 to 0.96 while keeping its 0.85 start over the first 300 steps, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp074	3.970448	5.3	discard	lower Muon ns_steps from 5 to 4 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 with x0 scalar beta1/beta2 at 0.96/0.95
+exp075	3.969177	5.3	discard	increase Muon beta2 slightly from 0.95 to 0.96 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp076	3.971717	5.3	discard	increase x0 scalar AdamW beta1 slightly from 0.96 to 0.97 while keeping x0 beta2 at 0.95, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other groups
+exp077	3.969147	5.3	discard	lower Muon beta2 slightly from 0.95 to 0.94 while keeping 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95
+exp078	3.969194	5.3	discard	lower x0 scalar AdamW beta1 slightly from 0.96 to 0.955 while keeping x0 beta2 at 0.95, 3% warmup, 50% warmdown, matrix LR 0.04, Muon weight decay 0.125, embedding LR 0.6, unembedding LR 0.004, scalar LR 0.5, and AdamW betas 0.8/0.95 for other groups
+exp079	3.969726	5.3	discard	increase untimed warmup steps from 10 to 20 so the 5-minute budget starts after more startup stabilization while keeping exp038 optimizer settings
+exp080	3.969234	5.3	discard	keep exp038 optimizer settings but leave a 10% Muon weight decay floor instead of decaying fully to zero
+exp081	3.970009	5.3	discard	reduce untimed warmup steps from 10 to 5 to waste fewer initial zero-LR iterations while keeping exp038 optimizer settings
+exp082	3.969298	5.3	discard	lower Muon weight decay slightly from 0.125 to 0.124 while keeping exp038 warmup, warmdown, and optimizer LRs/betas
+exp083	3.972706	5.3	discard	raise AdamW eps from 1e-10 to 1e-9 for embedding, unembedding, value-embed, residual, and x0 scalar groups while keeping exp038 warmup, warmdown, LRs, betas, and Muon weight decay
+exp084	3.969094	5.3	discard	increase Muon ns_steps from 5 to 6 while keeping exp038 warmup, warmdown, optimizer LRs, betas, and Muon weight decay
+exp085	3.969247	5.3	discard	lower Muon matrix LR slightly from 0.04 to 0.039 while keeping exp038 warmup, warmdown, optimizer betas, and Muon weight decay
+exp086	3.969395	5.3	discard	increase Muon matrix LR slightly from 0.04 to 0.041 while keeping exp038 warmup, warmdown, optimizer betas, and Muon weight decay
+exp087	3.971237	5.3	discard	increase scalar LR slightly from 0.5 to 0.525 while keeping exp038 warmup, warmdown, and optimizer LRs/betas otherwise unchanged
+exp088	3.969837	5.3	discard	lower embedding and value-embed AdamW LR slightly from 0.6 to 0.575 while keeping exp038 warmup, warmdown, optimizer betas, matrix LR, scalar LR, and Muon weight decay
+exp089	3.972646	5.3	discard	increase final Muon momentum slightly from 0.95 to 0.955 while keeping its 0.85 start over the first 300 steps and exp038 warmup, warmdown, optimizer LRs/betas, and Muon weight decay
+exp090	3.973165	5.3	discard	set LR decay floor to 2% while keeping exp038 warmup, warmdown, and optimizer settings otherwise unchanged
+exp091	3.973171	5.3	discard	lengthen Muon momentum ramp from 300 to 400 steps while keeping its 0.85 to 0.95 endpoints, 3% warmup, 50% warmdown, and exp038 optimizer settings otherwise unchanged
+exp092	3.969979	4.0	discard	reduce protein batch scale moderately from total/device 65536/128 to 49152/96 while keeping exp038 warmup, warmdown, optimizer LRs/betas, Muon momentum ramp, and weight decay schedule unchanged
+exp093	3.969577	5.3	discard	shorten Muon momentum ramp from 300 to 200 steps while keeping its 0.85 to 0.95 endpoints, 3% warmup, 50% warmdown, and exp038 optimizer settings otherwise unchanged
+exp094	3.969538	6.6	discard	increase protein batch scale moderately from total/device 65536/128 to 81920/160 while keeping exp038 warmup, warmdown, optimizer LRs/betas, Muon momentum ramp, and weight decay schedule unchanged
+exp095	3.969095	5.3	discard	keep a 10% Muon weight decay floor late in training instead of decaying to zero while keeping exp038 warmup, warmdown, batch scale, and optimizer settings otherwise unchanged
+exp096	3.969995	5.3	discard	lower AdamW beta2 moderately from 0.95 to 0.925 for embedding, unembedding, value-embed, and residual scalar groups while keeping exp038 warmup, warmdown, batch scale, matrix LR, scalar LR, and Muon settings unchanged
+exp097	3.969736	6.0	discard	increase protein batch scale slightly from total/device 65536/128 to 73728/144 while keeping exp038 warmup, warmdown, optimizer LRs/betas, Muon momentum ramp, and weight decay schedule unchanged
+exp098	3.969228	5.3	discard	raise Muon weight decay slightly from 0.125 to 0.126 while keeping exp038 warmup, warmdown, batch scale, optimizer LRs, betas, and momentum schedule unchanged
+exp099	3.973016	5.0	discard	reduce protein batch scale slightly from total/device 65536/128 to 61440/120 while keeping exp038 warmup, warmdown, optimizer LRs/betas, Muon momentum ramp, and weight decay schedule unchanged
+exp100	3.969677	5.3	discard	lower AdamW beta2 slightly from 0.95 to 0.945 for embedding, unembedding, value-embed, and residual scalar groups while keeping exp038 warmup, warmdown, batch scale, matrix LR, scalar LR, and Muon settings unchanged

@@ -2668,3 +2668,432 @@
 [2026-03-25 07:50:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_1 experiment 99/100
 [2026-03-25 07:56:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_1: recorded experiment row 99/100
 [2026-03-25 07:56:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_1 experiment 100/100
+[2026-03-25 08:03:42] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_1: recorded experiment row 100/100
+[2026-03-25 08:03:42] Starting task 27/34: {'kind': 'hp_only', 'track': 'protein', 'run': 2, 'program': 'program_hponly.md'}
+[2026-03-25 08:03:42] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 1/100
+[2026-03-25 08:10:22] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 1/100
+[2026-03-25 08:10:22] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 2/100
+[2026-03-25 08:16:48] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 2/100
+[2026-03-25 08:16:48] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 3/100
+[2026-03-25 08:23:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 3/100
+[2026-03-25 08:23:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 4/100
+[2026-03-25 08:29:48] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 4/100
+[2026-03-25 08:29:48] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 5/100
+[2026-03-25 08:36:14] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 5/100
+[2026-03-25 08:36:14] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 6/100
+[2026-03-25 08:42:50] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 6/100
+[2026-03-25 08:42:50] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 7/100
+[2026-03-25 08:49:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 7/100
+[2026-03-25 08:49:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 8/100
+[2026-03-25 08:55:53] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 8/100
+[2026-03-25 08:55:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 9/100
+[2026-03-25 09:02:18] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 9/100
+[2026-03-25 09:02:18] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 10/100
+[2026-03-25 09:09:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 10/100
+[2026-03-25 09:09:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 11/100
+[2026-03-25 09:16:17] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 11/100
+[2026-03-25 09:16:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 12/100
+[2026-03-25 09:22:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 12/100
+[2026-03-25 09:22:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 13/100
+[2026-03-25 09:29:11] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 13/100
+[2026-03-25 09:29:11] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 14/100
+[2026-03-25 09:35:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 14/100
+[2026-03-25 09:35:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 15/100
+[2026-03-25 09:42:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 15/100
+[2026-03-25 09:42:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 16/100
+[2026-03-25 09:49:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 16/100
+[2026-03-25 09:49:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 17/100
+[2026-03-25 09:55:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 17/100
+[2026-03-25 09:55:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 18/100
+[2026-03-25 10:01:59] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 18/100
+[2026-03-25 10:01:59] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 19/100
+[2026-03-25 10:08:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 19/100
+[2026-03-25 10:08:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 20/100
+[2026-03-25 10:14:46] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 20/100
+[2026-03-25 10:14:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 21/100
+[2026-03-25 10:21:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 21/100
+[2026-03-25 10:21:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 22/100
+[2026-03-25 10:28:19] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 22/100
+[2026-03-25 10:28:19] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 23/100
+[2026-03-25 10:34:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 23/100
+[2026-03-25 10:34:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 24/100
+[2026-03-25 10:41:00] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 24/100
+[2026-03-25 10:41:00] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 25/100
+[2026-03-25 10:47:37] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 25/100
+[2026-03-25 10:47:37] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 26/100
+[2026-03-25 10:54:53] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 26/100
+[2026-03-25 10:54:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 27/100
+[2026-03-25 11:02:05] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 27/100
+[2026-03-25 11:02:05] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 28/100
+[2026-03-25 11:09:09] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 28/100
+[2026-03-25 11:09:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 29/100
+[2026-03-25 11:16:19] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 29/100
+[2026-03-25 11:16:19] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 30/100
+[2026-03-25 11:23:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 30/100
+[2026-03-25 11:23:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 31/100
+[2026-03-25 11:30:17] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 31/100
+[2026-03-25 11:30:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 32/100
+[2026-03-25 11:37:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 32/100
+[2026-03-25 11:37:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 33/100
+[2026-03-25 11:44:38] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 33/100
+[2026-03-25 11:44:38] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 34/100
+[2026-03-25 11:51:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 34/100
+[2026-03-25 11:51:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 35/100
+[2026-03-25 11:59:51] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 35/100
+[2026-03-25 11:59:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 36/100
+[2026-03-25 12:06:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 36/100
+[2026-03-25 12:06:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 37/100
+[2026-03-25 12:14:19] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 37/100
+[2026-03-25 12:14:19] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 38/100
+[2026-03-25 12:21:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 38/100
+[2026-03-25 12:21:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 39/100
+[2026-03-25 12:28:45] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 39/100
+[2026-03-25 12:28:45] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 40/100
+[2026-03-25 12:35:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 40/100
+[2026-03-25 12:35:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 41/100
+[2026-03-25 12:42:10] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 41/100
+[2026-03-25 12:42:10] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 42/100
+[2026-03-25 12:49:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 42/100
+[2026-03-25 12:49:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 43/100
+[2026-03-25 12:56:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 43/100
+[2026-03-25 12:56:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 44/100
+[2026-03-25 13:03:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 44/100
+[2026-03-25 13:03:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 45/100
+[2026-03-25 13:10:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 45/100
+[2026-03-25 13:10:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 46/100
+[2026-03-25 13:17:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 46/100
+[2026-03-25 13:17:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 47/100
+[2026-03-25 13:23:20] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 47/100
+[2026-03-25 13:23:20] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 48/100
+[2026-03-25 13:30:41] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 48/100
+[2026-03-25 13:30:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 49/100
+[2026-03-25 13:37:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 49/100
+[2026-03-25 13:37:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 50/100
+[2026-03-25 13:43:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 50/100
+[2026-03-25 13:43:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 51/100
+[2026-03-25 13:50:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 51/100
+[2026-03-25 13:50:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 52/100
+[2026-03-25 13:58:13] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 52/100
+[2026-03-25 13:58:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 53/100
+[2026-03-25 14:04:44] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 53/100
+[2026-03-25 14:04:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 54/100
+[2026-03-25 14:11:25] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 54/100
+[2026-03-25 14:11:25] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 55/100
+[2026-03-25 14:18:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 55/100
+[2026-03-25 14:18:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 56/100
+[2026-03-25 14:25:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 56/100
+[2026-03-25 14:25:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 57/100
+[2026-03-25 14:33:19] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 57/100
+[2026-03-25 14:33:19] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 58/100
+[2026-03-25 14:41:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 58/100
+[2026-03-25 14:41:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 59/100
+[2026-03-25 14:48:03] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 59/100
+[2026-03-25 14:48:03] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 60/100
+[2026-03-25 14:55:35] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 60/100
+[2026-03-25 14:55:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 61/100
+[2026-03-25 15:03:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 61/100
+[2026-03-25 15:03:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 62/100
+[2026-03-25 15:10:09] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 62/100
+[2026-03-25 15:10:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 63/100
+[2026-03-25 15:16:51] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 63/100
+[2026-03-25 15:16:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 64/100
+[2026-03-25 15:23:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 64/100
+[2026-03-25 15:23:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 65/100
+[2026-03-25 15:30:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 65/100
+[2026-03-25 15:30:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 66/100
+[2026-03-25 15:39:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 66/100
+[2026-03-25 15:39:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 67/100
+[2026-03-25 15:48:00] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 67/100
+[2026-03-25 15:48:00] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 68/100
+[2026-03-25 15:56:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 68/100
+[2026-03-25 15:56:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 69/100
+[2026-03-25 16:04:03] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 69/100
+[2026-03-25 16:04:03] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 70/100
+[2026-03-25 16:13:43] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 70/100
+[2026-03-25 16:13:43] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 71/100
+[2026-03-25 16:22:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 71/100
+[2026-03-25 16:22:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 72/100
+[2026-03-25 16:31:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 72/100
+[2026-03-25 16:31:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 73/100
+[2026-03-25 16:41:59] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 73/100
+[2026-03-25 16:41:59] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 74/100
+[2026-03-25 16:51:57] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 74/100
+[2026-03-25 16:51:57] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 75/100
+[2026-03-25 16:59:46] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 75/100
+[2026-03-25 16:59:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 76/100
+[2026-03-25 17:08:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 76/100
+[2026-03-25 17:08:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 77/100
+[2026-03-25 17:15:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 77/100
+[2026-03-25 17:15:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 78/100
+[2026-03-25 17:23:48] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 78/100
+[2026-03-25 17:23:48] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 79/100
+[2026-03-25 17:32:17] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 79/100
+[2026-03-25 17:32:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 80/100
+[2026-03-25 17:40:45] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 80/100
+[2026-03-25 17:40:45] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 81/100
+[2026-03-25 17:47:56] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 81/100
+[2026-03-25 17:47:56] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 82/100
+[2026-03-25 17:54:55] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 82/100
+[2026-03-25 17:54:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 83/100
+[2026-03-25 18:02:42] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 83/100
+[2026-03-25 18:02:42] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 84/100
+[2026-03-25 18:12:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 84/100
+[2026-03-25 18:12:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 85/100
+[2026-03-25 18:20:46] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 85/100
+[2026-03-25 18:20:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 86/100
+[2026-03-25 18:28:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 86/100
+[2026-03-25 18:28:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 87/100
+[2026-03-25 18:36:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 87/100
+[2026-03-25 18:36:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 88/100
+[2026-03-25 18:46:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 88/100
+[2026-03-25 18:46:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 89/100
+[2026-03-25 18:54:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 89/100
+[2026-03-25 18:54:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 90/100
+[2026-03-25 19:02:45] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 90/100
+[2026-03-25 19:02:45] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 91/100
+[2026-03-25 19:11:15] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 91/100
+[2026-03-25 19:11:15] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 92/100
+[2026-03-25 19:18:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 92/100
+[2026-03-25 19:18:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 93/100
+[2026-03-25 19:26:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 93/100
+[2026-03-25 19:26:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 94/100
+[2026-03-25 19:32:35] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 94/100
+[2026-03-25 19:32:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 95/100
+[2026-03-25 19:40:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 95/100
+[2026-03-25 19:40:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 96/100
+[2026-03-25 19:47:50] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 96/100
+[2026-03-25 19:47:50] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 97/100
+[2026-03-25 19:55:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 97/100
+[2026-03-25 19:55:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 98/100
+[2026-03-25 20:02:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 98/100
+[2026-03-25 20:02:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 99/100
+[2026-03-25 20:09:43] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 99/100
+[2026-03-25 20:09:43] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2 experiment 100/100
+[2026-03-25 20:17:11] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_2: recorded experiment row 100/100
+[2026-03-25 20:17:11] Starting task 28/34: {'kind': 'hp_only', 'track': 'protein', 'run': 3, 'program': 'program_hponly.md'}
+[2026-03-25 20:17:11] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 1/100
+[2026-03-25 20:23:15] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 1/100
+[2026-03-25 20:23:15] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 2/100
+[2026-03-25 20:29:34] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 2/100
+[2026-03-25 20:29:34] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 3/100
+[2026-03-25 20:36:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 3/100
+[2026-03-25 20:36:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 4/100
+[2026-03-25 20:42:36] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 4/100
+[2026-03-25 20:42:36] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 5/100
+[2026-03-25 20:48:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 5/100
+[2026-03-25 20:48:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 6/100
+[2026-03-25 20:55:21] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 6/100
+[2026-03-25 20:55:21] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 7/100
+[2026-03-25 21:02:05] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 7/100
+[2026-03-25 21:02:05] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 8/100
+[2026-03-25 21:08:41] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 8/100
+[2026-03-25 21:08:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 9/100
+[2026-03-25 21:15:15] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 9/100
+[2026-03-25 21:15:15] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 10/100
+[2026-03-25 21:21:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 10/100
+[2026-03-25 21:21:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 11/100
+[2026-03-25 21:28:13] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 11/100
+[2026-03-25 21:28:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 12/100
+[2026-03-25 21:35:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 12/100
+[2026-03-25 21:35:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 13/100
+[2026-03-25 21:41:38] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 13/100
+[2026-03-25 21:41:38] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 14/100
+[2026-03-25 21:48:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 14/100
+[2026-03-25 21:48:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 15/100
+[2026-03-25 21:55:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 15/100
+[2026-03-25 21:55:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 16/100
+[2026-03-25 22:03:01] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 16/100
+[2026-03-25 22:03:01] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 17/100
+[2026-03-25 22:10:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 17/100
+[2026-03-25 22:10:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 18/100
+[2026-03-25 22:16:53] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 18/100
+[2026-03-25 22:16:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 19/100
+[2026-03-25 22:23:56] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 19/100
+[2026-03-25 22:23:56] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 20/100
+[2026-03-25 22:30:55] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 20/100
+[2026-03-25 22:30:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 21/100
+[2026-03-25 22:38:11] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 21/100
+[2026-03-25 22:38:11] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 22/100
+[2026-03-25 22:44:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 22/100
+[2026-03-25 22:44:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 23/100
+[2026-03-25 22:51:06] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 23/100
+[2026-03-25 22:51:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 24/100
+[2026-03-25 22:58:24] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 24/100
+[2026-03-25 22:58:24] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 25/100
+[2026-03-25 23:04:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 25/100
+[2026-03-25 23:04:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 26/100
+[2026-03-25 23:11:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 26/100
+[2026-03-25 23:11:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 27/100
+[2026-03-25 23:18:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 27/100
+[2026-03-25 23:18:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 28/100
+[2026-03-25 23:25:06] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 28/100
+[2026-03-25 23:25:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 29/100
+[2026-03-25 23:32:40] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 29/100
+[2026-03-25 23:32:40] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 30/100
+[2026-03-25 23:39:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 30/100
+[2026-03-25 23:39:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 31/100
+[2026-03-25 23:45:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 31/100
+[2026-03-25 23:45:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 32/100
+[2026-03-25 23:52:43] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 32/100
+[2026-03-25 23:52:43] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 33/100
+[2026-03-26 00:00:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 33/100
+[2026-03-26 00:00:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 34/100
+[2026-03-26 00:07:17] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 34/100
+[2026-03-26 00:07:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 35/100
+[2026-03-26 00:14:13] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 35/100
+[2026-03-26 00:14:13] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 36/100
+[2026-03-26 00:21:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 36/100
+[2026-03-26 00:21:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 37/100
+[2026-03-26 00:28:04] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 37/100
+[2026-03-26 00:28:04] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 38/100
+[2026-03-26 00:34:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 38/100
+[2026-03-26 00:34:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 39/100
+[2026-03-26 00:41:42] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 39/100
+[2026-03-26 00:41:42] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 40/100
+[2026-03-26 00:48:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 40/100
+[2026-03-26 00:48:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 41/100
+[2026-03-26 00:55:55] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 41/100
+[2026-03-26 00:55:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 42/100
+[2026-03-26 01:03:17] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 42/100
+[2026-03-26 01:03:17] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 43/100
+[2026-03-26 01:10:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 43/100
+[2026-03-26 01:10:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 44/100
+[2026-03-26 01:17:45] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 44/100
+[2026-03-26 01:17:45] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 45/100
+[2026-03-26 01:24:55] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 45/100
+[2026-03-26 01:24:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 46/100
+[2026-03-26 01:31:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 46/100
+[2026-03-26 01:31:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 47/100
+[2026-03-26 01:38:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 47/100
+[2026-03-26 01:38:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 48/100
+[2026-03-26 01:45:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 48/100
+[2026-03-26 01:45:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 49/100
+[2026-03-26 01:52:55] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 49/100
+[2026-03-26 01:52:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 50/100
+[2026-03-26 01:59:46] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 50/100
+[2026-03-26 01:59:46] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 51/100
+[2026-03-26 02:06:59] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 51/100
+[2026-03-26 02:06:59] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 52/100
+[2026-03-26 02:13:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 52/100
+[2026-03-26 02:13:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 53/100
+[2026-03-26 02:21:03] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 53/100
+[2026-03-26 02:21:03] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 54/100
+[2026-03-26 02:28:28] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 54/100
+[2026-03-26 02:28:28] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 55/100
+[2026-03-26 02:35:37] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 55/100
+[2026-03-26 02:35:37] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 56/100
+[2026-03-26 02:42:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 56/100
+[2026-03-26 02:42:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 57/100
+[2026-03-26 02:49:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 57/100
+[2026-03-26 02:49:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 58/100
+[2026-03-26 02:56:27] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 58/100
+[2026-03-26 02:56:27] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 59/100
+[2026-03-26 03:03:44] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 59/100
+[2026-03-26 03:03:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 60/100
+[2026-03-26 03:10:42] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 60/100
+[2026-03-26 03:10:42] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 61/100
+[2026-03-26 03:18:09] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 61/100
+[2026-03-26 03:18:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 62/100
+[2026-03-26 03:24:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 62/100
+[2026-03-26 03:24:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 63/100
+[2026-03-26 03:32:06] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 63/100
+[2026-03-26 03:32:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 64/100
+[2026-03-26 03:38:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 64/100
+[2026-03-26 03:38:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 65/100
+[2026-03-26 03:45:29] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 65/100
+[2026-03-26 03:45:29] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 66/100
+[2026-03-26 03:53:06] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 66/100
+[2026-03-26 03:53:06] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 67/100
+[2026-03-26 04:00:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 67/100
+[2026-03-26 04:00:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 68/100
+[2026-03-26 04:07:16] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 68/100
+[2026-03-26 04:07:16] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 69/100
+[2026-03-26 04:14:07] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 69/100
+[2026-03-26 04:14:07] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 70/100
+[2026-03-26 04:20:35] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 70/100
+[2026-03-26 04:20:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 71/100
+[2026-03-26 04:27:25] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 71/100
+[2026-03-26 04:27:25] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 72/100
+[2026-03-26 04:34:43] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 72/100
+[2026-03-26 04:34:43] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 73/100
+[2026-03-26 04:41:18] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 73/100
+[2026-03-26 04:41:18] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 74/100
+[2026-03-26 04:48:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 74/100
+[2026-03-26 04:48:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 75/100
+[2026-03-26 04:55:51] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 75/100
+[2026-03-26 04:55:51] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 76/100
+[2026-03-26 05:02:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 76/100
+[2026-03-26 05:02:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 77/100
+[2026-03-26 05:09:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 77/100
+[2026-03-26 05:09:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 78/100
+[2026-03-26 05:16:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 78/100
+[2026-03-26 05:16:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 79/100
+[2026-03-26 05:24:10] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 79/100
+[2026-03-26 05:24:10] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 80/100
+[2026-03-26 05:31:18] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 80/100
+[2026-03-26 05:31:18] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 81/100
+[2026-03-26 05:38:49] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 81/100
+[2026-03-26 05:38:49] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 82/100
+[2026-03-26 05:46:02] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 82/100
+[2026-03-26 05:46:02] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 83/100
+[2026-03-26 05:53:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 83/100
+[2026-03-26 05:53:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 84/100
+[2026-03-26 06:00:10] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 84/100
+[2026-03-26 06:00:10] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 85/100
+[2026-03-26 06:07:24] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 85/100
+[2026-03-26 06:07:24] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 86/100
+[2026-03-26 06:13:59] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 86/100
+[2026-03-26 06:13:59] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 87/100
+[2026-03-26 06:21:11] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 87/100
+[2026-03-26 06:21:11] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 88/100
+[2026-03-26 06:27:35] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 88/100
+[2026-03-26 06:27:35] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 89/100
+[2026-03-26 06:34:52] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 89/100
+[2026-03-26 06:34:52] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 90/100
+[2026-03-26 06:42:09] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 90/100
+[2026-03-26 06:42:09] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 91/100
+[2026-03-26 06:49:08] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 91/100
+[2026-03-26 06:49:08] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 92/100
+[2026-03-26 06:56:41] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 92/100
+[2026-03-26 06:56:41] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 93/100
+[2026-03-26 07:03:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 93/100
+[2026-03-26 07:03:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 94/100
+[2026-03-26 07:10:53] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 94/100
+[2026-03-26 07:10:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 95/100
+[2026-03-26 07:18:23] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 95/100
+[2026-03-26 07:18:23] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 96/100
+[2026-03-26 07:25:27] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 96/100
+[2026-03-26 07:25:27] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 97/100
+[2026-03-26 07:32:27] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 97/100
+[2026-03-26 07:32:27] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 98/100
+[2026-03-26 07:39:58] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 98/100
+[2026-03-26 07:39:58] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 99/100
+[2026-03-26 07:47:47] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 99/100
+[2026-03-26 07:47:47] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3 experiment 100/100
+[2026-03-26 07:55:30] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/protein/run_3: recorded experiment row 100/100
+[2026-03-26 07:55:30] Starting task 29/34: {'kind': 'hp_only', 'track': 'nlp', 'run': 1, 'program': 'program_hponly.md'}
+[2026-03-26 07:55:30] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 1/100
+[2026-03-26 08:02:26] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 1/100
+[2026-03-26 08:02:26] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 2/100
+[2026-03-26 08:09:44] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 2/100
+[2026-03-26 08:09:44] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 3/100
+[2026-03-26 08:16:54] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 3/100
+[2026-03-26 08:16:54] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 4/100
+[2026-03-26 08:23:55] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 4/100
+[2026-03-26 08:23:55] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 5/100
+[2026-03-26 08:30:53] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 5/100
+[2026-03-26 08:30:53] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 6/100
+[2026-03-26 08:38:24] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 6/100
+[2026-03-26 08:38:24] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 7/100
+[2026-03-26 08:45:39] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 7/100
+[2026-03-26 08:45:39] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 8/100
+[2026-03-26 08:52:56] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 8/100
+[2026-03-26 08:52:56] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 9/100
+[2026-03-26 09:00:10] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 9/100
+[2026-03-26 09:00:10] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 10/100
+[2026-03-26 09:07:32] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 10/100
+[2026-03-26 09:07:32] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 11/100
+[2026-03-26 09:14:23] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 11/100
+[2026-03-26 09:14:23] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 12/100
+[2026-03-26 09:21:12] /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1: recorded experiment row 12/100
+[2026-03-26 09:21:12] Launching agent step for /home/ubuntu/storage1/recursive-mol/results/baselines/hp_only/nlp/run_1 experiment 13/100
