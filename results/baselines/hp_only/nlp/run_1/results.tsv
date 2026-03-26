@@ -11,3 +11,4 @@ exp009	1.154309	6.4	discard	raise final lr floor to 20% from exp008 best
 exp010	1.150788	6.4	keep	lower final lr floor to 5% from exp008 best
 exp011	1.150674	6.4	keep	lower final lr floor to 2% from exp010 best
 exp012	1.151317	6.4	discard	lower final lr floor to 1% from exp011 best
+exp013	1.150519	6.4	keep	increase warmdown ratio to 0.6 from exp011 best while keeping 2% final lr floor

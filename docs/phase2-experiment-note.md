@@ -1,6 +1,6 @@
 # Phase 2 Experiment Note
 
-Snapshot updated on March 25, 2026.
+Snapshot updated on March 26, 2026.
 
 ## Planned workload
 
@@ -45,7 +45,7 @@ The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage lim
 
 If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.md` for the stop-and-resume procedure.
 
-## Completed tasks (25/34)
+## Completed tasks (28/34)
 
 | # | Kind | Track | Run | Experiments | Best val_bpb | Notes |
 |---|------|-------|-----|-------------|-------------|-------|
@@ -74,27 +74,30 @@ If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.m
 | 23 | agent | NLP | run_4 | 100 | 1.1212 | |
 | 24 | hp_only | SMILES | run_3 | 100 | 0.5810 | 1 crash |
 | 25 | agent | NLP | run_5 | 100 | 1.1314 | 21 crashes |
+| 26 | hp_only | protein | run_1 | 100 | 3.9901 | 8 crashes |
+| 27 | hp_only | protein | run_2 | 100 | 3.9699 | best hp_only protein |
+| 28 | hp_only | protein | run_3 | 100 | 3.9684 | |
 
-**Total completed experiments:** `2,503`
+**Total completed experiments:** `2,803`
 
 ## Current live status
 
-- the Phase 2 runner is on task `26/34`
-- active task: hp_only protein `run_1`
-- completed experiments in the active run: `99/~100`
-- current best: `exp068`, `val_bpb = 3.9901`
+- the Phase 2 runner is on task `29/34`
+- active task: hp_only NLP `run_1`
+- completed experiments in the active run: `12/~100`
+- current best: `exp011`, `val_bpb = 1.1507`
 - all agent runs complete (SMILES 5/5, protein 3/3, NLP 5/5)
 - all random_nas runs complete (SMILES 3/3, protein 3/3, NLP 3/3)
-- hp_only SMILES runs 1–3 complete; hp_only protein run_1 nearly done
+- hp_only SMILES runs 1–3 complete; hp_only protein runs 1–3 complete; hp_only NLP run_1 in progress
 
-## Remaining tasks (9/34)
+## Remaining tasks (6/34)
 
-- **HP-only:** protein runs 1 (in progress, 99/100), 2, 3; NLP runs 1–3 = `6` tasks
+- **HP-only:** NLP runs 1 (in progress, 12/~100), 2, 3 = `3` tasks
 - **Fixed default:** SMILES, protein, NLP = `3` tasks
 
 ## Where to check progress
 
 - Runner state: `results/phase2/queue_state.json`
 - Runner log: `logs/phase2-resume-20260316_103926.log`
-- Active run results: `results/baselines/hp_only/protein/run_1/results.tsv`
-- Active run summary: `results/baselines/hp_only/protein/run_1/summary.json`
+- Active run results: `results/baselines/hp_only/nlp/run_1/results.tsv`
+- Active run summary: `results/baselines/hp_only/nlp/run_1/summary.json`
