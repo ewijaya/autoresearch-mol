@@ -4,3 +4,98 @@ exp002	1.155651	6.4	discard	add 5% lr warmup
 exp003	1.151357	6.4	keep	halve muon weight decay to 0.1
 exp004	1.152572	6.4	discard	halve muon weight decay again to 0.05
 exp005	1.151925	6.4	discard	increase muon weight decay slightly to 0.12
+exp006	1.152580	6.4	discard	lower muon matrix lr to 0.03
+exp007	1.154658	6.4	discard	increase muon matrix lr to 0.05
+exp008	1.153797	6.4	discard	shorten lr warmdown from 50% to 30% of run
+exp009	1.151198	6.4	keep	increase AdamW beta1 to 0.85
+exp010	1.152816	6.4	discard	increase AdamW beta1 to 0.90
+exp011	1.153982	6.4	discard	increase AdamW beta1 slightly to 0.875
+exp012	1.153240	6.4	discard	lower AdamW beta1 slightly to 0.825
+exp013	1.152604	6.4	discard	lower AdamW beta2 to 0.94
+exp014	1.156613	6.4	discard	lower embedding/value lr to 0.5
+exp015	1.151100	6.4	keep	increase AdamW beta2 to 0.96
+exp016	1.150781	6.4	keep	increase AdamW beta2 slightly again to 0.97
+exp017	1.153501	6.4	discard	increase AdamW beta2 slightly again to 0.98
+exp018	1.152908	6.4	discard	nudge AdamW beta2 from 0.97 to 0.975
+exp019	1.151359	6.4	discard	lower muon weight decay slightly to 0.09
+exp020	1.155365	6.4	discard	add small 2% lr warmup
+exp021	1.152716	6.4	discard	increase Muon beta2 to 0.96
+exp022	1.151451	6.4	discard	lower Muon beta2 to 0.94
+exp023	1.150934	6.4	discard	extend lr warmdown from 50% to 60% of run
+exp024	1.151306	6.4	discard	increase embedding/value lr slightly to 0.7
+exp025	1.151383	6.4	discard	set final lr floor to 5% during warmdown
+exp026	1.149705	6.4	keep	increase unembedding/output head lr to 0.006
+exp027	1.151196	6.4	discard	increase unembedding/output head lr slightly to 0.007
+exp028	1.150469	6.4	discard	lower unembedding/output head lr slightly from 0.006 to 0.0055
+exp029	1.213627	6.5	discard	double total batch size to 131072 via grad accumulation
+exp030	1.151482	6.4	discard	lower Muon matrix lr slightly to 0.035
+exp031	1.150731	6.4	discard	increase AdamW beta2 slightly to 0.98
+exp032	1.155603	3.3	discard	halve total batch size to 32768 via device batch 16
+exp033	1.152414	6.4	discard	lower scalar lr from 0.5 to 0.4
+exp034	1.153866	6.4	discard	increase scalar lr slightly to 0.6
+exp035	1.150378	6.4	discard	nudge AdamW beta2 slightly down from 0.97 to 0.965
+exp036	1.150339	6.4	discard	nudge unembedding/output head lr slightly down from 0.006 to 0.00575
+exp037	1.151175	6.4	discard	nudge unembedding/output head lr slightly up from 0.006 to 0.00625
+exp038	1.150978	6.4	discard	nudge Muon matrix lr slightly up from 0.04 to 0.0425
+exp039	1.150696	6.4	discard	increase Muon beta2 slightly to 0.96
+exp040	1.149709	6.4	discard	extend lr warmdown from 50% to 60% of run on top of exp026 head-lr keep
+exp041	1.150075	6.4	discard	nudge embedding/value lr slightly up from 0.6 to 0.65 on top of exp026 head-lr keep
+exp042	1.150252	6.4	discard	extend lr warmdown modestly from 50% to 55% of run on top of exp026 head-lr keep
+exp043	1.149704	6.4	keep	set final lr floor to 1% during warmdown on top of exp026 head-lr keep
+exp044	1.149767	6.4	discard	lower final lr floor from 1% to 0.5% during warmdown
+exp045	1.148761	6.4	keep	raise final lr floor from 1% to 2% during warmdown
+exp046	1.150428	6.4	discard	raise final lr floor from 2% to 3% during warmdown
+exp047	1.150178	6.4	discard	nudge final lr floor from 2% to 2.25% during warmdown
+exp048	1.150398	6.4	discard	nudge final lr floor down from 2% to 1.75% during warmdown
+exp049	1.149259	6.4	discard	extend warmdown from 50% to 55% while keeping 2% final lr floor
+exp050	1.149735	6.4	discard	shorten warmdown from 50% to 45% while keeping 2% final lr floor
+exp051	1.151003	6.4	discard	nudge embedding/value lr down from 0.6 to 0.55 on top of exp045 final-lr-floor keep
+exp052	1.149590	6.4	discard	nudge embedding/value lr up from 0.6 to 0.625 on top of exp045 final-lr-floor keep
+exp053	1.150789	6.4	discard	lower starting Muon momentum from 0.85 to 0.80 while keeping 0.95 target
+exp054	1.149547	6.4	discard	raise starting Muon momentum from 0.85 to 0.90 while keeping 0.95 target
+exp055	1.148998	6.4	discard	lower Muon target momentum from 0.95 to 0.94 while keeping 0.85 start
+exp056	1.150917	6.4	discard	raise Muon target momentum from 0.95 to 0.96 while keeping 0.85 start
+exp057	1.150569	6.4	discard	nudge Muon weight decay up from 0.10 to 0.11 on top of exp045 final-lr-floor keep
+exp058	1.149509	6.4	discard	nudge Muon weight decay down from 0.10 to 0.095 on top of exp045 final-lr-floor keep
+exp059	1.147621	6.4	keep	raise AdamW epsilon from 1e-10 to 1e-9
+exp060	1.151128	6.4	discard	raise AdamW epsilon from 1e-9 to 3e-9
+exp061	1.148602	6.4	discard	lower AdamW epsilon slightly from 1e-9 to 5e-10
+exp062	1.149297	6.4	discard	nudge AdamW epsilon up from 1e-9 to 2e-9
+exp063	1.149873	6.4	discard	lower x0 AdamW beta1 from 0.96 to 0.95 while keeping epsilon 1e-9
+exp064	1.148979	6.4	discard	raise x0 AdamW beta1 from 0.96 to 0.97 while keeping epsilon 1e-9
+exp065	1.149415	6.4	discard	raise x0 AdamW beta2 from 0.95 to 0.96 while keeping epsilon 1e-9 and x0 beta1 0.96
+exp066	1.148623	6.4	discard	lower x0 AdamW beta2 from 0.95 to 0.94 while keeping epsilon 1e-9 and x0 beta1 0.96
+exp067	1.148252	6.4	discard	nudge shared AdamW beta2 down from 0.97 to 0.965 while keeping epsilon 1e-9
+exp068	1.150131	6.4	discard	raise x0 AdamW epsilon from 1e-9 to 2e-9 while keeping shared AdamW epsilon 1e-9
+exp069	1.149578	6.4	discard	lower x0 AdamW epsilon from 1e-9 to 5e-10 while keeping shared AdamW epsilon 1e-9
+exp070	1.148882	6.4	discard	add small AdamW weight decay 0.001 to embedding/value/output groups
+exp071	1.148533	6.4	discard	nudge shared AdamW beta1 up from 0.85 to 0.86 while keeping epsilon 1e-9
+exp072	1.149850	6.4	discard	lower shared AdamW beta1 from 0.85 to 0.84 while keeping epsilon 1e-9
+exp073	1.154754	9.5	discard	increase nlp total batch size to 98304 via device batch 48
+exp074	1.151581	6.4	discard	lower x0 scalar lr by 10% to 0.45 while keeping other scalar settings unchanged
+exp075	1.151866	6.4	discard	raise x0 scalar lr by 10% to 0.55 while keeping shared scalar settings unchanged
+exp076	1.149432	6.4	discard	nudge shared AdamW beta2 up from 0.97 to 0.975 while keeping epsilon 1e-9
+exp077	1.148980	6.4	discard	nudge AdamW epsilon down from 1e-9 to 7.5e-10
+exp078	1.148609	6.4	discard	nudge AdamW epsilon up from 1e-9 to 1.25e-9
+exp079	1.147492	6.4	keep	add tiny AdamW weight decay 0.0002 to embedding/value/output groups
+exp080	1.147120	6.4	keep	increase AdamW weight decay on embedding/value/output groups from 0.0002 to 0.0004
+exp081	1.147385	6.4	discard	increase AdamW weight decay on embedding/value/output groups from 0.0004 to 0.0006
+exp082	1.149289	6.4	discard	nudge AdamW weight decay on embedding/value/output groups from 0.0004 to 0.0005
+exp083	1.148881	6.4	discard	nudge AdamW weight decay on embedding/value/output groups down from 0.0004 to 0.00035
+exp084	1.147749	6.4	discard	nudge AdamW weight decay on embedding/value/output groups up from 0.0004 to 0.00045
+exp085	1.152490	6.4	discard	add tiny 1% lr warmup on top of exp080 AdamW-weight-decay keep
+exp086	1.147049	6.4	keep	nudge shared AdamW beta1 up from 0.85 to 0.855 while keeping AdamW weight decay 0.0004
+exp087	1.148607	6.4	discard	nudge shared AdamW beta1 up from 0.855 to 0.86 while keeping AdamW weight decay 0.0004
+exp088	1.149276	6.4	discard	nudge shared AdamW beta2 down from 0.97 to 0.965 while keeping AdamW beta1 0.855 and weight decay 0.0004
+exp089	1.149408	6.4	discard	nudge shared AdamW beta1 down from 0.855 to 0.8525 while keeping AdamW beta2 0.97 and weight decay 0.0004
+exp090	1.147148	6.4	discard	nudge shared AdamW beta2 up from 0.97 to 0.9725 while keeping AdamW beta1 0.855 and weight decay 0.0004
+exp091	1.149859	6.4	discard	nudge shared AdamW beta2 up from 0.97 to 0.97125 while keeping AdamW beta1 0.855 and weight decay 0.0004
+exp092	1.148690	6.4	discard	nudge AdamW epsilon down from 1e-9 to 8e-10 on top of exp086 beta1 0.855 and AdamW weight decay 0.0004
+exp093	1.147209	6.4	discard	nudge shared AdamW beta1 up from 0.855 to 0.8575 while keeping AdamW beta2 0.97 and weight decay 0.0004
+exp094	1.147572	6.4	discard	nudge AdamW weight decay on embedding/value/output groups up from 0.0004 to 0.000425 while keeping AdamW beta1 0.855
+exp095	1.147726	6.4	discard	lower final lr floor from 2% to 1.5% while keeping AdamW beta1 0.855 and AdamW weight decay 0.0004
+exp096	1.149382	6.4	discard	nudge embedding/value AdamW lr down from 0.6 to 0.575 while keeping AdamW beta1 0.855 and weight decay 0.0004
+exp097	1.148094	6.4	discard	nudge embedding/value AdamW lr up from 0.6 to 0.625 while keeping AdamW beta1 0.855 and weight decay 0.0004
+exp098	1.148457	6.4	discard	nudge unembedding/output AdamW lr down from 0.006 to 0.0055 while keeping AdamW beta1 0.855 and weight decay 0.0004
+exp099	1.147184	6.4	discard	nudge shared AdamW beta1 up from 0.855 to 0.85625 while keeping AdamW beta2 0.97 and weight decay 0.0004
+exp100	1.149573	6.4	discard	nudge unembedding/output AdamW lr up from 0.006 to 0.00625 while keeping AdamW beta1 0.855 and weight decay 0.0004

@@ -1,0 +1,101 @@
+commit	val_bpb	memory_gb	status	description
+exp001	1.153069	6.4	keep	baseline
+exp002	1.156411	6.4	discard	add 2% lr warmup
+exp003	1.151659	6.4	keep	halve muon weight decay to 0.1
+exp004	1.152346	6.4	discard	lower matrix lr to 0.035
+exp005	1.152114	6.4	discard	halve muon weight decay again to 0.05
+exp006	1.153773	6.4	discard	raise matrix lr to 0.045
+exp007	1.151326	6.4	keep	set final lr floor to 10%
+exp008	1.154746	6.4	discard	raise final lr floor to 20%
+exp009	1.152099	6.4	discard	shorten warmdown to last 40% while keeping 10% lr floor
+exp010	1.151840	6.4	discard	lower muon weight decay to 0.075 while keeping 10% final lr floor
+exp011	1.150871	6.4	keep	raise AdamW beta1 to 0.85 while keeping 10% final lr floor
+exp012	1.152050	6.4	discard	raise AdamW beta1 to 0.9 while keeping 10% final lr floor
+exp013	1.151580	6.4	discard	extend warmdown to last 60% while keeping 10% final lr floor
+exp014	1.151903	6.4	discard	raise muon weight decay slightly to 0.125 while keeping AdamW beta1 0.85 and 10% final lr floor
+exp015	1.152327	6.4	discard	raise AdamW beta2 to 0.975 while keeping AdamW beta1 0.85 and 10% final lr floor
+exp016	1.151516	6.4	discard	lower AdamW beta2 to 0.925 while keeping AdamW beta1 0.85 and 10% final lr floor
+exp017	1.155712	6.4	discard	lower embedding lr to 0.5 while keeping AdamW beta1 0.85 and 10% final lr floor
+exp018	1.153970	6.4	discard	add 1% lr warmup while keeping AdamW beta1 0.85 and 10% final lr floor
+exp019	1.150644	6.4	keep	raise embedding lr to 0.7 while keeping AdamW beta1 0.85 and 10% final lr floor
+exp020	1.152101	6.4	discard	raise embedding lr to 0.8 while keeping AdamW beta1 0.85 and 10% final lr floor
+exp021	1.150800	6.4	discard	lower Muon beta2 to 0.9 while keeping AdamW beta1 0.85, embedding lr 0.7, and 10% final lr floor
+exp022	1.149542	6.4	keep	lower embedding lr to 0.65 while keeping AdamW beta1 0.85, AdamW beta2 0.95, Muon weight decay 0.1, and 10% final lr floor
+exp023	1.151587	6.4	discard	lower embedding lr to 0.6 while keeping AdamW beta1 0.85, AdamW beta2 0.95, Muon weight decay 0.1, and 10% final lr floor
+exp024	1.150234	6.4	discard	raise embedding lr slightly to 0.675 while keeping AdamW beta1 0.85, AdamW beta2 0.95, Muon weight decay 0.1, and 10% final lr floor
+exp025	1.148832	6.4	keep	lower final lr floor slightly to 7.5% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp026	1.148940	6.4	discard	lower final lr floor to 5% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp027	1.148848	6.4	discard	lower final lr floor slightly to 6.25% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp028	1.148765	6.4	keep	lower final lr floor slightly to 7% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp029	1.148939	6.4	discard	extend warmdown to last 60% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 7% final lr floor
+exp030	1.149273	6.4	discard	raise final lr floor slightly to 7.25% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp031	1.148879	6.4	discard	lower final lr floor slightly to 6.75% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp032	1.213216	6.5	discard	double total batch size to 131072 via grad accumulation 2 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp033	1.152904	6.4	discard	add 0.5% lr warmup while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp034	1.151557	6.4	discard	lower matrix lr slightly to 0.0375 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp035	1.150853	6.4	discard	raise matrix lr slightly to 0.0425 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp036	1.149080	6.4	discard	shorten warmdown to last 45% while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, and 7% final lr floor
+exp037	1.149105	6.4	discard	raise embedding lr slightly to 0.6625 while keeping AdamW beta1 0.85, AdamW beta2 0.95, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp038	1.149279	6.4	discard	lower Muon weight decay slightly to 0.09 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, 50% warmdown, and 7% final lr floor
+exp039	1.149007	6.4	discard	lower AdamW beta2 slightly to 0.94 while keeping embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp040	1.149294	6.4	discard	raise unembedding lr to 0.006 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp041	1.151693	6.4	discard	lower scalar lr slightly to 0.45 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp042	1.157935	3.3	discard	halve total batch size to 32768 via device batch 16 while keeping AdamW beta1 0.85, AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp043	1.149812	6.4	discard	raise AdamW beta1 slightly to 0.875 while keeping AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp044	1.149075	6.4	discard	lower AdamW beta1 slightly to 0.825 while keeping AdamW beta2 0.95, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp045	1.148514	6.4	keep	raise AdamW beta2 slightly to 0.96 while keeping AdamW beta1 0.85, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp046	1.148815	6.4	discard	raise AdamW beta2 slightly to 0.97 while keeping AdamW beta1 0.85, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp047	1.148941	6.4	discard	raise AdamW beta2 slightly to 0.965 while keeping AdamW beta1 0.85, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp048	1.148536	6.4	discard	lower final lr floor slightly to 6.5% while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp049	1.149443	6.4	discard	lower AdamW beta2 slightly to 0.955 while keeping AdamW beta1 0.85, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp050	1.149798	6.4	discard	raise Muon weight decay slightly to 0.11 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, 50% warmdown, and 7% final lr floor
+exp051	1.148779	6.4	discard	lower AdamW beta1 slightly to 0.84 while keeping AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp052	1.148779	6.4	discard	lower final lr floor slightly to 6.75% while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, and 50% warmdown
+exp053	1.148794	6.4	discard	extend warmdown slightly to last 55% while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, and 7% final lr floor
+exp054	1.149604	6.4	discard	raise Muon momentum endpoint slightly to 0.96 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp055	1.148265	6.4	keep	lower Muon momentum endpoint slightly to 0.94 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp056	1.148357	6.4	discard	lower Muon momentum endpoint slightly to 0.93 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp057	1.149298	6.4	discard	raise Muon momentum endpoint slightly to 0.945 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp058	1.148894	6.4	discard	raise Muon beta2 slightly to 0.96 while keeping Muon momentum endpoint 0.94, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp059	1.148462	6.4	discard	lower Muon beta2 slightly to 0.94 while keeping Muon momentum endpoint 0.94, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp060	1.147742	6.4	keep	lower Muon momentum endpoint slightly to 0.935 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp061	1.147950	6.4	discard	raise Muon momentum endpoint slightly to 0.9375 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp062	1.148000	6.4	discard	lower Muon momentum endpoint slightly to 0.9325 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp063	1.148503	6.4	discard	raise AdamW beta1 slightly to 0.855 while keeping AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp064	1.148324	6.4	discard	raise Muon momentum endpoint slightly to 0.93625 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp065	1.149222	6.4	discard	lower AdamW beta1 slightly to 0.845 while keeping AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp066	1.148969	6.4	discard	lower Muon weight decay slightly to 0.095 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, 50% warmdown, and 7% final lr floor
+exp067	1.148462	6.4	discard	lower Muon momentum endpoint slightly to 0.934 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp068	1.150314	6.4	discard	lower matrix lr slightly to 0.039 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp069	1.148780	6.4	discard	raise matrix lr slightly to 0.041 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp070	1.154729	6.4	discard	lower unembedding lr slightly to 0.0035 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp071	1.148579	6.4	discard	raise Muon weight decay slightly to 0.105 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, 50% warmdown, and 7% final lr floor
+exp072	1.148382	6.4	discard	raise unembedding lr slightly to 0.005 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp073	1.148210	6.4	discard	raise final lr floor slightly to 7.5% while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, and 50% warmdown
+exp074	1.156795	6.4	discard	raise scalar lr slightly to 0.55 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp075	1.148927	6.4	discard	lower Muon momentum start slightly to 0.84 while keeping Muon momentum endpoint 0.935, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp076	1.148093	6.4	discard	raise Muon momentum start slightly to 0.86 while keeping Muon momentum endpoint 0.935, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp077	1.148845	6.4	discard	decay Muon weight decay to a 20% floor instead of zero while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, 50% warmdown, and 7% final lr floor
+exp078	1.148418	6.4	discard	raise Muon beta2 slightly to 0.955 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp079	1.149841	6.4	discard	lower embedding lr slightly to 0.6375 while keeping AdamW beta1 0.85, AdamW beta2 0.96, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp080	1.148006	6.4	discard	raise embedding lr slightly to 0.65625 while keeping AdamW beta1 0.85, AdamW beta2 0.96, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp081	1.149459	6.4	discard	raise embedding lr slightly to 0.653125 while keeping AdamW beta1 0.85, AdamW beta2 0.96, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp082	1.148091	6.4	discard	raise x0 scalar Adam beta2 slightly to 0.96 while keeping x0 beta1 0.96, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp083	1.148919	6.4	discard	lower x0 scalar Adam beta1 slightly to 0.95 while keeping x0 beta2 0.95, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp084	1.150949	6.4	discard	lower scalar lr slightly to 0.475 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp085	1.149067	6.4	discard	slow Muon momentum ramp to 400 steps while keeping 0.85->0.935 endpoints, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp086	1.148820	6.4	discard	raise unembedding lr slightly to 0.0045 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp087	1.148694	6.4	discard	speed Muon momentum ramp to 200 steps while keeping 0.85->0.935 endpoints, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp088	1.149750	6.4	discard	raise x0 scalar Adam beta1 slightly to 0.97 while keeping x0 beta2 0.95, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp089	1.148346	6.4	discard	lower x0 scalar Adam beta2 slightly to 0.94 while keeping x0 beta1 0.96, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp090	1.148438	6.4	discard	raise Muon momentum start slightly to 0.86 while keeping Muon momentum endpoint 0.935, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp091	1.149796	6.4	discard	raise AdamW epsilon globally to 1e-9 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp092	1.149331	6.4	discard	lower AdamW epsilon globally to 1e-11 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp093	1.149102	6.4	discard	raise resid scalar Adam lr slightly to 0.006 while keeping x0 scalar lr 0.5, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp094	1.149910	6.4	discard	hold Muon weight decay at 0.1 until warmdown, then decay it to zero over the final 50% while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, and 7% final lr floor
+exp095	1.148258	6.4	discard	lower Muon beta2 slightly to 0.945 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1, 50% warmdown, and 7% final lr floor
+exp096	1.148193	6.4	discard	decay Muon weight decay to a 10% floor instead of zero while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, 50% warmdown, and 7% final lr floor
+exp097	1.152483	6.4	discard	lower Muon ns_steps from 5 to 4 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1 decay-to-zero, 50% warmdown, and 7% final lr floor
+exp098	1.154224	4.9	discard	lower total batch size 25% to 49152 via NLP device batch 24 while keeping AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1 decay-to-zero, 50% warmdown, and 7% final lr floor
+exp099	1.148423	6.4	discard	lower resid scalar Adam lr 20% to 0.004 while keeping x0 scalar lr 0.5, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1 decay-to-zero, 50% warmdown, and 7% final lr floor
+exp100	1.148090	6.4	discard	raise x0 scalar Adam beta2 slightly to 0.955 while keeping x0 beta1 0.96, AdamW beta1 0.85, AdamW beta2 0.96, embedding lr 0.65, Muon momentum endpoint 0.935, Muon weight decay 0.1 decay-to-zero, 50% warmdown, and 7% final lr floor

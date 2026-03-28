@@ -1,6 +1,6 @@
 # Phase 2 Experiment Note
 
-Snapshot updated on March 26, 2026.
+Snapshot updated on March 28, 2026.
 
 ## Planned workload
 
@@ -45,7 +45,7 @@ The runner is also quota-aware for ChatGPT Plus usage. If Codex hits a usage lim
 
 If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.md` for the stop-and-resume procedure.
 
-## Completed tasks (29/34)
+## Completed tasks (34/34)
 
 | # | Kind | Track | Run | Experiments | Best val_bpb | Notes |
 |---|------|-------|-----|-------------|-------------|-------|
@@ -77,27 +77,29 @@ If the weekly Codex limit hits `0%`, follow `docs/phase2-weekly-limit-playbook.m
 | 26 | hp_only | protein | run_1 | 100 | 3.9901 | 8 crashes |
 | 27 | hp_only | protein | run_2 | 100 | 3.9699 | best hp_only protein |
 | 28 | hp_only | protein | run_3 | 100 | 3.9684 | |
-| 29 | hp_only | NLP | run_1 | 100 | 1.1462 | best hp_only NLP so far |
+| 29 | hp_only | NLP | run_1 | 100 | 1.1462 | |
+| 30 | hp_only | NLP | run_2 | 100 | 1.1470 | best hp_only NLP |
+| 31 | hp_only | NLP | run_3 | 100 | 1.1477 | |
+| 32 | fixed_default | SMILES | run_1 | 1 | 0.5961 | baseline floor |
+| 33 | fixed_default | protein | run_1 | 1 | 3.9767 | baseline floor |
+| 34 | fixed_default | NLP | run_1 | 1 | 1.1528 | baseline floor |
 
-**Total completed experiments:** `2,903`
+**Total completed experiments:** `3,106`
 
 ## Current live status
 
-- the Phase 2 runner is on task `30/34`
-- active task: hp_only NLP `run_2`
-- completed experiments in the active run: `4/~100` (best 1.1514 bpb at exp003)
+- **Phase 2 is complete.** All 34/34 tasks finished.
 - all agent runs complete (SMILES 5/5, protein 3/3, NLP 5/5)
 - all random_nas runs complete (SMILES 3/3, protein 3/3, NLP 3/3)
-- hp_only SMILES runs 1–3 complete; hp_only protein runs 1–3 complete; hp_only NLP run_1 complete, run_2 in progress
+- all hp_only runs complete (SMILES 3/3, protein 3/3, NLP 3/3)
+- all fixed_default runs complete (SMILES 1/1, protein 1/1, NLP 1/1)
 
-## Remaining tasks (5/34)
+## Remaining tasks (0/34)
 
-- **HP-only:** NLP runs 2 (in progress), 3 = `2` tasks
-- **Fixed default:** SMILES, protein, NLP = `3` tasks
+None — all tasks complete.
 
 ## Where to check progress
 
 - Runner state: `results/phase2/queue_state.json`
 - Runner log: `logs/phase2-resume-20260316_103926.log`
-- Active run results: `results/baselines/hp_only/nlp/run_2/results.tsv`
-- Active run summary: `results/baselines/hp_only/nlp/run_2/summary.json`
+- All results: `results/baselines/` and `results/agent/`

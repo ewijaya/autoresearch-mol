@@ -1,0 +1,91 @@
+{
+  "agent_runs": [
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_1",
+      "rows": 100,
+      "run": 1,
+      "track": "smiles"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_2",
+      "rows": 100,
+      "run": 2,
+      "track": "smiles"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_3",
+      "rows": 100,
+      "run": 3,
+      "track": "smiles"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_4",
+      "rows": 100,
+      "run": 4,
+      "track": "smiles"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/smiles/run_5",
+      "rows": 100,
+      "run": 5,
+      "track": "smiles"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/protein/run_1",
+      "rows": 100,
+      "run": 1,
+      "track": "protein"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/protein/run_2",
+      "rows": 100,
+      "run": 2,
+      "track": "protein"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/protein/run_3",
+      "rows": 100,
+      "run": 3,
+      "track": "protein"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/nlp/run_1",
+      "rows": 100,
+      "run": 1,
+      "track": "nlp"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/nlp/run_2",
+      "rows": 100,
+      "run": 2,
+      "track": "nlp"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/nlp/run_3",
+      "rows": 100,
+      "run": 3,
+      "track": "nlp"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/nlp/run_4",
+      "rows": 100,
+      "run": 4,
+      "track": "nlp"
+    },
+    {
+      "path": "/home/ubuntu/storage1/recursive-mol/results/nlp/run_5",
+      "rows": 100,
+      "run": 5,
+      "track": "nlp"
+    }
+  ],
+  "checkpoint_2": {
+    "agent_results_saved": true,
+    "at_least_10_runs_with_80_experiments": true,
+    "baseline_runs_launched": true,
+    "no_systematic_crashes_or_pipeline_failures": true,
+    "smiles_architectural_changes_detected": true,
+    "train_versions_saved": true
+  },
+  "generated_at": "2026-03-27 23:15:33"
+}

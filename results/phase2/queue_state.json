@@ -1,11 +1,4 @@
 {
-  "status": "running",
-  "task": {
-    "kind": "hp_only",
-    "program": "program_hponly.md",
-    "run": 2,
-    "track": "nlp"
-  },
-  "task_index": 30,
-  "tasks_completed": 29
+  "status": "completed",
+  "tasks_completed": 34
 }

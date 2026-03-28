@@ -1,7 +1,7 @@
 # Phase 2 Task Schedule
 
-**Date**: 2026-03-16 (updated 2026-03-26)
-**Status**: Task 30 of 34 running (hp_only nlp run_2, 4/100 experiments)
+**Date**: 2026-03-16 (updated 2026-03-28)
+**Status**: Complete — all 34 of 34 tasks finished
 
 ---
 
@@ -9,7 +9,7 @@
 
 The runner interleaves agent runs with baseline runs to ensure incremental data collection across conditions.
 
-### Completed (Tasks 1-29)
+### Completed (Tasks 1-34)
 
 | # | Kind | Track | Run | Status | Best val_bpb | Notes |
 |---|------|-------|-----|--------|-------------|-------|
@@ -42,32 +42,11 @@ The runner interleaves agent runs with baseline runs to ensure incremental data 
 | 27 | hp_only | protein | 2 | Done | 3.9699 (exp018) | 0 crashes |
 | 28 | hp_only | protein | 3 | Done | 3.9684 (exp038) | 0 crashes |
 | 29 | hp_only | nlp | 1 | Done | 1.1462 (exp094) | 0 crashes |
-
-### Currently Running (Task 30)
-
-| # | Kind | Track | Run | Status | Best val_bpb | Notes |
-|---|------|-------|-----|--------|-------------|-------|
-| 30 | hp_only | nlp | 2 | **Running** (4/100) | 1.1514 (exp003) | 0 crashes |
-
-### Upcoming (Tasks 31-34)
-
-#### HP-only baseline — remaining runs
-
-HP-only uses `program_hponly.md`, which restricts the agent to only tuning hyperparameters (learning rate, batch size, etc.) without modifying the model architecture. This isolates the contribution of architecture search vs hyperparameter tuning.
-
-| # | Kind | Track | Run | Est. duration | Purpose |
-|---|------|-------|-----|---------------|---------|
-| 31 | hp_only | nlp | 3 | ~13 hrs | NLP HP-only replicate 3 |
-
-#### Fixed default baseline — one run per track
-
-Fixed default trains the unmodified baseline architecture (no agent, no random sampling). This establishes the floor — what you get with zero search budget.
-
-| # | Kind | Track | Run | Est. duration | Purpose |
-|---|------|-------|-----|---------------|---------|
-| 32 | fixed_default | smiles | 1 | ~10 hrs | SMILES baseline floor |
-| 33 | fixed_default | protein | 1 | ~10 hrs | Protein baseline floor |
-| 34 | fixed_default | nlp | 1 | ~10 hrs | NLP baseline floor |
+| 30 | hp_only | nlp | 2 | Done | 1.1470 (exp086) | 0 crashes; best hp_only NLP |
+| 31 | hp_only | nlp | 3 | Done | 1.1477 (exp060) | 0 crashes |
+| 32 | fixed_default | smiles | 1 | Done | 0.5961 (exp001) | 1 experiment; baseline floor |
+| 33 | fixed_default | protein | 1 | Done | 3.9767 (exp001) | 1 experiment; baseline floor |
+| 34 | fixed_default | nlp | 1 | Done | 1.1528 (exp001) | 1 experiment; baseline floor |
 
 ---
 
@@ -78,7 +57,7 @@ Fixed default trains the unmodified baseline architecture (no agent, no random s
 | Agent runs (~8 min/experiment, 100 experiments) | ~13 hrs each |
 | Random NAS runs (~6 min/experiment, 100 experiments) | ~10 hrs each |
 | Fixed default (single architecture, one training run) | ~10 hrs |
-| **Total remaining (5 tasks)** | **~59 hrs (~2.5 days)** |
+| **Total remaining (0 tasks)** | **0 hrs — complete** |
 
 **Assumptions**:
 - Continuous runtime with no API rate-limit pauses (optimistic; we've already hit one weekly limit pause during SMILES run_4)
@@ -109,7 +88,7 @@ The 4-condition design enables a decomposition analysis (Story 7):
 
 | Risk | Severity | Mitigation |
 |------|----------|------------|
-| **Weekly API rate limits** | High | Already caused 1 pause; expect 0-1 more over remaining ~3 days |
+| **Weekly API rate limits** | N/A | All tasks complete |
 | **Disk space** | Low | Results are small (~50 MB/run); datasets already downloaded |
 | **GPU availability** | Low | Single A10G, no contention currently |
 
@@ -117,6 +96,6 @@ The 4-condition design enables a decomposition analysis (Story 7):
 
 ## Progress Summary
 
-- **SMILES track**: All 5 agent + 3 random_nas + 3/3 hp_only runs complete. Best agent: 0.5808 (run_2). Best overall: 0.5801 (hp_only run_2).
-- **Protein track**: All 3 agent + 3 random_nas + 3/3 hp_only runs complete. Best agent: 3.9656 (run_1). Best hp_only: 3.9684 (run_3).
-- **NLP track**: All 5 agent + 3 random_nas runs complete; hp_only run_1 complete, run_2 in progress. Best agent: 1.1151 (run_3). Best hp_only: 1.1462 (run_1). Best random_nas: 1.1297 (run_1).
+- **SMILES track**: All runs complete (5 agent + 3 random_nas + 3 hp_only + 1 fixed_default). Best agent: 0.5808 (run_2). Best hp_only: 0.5801 (run_2). Fixed default floor: 0.5961.
+- **Protein track**: All runs complete (3 agent + 3 random_nas + 3 hp_only + 1 fixed_default). Best agent: 3.9656 (run_1). Best hp_only: 3.9684 (run_3). Fixed default floor: 3.9767.
+- **NLP track**: All runs complete (5 agent + 3 random_nas + 3 hp_only + 1 fixed_default). Best agent: 1.1151 (run_3). Best hp_only: 1.1470 (run_2). Best random_nas: 1.1297 (run_1). Fixed default floor: 1.1528.
