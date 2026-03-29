@@ -57,7 +57,6 @@ results/calibration_run.log
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-manuscript/main.pdf
 
 # IDE
 .vscode/
