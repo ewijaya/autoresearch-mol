@@ -1,10 +1,10 @@
 # autoresearch-mol
 
-Extending [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) from NLP to molecular domains — and asking whether the architectures it discovers are actually different.
+Autonomous discovery of domain-specific transformer architectures for molecular sequences.
 
 ## Background
 
-Andrej Karpathy's [autoresearch](https://github.com/karpathy/autoresearch) showed that an AI agent can autonomously improve a transformer by iterating on `train.py` in a tight loop: modify, train 5 minutes, evaluate, keep or discard. The result was impressive — but it only ran on NLP data.
+[autoresearch](https://github.com/karpathy/autoresearch) by Andrej Karpathy showed that an AI agent can autonomously improve a transformer by iterating on `train.py` in a tight loop: modify, train 5 minutes, evaluate, keep or discard. The result was impressive — but it only ran on NLP data.
 
 We took that idea and pointed it at molecules. Same loop, same single-GPU constraint, but across three domains simultaneously: drug-like molecules (SMILES), proteins, and NLP as a control. Then we added baselines that nobody had run — random architecture search, hyperparameter-only tuning, and a fixed default — to answer a question the original work didn't address: **does the architecture search actually matter, or is the agent mostly finding better hyperparameters?**
 
@@ -60,10 +60,6 @@ RECURSIVE_MOL_TRACK=smiles uv run train.py
 | 3. Baselines (random NAS, HP-only, fixed) | ✅ Complete |
 | 4. Statistical Analysis (H1–H4) | ✅ Complete |
 | 5. Paper (NeurIPS 2026) | 🔄 In progress |
-
-## Acknowledgments
-
-This project would not exist without [autoresearch](https://github.com/karpathy/autoresearch) by Andrej Karpathy. The core insight — that a simple agent loop on a single GPU can discover meaningful architectural improvements — is his. We extended it to new domains, added controlled baselines, and discovered that the answer to "does architecture search matter?" is more nuanced than expected.
 
 ## License
 

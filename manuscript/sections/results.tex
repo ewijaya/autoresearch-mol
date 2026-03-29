@@ -1,4 +1,182 @@
-% Section 4: Results
-% TODO: Write after methodology.
 \section{Results}
 \label{sec:results}
+
+We present results in order of importance, beginning with the decomposition (the paper's central finding), followed by search efficiency, architecture clustering, transfer universality, domain knowledge rediscovery, and downstream validation.
+
+\subsection{Decomposition: Architecture Search vs.\ HP Tuning}
+\label{sec:decomposition}
+
+Table~\ref{tab:decomposition} shows the decomposition of total improvement into HP and architecture contributions for each track. This is the paper's headline result.
+
+\begin{table}[t]
+\centering
+\caption{Decomposition of improvement from fixed default to best agent. HP contribution = improvement from HP tuning alone (Eq.~\ref{eq:hp}); architecture contribution = additional improvement from architecture search beyond HP tuning (Eq.~\ref{eq:arch}). Percentages sum to 100\% by construction. Adjusted $p$-values use Holm--Bonferroni correction within the decomposition family.}
+\label{tab:decomposition}
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Track} & \textbf{Total impr.} & \textbf{HP \%} & \textbf{HP $p_\text{adj}$} & \textbf{Arch \%} & \textbf{Arch $p_\text{adj}$} \\
+\midrule
+SMILES & 0.0102 bpb & 151\% & 0.001 & $-$51\% & 0.246 \\
+Protein & 0.0098 bpb & 6\% & 0.632 & 94\% & 0.632 \\
+NLP & 0.0299 bpb & 19\% & 0.022 & 81\% & 0.009 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\linewidth]{figures/h4_decomposition.pdf}
+\caption{Decomposition of total improvement per track. On NLP, architecture search contributes the majority (81\%) of improvement. On SMILES, HP tuning alone exceeds the total improvement (151\%), and architecture search is counterproductive ($-$51\%). Protein margins are too small for significance.}
+\label{fig:decomposition}
+\end{figure}
+
+The three tracks tell qualitatively different stories:
+
+\textbf{NLP} (large vocabulary, long sequences). Architecture search contributes 81\% of the total 0.030 bpb improvement ($p_\text{adj} = 0.009$), with HP tuning contributing only 19\% ($p_\text{adj} = 0.022$). The full agent achieves a mean best val\_bpb of 1.123, compared to 1.147 for HP-only and 1.153 for the fixed default. Architecture search is essential for this domain.
+
+\textbf{SMILES} (small vocabulary, short sequences). HP tuning alone captures 151\% of the total 0.010 bpb improvement ($p_\text{adj} = 0.001$), meaning the HP-only agent (mean best 0.581) \emph{outperforms} the full agent (mean best 0.586). The architecture contribution is $-$51\% (not significant, $p_\text{adj} = 0.246$), indicating that architecture search wastes experimental budget on structural changes that do not improve over the near-optimal default architecture. This is not a failure of the agent---it is a genuine finding that simple domains do not benefit from architecture search.
+
+\textbf{Protein} (intermediate). The total improvement is 0.010 bpb, but neither the HP contribution (6\%, $p_\text{adj} = 0.632$) nor the architecture contribution (94\%, $p_\text{adj} = 0.632$) reaches significance. The relative spread across all conditions is $<$0.3\%, suggesting the domain is ``architecture-insensitive'' at this model scale.
+
+\subsection{Search Efficiency}
+\label{sec:search_efficiency}
+
+Table~\ref{tab:auc} reports pairwise AUC-OC comparisons between the agent and each baseline.
+
+\begin{table}[t]
+\centering
+\caption{Agent vs.\ baselines: AUC-OC comparisons. Bootstrap 95\% CIs from 10{,}000 resamples; Cohen's $d$ for effect size. Adjusted $p$-values use Holm--Bonferroni correction within each track's primary comparison family. Negative AUC difference = agent is better (lower AUC).}
+\label{tab:auc}
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Comparison} & \textbf{Track} & \textbf{AUC 95\% CI} & \textbf{$p_\text{adj}$} & \textbf{Cohen's $d$} & \textbf{Sig.?} \\
+\midrule
+\multirow{3}{*}{Agent vs.\ NAS} & SMILES & [$-$0.66, $-$0.16] & 0.044 & $-$1.50 & Yes \\
+ & Protein & [$-$0.42, $-$0.17] & 0.137 & $-$2.86 & No \\
+ & NLP & [$-$0.54, +0.31] & 0.632 & $-$1.35 & No \\
+\midrule
+\multirow{3}{*}{Agent vs.\ HP-only} & SMILES & [+0.55, +1.03] & 0.015 & +1.41 & Yes$^*$ \\
+ & Protein & [$-$0.77, +0.01] & 0.635 & $-$1.07 & No \\
+ & NLP & [$-$2.05, $-$1.23] & 0.005 & $-$4.45 & Yes \\
+\bottomrule
+\multicolumn{6}{@{}l@{}}{\footnotesize $^*$HP-only outperforms agent on SMILES.}
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.32\linewidth}
+\includegraphics[width=\linewidth]{figures/h4_best_so_far_smiles.pdf}
+\caption{SMILES}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\linewidth}
+\includegraphics[width=\linewidth]{figures/h4_best_so_far_protein.pdf}
+\caption{Protein}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\linewidth}
+\includegraphics[width=\linewidth]{figures/h4_best_so_far_nlp.pdf}
+\caption{NLP}
+\end{subfigure}
+\caption{Best-so-far curves across conditions. Each line shows the cumulative minimum val\_bpb over experiments 1--100. The HP-only agent (green) dominates on SMILES, while the full agent (blue) dominates on NLP. All conditions cluster tightly on protein.}
+\label{fig:best_so_far}
+\end{figure}
+
+On SMILES, the agent significantly outperforms random NAS ($p_\text{adj} = 0.044$, $d = -1.50$), but HP-only significantly outperforms the agent ($p_\text{adj} = 0.015$, $d = +1.41$). On NLP, the agent significantly outperforms HP-only ($p_\text{adj} = 0.005$, $d = -4.45$), the largest effect size in the study. Agent vs.\ NAS does not reach significance on NLP after correction ($p_\text{adj} = 0.632$), likely because random NAS occasionally samples effective architectures. On protein, no comparison reaches significance.
+
+Figure~\ref{fig:best_so_far} shows best-so-far trajectories. On SMILES, the HP-only agent converges fastest and to the lowest val\_bpb. On NLP, the full agent's curve separates from all baselines by experiment ${\sim}$20 and continues to improve. On protein, all conditions converge to a narrow band.
+
+\subsection{Architecture Clustering}
+\label{sec:clustering}
+
+We extract architectural feature vectors from the best-performing architecture in each of the 13 agent runs (5 SMILES + 3 protein + 5 NLP). A permutation test on the Gower distance matrix yields $p = 0.004$ (10{,}000 permutations), with an observed cross-track/within-track distance ratio of 1.43. Agent-discovered architectures cluster by domain (Figure~\ref{fig:clustering}).
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[b]{0.48\linewidth}
+\includegraphics[width=\linewidth]{figures/h1_architecture_pca.pdf}
+\caption{PCA of architectural features}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\linewidth}
+\includegraphics[width=\linewidth]{figures/h1_distance_heatmap.pdf}
+\caption{Gower distance matrix}
+\end{subfigure}
+\caption{Architecture clustering by domain ($p = 0.004$). (a) PCA projection of 13 best architectures, colored by track. (b) Pairwise Gower distance matrix ordered by track, showing within-track similarity (darker blocks on diagonal).}
+\label{fig:clustering}
+\end{figure}
+
+The qualitative patterns differ across domains. SMILES architectures tend toward shallower, wider configurations with full attention and gated MLPs (SwiGLU). NLP architectures favor aggressive KV head compression (GQA with $n_\text{kv\_head} = 1$), maintaining full attention across layers. Protein architectures show more variation, with per-layer value head modifications and alternating window patterns.
+
+\subsection{Transfer Universality}
+\label{sec:transfer}
+
+Despite the clustering result, cross-domain transfer experiments reveal that architectural innovations are largely universal at this scale. Table~\ref{tab:transfer} shows the 3$\times$3 transfer matrix: training a model with one domain's best architecture on another domain's data yields $<$1\% degradation in most cases.
+
+\begin{table}[t]
+\centering
+\caption{Cross-domain transfer matrix. Each cell shows the relative change in val\_bpb when using one domain's best architecture on another domain's data, compared to the native architecture. Negative values indicate improvement.}
+\label{tab:transfer}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Architecture $\rightarrow$ Data} & \textbf{SMILES} & \textbf{Protein} & \textbf{NLP} \\
+\midrule
+SMILES arch & --- & $-$0.08\% & $-$0.02\% \\
+Protein arch & $-$0.71\% & --- & $+$0.80\% \\
+NLP arch & $+$0.05\% & $-$0.15\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.65\linewidth]{figures/h3_transfer_heatmap.pdf}
+\caption{Transfer heatmap. Degradation is below 1\% for all cross-domain pairs, with several transfers actually improving performance (negative degradation).}
+\label{fig:transfer_heatmap}
+\end{figure}
+
+We tested four sub-hypotheses about transfer:
+
+\textbf{H3a: Asymmetric transfer.} Not supported. All degradation values are below 1\%, and some transfers improve performance (e.g., protein architecture on SMILES data: $-$0.71\%).
+
+\textbf{H3b: Layer specificity.} Partially supported. Layer freezing experiments show monotonic degradation as more layers are frozen from deep to shallow, with early layers transferring cleanly ($<$5\% degradation) and late layers showing mild domain specificity (up to 16\% for NLP$\to$SMILES at full freeze).
+
+\textbf{H3c: Length matching.} Not supported. Truncating NLP sequences to shorter lengths to match molecular domains actively hurts transfer performance (mean reduction $-$151\%), suggesting context window size is a genuine architectural constraint rather than an artifact.
+
+\textbf{H3d: Innovation classification.} Strongly contradicts predictions. All 41 of 41 discovered innovations are classified as universal ($<$1\% degradation when transferred), yielding $p = 2 \times 10^{-19}$ against the predicted 35\% universal rate via binomial test.
+
+The combination of clustering (Section~\ref{sec:clustering}) with universal transfer creates an apparent paradox: the agent discovers different architectures for different domains, yet the innovations themselves are domain-agnostic. We interpret this as evidence that search path dependence---what the agent tries first, conditioned on the data it observes---drives the apparent specialization, rather than fundamental domain requirements at this ${\sim}$10M parameter scale.
+
+\subsection{Domain Knowledge Rediscovery}
+\label{sec:rediscovery}
+
+We classified agent modifications against 5 known molecular modeling techniques by parsing code diffs from all SMILES agent runs. Of the 5 techniques, 4 were partially matched across all 5 runs: local/sliding attention patterns, embedding dimension adjustments, depth/width rebalancing for short sequences, and gated MLP introduction. Only positional encoding changes were rarely observed (1/5 runs). The agent independently converged on established domain-relevant patterns---gated MLPs, attention pattern modifications, and depth/width rebalancing---without domain-specific prompting.
+
+These same techniques also appeared in NLP runs (all 5 runs matched 3/5 techniques), consistent with the universality finding: the innovations the agent discovers for molecular data are not specific to molecules.
+
+\subsection{Downstream Validation}
+\label{sec:downstream}
+
+To verify that val\_bpb improvements translate to practical utility, we evaluated the three best SMILES agent architectures on three MoleculeNet \citep{wu2018moleculenet} classification tasks (Table~\ref{tab:moleculenet}).
+
+\begin{table}[t]
+\centering
+\caption{MoleculeNet downstream validation. ROC-AUC on three binary classification tasks using pretrained SMILES agent architectures with linear probing.}
+\label{tab:moleculenet}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Architecture} & \textbf{BBBP} & \textbf{HIV} & \textbf{BACE} & \textbf{Mean} \\
+\midrule
+Agent \#1 (bpb 0.581) & 0.702 & 0.758 & 0.805 & 0.755 \\
+Agent \#2 (bpb 0.583) & 0.690 & 0.731 & 0.795 & 0.739 \\
+Agent \#3 (bpb 0.584) & 0.711 & 0.735 & 0.798 & 0.748 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The architectures achieve mean ROC-AUC of 0.74--0.76 across tasks. The rank correlation between val\_bpb and mean ROC-AUC is $\rho = 0.5$ ($n = 3$, $p = 0.67$), consistent with a positive trend but underpowered to reach significance. We additionally evaluate molecular generation: the best agent architecture produces 95.2\% valid, 100\% unique, and 99.96\% novel SMILES strings, confirming that the pretrained representations capture meaningful chemical structure.
