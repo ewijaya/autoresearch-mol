@@ -36,6 +36,16 @@ Built on the autoresearch loop:
 | Protein | UniRef50 | ~25 AA | 512 | 1,038 |
 | NLP | FineWeb-Edu | ~8K BPE | 2048 | 1,034 |
 
+## Implications for Drug Discovery
+
+Most molecular transformers in drug discovery pipelines (property prediction, virtual screening, de novo generation) use architectures copied directly from NLP. Teams spend weeks tuning these models without knowing whether the architecture itself is the bottleneck or just the hyperparameters.
+
+Our results give a concrete answer: for SMILES-based models with small vocabularies and short sequences, the default transformer architecture is already adequate. Tuning learning rates and schedules for $5 on a single GPU gets you to the best performance we observed. Architecture search on top of that is wasted compute.
+
+This matters operationally. A medicinal chemistry team can run 100 HP-tuning experiments overnight on one A10G for under $10 and get a well-tuned molecular transformer without needing ML architecture expertise. The four universally beneficial innovations we found (grouped query attention, gated MLPs, learned residual scaling, value embeddings on every layer) can be applied as drop-in improvements to existing molecular transformer pipelines.
+
+The framework itself is reusable. Point it at reaction SMILES, ADMET strings, glycan sequences, or any other molecular representation, and it will find good hyperparameters (and, if the domain is complex enough, good architectures) autonomously.
+
 ## Quick Start
 
 **Requirements:** Single NVIDIA GPU (tested on A10G 24GB), Python 3.10+, [uv](https://docs.astral.sh/uv/).
