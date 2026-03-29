@@ -10,6 +10,8 @@ We took that idea and pointed it at molecules. Same loop, same single-GPU constr
 
 ## What We Found
 
+![SMILES](figures/h4_best_so_far_smiles.png) ![Protein](figures/h4_best_so_far_protein.png) ![NLP](figures/h4_best_so_far_nlp.png)
+
 After 3,106 experiments across 4 conditions and 3 domains:
 
 - **It depends on the domain.** Architecture search contributes 81% of improvement for NLP but is counterproductive for SMILES, where hyperparameter tuning alone beats the full agent.
