@@ -1,4 +1,4 @@
-# recursive-mol
+# autoresearch-mol
 
 Autonomous discovery of domain-specific transformer architectures for molecular sequences.
 
@@ -49,13 +49,13 @@ RECURSIVE_MOL_TRACK=smiles uv run train.py
 
 ## Project Phases
 
-| Phase | Timeline | Description |
-|-------|----------|-------------|
-| 1. Infrastructure | Mar 9-16 | Training pipeline, data preparation, calibration study |
-| 2. Agent Search | Mar 16-Apr 6 | Autonomous architecture search on all 3 tracks |
-| 3. Baselines | Apr 6-13 | Random NAS, fixed default, HP-only baselines |
-| 4. Analysis | Apr 13-20 | Transfer matrix, MoleculeNet validation, statistical tests |
-| 5. Paper | Apr 20-May 15 | Write and submit to NeurIPS 2026 |
+| Phase | Timeline | Status |
+|-------|----------|--------|
+| 1. Infrastructure | Mar 9–16 | ✅ Complete |
+| 2. Agent Search | Mar 16–28 | ✅ Complete (3,106 experiments) |
+| 3. Baselines | Integrated with Phase 2 | ✅ Complete |
+| 4. Analysis | Mar 28 | ✅ Complete (H1–H4 hypothesis tests) |
+| 5. Paper | Mar 30–May 15 | 🔄 In progress (NeurIPS 2026) |
 
 ## License
 
