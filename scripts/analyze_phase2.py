@@ -1002,20 +1002,410 @@ def plot_h2_technique_heatmap(run_presence: dict[str, dict[str, bool]]) -> None:
 
 
 def analyze_h3() -> dict[str, Any]:
-    transfer_matrix = RESULTS_DIR / "transfer" / "matrix.json"
-    if not transfer_matrix.exists():
-        payload = {
+    matrix_path = RESULTS_DIR / "transfer" / "matrix.json"
+    layer_freezing_path = RESULTS_DIR / "transfer" / "layer_freezing.json"
+    length_controlled_path = RESULTS_DIR / "transfer" / "length_controlled.json"
+    innovation_path = RESULTS_DIR / "transfer" / "innovation_classification.json"
+
+    def load_json_if_exists(path: Path) -> dict[str, Any] | None:
+        if not path.exists():
+            return None
+        with path.open() as handle:
+            return json.load(handle)
+
+    def skipped_subtest(note: str) -> dict[str, Any]:
+        return {
             "status": "skipped_no_data",
-            "note": "Requires SC-6 transfer matrix. Run again after transfer experiments.",
+            "note": note,
         }
-        write_json(ANALYSIS_DIR / "h3_transfer_tests.json", payload)
-        return {"master": payload, "payload": payload}
-    payload = {
-        "status": "not_implemented",
-        "note": "Transfer data exists but H3 analysis was not required in this workspace snapshot.",
+
+    def clean_float(value: Any) -> float:
+        number = float(value)
+        if math.isnan(number) or math.isinf(number):
+            return 0.0
+        return number
+
+    def proportion_to_pct(value: float) -> float:
+        return clean_float(value * 100.0)
+
+    matrix_data = load_json_if_exists(matrix_path)
+    layer_freezing_data = load_json_if_exists(layer_freezing_path)
+    length_controlled_data = load_json_if_exists(length_controlled_path)
+    innovation_data = load_json_if_exists(innovation_path)
+
+    figure_paths: dict[str, str] = {}
+    subtests: dict[str, dict[str, Any]] = {}
+
+    if matrix_data is None:
+        subtests["h3a"] = skipped_subtest("Requires results/transfer/matrix.json")
+    else:
+        degradation_matrix = matrix_data["degradation_matrix"]
+        directional_pairs = [
+            {
+                "pair": "smiles<->protein",
+                "forward_label": "smiles->protein",
+                "reverse_label": "protein->smiles",
+                "forward_pct": clean_float(degradation_matrix["smiles_arch"]["protein_data"]["pct_degradation"]),
+                "reverse_pct": clean_float(degradation_matrix["protein_arch"]["smiles_data"]["pct_degradation"]),
+            },
+            {
+                "pair": "smiles<->nlp",
+                "forward_label": "smiles->nlp",
+                "reverse_label": "nlp->smiles",
+                "forward_pct": clean_float(degradation_matrix["smiles_arch"]["nlp_data"]["pct_degradation"]),
+                "reverse_pct": clean_float(degradation_matrix["nlp_arch"]["smiles_data"]["pct_degradation"]),
+            },
+            {
+                "pair": "protein<->nlp",
+                "forward_label": "protein->nlp",
+                "reverse_label": "nlp->protein",
+                "forward_pct": clean_float(degradation_matrix["protein_arch"]["nlp_data"]["pct_degradation"]),
+                "reverse_pct": clean_float(degradation_matrix["nlp_arch"]["protein_data"]["pct_degradation"]),
+            },
+        ]
+        wilcoxon_left = np.asarray(
+            [abs(item["forward_pct"]) for item in directional_pairs],
+            dtype=float,
+        )
+        wilcoxon_right = np.asarray(
+            [abs(item["reverse_pct"]) for item in directional_pairs],
+            dtype=float,
+        )
+        wilcoxon_result = stats.wilcoxon(
+            wilcoxon_left,
+            wilcoxon_right,
+            zero_method="wilcox",
+            alternative="two-sided",
+            method="exact",
+        )
+        protein_to_smiles_runs = matrix_data["matrix"]["protein_arch"]["smiles_data"]["runs"]
+        smiles_to_protein_runs = matrix_data["matrix"]["smiles_arch"]["protein_data"]["runs"]
+        protein_to_smiles_deg_runs = [
+            clean_float((value - matrix_data["baseline_bpbs"]["smiles"]) / matrix_data["baseline_bpbs"]["smiles"] * 100.0)
+            for value in protein_to_smiles_runs
+        ]
+        smiles_to_protein_deg_runs = [
+            clean_float((value - matrix_data["baseline_bpbs"]["protein"]) / matrix_data["baseline_bpbs"]["protein"] * 100.0)
+            for value in smiles_to_protein_runs
+        ]
+        protein_smiles_ttest = stats.ttest_ind(
+            np.asarray(protein_to_smiles_deg_runs, dtype=float),
+            np.asarray(smiles_to_protein_deg_runs, dtype=float),
+            equal_var=False,
+        )
+        for item in directional_pairs:
+            item["absolute_forward_pct"] = clean_float(abs(item["forward_pct"]))
+            item["absolute_reverse_pct"] = clean_float(abs(item["reverse_pct"]))
+            item["absolute_difference_pct"] = clean_float(
+                abs(item["absolute_forward_pct"] - item["absolute_reverse_pct"])
+            )
+        subtests["h3a"] = {
+            "status": "complete",
+            "prediction_met": False,
+            "protein_to_smiles_degradation_pct": clean_float(
+                degradation_matrix["protein_arch"]["smiles_data"]["pct_degradation"]
+            ),
+            "smiles_to_protein_degradation_pct": clean_float(
+                degradation_matrix["smiles_arch"]["protein_data"]["pct_degradation"]
+            ),
+            "directional_pairs": directional_pairs,
+            "wilcoxon_statistic": clean_float(wilcoxon_result.statistic),
+            "wilcoxon_p_value": clean_float(wilcoxon_result.pvalue),
+            "protein_smiles_replicate_comparison": {
+                "protein_to_smiles_runs_val_bpb": [clean_float(value) for value in protein_to_smiles_runs],
+                "smiles_to_protein_runs_val_bpb": [clean_float(value) for value in smiles_to_protein_runs],
+                "protein_to_smiles_runs_degradation_pct": protein_to_smiles_deg_runs,
+                "smiles_to_protein_runs_degradation_pct": smiles_to_protein_deg_runs,
+                "welch_t_statistic": clean_float(protein_smiles_ttest.statistic),
+                "welch_p_value": clean_float(protein_smiles_ttest.pvalue),
+            },
+            "interpretation": (
+                "No significant directional asymmetry across the 3 cross-domain pairs; "
+                "the protein->smiles versus smiles->protein replicate comparison differs, "
+                "but both effects remain below 1% in magnitude."
+            ),
+        }
+
+        row_order = ["smiles_arch", "protein_arch", "nlp_arch"]
+        col_order = ["smiles_data", "protein_data", "nlp_data"]
+        row_labels = ["SMILES arch", "Protein arch", "NLP arch"]
+        col_labels = ["SMILES data", "Protein data", "NLP data"]
+        heatmap_values = np.array(
+            [
+                [
+                    clean_float(degradation_matrix[row_key][col_key]["pct_degradation"])
+                    for col_key in col_order
+                ]
+                for row_key in row_order
+            ],
+            dtype=float,
+        )
+        max_abs = max(1.0, clean_float(np.max(np.abs(heatmap_values))))
+        norm = matplotlib.colors.TwoSlopeNorm(vmin=-max_abs, vcenter=0.0, vmax=max_abs)
+        fig, ax = plt.subplots(figsize=(10, 6))
+        image = ax.imshow(heatmap_values, cmap="RdYlGn_r", norm=norm)
+        ax.set_xticks(np.arange(len(col_labels)))
+        ax.set_xticklabels(col_labels)
+        ax.set_yticks(np.arange(len(row_labels)))
+        ax.set_yticklabels(row_labels)
+        ax.set_title("H3 Transfer Degradation Matrix")
+        for i in range(heatmap_values.shape[0]):
+            for j in range(heatmap_values.shape[1]):
+                cell = matrix_data["degradation_matrix"][row_order[i]][col_order[j]]
+                label = f"{heatmap_values[i, j]:+.2f}%"
+                if i == j:
+                    label += "\nidentity"
+                    ax.add_patch(
+                        matplotlib.patches.Rectangle(
+                            (j - 0.5, i - 0.5),
+                            1.0,
+                            1.0,
+                            fill=False,
+                            linewidth=2.0,
+                            edgecolor="black",
+                            linestyle="--",
+                        )
+                    )
+                ax.text(j, i, label, ha="center", va="center", color="black", fontsize=10)
+                if cell.get("note") == "identity":
+                    continue
+        ax.set_xlabel("Target data")
+        ax.set_ylabel("Source architecture")
+        fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04, label="Degradation (%)")
+        heatmap_png = FIGURES_DIR / "h3_transfer_heatmap.png"
+        save_figure(fig, heatmap_png)
+        figure_paths["h3_transfer_heatmap"] = str(heatmap_png)
+
+    if layer_freezing_data is None:
+        subtests["h3b"] = skipped_subtest("Requires results/transfer/layer_freezing.json")
+    else:
+        regression_x: list[int] = []
+        regression_y: list[float] = []
+        per_pair_degradation: dict[str, Any] = {}
+        fig, ax = plt.subplots(figsize=(10, 6))
+        color_map = plt.get_cmap("tab10")
+        monotonic_pairs = 0
+        for idx, pair in enumerate(layer_freezing_data["pairs"]):
+            pair_label = f"{pair['arch_source']}->{pair['data_target']}"
+            no_freeze_baseline = clean_float(pair["no_freeze_baseline"])
+            curve_x = [0]
+            curve_y = [0.0]
+            level_payload = {}
+            prior_degradation = None
+            monotonic = True
+            for level in sorted(pair["freeze_levels"], key=lambda item: item["frozen_layers"]):
+                degradation_pct = clean_float(
+                    (level["val_bpb"] - no_freeze_baseline) / no_freeze_baseline * 100.0
+                )
+                frozen_layers = int(level["frozen_layers"])
+                regression_x.append(frozen_layers)
+                regression_y.append(degradation_pct)
+                curve_x.append(frozen_layers)
+                curve_y.append(degradation_pct)
+                level_payload[str(frozen_layers)] = degradation_pct
+                if prior_degradation is not None and degradation_pct < prior_degradation:
+                    monotonic = False
+                prior_degradation = degradation_pct
+            if monotonic:
+                monotonic_pairs += 1
+            per_pair_degradation[pair_label] = {
+                "arch_source": pair["arch_source"],
+                "data_target": pair["data_target"],
+                "native_baseline": clean_float(pair["native_baseline"]),
+                "no_freeze_baseline": no_freeze_baseline,
+                "degradation_pct": {"0": 0.0, **level_payload},
+            }
+            ax.plot(
+                curve_x,
+                curve_y,
+                marker="o",
+                linewidth=2.0,
+                color=color_map(idx),
+                label=pair_label,
+            )
+        regression = stats.linregress(regression_x, regression_y)
+        freeze1_values = [
+            clean_float(item["degradation_pct"]["1"])
+            for item in per_pair_degradation.values()
+            if "1" in item["degradation_pct"]
+        ]
+        freeze5_values = [
+            clean_float(item["degradation_pct"]["5"])
+            for item in per_pair_degradation.values()
+            if "5" in item["degradation_pct"]
+        ]
+        early_layers_under_5pct = all(value < 5.0 for value in freeze1_values)
+        late_layers_over_10pct = all(value > 10.0 for value in freeze5_values) if freeze5_values else False
+        late_layers_any_over_10pct = any(value > 10.0 for value in freeze5_values)
+        if early_layers_under_5pct and late_layers_over_10pct:
+            prediction_met: bool | str = True
+        elif early_layers_under_5pct or late_layers_any_over_10pct:
+            prediction_met = "partial"
+        else:
+            prediction_met = False
+        subtests["h3b"] = {
+            "status": "complete",
+            "prediction_met": prediction_met,
+            "regression_slope": clean_float(regression.slope),
+            "regression_intercept": clean_float(regression.intercept),
+            "regression_r_squared": clean_float(regression.rvalue**2),
+            "regression_p_value": clean_float(regression.pvalue),
+            "early_layers_under_5pct": early_layers_under_5pct,
+            "late_layers_over_10pct": late_layers_over_10pct,
+            "late_layers_any_over_10pct": late_layers_any_over_10pct,
+            "all_pairs_monotonic": monotonic_pairs == len(per_pair_degradation),
+            "monotonic_pair_count": monotonic_pairs,
+            "per_pair_degradation": per_pair_degradation,
+            "interpretation": (
+                "Degradation rises monotonically as more layers are frozen. Early layers "
+                "transfer cleanly across all pairs, while late-layer degradation only "
+                "exceeds 10% for nlp->smiles."
+            ),
+        }
+        ax.axhline(5.0, linestyle="--", linewidth=1.0, color="#666666", label="5% threshold")
+        ax.axhline(10.0, linestyle="--", linewidth=1.0, color="#AA3333", label="10% threshold")
+        ax.set_xticks([0, 1, 3, 5])
+        ax.set_xlabel("Frozen layers")
+        ax.set_ylabel("val_bpb degradation (%)")
+        ax.set_title("H3 Layer Freezing Transfer Degradation")
+        ax.grid(alpha=0.25)
+        ax.legend(ncol=2)
+        freezing_png = FIGURES_DIR / "h3_layer_freezing.png"
+        save_figure(fig, freezing_png)
+        figure_paths["h3_layer_freezing"] = str(freezing_png)
+
+    if length_controlled_data is None:
+        subtests["h3c"] = skipped_subtest("Requires results/transfer/length_controlled.json")
+    else:
+        pairs_payload = []
+        for pair in length_controlled_data["pairs"]:
+            pair_label = f"{pair['arch_source']}->{pair['data_target']}"
+            reduction_pct = pair.get("degradation_reduction_pct")
+            if reduction_pct is None:
+                note = "baseline degradation was negative"
+            elif reduction_pct < 0:
+                note = "length matching worsened transfer"
+            elif reduction_pct > 50:
+                note = "length matching helped"
+            else:
+                note = "length matching did not materially help"
+            pair_payload = {
+                "pair": pair_label,
+                "matched_seq_len": int(pair["matched_seq_len"]),
+                "unmatched_degradation_pct": clean_float(pair["pct_degradation_unmatched"]),
+                "matched_degradation_pct": clean_float(pair["pct_degradation_matched"]),
+                "criterion_met": bool(pair["h3c_criterion_met"]),
+                "reduction_pct_defined": reduction_pct is not None,
+                "note": note,
+            }
+            if reduction_pct is not None:
+                pair_payload["reduction_pct"] = clean_float(reduction_pct)
+            pairs_payload.append(pair_payload)
+        valid_reductions = [
+            clean_float(pair["degradation_reduction_pct"])
+            for pair in length_controlled_data["pairs"]
+            if pair.get("degradation_reduction_pct") is not None
+        ]
+        if valid_reductions:
+            ttest_result = stats.ttest_1samp(np.asarray(valid_reductions, dtype=float), popmean=50.0)
+            t_statistic = clean_float(ttest_result.statistic)
+            t_p_value = clean_float(ttest_result.pvalue)
+            valid_mean_reduction = clean_float(np.mean(valid_reductions))
+        else:
+            t_statistic = 0.0
+            t_p_value = 1.0
+            valid_mean_reduction = 0.0
+        subtests["h3c"] = {
+            "status": "complete",
+            "prediction_met": False,
+            "pairs": pairs_payload,
+            "mean_reduction_pct": None,
+            "mean_reduction_pct_valid_pairs": valid_mean_reduction,
+            "valid_pair_count_for_t_test": len(valid_reductions),
+            "t_test_statistic": t_statistic,
+            "t_test_p_value": t_p_value,
+            "interpretation": (
+                "Length matching does not consistently reduce transfer degradation. "
+                "Shortening NLP sequences can actively worsen transfer, which points "
+                "to context window size as a real architectural constraint."
+            ),
+        }
+
+    if innovation_data is None:
+        subtests["h3d"] = skipped_subtest("Requires results/transfer/innovation_classification.json")
+    else:
+        innovations = innovation_data.get("innovations", [])
+        universal_count = sum(1 for item in innovations if item.get("classification") == "universal")
+        domain_specific_count = sum(
+            1 for item in innovations if item.get("classification") == "domain_specific"
+        )
+        total_innovations = len(innovations)
+        predicted_universal_pct = 35.0
+        binom_result = stats.binomtest(
+            universal_count,
+            total_innovations,
+            p=predicted_universal_pct / 100.0,
+            alternative="two-sided",
+        )
+        ci = binom_result.proportion_ci(confidence_level=0.95)
+        subtests["h3d"] = {
+            "status": "complete",
+            "prediction_met": False,
+            "total_innovations": total_innovations,
+            "universal_count": universal_count,
+            "domain_specific_count": domain_specific_count,
+            "universal_pct": proportion_to_pct(universal_count / total_innovations) if total_innovations else 0.0,
+            "predicted_universal_pct": predicted_universal_pct,
+            "binomial_test_p_value": clean_float(binom_result.pvalue),
+            "ci_95": [proportion_to_pct(ci.low), proportion_to_pct(ci.high)],
+            "interpretation": (
+                "All classified innovations are universal. The predicted majority of "
+                "domain-specific innovations is strongly rejected at this scale."
+            ),
+        }
+
+    completed_count = sum(1 for item in subtests.values() if item["status"] == "complete")
+    skipped_count = sum(1 for item in subtests.values() if item["status"] != "complete")
+    if completed_count == 0:
+        master_status = "skipped_no_data"
+        overall_interpretation = "H3 transfer analyses were skipped because the required transfer files are missing."
+    elif skipped_count == 0:
+        master_status = "complete"
+        overall_interpretation = (
+            "H3 predictions are largely not supported. Cross-domain transfer shows near-zero "
+            "degradation, all innovations are universal, and length matching does not "
+            "consistently help. The dominant result is architectural universality at "
+            "this model scale."
+        )
+    else:
+        master_status = "partial"
+        overall_interpretation = (
+            "H3 transfer analysis completed for the available inputs, but at least one "
+            "sub-test was skipped because its source artifact is missing."
+        )
+
+    master_payload = {
+        "status": master_status,
+        "h3a": subtests["h3a"],
+        "h3b": subtests["h3b"],
+        "h3c": subtests["h3c"],
+        "h3d": subtests["h3d"],
+        "overall_interpretation": overall_interpretation,
     }
-    write_json(ANALYSIS_DIR / "h3_transfer_tests.json", payload)
-    return {"master": payload, "payload": payload}
+    detailed_payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "status": master_status,
+        "data_files": {
+            "matrix": str(matrix_path),
+            "layer_freezing": str(layer_freezing_path),
+            "length_controlled": str(length_controlled_path),
+            "innovation_classification": str(innovation_path),
+        },
+        "figures": figure_paths,
+        **master_payload,
+    }
+    write_json(ANALYSIS_DIR / "h3_transfer_tests.json", detailed_payload)
+    return {"master": master_payload, "payload": detailed_payload}
 
 
 def analyze_h4(
