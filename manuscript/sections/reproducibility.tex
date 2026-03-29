@@ -1,7 +1,7 @@
 \section*{Reproducibility Statement}
 \label{sec:reproducibility}
 
-\textbf{Code and data.} The complete framework (training script, agent prompts, data preparation pipelines, analysis scripts, and all 3{,}106 experiment logs including intermediate \texttt{train.py} versions and code diffs) is available at the project repository. All datasets are publicly available: ZINC-250K, UniRef50, and FineWeb-Edu.
+\textbf{Code and data.} The complete framework (training script, agent prompts, data preparation pipelines, analysis scripts, and all 3{,}106 experiment logs including intermediate \texttt{train.py} versions and code diffs) is available at \url{https://github.com/ewijaya/autoresearch-mol}. All datasets are publicly available: ZINC-250K, UniRef50, and FineWeb-Edu.
 
 \textbf{Experimental setup.} All experiments run on a single NVIDIA A10G GPU (24\,GB VRAM) with a fixed 5-minute training budget. Random seeds are fixed (\texttt{torch.manual\_seed(42)}). The random NAS baseline uses deterministic seeds per replicate. Model architecture, optimizer, and training hyperparameters are fully specified in Section~\ref{sec:methodology} and in the released \texttt{train.py}.
 
