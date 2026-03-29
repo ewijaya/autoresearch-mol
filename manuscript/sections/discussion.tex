@@ -10,7 +10,7 @@ Architectures cluster by domain ($p = 0.004$), yet all innovations transfer free
 \textbf{Limitations.}
 (1)~\emph{Small model scale} (${\sim}$8.6M parameters). At larger scales, domain-specific architectural features (e.g., attention patterns tuned to molecular bonding topology) may become more valuable, potentially changing the decomposition balance.
 (2)~\emph{Short training proxy} (5 minutes). The calibration study yields $\rho = 0.54$, indicating moderate rank correlation with longer training. Architecture rankings could change with extended training budgets, particularly for architectures with different convergence rates.
-(3)~\emph{Single LLM backend} (Claude Sonnet). The agent's search behavior, and the resulting decomposition, may differ with other LLMs or with different prompt engineering.
+(3)~\emph{Single LLM backend} (OpenAI Codex / GPT-5.4). The agent's search behavior, and the resulting decomposition, may differ with other LLMs or with different prompt engineering.
 (4)~\emph{Low statistical power} ($n = 3$--$5$ runs per condition). The protein track in particular cannot distinguish between conditions. Larger-scale replication would strengthen the protein and NLP conclusions.
 (5)~\emph{SMILES representation only}. SMILES is one of several molecular string representations; SELFIES, InChI, or 3D coordinate representations may yield different decomposition patterns.
 (6)~\emph{Closed-source agent}. The LLM agent operates via API, introducing non-determinism. We mitigate this by running multiple independent replicates per condition, but exact reproduction of individual runs is not possible.
