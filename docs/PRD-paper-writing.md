@@ -593,9 +593,94 @@ For a practitioner reading the paper:
 
 ---
 
-## 10. Implementation Plan
+## 10. Source File Reference
 
-### 10.1 File Structure
+This section maps each paper section to the codebase files that contain the authoritative data, code, and documentation the writer should consult.
+
+### 10.1 Results Data (JSON)
+
+All statistical results live in `results/analysis/`. Always extract exact numbers from these files — do not copy from the tables in this PRD without verifying against the JSON.
+
+| File | Content | Used in paper section |
+|------|---------|----------------------|
+| `results/analysis/hypothesis_tests.json` | Master summary of all p-values, effect sizes, CIs | Sections 4.1–4.5 |
+| `results/analysis/h1_permutation_test.json` | Architecture clustering p-value, distance ratio | Section 4.3 (H1) |
+| `results/analysis/h1_distance_matrix.json` | Within/cross-track distance matrices | Section 4.3 (H1) |
+| `results/analysis/h1_bayesian_posterior.json` | Bayesian clustering posterior | Supplementary |
+| `results/analysis/h2_technique_matrix.json` | Domain knowledge rediscovery per run | Section 4.5 (H2) |
+| `results/analysis/h2_fisher_tests.json` | Fisher exact tests for technique enrichment | Section 4.5 (H2) |
+| `results/analysis/h3_transfer_tests.json` | All H3a–H3d sub-hypothesis results | Section 4.4 (H3) |
+| `results/analysis/h4_auc_values.json` | AUC-OC values per condition per track | Section 4.2 (H4) |
+| `results/analysis/h4_decomposition.json` | HP vs arch contribution percentages | Section 4.1 (headline result) |
+| `results/analysis/multiple_comparisons.json` | Bonferroni-corrected p-values | All results sections |
+| `results/analysis/crash_rates.json` | Training failure rates per condition | Supplementary |
+| `results/analysis/distribution_stats.json` | Performance distributions | Supplementary |
+| `results/analysis/training_dynamics.json` | Convergence, stability, MFU metrics | Supplementary |
+
+### 10.2 Figures
+
+All publication-ready figures are in `figures/`. See Section 5 of this PRD for the complete figure plan mapping figure numbers to files.
+
+### 10.3 Analysis Scripts
+
+| File | Purpose | Relevant paper section |
+|------|---------|----------------------|
+| `scripts/analyze_phase2.py` | Generates all hypothesis tests, figures, and JSON results | Section 3 (methodology), Section 4 (all results) |
+| `scripts/analyze_training_dynamics.py` | Training convergence and stability analysis | Supplementary |
+| `scripts/transfer_eval.py` | Layer freezing and cross-domain transfer | Section 4.4 (H3) |
+| `scripts/moleculenet_eval.py` | Downstream MoleculeNet evaluation | Section 4.6 |
+| `scripts/_eval_common.py` | Shared evaluation utilities | — |
+
+### 10.4 Training Code & Agent Prompts
+
+| File | Purpose | Relevant paper section |
+|------|---------|----------------------|
+| `src/train.py` | Main training loop — describes the model architecture, training procedure, and eval metrics | Section 3 (methodology) |
+| `src/program.md` | Full agent system prompt (arch + HP search) | Section 3.3, Supplementary (agent prompt appendix) |
+| `src/program_hponly.md` | HP-only agent prompt | Section 3.3, Supplementary |
+| `src/prepare_smiles.py` | SMILES data preparation pipeline | Section 3.2 (data) |
+| `src/prepare_protein.py` | Protein data preparation pipeline | Section 3.2 (data) |
+| `src/prepare.py` | NLP data preparation pipeline | Section 3.2 (data) |
+| `src/calibration.py` | Proxy validation (5-min vs 2-hr) | Section 3.5 |
+| `src/phase2_runner.py` | Agent orchestrator — describes how the LLM agent runs experiments | Section 3.3 |
+| `src/random_nas.py` | Random NAS baseline generator | Section 3.1 (conditions) |
+
+### 10.5 Experiment Results (Raw)
+
+| Directory | Content |
+|-----------|---------|
+| `results/smiles/` | All SMILES agent runs (1-5) + baselines |
+| `results/protein/` | All protein agent runs (1-3) + baselines |
+| `results/nlp/` | All NLP agent runs (1-5) + baselines |
+| `results/baselines/` | Random NAS and HP-only runs |
+| `results/calibration/` | Proxy validation experiments |
+| `results/transfer/` | Layer freezing and cross-domain transfer data |
+| `results/moleculenet/` | MoleculeNet downstream evaluation data |
+
+### 10.6 Strategic & Review Preparation Documents
+
+These docs in `docs/` help anticipate reviewer questions and frame the narrative:
+
+| File | Purpose | Relevant paper section |
+|------|---------|----------------------|
+| `docs/baseline-architecture-rationale.md` | Justification for the 4-condition design | Section 3.1 |
+| `docs/stress-test-adversarial-reviews.md` | Pre-rebuttal Q&A for likely reviewer questions | Discussion, rebuttal prep |
+| `docs/stress-test-novelty-prior-art.md` | Positioning vs LLM-guided NAS papers | Section 2 (related work) |
+| `docs/stress-test-experimental-design-audit.md` | Design critique and validation | Section 3, Section 6 |
+| `docs/stress-test-transfer-hypothesis.md` | Transfer findings robustness | Section 4.4, Section 6 |
+| `docs/stress-test-paper-positioning.md` | Narrative framing guidance | Introduction, Discussion |
+| `docs/stress-test-technical-feasibility.md` | Reproducibility concerns | Section 6, reproducibility checklist |
+| `docs/stress-test-final-recommendation.md` | Go/no-go assessment | Overall framing |
+| `docs/llm_guided_search_vs_hpo.md` | Conceptual foundation for HP-only baseline | Section 2, Section 3 |
+| `docs/PRD-SC8-statistical-analysis.md` | H1–H4 hypothesis test methodology | Section 3.4 |
+| `docs/PRD-SC8-H3-transfer-analysis.md` | Transfer experiment protocol | Section 3, Section 4.4 |
+| `docs/PRD-recursive-mol.md` | Original project spec with research questions | Background context |
+
+---
+
+## 11. Implementation Plan
+
+### 11.1 File Structure
 
 ```
 manuscript/
@@ -666,7 +751,7 @@ manuscript/
 
 Each section file should contain only the section content (no `\documentclass`, `\begin{document}`, etc.) — just the `\section{...}` and body text.
 
-### 10.2 Writing Order
+### 11.2 Writing Order
 
 Write sections in this order (dependencies flow downward). Each section is a separate file in `manuscript/sections/`.
 
@@ -681,7 +766,7 @@ Write sections in this order (dependencies flow downward). Each section is a sep
 9. **`supplementary.tex`** — compile all supporting material
 10. **`ethics.tex`** + **`reproducibility.tex`** — NeurIPS requirements
 
-### 10.3 Timeline
+### 11.3 Timeline
 
 | Date | Milestone |
 |------|-----------|
@@ -694,7 +779,7 @@ Write sections in this order (dependencies flow downward). Each section is a sep
 | May 1 – May 14 | Incorporate any early feedback; prepare NeurIPS submission |
 | **May 15** | **NeurIPS submission** |
 
-### 10.4 Anonymization for Double-Blind
+### 11.4 Anonymization for Double-Blind
 
 - Replace "recursive-mol" with "our framework" or "[FRAMEWORK]"
 - Remove author names and affiliations
@@ -704,7 +789,7 @@ Write sections in this order (dependencies flow downward). Each section is a sep
 
 ---
 
-## 11. Verification Checklist
+## 12. Verification Checklist
 
 Before arXiv submission:
 
