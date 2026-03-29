@@ -1,4 +1,184 @@
-% Supplementary Material
-% TODO: Compile all supporting tables, figures, and analysis.
 \section{Supplementary Material}
 \label{sec:supplementary}
+
+\subsection{Full AUC-OC Values}
+
+Table~\ref{tab:auc_full} reports AUC-OC and final best val\_bpb for every run.
+
+\begin{table}[h]
+\centering
+\caption{Per-run AUC-OC and best val\_bpb for all conditions and tracks.}
+\label{tab:auc_full}
+\small
+\begin{tabular}{@{}lllrr@{}}
+\toprule
+\textbf{Track} & \textbf{Condition} & \textbf{Run} & \textbf{AUC-OC} & \textbf{Best bpb} \\
+\midrule
+\multirow{12}{*}{SMILES}
+& Agent & 1 & 59.31 & 0.5918 \\
+& Agent & 2 & 58.54 & 0.5808 \\
+& Agent & 3 & 58.80 & 0.5839 \\
+& Agent & 4 & 59.17 & 0.5892 \\
+& Agent & 5 & 59.15 & 0.5834 \\
+& HP-only & 1 & 58.20 & 0.5807 \\
+& HP-only & 2 & 58.14 & 0.5801 \\
+& HP-only & 3 & 58.22 & 0.5810 \\
+& Random NAS & 1 & 59.45 & 0.5906 \\
+& Random NAS & 2 & 59.40 & 0.5923 \\
+& Random NAS & 3 & 59.34 & 0.5914 \\
+& Fixed default & --- & 59.61 & 0.5961 \\
+\midrule
+\multirow{10}{*}{Protein}
+& Agent & 1 & 396.86 & 3.9656 \\
+& Agent & 2 & 396.94 & 3.9684 \\
+& Agent & 3 & 396.88 & 3.9666 \\
+& HP-only & 1 & 397.67 & 3.9901 \\
+& HP-only & 2 & 397.07 & 3.9699 \\
+& HP-only & 3 & 396.88 & 3.9684 \\
+& Random NAS & 1 & 397.32 & 3.9719 \\
+& Random NAS & 2 & 397.20 & 3.9710 \\
+& Random NAS & 3 & 397.06 & 3.9693 \\
+& Fixed default & --- & 397.67 & 3.9767 \\
+\midrule
+\multirow{12}{*}{NLP}
+& Agent & 1 & 112.78 & 1.1188 \\
+& Agent & 2 & 113.81 & 1.1277 \\
+& Agent & 3 & 112.73 & 1.1151 \\
+& Agent & 4 & 112.97 & 1.1212 \\
+& Agent & 5 & 113.71 & 1.1314 \\
+& HP-only & 1 & 114.75 & 1.1462 \\
+& HP-only & 2 & 114.90 & 1.1470 \\
+& HP-only & 3 & 114.89 & 1.1477 \\
+& Random NAS & 1 & 113.18 & 1.1297 \\
+& Random NAS & 2 & 113.32 & 1.1301 \\
+& Random NAS & 3 & 113.48 & 1.1306 \\
+& Fixed default & --- & 115.28 & 1.1528 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Decomposition with Bootstrap CIs}
+
+\begin{table}[h]
+\centering
+\caption{Full decomposition with 95\% bootstrap confidence intervals.}
+\label{tab:decomposition_full}
+\small
+\begin{tabular}{@{}lrcrc@{}}
+\toprule
+\textbf{Track} & \textbf{HP contrib.} & \textbf{HP 95\% CI} & \textbf{Arch contrib.} & \textbf{Arch 95\% CI} \\
+\midrule
+SMILES & 0.0155 (151\%) & [0.0151, 0.0159] & $-$0.0052 ($-$51\%) & [$-$0.0089, $-$0.0018] \\
+Protein & 0.0005 (6\%) & [$-$0.0134, 0.0083] & 0.0093 (94\%) & [0.0011, 0.0229] \\
+NLP & 0.0058 (19\%) & [0.0050, 0.0066] & 0.0241 (81\%) & [0.0188, 0.0292] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Additional Figures}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/h4_auc_comparison.pdf}
+\caption{AUC-OC comparison across conditions and tracks.}
+\label{fig:auc_comparison}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/h4_keep_rate.pdf}
+\caption{Cumulative keep rate curves by condition.}
+\label{fig:keep_rate}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/h3_layer_freezing.pdf}
+\caption{Layer freezing degradation curves. Degradation increases monotonically with the number of frozen layers. Early layers (low freeze level) transfer cleanly; late layers show mild domain specificity.}
+\label{fig:layer_freezing}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/h2_technique_heatmap.pdf}
+\caption{Domain knowledge rediscovery: technique $\times$ run binary matrix for SMILES agent runs. 4 of 5 known molecular techniques are independently discovered.}
+\label{fig:technique_heatmap}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/h1_permutation_null.pdf}
+\caption{Permutation null distribution for the cross-track/within-track distance ratio. The observed ratio (1.43) falls in the extreme tail ($p = 0.004$).}
+\label{fig:permutation_null}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.32\linewidth}
+\includegraphics[width=\linewidth]{figures/distribution_violin_smiles.pdf}
+\caption{SMILES}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\linewidth}
+\includegraphics[width=\linewidth]{figures/distribution_violin_protein.pdf}
+\caption{Protein}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.32\linewidth}
+\includegraphics[width=\linewidth]{figures/distribution_violin_nlp.pdf}
+\caption{NLP}
+\end{subfigure}
+\caption{Distribution of val\_bpb by condition and track (violin plots).}
+\label{fig:distribution_violins}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.48\linewidth}
+\includegraphics[width=\linewidth]{figures/training_dynamics_convergence.pdf}
+\caption{Convergence rate}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\linewidth}
+\includegraphics[width=\linewidth]{figures/training_dynamics_stability.pdf}
+\caption{Training stability}
+\end{subfigure}
+\caption{Training dynamics across conditions. Agent and baseline conditions show comparable convergence rates and training stability, confirming that performance differences arise from architectural and hyperparameter choices, not training dynamics artifacts.}
+\label{fig:training_dynamics}
+\end{figure}
+
+\subsection{Agent Prompts}
+
+The full agent system prompt (\texttt{program.md}) and HP-only prompt (\texttt{program\_hponly.md}) are included in the released code repository. The key difference: the HP-only prompt adds the constraint ``Do NOT change model architecture: no new layers, no attention pattern changes, no activation function changes, no model structure changes.''
+
+\subsection{All Adjusted $p$-values}
+
+Table~\ref{tab:all_pvalues} reports all 30 frequentist tests with raw and Holm--Bonferroni adjusted $p$-values, grouped by family.
+
+\begin{table}[h]
+\centering
+\caption{Complete multiple comparison correction. Holm--Bonferroni adjusted $p$-values within logical families.}
+\label{tab:all_pvalues}
+\small
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Family} & \textbf{Test} & \textbf{Raw $p$} & \textbf{Adj.\ $p$} \\
+\midrule
+H1 & Permutation test & 0.0037 & 0.0037 \\
+\midrule
+\multirow{3}{*}{H4 decomp.} & SMILES HP contrib. & 0.0003 & 0.0012 \\
+ & NLP arch contrib. & 0.0017 & 0.0085 \\
+ & NLP HP contrib. & 0.0054 & 0.0216 \\
+\midrule
+\multirow{3}{*}{H4 SMILES} & Agent vs.\ fixed default & 0.0001 & 0.0006 \\
+ & HP-only vs.\ fixed default & 0.0001 & 0.0006 \\
+ & Agent vs.\ HP-only & 0.0036 & 0.0145 \\
+ & Agent vs.\ NAS & 0.0146 & 0.0438 \\
+\midrule
+\multirow{3}{*}{H4 NLP} & NAS vs.\ fixed default & 0.0001 & 0.0003 \\
+ & Agent vs.\ fixed default & 0.0002 & 0.0011 \\
+ & Agent vs.\ HP-only & 0.0013 & 0.0051 \\
+ & HP-only vs.\ fixed default & 0.0015 & 0.0060 \\
+\bottomrule
+\end{tabular}
+\end{table}

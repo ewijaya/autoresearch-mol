@@ -1,4 +1,10 @@
-% Reproducibility Checklist
-% TODO: Complete for NeurIPS submission.
 \section*{Reproducibility Statement}
 \label{sec:reproducibility}
+
+\textbf{Code and data.} The complete framework---training script, agent prompts, data preparation pipelines, analysis scripts, and all 3{,}106 experiment logs (including intermediate \texttt{train.py} versions and code diffs)---is available at the project repository. All datasets are publicly available: ZINC-250K, UniRef50, and FineWeb-Edu.
+
+\textbf{Experimental setup.} All experiments run on a single NVIDIA A10G GPU (24\,GB VRAM) with a fixed 5-minute training budget. Random seeds are fixed (\texttt{torch.manual\_seed(42)}). The random NAS baseline uses deterministic seeds per replicate. Model architecture, optimizer, and training hyperparameters are fully specified in Section~\ref{sec:methodology} and in the released \texttt{train.py}.
+
+\textbf{Statistical analysis.} The analysis script (\texttt{scripts/analyze\_phase2.py}) reads only on-disk results and produces all figures, tables, and hypothesis tests reported in this paper. Bootstrap CIs use 10{,}000 resamples. Permutation tests use 10{,}000 permutations. All $p$-values are reported with both raw and Holm--Bonferroni adjusted values.
+
+\textbf{Limitations on exact reproducibility.} The LLM agent (Claude Sonnet) is accessed via API and is non-deterministic: individual agent runs are not exactly reproducible. We address this by running 3--5 independent replicates per condition and reporting aggregate statistics with confidence intervals. The random NAS and fixed default conditions are fully deterministic.

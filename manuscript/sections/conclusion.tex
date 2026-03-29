@@ -1,4 +1,6 @@
-% Section 7: Conclusion
-% TODO: Write after discussion.
 \section{Conclusion}
 \label{sec:conclusion}
+
+We presented the first controlled decomposition of architecture search versus hyperparameter tuning across molecular and language domains, using a 4-condition experimental design with 3{,}106 experiments. The central finding is that the value of architecture search is domain-dependent: it contributes 81\% of improvement for NLP but is counterproductive for SMILES, where HP tuning alone suffices. Despite domain-specific clustering, all 41 discovered innovations transfer universally across domains.
+
+For practitioners: if your domain has a small vocabulary and short sequences, constrain your agent to hyperparameter tuning; if your domain has a large vocabulary and long sequences, invest in architecture search. The framework, experiment logs, and agent prompts are available as open-source resources.
