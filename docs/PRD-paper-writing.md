@@ -598,28 +598,88 @@ For a practitioner reading the paper:
 ### 10.1 File Structure
 
 ```
-paper/
-  main.tex              — Main paper (9 pages)
-  supplementary.tex     — Supplementary material
-  neurips_2026.sty       — NeurIPS style file
-  references.bib         — BibTeX references
-  figures/               — Symlink or copy from project figures/
-  tables/                — Generated LaTeX table files
+manuscript/
+  main.tex                    — Master file that \input's all sections
+  neurips_2026.sty            — NeurIPS style file
+  references.bib              — BibTeX references
+  sections/
+    abstract.tex              — Abstract
+    introduction.tex          — Section 1: Introduction
+    related_work.tex          — Section 2: Related Work
+    methodology.tex           — Section 3: Methodology
+    results.tex               — Section 4: Results
+    practical.tex             — Section 5: Practical Implications
+    discussion.tex            — Section 6: Discussion & Limitations
+    conclusion.tex            — Section 7: Conclusion
+    supplementary.tex         — Supplementary Material (appended or separate)
+    ethics.tex                — Ethics Statement
+    reproducibility.tex       — Reproducibility Checklist
+  figures/                    — Symlink or copy from project figures/
+  tables/                     — Generated LaTeX table files
 ```
+
+**`main.tex` structure:**
+
+```latex
+\documentclass{article}
+\usepackage[final]{neurips_2026}  % or [preprint] for arXiv
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\title{When Does Architecture Search Matter? Decomposing LLM-Guided Transformer Design Across Molecular and Language Domains}
+
+% --- FOR DOUBLE-BLIND SUBMISSION: use this ---
+% \author{Anonymous}
+
+% --- FOR CAMERA-READY: uncomment this block ---
+\author{
+  Edward Wijaya \\
+  StemRIM, Inc. \\
+  \texttt{wijaya@stemrim.com}
+}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/practical}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/ethics}
+\input{sections/reproducibility}
+\input{sections/supplementary}
+
+\end{document}
+```
+
+Each section file should contain only the section content (no `\documentclass`, `\begin{document}`, etc.) — just the `\section{...}` and body text.
 
 ### 10.2 Writing Order
 
-Write sections in this order (dependencies flow downward):
+Write sections in this order (dependencies flow downward). Each section is a separate file in `manuscript/sections/`.
 
-1. **Section 3: Methodology** — most mechanical, establishes notation
-2. **Section 4: Results** — fill in numbers from completed analyses
-3. **Section 5: Practical Implications** — synthesize results into guidance
-4. **Section 1: Introduction** — can now reference results and frame the story
-5. **Section 2: Related Work** — position against literature
-6. **Section 6: Discussion & Limitations** — reflect on findings
-7. **Section 7: Conclusion** — summarize
-8. **Abstract** — write last, when the story is crystallized
-9. **Supplementary** — compile all supporting material
+1. **`methodology.tex`** — most mechanical, establishes notation
+2. **`results.tex`** — fill in numbers from completed analyses
+3. **`practical.tex`** — synthesize results into practitioner guidance
+4. **`introduction.tex`** — can now reference results and frame the story
+5. **`related_work.tex`** — position against literature
+6. **`discussion.tex`** — reflect on findings and limitations
+7. **`conclusion.tex`** — summarize
+8. **`abstract.tex`** — write last, when the story is crystallized
+9. **`supplementary.tex`** — compile all supporting material
+10. **`ethics.tex`** + **`reproducibility.tex`** — NeurIPS requirements
 
 ### 10.3 Timeline
 
