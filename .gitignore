@@ -48,6 +48,17 @@ results/phase2/archive_*/
 results/calibration/logs/
 results/calibration_run.log
 
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+manuscript/main.pdf
+
 # IDE
 .vscode/
 .idea/

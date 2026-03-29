@@ -1,34 +1,38 @@
 # autoresearch-mol
 
-Autonomous discovery of domain-specific transformer architectures for molecular sequences.
+Extending [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) from NLP to molecular domains — and asking whether the architectures it discovers are actually different.
 
-## What This Project Does
+## Background
 
-An AI coding agent autonomously redesigns transformer model architecture for molecular data. The agent modifies model code, trains for 5 minutes, evaluates performance, keeps improvements, discards regressions, and repeats — running ~100 experiments unattended.
+Andrej Karpathy's [autoresearch](https://github.com/karpathy/autoresearch) showed that an AI agent can autonomously improve a transformer by iterating on `train.py` in a tight loop: modify, train 5 minutes, evaluate, keep or discard. The result was impressive — but it only ran on NLP data.
 
-We run this process across three domains:
+We took that idea and pointed it at molecules. Same loop, same single-GPU constraint, but across three domains simultaneously: drug-like molecules (SMILES), proteins, and NLP as a control. Then we added baselines that nobody had run — random architecture search, hyperparameter-only tuning, and a fixed default — to answer a question the original work didn't address: **does the architecture search actually matter, or is the agent mostly finding better hyperparameters?**
 
-- **SMILES** — small-molecule drug-like compounds (ZINC-250K)
-- **Protein** — amino acid sequences (UniRef50)
-- **NLP** — natural language text as a control (FineWeb)
+## What We Found
 
-## Questions We Are Answering
+After 3,106 experiments across 4 conditions and 3 domains:
 
-1. **Can an AI agent self-improve transformer architecture for molecular sequences?**
-   The agent starts from a generic transformer and iteratively discovers architectural improvements (attention patterns, layer structure, activation functions, etc.) that lower validation loss on molecular data.
-
-2. **Do molecular sequences demand fundamentally different architectures than natural language?**
-   By running the same agent-driven search on SMILES, protein, and NLP tracks, we compare what the agent converges to in each domain. If the discovered architectures diverge, molecular data has distinct structural requirements that standard NLP-derived models miss.
-
-3. **Do the discovered improvements transfer to real-world molecular tasks?**
-   We validate the top architectures on downstream drug-discovery benchmarks (MoleculeNet: BBBP, HIV, BACE) to confirm that better sequence modeling translates to better molecular property prediction.
+- **It depends on the domain.** Architecture search contributes 81% of improvement for NLP but is counterproductive for SMILES, where hyperparameter tuning alone beats the full agent.
+- **Architectures cluster by domain** (p=0.004) — the agent discovers genuinely different designs for molecules vs. text.
+- **But all innovations transfer** — 41/41 discovered architectural changes work across all three domains with <1% degradation. The search paths diverge, but the discoveries are universal.
+- **Practical takeaway:** Small vocab + short sequences (like SMILES) → just tune hyperparameters. Large vocab + long sequences (like NLP) → architecture search pays off.
 
 ## How It Works
 
-1. **Calibration** — Verify that short (5-minute) training runs reliably rank architectures the same way as long (2-hour) runs, so the agent can explore cheaply.
-2. **Agent search** — The agent runs ~100 iterations per track, each time modifying the model architecture, training, and evaluating. Only improvements are kept.
-3. **Baselines** — Random architecture search and hyperparameter-only tuning baselines establish whether the agent adds value beyond brute-force exploration.
-4. **Analysis** — Cross-domain transfer experiments, downstream task validation, and statistical tests quantify what the agent discovered and whether it is domain-specific.
+Built on the autoresearch loop:
+
+1. **Calibration** — Verify that 5-minute training runs reliably rank architectures (Spearman rho=0.54, p=0.014).
+2. **Agent search** — ~100 iterations per track. The agent modifies architecture and hyperparameters, trains, evaluates, keeps improvements.
+3. **Baselines** — Random NAS, HP-only agent, and fixed default establish what the agent adds beyond brute-force search.
+4. **Analysis** — 4 pre-registered hypotheses tested with permutation tests, bootstrap CIs, and Bonferroni correction.
+
+## Domains
+
+| Track | Dataset | Vocab | Seq length | Experiments |
+|-------|---------|-------|------------|-------------|
+| SMILES | ZINC-250K | ~50 chars | 256 | 1,034 |
+| Protein | UniRef50 | ~25 AA | 512 | 1,038 |
+| NLP | FineWeb-Edu | ~8K BPE | 2048 | 1,034 |
 
 ## Quick Start
 
@@ -47,15 +51,19 @@ uv run prepare.py          # NLP track
 RECURSIVE_MOL_TRACK=smiles uv run train.py
 ```
 
-## Project Phases
+## Project Status
 
-| Phase | Timeline | Status |
-|-------|----------|--------|
-| 1. Infrastructure | Mar 9–16 | ✅ Complete |
-| 2. Agent Search | Mar 16–28 | ✅ Complete (3,106 experiments) |
-| 3. Baselines | Integrated with Phase 2 | ✅ Complete |
-| 4. Analysis | Mar 28 | ✅ Complete (H1–H4 hypothesis tests) |
-| 5. Paper | Mar 30–May 15 | 🔄 In progress (NeurIPS 2026) |
+| Phase | Status |
+|-------|--------|
+| 1. Infrastructure | ✅ Complete |
+| 2. Agent Search (3,106 experiments) | ✅ Complete |
+| 3. Baselines (random NAS, HP-only, fixed) | ✅ Complete |
+| 4. Statistical Analysis (H1–H4) | ✅ Complete |
+| 5. Paper (NeurIPS 2026) | 🔄 In progress |
+
+## Acknowledgments
+
+This project would not exist without [autoresearch](https://github.com/karpathy/autoresearch) by Andrej Karpathy. The core insight — that a simple agent loop on a single GPU can discover meaningful architectural improvements — is his. We extended it to new domains, added controlled baselines, and discovered that the answer to "does architecture search matter?" is more nuanced than expected.
 
 ## License
 

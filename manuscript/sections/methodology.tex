@@ -1,0 +1,166 @@
+\section{Methodology}
+\label{sec:methodology}
+
+We design a controlled experiment to decompose the contributions of architecture search versus hyperparameter tuning across three sequence domains. The experiment uses four conditions, three data tracks, and a total of 3{,}106 training runs.
+
+\subsection{Experimental Design}
+\label{sec:experimental_design}
+
+The central challenge in evaluating LLM-guided architecture search is disentangling its components: does the agent improve performance through architectural modifications, hyperparameter tuning, or the interaction of both? We address this with a 4-condition factorial design (Table~\ref{tab:conditions}).
+
+\begin{table}[t]
+\centering
+\caption{Experimental conditions. Each condition controls for a different factor in the search process. Together, the four conditions enable a clean decomposition of architecture search versus hyperparameter tuning contributions.}
+\label{tab:conditions}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Condition} & \textbf{Search space} & \textbf{Search strategy} & \textbf{Purpose} \\
+\midrule
+Agent & Architecture + HP & LLM-guided & Full capability \\
+Random NAS & Architecture + HP & Uniform random & Controls for search strategy \\
+HP-only & Hyperparameters only & LLM-guided & Controls for architecture search \\
+Fixed default & None & None & Baseline floor \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This design enables four pairwise comparisons that isolate specific factors:
+\begin{itemize}[nosep]
+  \item \textbf{Agent vs.\ Random NAS}: value of LLM guidance (holding search space constant)
+  \item \textbf{Agent vs.\ HP-only}: value of architecture search (holding search strategy constant)
+  \item \textbf{HP-only vs.\ Fixed default}: value of hyperparameter tuning alone
+  \item \textbf{Random NAS vs.\ Fixed default}: value of any architecture variation
+\end{itemize}
+
+The key derived quantity is the \emph{decomposition}: for each domain, we partition the total improvement (fixed default $\to$ best agent) into an HP contribution (fixed default $\to$ best HP-only) and an architecture contribution (best HP-only $\to$ best agent). This directly answers whether architecture search adds value beyond hyperparameter tuning.
+
+\subsection{Tracks and Data}
+\label{sec:tracks_data}
+
+We evaluate across three sequence domains chosen to span a range of vocabulary sizes and sequence lengths (Table~\ref{tab:tracks}).
+
+\begin{table}[t]
+\centering
+\caption{Data tracks. Each track uses a different tokenization and sequence length, but shares the same baseline model architecture (Section~\ref{sec:baseline_arch}). Run counts vary by track to balance statistical power against compute cost.}
+\label{tab:tracks}
+\small
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+\textbf{Track} & \textbf{Dataset} & \textbf{Vocab} & \textbf{Seq len} & \textbf{Agent} & \textbf{NAS} & \textbf{HP-only} \\
+\midrule
+SMILES & ZINC-250K \citep{irwin2005zinc} & 37 & 256 & 5 runs & 3 runs & 3 runs \\
+Protein & UniRef50 \citep{suzgun2024uniref} & 24 & 512 & 3 runs & 3 runs & 3 runs \\
+NLP & FineWeb-Edu \citep{penedo2024fineweb} & ${\sim}$8K (BPE) & 2{,}048 & 5 runs & 3 runs & 3 runs \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{SMILES.}
+We use ZINC-250K, a curated subset of 250{,}000 drug-like molecules represented as SMILES strings \citep{weininger1988smiles}. Tokenization is character-level (37 unique tokens including special characters). We augment with SMILES enumeration (randomized atom orderings) to increase effective training set size. Sequences are padded to 256 tokens.
+
+\textbf{Protein.}
+We sample 50{,}000 sequences from UniRef50, a non-redundant protein sequence database clustered at 50\% identity. Tokenization is character-level over the 20 standard amino acids plus 4 special tokens. Sequences are padded to 512 tokens.
+
+\textbf{NLP.}
+We use a subset of FineWeb-Edu, a curated English web text corpus. Tokenization uses byte-pair encoding (BPE) with a vocabulary of approximately 8{,}192 tokens. Sequence length is 2{,}048 tokens. This track serves as a control domain where architecture search is known to be effective \citep{karpathy2026autoresearch}.
+
+All tracks use a fixed 90/10 train/validation split. The evaluation metric is validation bits-per-byte (val\_bpb), which normalizes cross-entropy loss to a byte-level unit for comparability within each track. We do \emph{not} compare absolute val\_bpb values across tracks, as the three domains have different intrinsic entropy.
+
+\subsection{Baseline Model Architecture}
+\label{sec:baseline_arch}
+
+All four conditions share the same starting architecture: a GPT-style \citep{vaswani2017attention} autoregressive transformer adapted from the autoresearch framework \citep{karpathy2026autoresearch}. The original 50.3M-parameter architecture was designed for H100 GPUs and scaled down to ${\sim}$8.6M parameters to achieve 3--8 training epochs within the 5-minute budget on A10G hardware (Section~\ref{sec:training_procedure}).
+
+Table~\ref{tab:baseline_arch} summarizes the shared architectural parameters. Only data-facing parameters (vocabulary size, sequence length, device batch size) differ across tracks. This ensures that any architectural divergence discovered by the agent is attributable to domain-specific optimization, not baseline differences.
+
+\begin{table}[t]
+\centering
+\caption{Baseline model architecture. Parameters shared across all three tracks except where noted.}
+\label{tab:baseline_arch}
+\small
+\begin{tabular}{@{}llp{6.5cm}@{}}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Notes} \\
+\midrule
+Depth ($n_\text{layer}$) & 6 & Reduced from 8 for A10G throughput \\
+Width ($n_\text{embd}$) & 320 & Derived from aspect ratio 48, head dim 64 \\
+Heads ($n_\text{head}$) & 5 & $n_\text{embd} / \text{head\_dim} = 320 / 64$ \\
+KV heads ($n_\text{kv\_head}$) & 5 & Full multi-head attention (not GQA) \\
+FFN multiplier & $5\times$ & Hidden dim = $5 \times 320 = 1{,}600$ \\
+Activation & ReluSquared & $\text{ReLU}(x)^2$; inherited from autoresearch \\
+Normalization & RMSNorm & Pre-attention and pre-MLP \\
+Attention & SDPA & Flash Attention 2 backend (Ampere) \\
+Window pattern & SSSL & 3 short-window + 1 full-causal per cycle \\
+Positional encoding & RoPE & Rotary position embeddings \\
+Value embeddings & Alternating layers & ResFormer-style input-dependent gating \\
+Weight tying & Disabled & Separate embedding and unembedding \\
+Parameters & ${\sim}$8.6M & Varies slightly by vocabulary size \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The baseline was intentionally not pre-optimized for molecular data: parameters like the activation function (ReluSquared), FFN ratio ($5\times$), and attention pattern (SSSL) were kept at their autoresearch defaults to give the agent room to discover domain-specific improvements. Starting from a domain-agnostic baseline is essential to the experimental design---a pre-optimized molecular architecture would conflate human domain knowledge with agent discovery.
+
+\subsection{Training Procedure}
+\label{sec:training_procedure}
+
+All experiments run on a single NVIDIA A10G GPU (24\,GB VRAM) with a fixed 5-minute training budget. The optimizer is MuonAdamW \citep{jordan2024muon}: Muon (orthogonalized momentum with Newton-Schulz iterations) for 2D matrix parameters in transformer blocks, and AdamW for embeddings, scalars, and biases. Default hyperparameters are: embedding LR 0.6, unembedding LR 0.004, matrix LR 0.04, scalar LR 0.5, weight decay 0.2 (linearly decayed), Adam betas $(0.8, 0.95)$, and warmdown ratio 0.5 with linear cooldown. The total batch size is 65{,}536 tokens with gradient accumulation (device batch sizes of 256, 128, and 32 for SMILES, protein, and NLP respectively). Training uses \texttt{torch.compile} and bfloat16 mixed precision.
+
+At the 5-minute mark, training halts and the model is evaluated on the held-out validation set. The evaluation computes val\_bpb over ${\sim}$655K tokens (5 batches of 131{,}072 tokens). The A10G achieves ${\sim}$2.9 epochs over the SMILES training set in this budget, placing the model in a regime where architecture quality differences are discriminable above training noise.
+
+\subsection{Search Process}
+\label{sec:search_process}
+
+\textbf{Agent condition.}
+The LLM agent (Claude Sonnet) receives a system prompt (\texttt{program.md}) specifying the search loop: (1)~inspect current architecture and prior results, (2)~make one coherent modification to \texttt{train.py}, (3)~train for 5 minutes, (4)~evaluate val\_bpb, (5)~keep the change if val\_bpb improves, otherwise revert. The prompt encourages architectural exploration---depth/width balance, attention patterns, head structure, activation functions, normalization strategy, residual pathways, and embedding structure---while permitting hyperparameter changes. Each run executes ${\sim}$100 sequential experiments. The agent operates in an isolated workspace and can only modify \texttt{train.py}; the data pipeline, evaluation, and training budget are fixed.
+
+\textbf{HP-only condition.}
+Identical to the agent condition, except the system prompt (\texttt{program\_hponly.md}) explicitly forbids architectural modifications: ``Do NOT change model architecture: no new layers, no attention pattern changes, no activation function changes, no model structure changes.'' The agent may only modify hyperparameters: learning rates, batch size, weight decay, warmup schedule, and optimizer parameters. This isolates the contribution of architecture search by holding the architecture constant while allowing the same LLM-guided HP optimization.
+
+\textbf{Random NAS condition.}
+For each of the 100 experiments per run, a random architecture configuration is sampled uniformly: depth $\in [3, 8]$, width $\in \{128, 160, \ldots, 512\}$ (step 32), heads $\in [2, 8]$ (subject to divisibility), activation $\in \{\text{ReLU}, \text{GELU}, \text{SiLU}, \text{ReluSquared}\}$, attention $\in \{\text{full}, \text{windowed}\}$. Each configuration is rendered into \texttt{train.py} and trained for 5 minutes. Hyperparameters are held at their default values. This controls for both the LLM search strategy and for the choice of architecture search directions, isolating the value of any non-default architecture.
+
+\textbf{Fixed default condition.}
+A single training run with the unmodified baseline architecture and default hyperparameters. This provides the floor against which all other conditions are compared. For AUC-OC computation (Section~\ref{sec:evaluation_metrics}), the fixed default val\_bpb is extended as a flat line over 100 experiment positions.
+
+\subsection{Evaluation Metrics}
+\label{sec:evaluation_metrics}
+
+\textbf{Primary metric: val\_bpb.}
+Validation bits-per-byte, computed as cross-entropy loss normalized to byte-level units. Lower is better. Reported per run as the best val\_bpb achieved across all experiments in that run.
+
+\textbf{AUC-OC (Area Under the Optimization Curve).}
+To capture cumulative search efficiency rather than only final performance, we compute the area under the best-so-far curve for each run. At experiment $k$, the best-so-far value is $\min_{i \leq k} \text{val\_bpb}_i$ (excluding crash experiments). The AUC-OC is the trapezoidal integral over experiments 1--100. Lower AUC-OC indicates faster and more efficient search.
+
+\textbf{Keep rate.}
+The fraction of non-crash experiments where the modification improved val\_bpb. This measures the efficiency of the search strategy at proposing beneficial changes.
+
+\textbf{Decomposition.}
+For each track, the total improvement from fixed default to best agent is decomposed as:
+\begin{align}
+\text{total\_improvement} &= \text{bpb}_\text{fixed} - \text{bpb}_\text{agent} \label{eq:total} \\
+\text{HP\_contribution} &= \text{bpb}_\text{fixed} - \text{bpb}_\text{hp\_only} \label{eq:hp} \\
+\text{arch\_contribution} &= \text{bpb}_\text{hp\_only} - \text{bpb}_\text{agent} \label{eq:arch}
+\end{align}
+where each bpb value is the mean best val\_bpb across runs within that condition. By construction, $\text{HP\_contribution} + \text{arch\_contribution} = \text{total\_improvement}$. The HP contribution percentage can exceed 100\% (and the architecture contribution can be negative) when HP-only search outperforms the full agent.
+
+\subsection{Proxy Validation}
+\label{sec:proxy_validation}
+
+The 5-minute training budget serves as a proxy for longer training. To validate this proxy, we conducted a calibration study on the SMILES track: 20 diverse architectures (sampled from the same random NAS space) were each trained for both 5 minutes and 2 hours. The rank correlation between 5-minute and 2-hour val\_bpb was Spearman $\rho = 0.54$ ($p = 0.014$, $n = 20$), indicating moderate reliability. The proxy preserves coarse architecture rankings but can misorder architectures with similar performance. This is a known limitation: the 5-minute proxy is suitable for identifying large improvements but not for fine-grained selection.
+
+\subsection{Statistical Testing}
+\label{sec:statistical_testing}
+
+The unit of analysis for between-condition comparisons is the \emph{run} (not the individual experiment), yielding sample sizes of $n = 3$--$5$ per condition. We employ the following tests:
+
+\textbf{Bootstrap confidence intervals.} For each pairwise AUC-OC comparison, we compute 95\% bootstrap CIs over 10{,}000 resamples. A CI that excludes zero indicates a significant difference. We also report bootstrap $p$-values (two-sided).
+
+\textbf{Frequentist tests.} Welch's $t$-test and Mann--Whitney $U$ for AUC-OC and final best val\_bpb comparisons. Fisher's exact test for keep rate comparisons. Cohen's $d$ for effect size.
+
+\textbf{Architecture clustering (H1).} We extract architectural feature vectors from the best architecture per agent run (13 total: 5 SMILES + 3 protein + 5 NLP) by parsing the trained \texttt{train.py} source code. Features include depth, width, head count, FFN ratio, activation function, attention type, normalization, and optimizer settings. We compute pairwise Gower distances (mixed categorical and numerical features) and test for domain clustering via permutation test: track labels are permuted 10{,}000 times, and the test statistic is the ratio of mean cross-track to within-track distance.
+
+\textbf{Domain knowledge rediscovery (H2).} We classify each agent modification (from code diffs) against 5 known molecular modeling techniques: local/sliding attention, embedding dimension reduction, positional encoding changes, depth/width rebalancing for short sequences, and regularization for small data. A technique is ``matched'' in a run if at least one kept experiment implements it.
+
+\textbf{Multiple comparison correction.} All frequentist $p$-values are corrected using the Holm--Bonferroni method within logical families: H1 (1 test), H2 (5 tests), H4 per-track primary comparisons (5 tests $\times$ 3 tracks), and H4 decomposition (9 tests). Both raw and adjusted $p$-values are reported.
