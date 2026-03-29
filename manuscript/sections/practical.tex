@@ -1,7 +1,7 @@
 \section{Practical Implications}
 \label{sec:practical}
 
-The decomposition results yield concrete guidance for practitioners deciding how to allocate compute budgets for model optimization.
+The decomposition results translate directly into compute budget allocation guidance.
 
 \textbf{When to use architecture search vs.\ HP tuning.}
 Table~\ref{tab:decision} summarizes a decision framework based on observable domain characteristics. The key predictors are vocabulary size and sequence length: domains with small vocabularies ($<$100 tokens) and short sequences ($<$500 tokens) resemble SMILES, where HP tuning alone suffices; domains with large vocabularies ($>$1K tokens) and long sequences ($>$1K tokens) resemble NLP, where architecture search contributes the majority of improvement.

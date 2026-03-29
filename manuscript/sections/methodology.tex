@@ -6,7 +6,7 @@ We design a controlled experiment to decompose the contributions of architecture
 \subsection{Experimental Design}
 \label{sec:experimental_design}
 
-The central challenge in evaluating LLM-guided architecture search is disentangling its components: does the agent improve performance through architectural modifications, hyperparameter tuning, or the interaction of both? We address this with a 4-condition factorial design (Table~\ref{tab:conditions}).
+Evaluating LLM-guided architecture search requires disentangling its components: does the agent improve performance through architectural modifications, hyperparameter tuning, or the interaction of both? We address this with a 4-condition factorial design (Table~\ref{tab:conditions}).
 
 \begin{table}[t]
 \centering
@@ -100,7 +100,7 @@ Parameters & ${\sim}$8.6M & Varies slightly by vocabulary size \\
 \end{tabular}
 \end{table}
 
-The baseline was intentionally not pre-optimized for molecular data: parameters like the activation function (ReluSquared), FFN ratio ($5\times$), and attention pattern (SSSL) were kept at their autoresearch defaults to give the agent room to discover domain-specific improvements. Starting from a domain-agnostic baseline is essential to the experimental design---a pre-optimized molecular architecture would conflate human domain knowledge with agent discovery.
+The baseline was intentionally not pre-optimized for molecular data: parameters like the activation function (ReluSquared), FFN ratio ($5\times$), and attention pattern (SSSL) were kept at their autoresearch defaults to give the agent room to discover domain-specific improvements. Starting from a domain-agnostic baseline is essential to the experimental design; a pre-optimized molecular architecture would conflate human domain knowledge with agent discovery.
 
 \subsection{Training Procedure}
 \label{sec:training_procedure}
@@ -113,7 +113,7 @@ At the 5-minute mark, training halts and the model is evaluated on the held-out 
 \label{sec:search_process}
 
 \textbf{Agent condition.}
-The LLM agent (Claude Sonnet) receives a system prompt (\texttt{program.md}) specifying the search loop: (1)~inspect current architecture and prior results, (2)~make one coherent modification to \texttt{train.py}, (3)~train for 5 minutes, (4)~evaluate val\_bpb, (5)~keep the change if val\_bpb improves, otherwise revert. The prompt encourages architectural exploration---depth/width balance, attention patterns, head structure, activation functions, normalization strategy, residual pathways, and embedding structure---while permitting hyperparameter changes. Each run executes ${\sim}$100 sequential experiments. The agent operates in an isolated workspace and can only modify \texttt{train.py}; the data pipeline, evaluation, and training budget are fixed.
+The LLM agent (Claude Sonnet) receives a system prompt (\texttt{program.md}) specifying the search loop: (1)~inspect current architecture and prior results, (2)~make one coherent modification to \texttt{train.py}, (3)~train for 5 minutes, (4)~evaluate val\_bpb, (5)~keep the change if val\_bpb improves, otherwise revert. The prompt encourages architectural exploration (depth/width balance, attention patterns, head structure, activation functions, normalization, residual pathways, and embedding structure) while permitting hyperparameter changes. Each run executes ${\sim}$100 sequential experiments. The agent operates in an isolated workspace and can only modify \texttt{train.py}; the data pipeline, evaluation, and training budget are fixed.
 
 \textbf{HP-only condition.}
 Identical to the agent condition, except the system prompt (\texttt{program\_hponly.md}) explicitly forbids architectural modifications: ``Do NOT change model architecture: no new layers, no attention pattern changes, no activation function changes, no model structure changes.'' The agent may only modify hyperparameters: learning rates, batch size, weight decay, warmup schedule, and optimizer parameters. This isolates the contribution of architecture search by holding the architecture constant while allowing the same LLM-guided HP optimization.
@@ -148,7 +148,7 @@ where each bpb value is the mean best val\_bpb across runs within that condition
 \subsection{Proxy Validation}
 \label{sec:proxy_validation}
 
-The 5-minute training budget serves as a proxy for longer training. To validate this proxy, we conducted a calibration study on the SMILES track: 20 diverse architectures (sampled from the same random NAS space) were each trained for both 5 minutes and 2 hours. The rank correlation between 5-minute and 2-hour val\_bpb was Spearman $\rho = 0.54$ ($p = 0.014$, $n = 20$), indicating moderate reliability. The proxy preserves coarse architecture rankings but can misorder architectures with similar performance. This is a known limitation: the 5-minute proxy is suitable for identifying large improvements but not for fine-grained selection.
+The 5-minute training budget serves as a proxy for longer training. To validate this proxy, we conducted a calibration study on the SMILES track: 20 diverse architectures (sampled from the same random NAS space) were each trained for both 5 minutes and 2 hours. The rank correlation between 5-minute and 2-hour val\_bpb was Spearman $\rho = 0.54$ ($p = 0.014$, $n = 20$), indicating moderate reliability. The proxy preserves coarse architecture rankings but can misorder architectures with similar performance. The proxy is suitable for identifying large improvements but not for fine-grained ranking.
 
 \subsection{Statistical Testing}
 \label{sec:statistical_testing}
