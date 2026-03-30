@@ -10,7 +10,7 @@ This paper makes three contributions:
 \begin{enumerate}[nosep]
 \item \textbf{A controlled decomposition of architecture search vs.\ hyperparameter tuning.} We design a 4-condition experiment (autonomous agent, random NAS, hyperparameter-only agent, fixed default) that cleanly separates the contributions of architecture search and hyperparameter tuning across three molecular and language domains (SMILES, protein, NLP), totaling 3{,}106 experiments.
 
-\item \textbf{Evidence that the value of architecture search is domain-dependent.} On NLP, architecture search contributes 81\% of total improvement over the baseline ($p = 0.008$); on SMILES, hyperparameter tuning alone captures 151\% of the improvement ($p = 0.001$) and architecture search is counterproductive. For proteins, margins are too small for either component to reach significance.
+\item \textbf{Evidence that the value of architecture search is domain-dependent.} On NLP, architecture search contributes 81\% of total improvement over the baseline ($p = 0.009$); on SMILES, hyperparameter tuning alone captures 151\% of the improvement ($p = 0.001$) and architecture search is counterproductive. For proteins, margins are too small for either component to reach significance.
 
 \item \textbf{A surprising universality finding.} While agent-discovered architectures cluster by domain ($p = 0.004$), all 41 innovations transfer across domains with $<$1\% degradation ($p = 2 \times 10^{-19}$ against the predicted 35\% universal rate). The clustering reflects search path dependence, not fundamental domain requirements at this scale.
 \end{enumerate}
