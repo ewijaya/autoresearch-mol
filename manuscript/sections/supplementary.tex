@@ -1,6 +1,35 @@
 \section{Supplementary Material}
 \label{sec:supplementary}
 
+\subsection{Hypothesis Summary}
+\label{sec:hypothesis_summary}
+
+Table~\ref{tab:hypotheses} summarizes the four pre-registered hypotheses, their predictions, statistical tests, and outcomes.
+
+\begin{table}[h]
+\centering
+\caption{Summary of pre-registered hypotheses. All $p$-values are Holm--Bonferroni adjusted within their respective families.}
+\label{tab:hypotheses}
+\small
+\begin{tabular}{@{}llp{3.8cm}lp{3.2cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Prediction} & \textbf{Test} & \textbf{Outcome} \\
+\midrule
+H1 & Architecture clustering & Agent discovers different architectures per domain & Permutation test on Gower distance & \textbf{Supported} ($p = 0.004$) \\
+\midrule
+H2 & Domain knowledge rediscovery & Agent rediscovers known molecular techniques & Code diff classification vs.\ 5 known techniques & \textbf{Supported}: 4/5 techniques matched \\
+\midrule
+H3 & Transfer universality & Domain-specific architectures degrade on cross-domain transfer & Cross-domain transfer + 4 sub-tests & \textbf{Not supported}: all 41/41 innovations universal ($<$1\% degradation) \\
+\quad H3a & \quad Asymmetric transfer & Transfer degrades asymmetrically & Pairwise degradation & Not supported \\
+\quad H3b & \quad Layer specificity & Late layers are domain-specific & Layer freezing & Partially supported \\
+\quad H3c & \quad Length matching & Sequence length is an artifact & Length truncation & Not supported \\
+\quad H3d & \quad Innovation classification & 35\% of innovations are universal & Binomial test & Contradicted ($p = 2 \times 10^{-19}$; 100\% universal) \\
+\midrule
+H4 & Architecture vs.\ HP decomposition & Architecture search adds value beyond HP tuning & Bootstrap CI + Welch's $t$ on AUC-OC & \textbf{Domain-dependent}: 81\% for NLP ($p = 0.009$); $-$51\% for SMILES ($p = 0.001$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Full AUC-OC Values}
 
 Table~\ref{tab:auc_full} reports AUC-OC and final best val\_bpb for every run.
