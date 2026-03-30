@@ -91,7 +91,7 @@ FFN multiplier & $5\times$ & Hidden dim = $5 \times 320 = 1{,}600$ \\
 Activation & ReluSquared & $\text{ReLU}(x)^2$; inherited from autoresearch \\
 Normalization & RMSNorm & Pre-attention and pre-MLP \\
 Attention & SDPA & Flash Attention 2 backend (Ampere) \\
-Window pattern & SSSL & 3 short-window + 1 full-causal per cycle \\
+Window pattern & SSSL (3 short + 1 long) & 3 short-window + 1 full-causal per cycle \\
 Positional encoding & RoPE & Rotary position embeddings \\
 Value embeddings & Alternating layers & ResFormer-style input-dependent gating \\
 Weight tying & Disabled & Separate embedding and unembedding \\
