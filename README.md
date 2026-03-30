@@ -63,15 +63,6 @@ uv run prepare.py          # NLP track
 RECURSIVE_MOL_TRACK=smiles uv run train.py
 ```
 
-## Project Status
-
-| Phase | Status |
-|-------|--------|
-| 1. Infrastructure | ✅ Complete |
-| 2. Agent Search (3,106 experiments) | ✅ Complete |
-| 3. Baselines (random NAS, HP-only, fixed) | ✅ Complete |
-| 4. Statistical Analysis (H1–H4) | ✅ Complete |
-| 5. Paper (NeurIPS 2026) | 🔄 In progress |
 
 ## License
 
