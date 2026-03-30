@@ -67,21 +67,8 @@ Table~\ref{tab:auc} reports pairwise AUC-OC comparisons between the agent and ea
 
 \begin{figure}[t]
 \centering
-\begin{subfigure}[b]{0.32\linewidth}
-\includegraphics[width=\linewidth]{figures/h4_best_so_far_smiles.pdf}
-\caption{SMILES}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.32\linewidth}
-\includegraphics[width=\linewidth]{figures/h4_best_so_far_protein.pdf}
-\caption{Protein}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.32\linewidth}
-\includegraphics[width=\linewidth]{figures/h4_best_so_far_nlp.pdf}
-\caption{NLP}
-\end{subfigure}
-\caption{Best-so-far curves across conditions. Each line shows the cumulative minimum val\_bpb over experiments 1--100. The HP-only agent (green) dominates on SMILES, while the full agent (blue) dominates on NLP. All conditions cluster tightly on protein.}
+\includegraphics[width=\linewidth]{figures/readme_progress.pdf}
+\caption{Best-so-far curves across conditions and tracks. Each line shows the mean cumulative minimum val\_bpb over experiments 1--100, with shaded bands indicating the min--max range across runs. The HP-only agent (green) dominates on SMILES, the full agent (blue) dominates on NLP, and all conditions cluster tightly on protein.}
 \label{fig:best_so_far}
 \end{figure}
 

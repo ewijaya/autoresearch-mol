@@ -15,7 +15,9 @@ import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_ROOT / "results" / "analysis" / "h4_auc_values.json"
-OUTPUT_PATH = PROJECT_ROOT / "manuscript" / "figures" / "readme_progress.png"
+FIGURES_DIR = PROJECT_ROOT / "manuscript" / "figures"
+OUTPUT_PNG = FIGURES_DIR / "readme_progress.png"
+OUTPUT_PDF = FIGURES_DIR / "readme_progress.pdf"
 
 COND_COLORS = {
     "agent": "#2196F3",
@@ -89,8 +91,10 @@ def main():
         y=1.02,
     )
     fig.tight_layout()
-    fig.savefig(OUTPUT_PATH, dpi=150, bbox_inches="tight", facecolor="white")
-    print(f"Saved {OUTPUT_PATH}")
+    fig.savefig(OUTPUT_PNG, dpi=150, bbox_inches="tight", facecolor="white")
+    fig.savefig(OUTPUT_PDF, bbox_inches="tight", facecolor="white")
+    print(f"Saved {OUTPUT_PNG}")
+    print(f"Saved {OUTPUT_PDF}")
 
 
 if __name__ == "__main__":
