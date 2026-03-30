@@ -979,6 +979,7 @@ def classify_diff(diff_text: str, description: str) -> dict[str, bool]:
 
 
 def plot_h2_technique_heatmap(run_presence: dict[str, dict[str, bool]]) -> None:
+    from matplotlib.colors import ListedColormap
     run_names = list(run_presence.keys())
     matrix = np.array(
         [
@@ -987,8 +988,9 @@ def plot_h2_technique_heatmap(run_presence: dict[str, dict[str, bool]]) -> None:
         ],
         dtype=float,
     )
+    cmap = ListedColormap(["#f0f0f0", "#1f4e79"])
     fig, ax = plt.subplots(figsize=(10, 5))
-    image = ax.imshow(matrix, cmap="Blues", vmin=0, vmax=1)
+    ax.imshow(matrix, cmap=cmap, vmin=0, vmax=1)
     ax.set_xticks(np.arange(len(run_names)))
     ax.set_xticklabels(run_names)
     ax.set_yticks(np.arange(len(TECHNIQUE_ORDER)))
@@ -996,8 +998,10 @@ def plot_h2_technique_heatmap(run_presence: dict[str, dict[str, bool]]) -> None:
     ax.set_title("H2 SMILES Technique Matches")
     for i in range(matrix.shape[0]):
         for j in range(matrix.shape[1]):
-            ax.text(j, i, f"{int(matrix[i, j])}", ha="center", va="center", color="black")
-    fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04, label="Present in kept diff")
+            val = int(matrix[i, j])
+            color = "white" if val == 1 else "black"
+            label = "Yes" if val == 1 else "No"
+            ax.text(j, i, label, ha="center", va="center", color=color, fontweight="bold")
     save_figure(fig, FIGURES_DIR / "h2_technique_heatmap.png")
 
 
