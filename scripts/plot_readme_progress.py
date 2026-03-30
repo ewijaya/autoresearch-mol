@@ -15,7 +15,7 @@ import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_ROOT / "results" / "analysis" / "h4_auc_values.json"
-OUTPUT_PATH = PROJECT_ROOT / "figures" / "readme_progress.png"
+OUTPUT_PATH = PROJECT_ROOT / "manuscript" / "figures" / "readme_progress.png"
 
 COND_COLORS = {
     "agent": "#2196F3",

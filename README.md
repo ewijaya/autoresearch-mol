@@ -10,7 +10,7 @@ We took that idea and pointed it at molecules. Same loop, same single-GPU constr
 
 ## What We Found
 
-![progress](figures/readme_progress.png)
+![progress](manuscript/figures/readme_progress.png)
 
 After 3,106 experiments across 4 conditions and 3 domains:
 
