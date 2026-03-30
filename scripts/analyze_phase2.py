@@ -796,6 +796,7 @@ def plot_h1_permutation_null(observed_ratio: float, null_distribution: np.ndarra
 
 
 def plot_h1_architecture_pca(features: list[dict[str, Any]]) -> None:
+    from matplotlib.patches import Ellipse
     labels = [item["id"] for item in features]
     tracks = [item["track"] for item in features]
     X = encode_features_for_pca(features)
@@ -813,7 +814,25 @@ def plot_h1_architecture_pca(features: list[dict[str, Any]]) -> None:
         mask = np.array([item == track for item in tracks])
         if not np.any(mask):
             continue
-        ax.scatter(coords[mask, 0], coords[mask, 1], label=track, color=TRACK_COLORS[track], s=60)
+        ax.scatter(coords[mask, 0], coords[mask, 1], label=track, color=TRACK_COLORS[track], s=60, zorder=3)
+        group_coords = coords[mask]
+        if group_coords.shape[0] >= 2:
+            mean = group_coords.mean(axis=0)
+            cov = np.cov(group_coords, rowvar=False)
+            eigenvalues, eigenvectors = np.linalg.eigh(cov)
+            order = eigenvalues.argsort()[::-1]
+            eigenvalues = eigenvalues[order]
+            eigenvectors = eigenvectors[:, order]
+            angle = np.degrees(np.arctan2(eigenvectors[1, 0], eigenvectors[0, 0]))
+            chi2_val = 5.991  # chi-squared 95% CI with 2 dof
+            width = 2 * np.sqrt(chi2_val * max(eigenvalues[0], 1e-10))
+            height = 2 * np.sqrt(chi2_val * max(eigenvalues[1], 1e-10))
+            ellipse = Ellipse(
+                xy=mean, width=width, height=height, angle=angle,
+                facecolor=TRACK_COLORS[track], alpha=0.15, edgecolor=TRACK_COLORS[track],
+                linewidth=1.5, linestyle="--", zorder=1,
+            )
+            ax.add_patch(ellipse)
     for x, y, label in zip(coords[:, 0], coords[:, 1], labels):
         ax.text(x + 0.02, y + 0.02, label.replace("_run_", "_r"), fontsize=8)
     ax.set_xlabel("PC1")
