@@ -1,7 +1,7 @@
 \section{Results}
 \label{sec:results}
 
-We begin with the decomposition (the central finding), followed by search efficiency, architecture clustering, transfer universality, domain knowledge rediscovery, and downstream validation.
+Results are organized around the decomposition (Section~\ref{sec:decomposition}), then search efficiency, architecture clustering, transfer universality, domain knowledge rediscovery, and downstream validation.
 
 \subsection{Decomposition: Architecture Search vs.\ HP Tuning}
 \label{sec:decomposition}
@@ -35,7 +35,7 @@ The three tracks yield qualitatively different decompositions:
 
 \textbf{NLP} (large vocabulary, long sequences). Architecture search contributes 81\% of the total 0.030 bpb improvement ($p_\text{adj} = 0.009$), with HP tuning contributing only 19\% ($p_\text{adj} = 0.022$). The full agent achieves a mean best val\_bpb of 1.123, compared to 1.147 for HP-only and 1.153 for the fixed default. Architecture search drives most of the gain in this domain.
 
-\textbf{SMILES} (small vocabulary, short sequences). HP tuning alone captures 151\% of the total 0.010 bpb improvement ($p_\text{adj} = 0.001$), meaning the HP-only agent (mean best 0.581) \emph{outperforms} the full agent (mean best 0.586). The architecture contribution is $-$51\% (not significant, $p_\text{adj} = 0.246$), indicating that architecture search wastes experimental budget on structural changes that do not improve over the near-optimal default architecture. This is not a failure of the agent; it is a genuine finding that simple domains do not benefit from architecture search.
+\textbf{SMILES} (small vocabulary, short sequences). HP tuning alone captures 151\% of the total 0.010 bpb improvement ($p_\text{adj} = 0.001$), meaning the HP-only agent (mean best 0.581) \emph{outperforms} the full agent (mean best 0.586). The architecture contribution is $-$51\% (not significant, $p_\text{adj} = 0.246$), indicating that architecture search wastes experimental budget on structural changes that do not improve over the near-optimal default architecture. Simple domains do not benefit from architecture search.
 
 \textbf{Protein} (intermediate). The total improvement is 0.010 bpb, but neither the HP contribution (6\%, $p_\text{adj} = 0.632$) nor the architecture contribution (94\%, $p_\text{adj} = 0.632$) reaches significance. The relative spread across all conditions is $<$0.3\%, suggesting the domain is ``architecture-insensitive'' at this model scale.
 
@@ -166,4 +166,4 @@ Agent \#3 (bpb 0.584) & 0.711 & 0.735 & 0.798 & 0.748 \\
 \end{tabular}
 \end{table}
 
-The architectures achieve mean ROC-AUC of 0.74--0.76 across tasks. The rank correlation between val\_bpb and mean ROC-AUC is $\rho = 0.5$ ($n = 3$, $p = 0.67$), consistent with a positive trend but underpowered to reach significance. We additionally evaluate molecular generation: the best agent architecture produces 95.2\% valid, 100\% unique, and 99.96\% novel SMILES strings, confirming that the pretrained representations capture meaningful chemical structure.
+The architectures achieve mean ROC-AUC of 0.74--0.76 across tasks. The rank correlation between val\_bpb and mean ROC-AUC is $\rho = 0.5$ ($n = 3$, $p = 0.67$), consistent with a positive trend but underpowered to reach significance. On molecular generation, the best agent architecture produces 95.2\% valid, 100\% unique, and 99.96\% novel SMILES strings, confirming that the pretrained representations capture meaningful chemical structure.
