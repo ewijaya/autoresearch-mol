@@ -50,7 +50,7 @@ We evaluate across three sequence domains chosen to span a range of vocabulary s
 \textbf{Track} & \textbf{Dataset} & \textbf{Vocab} & \textbf{Seq len} & \textbf{Agent} & \textbf{NAS} & \textbf{HP-only} \\
 \midrule
 SMILES & ZINC-250K \citep{irwin2005zinc} & 37 & 256 & 5 runs & 3 runs & 3 runs \\
-Protein & UniRef50 \citep{suzgun2024uniref} & 24 & 512 & 3 runs & 3 runs & 3 runs \\
+Protein & UniRef50 \citep{suzek2015uniref} & 24 & 512 & 3 runs & 3 runs & 3 runs \\
 NLP & FineWeb-Edu \citep{penedo2024fineweb} & ${\sim}$8K (BPE) & 2{,}048 & 5 runs & 3 runs & 3 runs \\
 \bottomrule
 \end{tabular}
@@ -70,7 +70,7 @@ All tracks use a fixed 90/10 train/validation split. The evaluation metric is va
 \subsection{Baseline Model Architecture}
 \label{sec:baseline_arch}
 
-All four conditions share the same starting architecture: a GPT-style \citep{vaswani2017attention} autoregressive transformer adapted from the autoresearch framework \citep{karpathy2026autoresearch}. The original 50.3M-parameter architecture was designed for H100 GPUs and scaled down to ${\sim}$8.6M parameters to achieve 3--8 training epochs within the 5-minute budget on A10G hardware (Section~\ref{sec:training_procedure}).
+All four conditions share the same starting architecture: a decoder-only Transformer \citep{vaswani2017attention} autoregressive model adapted from the autoresearch framework \citep{karpathy2026autoresearch}. The original 50.3M-parameter architecture was designed for H100 GPUs and scaled down to ${\sim}$8.6M parameters to achieve 3--8 training epochs within the 5-minute budget on A10G hardware (Section~\ref{sec:training_procedure}).
 
 Table~\ref{tab:baseline_arch} summarizes the shared architectural parameters. Only data-facing parameters (vocabulary size, sequence length, device batch size) differ across tracks. This ensures that any architectural divergence discovered by the agent is attributable to domain-specific optimization, not baseline differences.
 
