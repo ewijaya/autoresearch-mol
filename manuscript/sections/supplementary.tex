@@ -111,14 +111,14 @@ Figures~\ref{fig:auc_comparison}--\ref{fig:training_dynamics} provide supplement
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.75\linewidth]{figures/h4_auc_comparison.pdf}
-\caption{AUC-OC comparison across conditions and tracks.}
+\caption{AUC-OC comparison across conditions and tracks. Lower is better. On SMILES, HP-only achieves the lowest AUC-OC; on NLP, the full agent is lowest. Protein conditions are tightly clustered with no significant differences.}
 \label{fig:auc_comparison}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.75\linewidth]{figures/h4_keep_rate.pdf}
-\caption{Cumulative keep rate curves by condition.}
+\caption{Cumulative keep rate curves by condition. All conditions show declining keep rates as the search progresses and easy improvements are exhausted. The agent maintains a higher keep rate than random NAS across all tracks, reflecting more targeted proposals.}
 \label{fig:keep_rate}
 \end{figure}
 
@@ -159,7 +159,7 @@ Figures~\ref{fig:auc_comparison}--\ref{fig:training_dynamics} provide supplement
 \includegraphics[width=\linewidth]{figures/distribution_violin_nlp.pdf}
 \caption{NLP}
 \end{subfigure}
-\caption{Distribution of val\_bpb by condition and track (violin plots).}
+\caption{Distribution of val\_bpb by condition and track (violin plots). The agent condition shows the widest spread (many exploratory modifications), while HP-only and random NAS produce tighter distributions. The best val\_bpb values (lower tails) confirm the per-track rankings from Table~\ref{tab:decomposition}.}
 \label{fig:distribution_violins}
 \end{figure}
 
