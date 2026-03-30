@@ -6,7 +6,7 @@ We begin with the decomposition (the central finding), followed by search effici
 \subsection{Decomposition: Architecture Search vs.\ HP Tuning}
 \label{sec:decomposition}
 
-Table~\ref{tab:decomposition} shows the decomposition of total improvement into HP and architecture contributions for each track.
+Table~\ref{tab:decomposition} and Figure~\ref{fig:decomposition} show the decomposition of total improvement into HP and architecture contributions for each track.
 
 \begin{table}[t]
 \centering
@@ -101,7 +101,7 @@ The qualitative patterns differ across domains. SMILES architectures tend toward
 \subsection{Transfer Universality}
 \label{sec:transfer}
 
-Cross-domain transfer experiments show that architectural innovations are largely universal at this scale, despite the clustering result above. Table~\ref{tab:transfer} shows the 3$\times$3 transfer matrix: training a model with one domain's best architecture on another domain's data yields $<$1\% degradation in most cases.
+Cross-domain transfer experiments show that architectural innovations are largely universal at this scale, despite the clustering result above. Table~\ref{tab:transfer} and Figure~\ref{fig:transfer_heatmap} show the 3$\times$3 transfer matrix: training a model with one domain's best architecture on another domain's data yields $<$1\% degradation in most cases.
 
 \begin{table}[t]
 \centering
