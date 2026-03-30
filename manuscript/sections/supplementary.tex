@@ -7,25 +7,23 @@
 Table~\ref{tab:hypotheses} summarizes the four pre-registered hypotheses, their predictions, statistical tests, and outcomes.
 
 \begin{table}[h]
-\centering
-\caption{Summary of pre-registered hypotheses. All $p$-values are Holm--Bonferroni adjusted within their respective families.}
+\caption{Summary of pre-registered hypotheses. All $p$-values are Holm--Bonferroni adjusted.}
 \label{tab:hypotheses}
-\small
-\begin{tabular}{@{}llp{3.8cm}lp{3.2cm}@{}}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{2.6cm}p{3.0cm}p{2.8cm}p{3.8cm}@{}}
 \toprule
-\textbf{ID} & \textbf{Name} & \textbf{Prediction} & \textbf{Test} & \textbf{Outcome} \\
+\textbf{Hypothesis} & \textbf{Prediction} & \textbf{Test} & \textbf{Outcome} \\
 \midrule
-H1 & Architecture clustering & Agent discovers different architectures per domain & Permutation test on Gower distance & \textbf{Supported} ($p = 0.004$) \\
-\midrule
-H2 & Domain knowledge rediscovery & Agent rediscovers known molecular techniques & Code diff classification vs.\ 5 known techniques & \textbf{Supported}: 4/5 techniques matched \\
-\midrule
-H3 & Transfer universality & Domain-specific architectures degrade on cross-domain transfer & Cross-domain transfer + 4 sub-tests & \textbf{Not supported}: all 41/41 innovations universal ($<$1\% degradation) \\
-\quad H3a & \quad Asymmetric transfer & Transfer degrades asymmetrically & Pairwise degradation & Not supported \\
-\quad H3b & \quad Layer specificity & Late layers are domain-specific & Layer freezing & Partially supported \\
-\quad H3c & \quad Length matching & Sequence length is an artifact & Length truncation & Not supported \\
-\quad H3d & \quad Innovation classification & 35\% of innovations are universal & Binomial test & Contradicted ($p = 2 \times 10^{-19}$; 100\% universal) \\
-\midrule
-H4 & Architecture vs.\ HP decomposition & Architecture search adds value beyond HP tuning & Bootstrap CI + Welch's $t$ on AUC-OC & \textbf{Domain-dependent}: 81\% for NLP ($p = 0.009$); $-$51\% for SMILES ($p = 0.001$) \\
+H1: Arch.\ clustering & Agent discovers different architectures per domain & Permutation on Gower distance & \textbf{Supported} ($p = 0.004$) \\[3pt]
+H2: Domain knowledge rediscovery & Agent rediscovers known molecular techniques & Code diff vs.\ 5 known techniques & \textbf{Supported}: 4/5 matched \\[3pt]
+H3: Transfer universality & Domain-specific arch.\ degrades cross-domain & Transfer + 4 sub-tests & \textbf{Not supported}: 41/41 universal ($<$1\%) \\
+\quad H3a: Asymmetric & Degradation is asymmetric & Pairwise degradation & Not supported \\
+\quad H3b: Layer specif. & Late layers domain-specific & Layer freezing & Partially supported \\
+\quad H3c: Length match & Seq.\ length is artifact & Length truncation & Not supported \\
+\quad H3d: Innovation cls. & 35\% universal & Binomial test & Contradicted ($p\!=\!2\!\times\!10^{-19}$) \\[3pt]
+H4: Arch.\ vs.\ HP decomp. & Arch.\ search adds value beyond HP tuning & Bootstrap CI + Welch's $t$ & \textbf{Domain-dep.}: 81\% NLP ($p\!=\!0.009$); $-$51\% SMILES ($p\!=\!0.001$) \\
 \bottomrule
 \end{tabular}
 \end{table}
