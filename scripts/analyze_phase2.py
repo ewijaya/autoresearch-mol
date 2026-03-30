@@ -33,7 +33,7 @@ CONDITIONS = ("agent", "random_nas", "hp_only", "fixed_default")
 BUDGETS = (5, 10, 15, 20, 30, 50, 75, 100)
 BOOTSTRAP_SAMPLES = 10_000
 PERMUTATIONS = 10_000
-FIGURE_DPI = 150
+FIGURE_DPI = 300
 COND_COLORS = {
     "agent": "#2196F3",
     "random_nas": "#FF9800",
@@ -2290,7 +2290,7 @@ def sanitize(value: Any) -> Any:
 def save_figure(fig: plt.Figure, png_path: Path) -> None:
     png_path.parent.mkdir(parents=True, exist_ok=True)
     pdf_path = png_path.with_suffix(".pdf")
-    fig.savefig(png_path)
+    fig.savefig(png_path, dpi=FIGURE_DPI)
     fig.savefig(pdf_path)
     GENERATED_FIGURES.extend([png_path, pdf_path])
     plt.close(fig)
