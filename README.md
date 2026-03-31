@@ -1,5 +1,9 @@
 # autoresearch-mol
 
+[![arXiv](https://img.shields.io/badge/arXiv-2603.28015-b31b1b.svg)](https://arxiv.org/abs/2603.28015)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+
 Autonomous discovery of domain-specific transformer architectures for molecular sequences.
 
 ## Background
@@ -63,6 +67,17 @@ uv run prepare.py          # NLP track
 RECURSIVE_MOL_TRACK=smiles uv run train.py
 ```
 
+
+## Citation
+
+```bibtex
+@article{wijaya2026autoresearchmol,
+  title={What an Autonomous Agent Discovers About Molecular Transformer Design: Does It Transfer?},
+  author={Wijaya, Edward},
+  journal={arXiv preprint arXiv:2603.28015},
+  year={2026}
+}
+```
 
 ## License
 
